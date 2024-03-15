@@ -1,0 +1,88 @@
+<entities anm2root="gfx/" version="5">
+    <!-- Bomb variants -->
+    <entity anm2path="items/pick ups/bombs/stone2.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="4" variant="1500" name="Stone Bomb" numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    
+    <entity anm2path="items/pick ups/bombs/safety2.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="4" variant="1501" name="Safety Bomb" numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity anm2path="items/pick ups/bombs/dice2.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="4" variant="1502" name="Dice Bomb" numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    
+    <entity anm2path="items/pick ups/bombs/blank2.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="4" variant="1503" name="Blank Bomb" numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity anm2path="items/pick ups/bombs/bomb2.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="4" variant="1504" name="Thunder Bomb" numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    
+    <!-- Checked Mate-->
+    <entity anm2path="checked_mate.anm2" tags="cansacrifice" baseHP="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Checked Mate" numGridCollisionPoints="12" shadowSize="11" variant="">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+	
+    <!-- Blank Bombs -->
+    <entity name="Blank Explosion" anm2path="blank_explosion.anm2" id="1000" variant=""/>
+ 
+    <!-- Donkey Jawbone -->
+    <entity anm2path="donkeyjawbone.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="75" friction="1" id="1000" name="Antibirth Donkey Jawbone" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="1001">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
+    <!-- Sun Hearts -->
+    <entity anm2path="005.019_heart_sun.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Sun Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="910">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+    <entity anm2path="003.238_sun baby.anm2" baseHP="18" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Sun Baby" numGridCollisionPoints="12" shadowSize="10" stageHP="0" tags="cansacrifice" variant="238" subtype="30"/>
+
+    <!-- Immortal Hearts -->
+    <entity anm2path="005.019_heart (immortal).anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Immortal Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="902">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+	<entity anm2path="1000.049_immortalheart.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" id="1000" name="Immortal Heart Charge" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="903">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+    <entity anm2path="003.238_immortal baby.anm2" baseHP="18" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Immortal Baby" numGridCollisionPoints="12" shadowSize="10" stageHP="0" tags="cansacrifice" variant="238" subtype="20"/>
+	<entity anm2path="HeartBroken.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" id="1000" name="Immortal Heart Break" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="904">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+    
+    <!-- Illusion Hearts -->
+    <entity anm2path="005.01b_heart (illusion).anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Illusion Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="9000" />
+
+    <!-- KEEPER'S ROPE -->
+    <entity anm2path="characters/keepers rope.anm2" baseHP="10" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" id="1000" name="Hanging rope" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="4125">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <!-- LUCKY SEVEN -->
+    <entity anm2path="lucky_seven_regular_slot.anm2" name="Lucky Seven Slot" id="6" variant="" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="33" />
+
+    <entity anm2path="machine_sparkles.anm2" name="Machine Sparkles" id="1000" variant="" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0"/>
+
+    <entity anm2path="lucky_seven_regular_slot.anm2" name="Crane Cord End" id="1000" variant="" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0"/>
+    <entity anm2path="lucky_seven_crane_game.anm2" name="Crane Cord Handler" id="1000" variant="" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" />
+    <entity anm2path="865.010_evis guts.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="15" friction="1" id="865" name="Crane Game Cord" numGridCollisionPoints="1" shadowSize="5" shutdoors="false" stageHP="0" tags="noreroll" variant="10" subtype="231">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+
+    <!-- VOODOO PIN -->
+    <entity anm2path="voodoo_pin_tear.anm2" baseHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="8" collisionRadius="12" friction="1" id="2" name="Voodoo Pin Tear" numGridCollisionPoints="8" shadowSize="9" stageHP="0" variant=""/>
+    <entity anm2path="voodoo_pin_tear.anm2" baseHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="8" collisionRadius="12" friction="1" id="1000" name="Voodoo Pin Shatter" numGridCollisionPoints="8" shadowSize="9" stageHP="0" variant=""/>
+
+    <!-- OL LOPPER -->
+    <entity name="Ol Lopper Head" anm2path="none.anm2" id="3" variant="482" collisionMass="5" collisionRadius="10" friction="1" numGridCollisionPoints="40" shadowSize="16"/>
+
+    <entity anm2path="035.010_Mr. Maw Neck.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="10" collisionRadius="13" friction="1" id="1000" name="Ol Lopper Neck" numGridCollisionPoints="0" shadowSize="8" stageHP="0" variant="279" shutdoors="false" tags="noreroll">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+       <!-- BETHS HEART -->
+    <entity anm2path="beths_heart_alt.anm2" baseHP="0" boss="0" champion="0" tags="cansacrifice" collisionDamage="0" collisionMass="3" collisionRadius="10" friction="1" id="3" name="Beth's Heart" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="">
+        <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+</entities>

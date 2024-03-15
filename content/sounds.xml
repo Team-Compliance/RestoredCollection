@@ -1,0 +1,88 @@
+<sounds root="sfx/">
+	<sound name="deadseascrolls_pop">
+        <sample weight="1" path="deadseascrolls/pop.wav"/>
+    </sound>
+    <sound name="deadseascrolls_whoosh">
+        <sample weight="1" path="deadseascrolls/whoosh.wav"/>
+    </sound>
+	<sound name="PickupSun">
+		<sample weight="1" path="pickup_sunheart.wav" />
+		<sample weight="1" path="pickup_sunheart_2.wav" />
+	</sound>
+    <sound name="SunBreak">
+		<sample weight="1" path="sunheart_break.wav" />
+	</sound>
+	<sound name="ImmortalHeartBreak">
+		<sample weight="1" path="ImmortalHeart_Break.wav" />
+	</sound>
+	<sound name="immortal">
+		<sample weight="1" path="immortal.wav" />
+	</sound>
+	<sound name="PickupIllusion">
+		<sample weight="1" path="pickup_illusion.wav" />
+		<sample weight="1" path="pickup_illusion_2.wav" />
+	</sound>
+	<sound name="Ancient Revelation">
+		<sample weight="1" path="funny/Ancient Revelation.wav" />
+	</sound>
+	<sound name="Beth's Heart">
+		<sample weight="1" path="funny/Beth's Heart.wav" />
+	</sound>
+	<sound name="Blank Bombs">
+		<sample weight="1" path="funny/Blank Bombs.wav" />
+	</sound>
+	<sound name="Book of Despair">
+		<sample weight="1" path="funny/Book of Despair.wav" />
+	</sound>
+	<sound name="Book of Illusions">
+		<sample weight="1" path="funny/Book of Illusions.wav" />
+	</sound>
+	<sound name="Bowl of Tears">
+		<sample weight="1" path="funny/Bowl of Tears.wav" />
+	</sound>
+	<sound name="Checked Mate">
+		<sample weight="1" path="funny/Checked Mate.wav" />
+	</sound>
+	<sound name="Dice Bombs">
+		<sample weight="1" path="funny/Dice Bombs.wav" />
+	</sound>
+	<sound name="Donkey Jawbone">
+		<sample weight="1" path="funny/Donkey Jawbone.wav" />
+	</sound>
+	<sound name="Keeper's Rope">
+		<sample weight="1" path="funny/Keeper's Rope.wav" />
+	</sound>
+	<sound name="Lucky Seven">
+		<sample weight="1" path="funny/Lucky Seven.wav" />
+	</sound>
+	<sound name="Lunch Box">
+		<sample weight="1" path="funny/Lunch Box.wav" />
+	</sound>
+	<sound name="Max's Head">
+		<sample weight="1" path="funny/Max's Head.wav" />
+	</sound>
+	<sound name="Menorah">
+		<sample weight="1" path="funny/Menorah.wav" />
+	</sound>
+	<sound name="Ol' Lopper">
+		<sample weight="1" path="funny/Ol' Lopper.wav" />
+	</sound>
+	<sound name="Pacifist">
+		<sample weight="1" path="funny/Pacifist.wav" />
+	</sound>
+	<sound name="Pill Crusher">
+		<sample weight="1" path="funny/Pill Crusher.wav" />
+	</sound>
+	<sound name="Safety Bombs">
+		<sample weight="1" path="funny/Safety Bombs.wav" />
+	</sound>
+	<sound name="Stone Bombs">
+		<sample weight="1" path="funny/Stone Bombs.wav" />
+	</sound>
+	<sound name="Voodoo Pin">
+		<sample weight="1" path="funny/Voodoo Pin.wav" />
+	</sound>
+	<sound name="Pumpkin Mask">
+		<sample weight="1" path="funny/Pumpkin Mask.wav" />
+	</sound>
+</sounds>

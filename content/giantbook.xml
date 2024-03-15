@@ -1,0 +1,12 @@
+<giantbook anm2root="gfx/ui/giantbook/">
+	<entry name="Book of Despair" anm2="GiantBook.anm2" anim="Appear" gfx="despair.png">
+		<layer name="poof" r="228" g="228" b="228" a="255" />
+		<layer name="bg" r="228" g="228" b="228" a="153" />
+		<layer name="poof2" r="225" g="225" b="225" a="128" />
+	</entry>
+	<entry name="Book of Illusions" anm2="GiantBook.anm2" anim="Appear" gfx="Illusions.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+	</entry>
+</giantbook>

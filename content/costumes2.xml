@@ -1,0 +1,14 @@
+<costumes anm2root="gfx/characters/">
+	<!-- Book of Despair -->
+	<costume id="15" anm2path="341_torn photo.anm2" type="active" hasOverlay="true" hasSkinAlt="true" />
+	<!-- Donkey Jawbone -->
+	<costume id="4" anm2path="donkeyjawbone_costume.anm2" type="passive" />
+	<!-- Ancient Revelation -->
+	<costume id="6" anm2path="ancientrevelation.anm2" type="passive" isFlying="true" hasSkinAlt="true" />
+	<!-- Keeper's Rope -->
+	<costume id="8" anm2path="keepers rope.anm2" type="passive" isFlying="true" hasSkinAlt="true" priority="99" />
+	<!-- Lucky Seven -->
+	<costume id="9" anm2path="077x_lucky7.anm2" type="passive" hasOverlay="true" />
+	<!-- Pacifist -->
+	<costume id="10" anm2path="662_Pacifist.anm2" type="passive" />
+</costumes>
