@@ -1,0 +1,3 @@
+[submodule "lua/extraLibs/loi"]
+	path = lua/extraLibs/loi
+	url = https://github.com/Team-Compliance/libraryofisaac.git
