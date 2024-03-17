@@ -37,7 +37,7 @@ local function OnProjectileUpdate(_, projectile)
         projectile:AddProjectileFlags(chosenProjectileFlag)
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_TEARS_UP, "Tears Up")

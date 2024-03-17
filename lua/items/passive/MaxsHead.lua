@@ -1,6 +1,6 @@
 local MaxsHead = {}
 local Helpers = require("lua.helpers.Helpers")
-MaxsHead.ID = RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD
+MaxsHead.ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD
 MaxsHead.FIRE_DELAY = 1.5
 MaxsHead.FIRE_RATE_MULT = 0.5
 --The effect will proc every x tears
@@ -19,7 +19,7 @@ function MaxsHead:OnFireDelayCache(player)
     end
     player.MaxFireDelay = Helpers.ToMaxFireDelay(tps)
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_EVALUATE_CACHE,
     MaxsHead.OnFireDelayCache,
     CacheFlag.CACHE_FIREDELAY
@@ -43,7 +43,7 @@ if REPENTOGON then
             end
 		end
 	end
-	RestoredItemsPack:AddCallback(
+	RestoredItemsCollection:AddCallback(
         ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED,
         MaxsHead.ChargeOnFire
     )
@@ -68,7 +68,7 @@ else
             end
         end
     end
-    RestoredItemsPack:AddCallback(
+    RestoredItemsCollection:AddCallback(
         ModCallbacks.MC_POST_PEFFECT_UPDATE,
         MaxsHead.OnPlayerUpdate
     )

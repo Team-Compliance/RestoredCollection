@@ -3,7 +3,7 @@ local Helpers = require("lua.helpers.Helpers")
 
 local function EnemyHpUp(_, enemy)
     local hpEnemy
-    for _, hpUpDownEnemy in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "HPUpDownEnemies")) do
+    for _, hpUpDownEnemy in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "HPUpDownEnemies")) do
         if hpUpDownEnemy.Type == enemy.Type and
         hpUpDownEnemy.Variant == enemy.Variant and
         hpUpDownEnemy.SubType == enemy.SubType then
@@ -18,12 +18,12 @@ local function EnemyHpUp(_, enemy)
     enemy.MaxHitPoints = enemy.MaxHitPoints + 15 * mult
     enemy.HitPoints = enemy.HitPoints + 15 * mult
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NPC_INIT, EnemyHpUp)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NPC_INIT, EnemyHpUp)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_HEALTH_UP, "Health Up",
 function (_, _, _, isHorse)
-    local HPUpDownEnemies = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "HPUpDownEnemies")
+    local HPUpDownEnemies = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "HPUpDownEnemies")
     for _,enemy in ipairs(Helpers.GetEnemies(false)) do
         local mult = isHorse and 2 or 1
         enemy.MaxHitPoints = enemy.MaxHitPoints + 15 * mult

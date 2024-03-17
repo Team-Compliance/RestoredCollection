@@ -8,7 +8,7 @@ function LuckySevenTears:OnTearInit(tear)
 
     local player = tear.Parent:ToPlayer()
 
-    if not player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
+    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
     if not Helpers.DoesPlayerHaveRightAmountOfPickups(player) then return end
 
     local tearData = Helpers.GetData(tear)
@@ -26,7 +26,7 @@ function LuckySevenTears:OnTearInit(tear)
         sprite:Play(animation, true)
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, LuckySevenTears.OnTearInit)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, LuckySevenTears.OnTearInit)
 
 
 ---@param tear EntityTear
@@ -44,4 +44,4 @@ function LuckySevenTears:OnTearCollision(tear, collider)
 
     Helpers.TurnEnemyIntoGoldenMachine(collider, player, rng)
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, LuckySevenTears.OnTearCollision)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, LuckySevenTears.OnTearCollision)

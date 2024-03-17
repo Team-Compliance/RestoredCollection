@@ -8,12 +8,12 @@ function DonkeyJawbone:PostNewRoom()
 		data.ExtraSpins = 0 --just in case it gets interrupted
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, DonkeyJawbone.PostNewRoom)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, DonkeyJawbone.PostNewRoom)
 
 function DonkeyJawbone:PlayerHurt(TookDamage, DamageAmount, DamageFlags, DamageSource, DamageCountdownFrames)
 	local player = TookDamage:ToPlayer()
 	local data = Helpers.GetData(player)
-	if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE) then
+	if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE) then
 		--[[if player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) then
 			data.ExtraSpins = data.ExtraSpins + 1
 		end
@@ -45,7 +45,7 @@ function DonkeyJawbone:PlayerHurt(TookDamage, DamageAmount, DamageFlags, DamageS
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DonkeyJawbone.PlayerHurt, EntityType.ENTITY_PLAYER)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DonkeyJawbone.PlayerHurt, EntityType.ENTITY_PLAYER)
 
 function DonkeyJawbone:JawboneUpdate(jawbone)
 	local player = jawbone.Parent:ToPlayer()
@@ -184,10 +184,10 @@ function DonkeyJawbone:JawboneUpdate(jawbone)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, DonkeyJawbone.JawboneUpdate, RestoredItemsPack.Enums.Entities.DONKEY_JAWBONE.Variant)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, DonkeyJawbone.JawboneUpdate, RestoredItemsCollection.Enums.Entities.DONKEY_JAWBONE.Variant)
 
 function DonkeyJawbone:SpawnJawbone(player)
-	local jawbone = Isaac.Spawn(1000, RestoredItemsPack.Enums.Entities.DONKEY_JAWBONE.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
+	local jawbone = Isaac.Spawn(1000, RestoredItemsCollection.Enums.Entities.DONKEY_JAWBONE.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
 	local data = Helpers.GetData(player)
 	data.ExtraSpins = math.max(0, data.ExtraSpins - 1)
 	jawbone.Parent = player

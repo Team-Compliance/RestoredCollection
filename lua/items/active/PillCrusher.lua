@@ -59,7 +59,7 @@ end
 function PillCrusher:ResetCrushedPillPerRoom()
 	CrushedPillsRoom = {}
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PillCrusher.ResetCrushedPillPerRoom)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PillCrusher.ResetCrushedPillPerRoom)
 
 
 local function GetRandomPillCrusherEffect(rng)
@@ -156,7 +156,7 @@ function PillCrusherLocal:BloomShader(shader)
 		return params
 	end
 end
---RestoredItemsPack:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, PillCrusherLocal.BloomShader)
+--RestoredItemsCollection:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, PillCrusherLocal.BloomShader)
 
 
 ---@param rng RNG
@@ -186,12 +186,12 @@ function PillCrusherLocal:UsePillCrusher(_, rng, player)
 
 	local showName = itemPool:IsPillIdentified(pillColorToCheckEffect)
 
-	local lastPill = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "LastPillUsed")
+	local lastPill = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "LastPillUsed")
 	if pillEffect == PillEffect.PILLEFFECT_VURP and lastPill >= 0 then
 		pillEffect = lastPill
-		TSIL.SaveManager.SetPersistentVariable(RestoredItemsPack, "LastPillUsed", PillEffect.PILLEFFECT_VURP)
+		TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "LastPillUsed", PillEffect.PILLEFFECT_VURP)
 	else
-		TSIL.SaveManager.SetPersistentVariable(RestoredItemsPack, "LastPillUsed", pillEffect)
+		TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "LastPillUsed", pillEffect)
 	end
 
 	local crushedPillEffect = CrushedPillEffects[pillEffect]
@@ -255,32 +255,32 @@ function PillCrusherLocal:UsePillCrusher(_, rng, player)
 
 	player:AnimatePickup(pillCrushingAnim)
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_USE_ITEM, PillCrusherLocal.UsePillCrusher, RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, PillCrusherLocal.UsePillCrusher, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
 
 if REPENTOGON then
 	function PillCrusherLocal:AddPill(collectible, charge, firstTime, slot, VarData, player)
-		if firstTime and collectible == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER then
+		if firstTime and collectible == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER then
 			local room = Game():GetRoom()
 			local spawningPos = room:FindFreePickupSpawnPosition(player.Position, 1, true)
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, spawningPos, Vector.Zero, player):ToPickup()
 		end
 	end
-	RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PillCrusherLocal.AddPill)
+	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PillCrusherLocal.AddPill)
 else
 	function PillCrusherLocal:AddPill(player)
 		local data = Helpers.GetData(player)
 		if not data then return end
 
-		data.pilldrop = data.pilldrop or player:GetCollectibleNum(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+		data.pilldrop = data.pilldrop or player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
 
-		if data.pilldrop < player:GetCollectibleNum(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) then
+		if data.pilldrop < player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) then
 			local room = Game():GetRoom()
 			local spawningPos = room:FindFreePickupSpawnPosition(player.Position, 1, true)
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, spawningPos, Vector.Zero, player):ToPickup()
-			data.pilldrop = player:GetCollectibleNum(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+			data.pilldrop = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
 		end
 	end
-	RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PillCrusherLocal.AddPill)
+	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PillCrusherLocal.AddPill)
 end
 
 
@@ -289,7 +289,7 @@ function PillCrusherLocal:spawnPill(rng, pos)
 	local spawnposition = room:FindFreePickupSpawnPosition(pos)
 	local spawned = false
 	for _,player in ipairs(Helpers.GetPlayers()) do
-		if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) and rng:RandomInt(100) < 15 and not spawned then
+		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) and rng:RandomInt(100) < 15 and not spawned then
 			local pill = Isaac.Spawn(5, 70, 0, spawnposition, Vector.Zero, player)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) then
 				Isaac.Spawn(5, 70, pill.SubType, spawnposition, Vector.Zero, player)
@@ -298,29 +298,29 @@ function PillCrusherLocal:spawnPill(rng, pos)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PillCrusherLocal.spawnPill)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PillCrusherLocal.spawnPill)
 
 
 function PillCrusherLocal:item_effect()
 	for _,player in ipairs(Helpers.GetPlayers()) do
-		local rng = player:GetCollectibleRNG(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
-		if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) == true and Game():IsGreedMode() == true then
+		local rng = player:GetCollectibleRNG(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) == true and Game():IsGreedMode() == true then
 			Isaac.Spawn(5, 70, 0, player.Position, Vector.FromAngle(TSIL.Random.GetRandomInt(0, 360, rng)):Resized(3), player)
 			Isaac.Spawn(5, 70, 0, player.Position, Vector.FromAngle(TSIL.Random.GetRandomInt(0, 360, rng)):Resized(3), player)
 			Isaac.Spawn(5, 70, 0, player.Position, Vector.FromAngle(mod:GetRandomNumber(0, 360, rng)):Resized(3), player)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PillCrusherLocal.item_effect)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PillCrusherLocal.item_effect)
 
 
 function PillCrusherLocal:DefaultWispInit(wisp)
 	local player = wisp.Player
-	if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) then
-		if wisp.SubType == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER then
+	if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) then
+		if wisp.SubType == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER then
 			--Wtf is this
 			wisp.SubType = CollectibleType.COLLECTIBLE_MOMS_BOTTLE_PILLS
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, PillCrusherLocal.DefaultWispInit, FamiliarVariant.WISP)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, PillCrusherLocal.DefaultWispInit, FamiliarVariant.WISP)

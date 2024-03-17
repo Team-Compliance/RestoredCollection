@@ -5,7 +5,7 @@ local sfx = SFXManager()
 
 function IllusionModLocal:onUseBookOfIllusions(_, _, player, flags)
 	if REPENTOGON then
-		ItemOverlay.Show(RestoredItemsPack.Enums.GiantBook.BOOK_OF_ILLUSIONS, 0 , player)
+		ItemOverlay.Show(RestoredItemsCollection.Enums.GiantBook.BOOK_OF_ILLUSIONS, 0 , player)
 	elseif GiantBookAPI then
 		GiantBookAPI.playGiantBook("Appear", "Illusions.png", Color(0.2, 0.1, 0.3, 1, 0, 0, 0), Color(0.117, 0.0117, 0.2, 1, 0, 0, 0), Color(0, 0, 0, 0.8, 0, 0, 0), SoundEffect.SOUND_BOOK_PAGE_TURN_12)
 	end
@@ -16,16 +16,16 @@ function IllusionModLocal:onUseBookOfIllusions(_, _, player, flags)
 
 	-- returning any values interrupts any callbacks that come after it
 	if flags & UseFlag.USE_NOANIM == 0 then
-		player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, "UseItem", "PlayerPickupSparkle")
+		player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, "UseItem", "PlayerPickupSparkle")
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_USE_ITEM, IllusionModLocal.onUseBookOfIllusions, RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, IllusionModLocal.onUseBookOfIllusions, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS)
 
 ---@param familiar EntityFamiliar
 function IllusionModLocal:OnIllusionWispUpdate(familiar)
 	local data = Helpers.GetEntityData(familiar)
 	if not data then return end
-	if not data.isIllusion and familiar.SubType == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS then
+	if not data.isIllusion and familiar.SubType == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS then
 		familiar:Remove()
 		return
 	end
@@ -34,7 +34,7 @@ function IllusionModLocal:OnIllusionWispUpdate(familiar)
 	local spriteScale = Vector(0.75, 0.75) + Vector(0.25, 0.25) * healthRatio
 	familiar.SpriteScale = spriteScale
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
 	ModCallbacks.MC_FAMILIAR_UPDATE,
 	IllusionModLocal.OnIllusionWispUpdate,
 	FamiliarVariant.WISP
@@ -63,7 +63,7 @@ function IllusionModLocal:OnIllusionWispRemove(entity)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
 	ModCallbacks.MC_POST_ENTITY_REMOVE,
 	IllusionModLocal.OnIllusionWispRemove,
 	EntityType.ENTITY_FAMILIAR
@@ -85,7 +85,7 @@ function IllusionModLocal:OnTearInit(tear)
 
 	tear:Remove()
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
 	ModCallbacks.MC_POST_TEAR_INIT,
 	IllusionModLocal.OnTearInit
 )

@@ -19,7 +19,7 @@ function LuckySevenBoneSwing:OnKnifeRender(knife)
     if not knife.Parent or knife.Parent.Type ~= EntityType.ENTITY_PLAYER then return end
 
     local player = knife.Parent:ToPlayer()
-    if not player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
+    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
     if not Helpers.DoesPlayerHaveRightAmountOfPickups(player) then return end
 
     local sprite = knife:GetSprite()
@@ -50,10 +50,10 @@ function LuckySevenBoneSwing:OnKnifeRender(knife)
         end
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_KNIFE_RENDER, LuckySevenBoneSwing.OnKnifeRender)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_RENDER, LuckySevenBoneSwing.OnKnifeRender)
 
 
 function LuckySevenBoneSwing:OnNewRoom()
     KnifeAnimations = {}
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, LuckySevenBoneSwing.OnNewRoom)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, LuckySevenBoneSwing.OnNewRoom)

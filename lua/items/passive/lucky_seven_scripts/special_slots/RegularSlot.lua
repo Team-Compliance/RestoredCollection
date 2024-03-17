@@ -87,11 +87,11 @@ local function OnCoinTearUpdate(_, tear)
     if tear.FrameCount ~= 1 then return end
 
     if tear.SpawnerType == EntityType.ENTITY_SLOT and
-    tear.SpawnerVariant == RestoredItemsPack.Enums.Entities.LUCKY_SEVEN_SLOT.Variant then
+    tear.SpawnerVariant == RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant then
         sfx:Stop(SoundEffect.SOUND_TEARS_FIRE)
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, OnCoinTearUpdate, TearVariant.COIN)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, OnCoinTearUpdate, TearVariant.COIN)
 
 
 return RegularSlot

@@ -41,7 +41,7 @@ end
 ---@param radius number
 local function DoBlankEffect(center, radius)
 	--Spawn cool explosion effect
-	local blankExplosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsPack.Enums.Entities.BLANK_EXPLOSION_EFFECT.Variant, 0, center, Vector.Zero, nil)
+	local blankExplosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.BLANK_EXPLOSION_EFFECT.Variant, 0, center, Vector.Zero, nil)
 	blankExplosion:GetSprite():Play("Explode", true)
 	blankExplosion.DepthOffset = 9999
 	blankExplosion.SpriteScale = blankExplosion.SpriteScale * (radius/90)
@@ -84,10 +84,10 @@ function BlankBombsMod:BombInit(bomb)
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if player then
 		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then
+		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then
 			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
 				if bomb.Variant == 0 then
-					bomb.Variant = RestoredItemsPack.Enums.BombVariant.BOMB_BLANK
+					bomb.Variant = RestoredItemsCollection.Enums.BombVariant.BOMB_BLANK
 				end
 			end
 			data.isBlankBomb = true
@@ -97,7 +97,7 @@ function BlankBombsMod:BombInit(bomb)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, BlankBombsMod.BombInit)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, BlankBombsMod.BombInit)
 
 function BlankBombsMod:OnNewRoom()
 	BombsInRoom = {}
@@ -109,7 +109,7 @@ function BlankBombsMod:OnNewRoom()
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, BlankBombsMod.OnNewRoom)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, BlankBombsMod.OnNewRoom)
 
 
 ---@param bomb EntityBomb
@@ -217,7 +217,7 @@ function BlankBombsMod:BombUpdate(bomb)
 		DoBlankEffect(bomb.Position, explosionRadius)
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, BlankBombsMod.BombUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, BlankBombsMod.BombUpdate)
 
 
 function BlankBombsMod:OnMonstroUpdate(monstro)
@@ -234,7 +234,7 @@ function BlankBombsMod:OnMonstroUpdate(monstro)
 		monstro:Remove()
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, BlankBombsMod.OnMonstroUpdate, EntityType.ENTITY_MONSTRO)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, BlankBombsMod.OnMonstroUpdate, EntityType.ENTITY_MONSTRO)
 
 
 ---@param rocket EntityEffect
@@ -242,7 +242,7 @@ function BlankBombsMod:OnEpicFetusRocketUpdate(rocket)
 	local player = rocket.SpawnerEntity
 	if not player then return end
 	if not player:ToPlayer() then return end
-	if not player:ToPlayer():HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then return end
+	if not player:ToPlayer():HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then return end
 
 	if rocket.Timeout ~= 0 then return end
 
@@ -263,7 +263,7 @@ function BlankBombsMod:OnEpicFetusRocketUpdate(rocket)
 		table.insert(RocketsAboutToExplode, ptrHash)
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod.OnEpicFetusRocketUpdate, EffectVariant.ROCKET)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod.OnEpicFetusRocketUpdate, EffectVariant.ROCKET)
 
 
 ---@param entity Entity
@@ -296,7 +296,7 @@ function BlankBombsMod:OnPlayerDamage(entity, _, _, source)
 		return false
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, BlankBombsMod.OnPlayerDamage, EntityType.ENTITY_PLAYER)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, BlankBombsMod.OnPlayerDamage, EntityType.ENTITY_PLAYER)
 
 
 ---@param player EntityPlayer
@@ -320,7 +320,7 @@ function BlankBombsMod:OnPlayerUpdate(player)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, BlankBombsMod.OnPlayerUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, BlankBombsMod.OnPlayerUpdate)
 
 
 ---@param effect EntityEffect
@@ -331,13 +331,13 @@ function BlankBombsMod:OnBlankExplosionUpdate(effect)
 		effect:Remove()
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod.OnBlankExplosionUpdate, RestoredItemsPack.Enums.Entities.BLANK_EXPLOSION_EFFECT.Variant)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod.OnBlankExplosionUpdate, RestoredItemsCollection.Enums.Entities.BLANK_EXPLOSION_EFFECT.Variant)
 
 
 ---@param locust EntityFamiliar
 ---@param collider Entity
 function BlankBombsMod:OnLocustCollision(locust, collider)
-	if locust.SubType ~= RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS then return end
+	if locust.SubType ~= RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS then return end
 	if collider.Type ~= EntityType.ENTITY_PROJECTILE then return end
 
 	local projectile = collider:ToProjectile()
@@ -354,4 +354,4 @@ function BlankBombsMod:OnLocustCollision(locust, collider)
 		projectile:Die()
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, BlankBombsMod.OnLocustCollision, FamiliarVariant.ABYSS_LOCUST)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, BlankBombsMod.OnLocustCollision, FamiliarVariant.ABYSS_LOCUST)

@@ -11,7 +11,7 @@ local function FliesOnDeath(_, entity)
         fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, FliesOnDeath)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, FliesOnDeath)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_FRIENDS_TILL_THE_END, "Friends Till The End!",

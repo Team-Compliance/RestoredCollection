@@ -4,10 +4,10 @@ local sfx = SFXManager()
 
 function BookOfDespair:UseBookOfDespair(_Type, RNG, player, flags, slot, data)
 	if flags & UseFlag.USE_CARBATTERY == 0 then
-		local tempEffects = player:GetEffects():GetCollectibleEffectNum(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
+		local tempEffects = player:GetEffects():GetCollectibleEffectNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
 		if tempEffects == 0 then
 			if REPENTOGON then
-				ItemOverlay.Show(RestoredItemsPack.Enums.GiantBook.BOOK_OF_DESPAIR, 0 , player)
+				ItemOverlay.Show(RestoredItemsCollection.Enums.GiantBook.BOOK_OF_DESPAIR, 0 , player)
 			elseif GiantBookAPI then
 				GiantBookAPI.playGiantBook("Appear", "Despair.png", Color(228/255, 228/255, 228/255, 1, 0, 0, 0), Color(228/255, 228/255, 228/255, 153/255, 0, 0, 0), Color(225/255, 225/255, 225/255, 128/255, 0, 0, 0))
 			end
@@ -19,7 +19,7 @@ function BookOfDespair:UseBookOfDespair(_Type, RNG, player, flags, slot, data)
 end
 
 function BookOfDespair:Despair_CacheEval(player, cacheFlag)
-	local tempEffects = player:GetEffects():GetCollectibleEffectNum(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
+	local tempEffects = player:GetEffects():GetCollectibleEffectNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
 	if tempEffects > 0 then
 		local currentTears = Helpers.ToTearsPerSecond(player.MaxFireDelay)
 		local usesMul = 0
@@ -31,5 +31,5 @@ function BookOfDespair:Despair_CacheEval(player, cacheFlag)
 	end
 end
 
-RestoredItemsPack:AddCallback(ModCallbacks.MC_USE_ITEM, BookOfDespair.UseBookOfDespair, RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
-RestoredItemsPack:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, BookOfDespair.Despair_CacheEval, CacheFlag.CACHE_FIREDELAY)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, BookOfDespair.UseBookOfDespair, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, BookOfDespair.Despair_CacheEval, CacheFlag.CACHE_FIREDELAY)

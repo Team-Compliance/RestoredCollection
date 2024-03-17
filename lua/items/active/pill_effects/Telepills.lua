@@ -13,7 +13,7 @@ local TeleportAnimFrames = {
 }
 
 local function NewTeleRoom()
-	local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "MonsterTeleTable")
+	local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "MonsterTeleTable")
 	if #monsterTeleTable <= 0 then return end
 
 	local roomIDX = Game():GetLevel():GetCurrentRoomDesc().ListIndex
@@ -56,21 +56,21 @@ local function NewTeleRoom()
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, NewTeleRoom)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, NewTeleRoom)
 
 
 local function CleanRoom()
     local level = Game():GetLevel()
 	local currentRoomIndex = level:GetCurrentRoomDesc().ListIndex
 	local newMonsterTeleTable = {}
-	local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "MonsterTeleTable")
+	local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "MonsterTeleTable")
 	for _, teleMonster in ipairs(monsterTeleTable) do
 		if teleMonster.RoomIDX ~= currentRoomIndex then
 			newMonsterTeleTable[#newMonsterTeleTable+1] = teleMonster
 		end
 	end
 
-	TSIL.SaveManager.SetPersistentVariable(RestoredItemsPack, "MonsterTeleTable", newMonsterTeleTable)
+	TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "MonsterTeleTable", newMonsterTeleTable)
 end
 
 
@@ -85,7 +85,7 @@ local function OnUpdate()
 
 	wasClear = isClear
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
 
 
 ---@param npc EntityNPC
@@ -130,7 +130,7 @@ local function TeleportMonsterAnim(_, npc)
 			npc.Visible = false
 		else
 			if not data.WasHorseTelePilled then
-				local rng = Isaac.GetPlayer():GetCollectibleRNG(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+				local rng = Isaac.GetPlayer():GetCollectibleRNG(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
 
 				local level = Game():GetLevel()
 				local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
@@ -146,7 +146,7 @@ local function TeleportMonsterAnim(_, npc)
 				end
 
 				local chosenTeleroom = possibleTeleRooms[rng:RandomInt(#possibleTeleRooms) + 1]
-				local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "MonsterTeleTable")
+				local monsterTeleTable = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "MonsterTeleTable")
 				table.insert(monsterTeleTable, {
 					RoomIDX = chosenTeleroom,
 					Type = npc.Type,
@@ -177,7 +177,7 @@ local function TeleportMonsterAnim(_, npc)
         sprite:Update()
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, TeleportMonsterAnim)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, TeleportMonsterAnim)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_TELEPILLS, "Telepills",

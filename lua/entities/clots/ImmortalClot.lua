@@ -19,8 +19,8 @@ function ImmortalClotLocal:ClotHeal()
 					local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, 903, 0, entity2.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
 					ImmortalEffect:GetSprite().Offset = Vector(0, -10)
 					entity2:GetData().Healed = true
-					if not sfx:IsPlaying(RestoredItemsPack.Enums.SFX.Hearts.IMMORTAL_PICKUP) then
-						sfx:Play(RestoredItemsPack.Enums.SFX.Hearts.IMMORTAL_PICKUP, 1, 0, false, 1.4)
+					if not sfx:IsPlaying(RestoredItemsCollection.Enums.SFX.Hearts.IMMORTAL_PICKUP) then
+						sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.IMMORTAL_PICKUP, 1, 0, false, 1.4)
 					end
 				end
 			end
@@ -43,4 +43,4 @@ function ImmortalClotLocal:ClotHeal()
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, ImmortalClotLocal.ClotHeal)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, ImmortalClotLocal.ClotHeal)

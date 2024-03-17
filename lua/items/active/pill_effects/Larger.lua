@@ -59,7 +59,7 @@ local function OnNPCUpdate(_, npc)
     data.LargerTimer = nil
     data.InitialScale = nil
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_LARGER, "One makes you larger",

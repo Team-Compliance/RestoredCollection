@@ -207,7 +207,7 @@ function Helpers.GetEntityData(entity)
 				player = player:GetOtherTwin()
 			end
 			local index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "PlayerData")
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "PlayerData")
 			if not data[index] then
 				data[index] = {}
 			end
@@ -226,7 +226,7 @@ function Helpers.GetEntityData(entity)
 			return data[index]
 		elseif entity:ToFamiliar() then
 			local index = tostring(entity:ToFamiliar().InitSeed)
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "FamiliarData")
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "FamiliarData")
 			if not data[index] then
 				data[index] = {}
 			end
@@ -245,11 +245,11 @@ function Helpers.RemoveEntityData(entity)
 				player = player:GetOtherTwin()
 			end
 			index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "PlayerData")
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "PlayerData")
 			data[index] = nil
 		elseif entity:ToFamiliar() then
 			index = tostring(entity:ToFamiliar().InitSeed)
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "FamiliarData")
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "FamiliarData")
 			data[index] = nil
 		end
 	end
@@ -319,7 +319,7 @@ end
 --hud and sfx reactions in all slots
 function Helpers.ChargeBowl(player)
 	for slot = 0,2 do
-		if player:GetActiveItem(slot) == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS then
+		if player:GetActiveItem(slot) == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS then
 			local charge = Helpers.GetCharge(player,slot)
 			if charge < 6 * Helpers.BatteryChargeMult(player) then
 				player:SetActiveCharge(charge+1,slot)
@@ -472,15 +472,15 @@ function Helpers.TurnEnemyIntoGoldenMachine(enemy, player, rng)
 
     local machinesToUse = {}
 
-    for _, luckySevenSlot in ipairs(RestoredItemsPack.LuckySevenSpecialSlots) do
+    for _, luckySevenSlot in ipairs(RestoredItemsCollection.LuckySevenSpecialSlots) do
         if luckySevenSlot:CanSpawn(player) then
             machinesToUse[#machinesToUse+1] = luckySevenSlot
         end
     end
 
-    local chosenMachine = machinesToUse[rng:RandomInt(#machinesToUse)+1] or RestoredItemsPack.LuckySevenRegularSlot
+    local chosenMachine = machinesToUse[rng:RandomInt(#machinesToUse)+1] or RestoredItemsCollection.LuckySevenRegularSlot
 
-    local luckySevenSlotEntity = Isaac.Spawn(EntityType.ENTITY_SLOT, RestoredItemsPack.Enums.Entities.LUCKY_SEVEN_SLOT.Variant, 0, enemy.Position, Vector.Zero, nil)
+    local luckySevenSlotEntity = Isaac.Spawn(EntityType.ENTITY_SLOT, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant, 0, enemy.Position, Vector.Zero, nil)
     local data = Helpers.GetData(luckySevenSlotEntity)
     data.LuckySevenSlotObject = chosenMachine
     data.SlotTimeout = data.LuckySevenSlotObject.TIMEOUT
@@ -488,10 +488,10 @@ function Helpers.TurnEnemyIntoGoldenMachine(enemy, player, rng)
     data.LuckySevenSlotObject:__Init(luckySevenSlotEntity)
     luckySevenSlotEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY)
 
-	local slots = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "LuckySevenSlotsInRoom")
+	local slots = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "LuckySevenSlotsInRoom")
 	
 
-    local sparkles = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsPack.Enums.Entities.LUCKY_SEVEN_MACHINE_SPARKLES.Variant, 0, luckySevenSlotEntity.Position, Vector.Zero, luckySevenSlotEntity)
+    local sparkles = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_MACHINE_SPARKLES.Variant, 0, luckySevenSlotEntity.Position, Vector.Zero, luckySevenSlotEntity)
     sparkles.DepthOffset = 20
     data.MachineSparkles = sparkles
 
@@ -614,10 +614,10 @@ end
 function Helpers.GetData(entity)
 	if entity and entity.GetData then
 		local data = entity:GetData()
-		if not data.RestoredItemsPack then
-			data.RestoredItemsPack = {}
+		if not data.RestoredItemsCollection then
+			data.RestoredItemsCollection = {}
 		end
-		return data.RestoredItemsPack
+		return data.RestoredItemsCollection
 	end
 	return nil
 end
@@ -747,10 +747,10 @@ function Helpers.scheduleForUpdate(foo, delay, callback)
     callback = callback or ModCallbacks.MC_POST_UPDATE
     if not delayedFuncs[callback] then
         delayedFuncs[callback] = {}
-        RestoredItemsPack:AddCallback(callback, function()
+        RestoredItemsCollection:AddCallback(callback, function()
             runUpdates(delayedFuncs[callback])
         end)
-		RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+		RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 			delayedFuncs[callback] = {}
 		end)
     end
@@ -758,6 +758,6 @@ function Helpers.scheduleForUpdate(foo, delay, callback)
 end
 --#endregion
 
-RestoredItemsPack.Helpers = Helpers
+RestoredItemsCollection.Helpers = Helpers
 
 return Helpers

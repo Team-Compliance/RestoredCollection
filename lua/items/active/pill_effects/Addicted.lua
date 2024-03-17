@@ -25,7 +25,7 @@ local function DoubleDamage(_, entity, damage, flags, source, cd)
         end
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DoubleDamage)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DoubleDamage)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_ADDICTED, "Addicted!",

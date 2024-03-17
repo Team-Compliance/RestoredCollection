@@ -1,7 +1,7 @@
 local sfx = SFXManager()
 
 if CustomHealthAPI and CustomHealthAPI.Library and CustomHealthAPI.Library.UnregisterCallbacks then
-    CustomHealthAPI.Library.UnregisterCallbacks("RestoredItemsPack")
+    CustomHealthAPI.Library.UnregisterCallbacks("RestoredItemsCollection")
 end
 
 CustomHealthAPI.Library.RegisterSoulHealth(
@@ -17,7 +17,7 @@ CustomHealthAPI.Library.RegisterSoulHealth(
         MaxHP = 2,
         PrioritizeHealing = true,
         PickupEntities = {
-            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredItemsPack.Enums.Pickups.Hearts.HEART_IMMORTAL}
+            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredItemsCollection.Enums.Pickups.Hearts.HEART_IMMORTAL}
         },
         SumptoriumSubType = 20,  -- immortal heart clot
         SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
@@ -46,7 +46,7 @@ CustomHealthAPI.Library.RegisterSoulHealth(
         MaxHP = 1,
         PrioritizeHealing = false,
         PickupEntities = {
-            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredItemsPack.Enums.Pickups.Hearts.HEART_SUN}
+            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredItemsCollection.Enums.Pickups.Hearts.HEART_SUN}
         },
         SumptoriumSubType = 30,  -- immortal heart clot
         SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
@@ -63,12 +63,12 @@ CustomHealthAPI.Library.RegisterSoulHealth(
 )
 
 local function SpriteChange(_, entity)
-	if entity.SubType == RestoredItemsPack.Enums.Pickups.Hearts.HEART_SUN
-	or entity.SubType == RestoredItemsPack.Enums.Pickups.Hearts.HEART_ILLUSION
-	or entity.SubType == RestoredItemsPack.Enums.Pickups.Hearts.HEART_IMMORTAL then
+	if entity.SubType == RestoredItemsCollection.Enums.Pickups.Hearts.HEART_SUN
+	or entity.SubType == RestoredItemsCollection.Enums.Pickups.Hearts.HEART_ILLUSION
+	or entity.SubType == RestoredItemsCollection.Enums.Pickups.Hearts.HEART_IMMORTAL then
 		local sprite = entity:GetSprite()
 		local spritename = "gfx/items/pick ups/pickup_001_remix_heart"
-		local style = TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "HeartStyleRender")
+		local style = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "HeartStyleRender")
 		if style == 2 then
 			spritename = spritename.."_aladar"
 		end
@@ -93,20 +93,20 @@ local function SpriteChange(_, entity)
 		sprite:LoadGraphics()
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, SpriteChange, PickupVariant.PICKUP_HEART)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, SpriteChange, PickupVariant.PICKUP_HEART)
 
-CustomHealthAPI.Library.AddCallback("RestoredItemsPack",CustomHealthAPI.Enums.Callbacks.ON_SAVE, 0, function (savedata, isPreGameExit)
-    TSIL.SaveManager.SetPersistentVariable(RestoredItemsPack, "CustomHealthAPISave", savedata)
+CustomHealthAPI.Library.AddCallback("RestoredItemsCollection",CustomHealthAPI.Enums.Callbacks.ON_SAVE, 0, function (savedata, isPreGameExit)
+    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "CustomHealthAPISave", savedata)
 end)
 
-CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.Callbacks.ON_LOAD, 0, function()
-	return TSIL.SaveManager.GetPersistentVariable(RestoredItemsPack, "CustomHealthAPISave")
+CustomHealthAPI.Library.AddCallback("RestoredItemsCollection", CustomHealthAPI.Enums.Callbacks.ON_LOAD, 0, function()
+	return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "CustomHealthAPISave")
 end)
 
-CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.Callbacks.POST_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, wasDepleted, wasLastDamaged)
+CustomHealthAPI.Library.AddCallback("RestoredItemsCollection", CustomHealthAPI.Enums.Callbacks.POST_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, wasDepleted, wasLastDamaged)
 	if key == "HEART_SUN" then
 		if wasDepleted then
-			sfx:Play(RestoredItemsPack.Enums.SFX.Hearts.SUN_BREAK, 1, 0)
+			sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.SUN_BREAK, 1, 0)
 			local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.IMPACT, 0, player.Position + Vector(0, 0), Vector.Zero, nil):ToEffect():GetSprite()
 			shatterSPR:Play("Yellow",true)
 			shatterSPR.Offset = Vector(0, -15)
@@ -114,7 +114,7 @@ CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.C
 	end
     if key == "HEART_IMMORTAL" then
 		if wasDepleted then
-			sfx:Play(RestoredItemsPack.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
+			sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
 			local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, 904, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
 			shatterSPR.PlaybackSpeed = 2
 		else
@@ -123,19 +123,19 @@ CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.C
 	end
 end)
 
-CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.Callbacks.PRE_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, otherKey, otherHPDamaged, amountToRemove)
+CustomHealthAPI.Library.AddCallback("RestoredItemsCollection", CustomHealthAPI.Enums.Callbacks.PRE_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, otherKey, otherHPDamaged, amountToRemove)
 	if otherKey == "HEART_IMMORTAL" then
 		return 1
 	end
 end)
 
 
-CustomHealthAPI.Library.AddCallback("RestoredItemsPack", CustomHealthAPI.Enums.Callbacks.POST_SUMPTORIUM_CLOT_INIT, 0, function(familiar, key)
+CustomHealthAPI.Library.AddCallback("RestoredItemsCollection", CustomHealthAPI.Enums.Callbacks.POST_SUMPTORIUM_CLOT_INIT, 0, function(familiar, key)
 	if key == "HEART_IMMORTAL" then
 		local player = familiar.Player
 		if player then
 			if  ComplianceImmortal.GetImmortalHeartsNum(player) % 2 == 0 then
-				sfx:Play(RestoredItemsPack.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
+				sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
 				local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, 904, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
 				shatterSPR.PlaybackSpeed = 2
 			end
@@ -175,4 +175,4 @@ local function StaticClotHP(_, clot)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, StaticClotHP, FamiliarVariant.BLOOD_BABY)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, StaticClotHP, FamiliarVariant.BLOOD_BABY)

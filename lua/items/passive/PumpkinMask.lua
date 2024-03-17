@@ -20,7 +20,7 @@ end
 
 ---@param player EntityPlayer
 function PumpkinMask:FireSeeds(player)
-    if player:HasCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK) and not player:IsDead() then
+    if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK) and not player:IsDead() then
         local data = Helpers.GetData(player)
         if not data.FireDelaySeeds then
             data.FireDelaySeeds = -1
@@ -49,4 +49,4 @@ function PumpkinMask:FireSeeds(player)
         end
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, PumpkinMask.FireSeeds, 0)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, PumpkinMask.FireSeeds, 0)

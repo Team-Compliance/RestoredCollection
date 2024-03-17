@@ -10,7 +10,7 @@ local function OnUpdate()
     if AmnesiaSafeTimer <= 0 then return end
     AmnesiaSafeTimer = AmnesiaSafeTimer - 1
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
 
 
 local function OnNPCUpdate(_, npc)
@@ -21,7 +21,7 @@ local function OnNPCUpdate(_, npc)
 
     npc:AddEntityFlags(EntityFlag.FLAG_CONFUSION)
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
 
 
 ---@param player EntityPlayer
@@ -54,7 +54,7 @@ local function OnPlayerUpdate(_, player)
     IsAmnesiaPillCrusherActivated = false
     IsAmnesiaPillCrusherHorsePilled = false
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, OnPlayerUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, OnPlayerUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_AMNESIA, "Amnesia",

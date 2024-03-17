@@ -26,7 +26,7 @@ local function ArmorDamage(_, entity, amount, flags, source, cd)
         return false
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, ArmorDamage)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, ArmorDamage)
 
 
 local function BallsOfSteelArmorIndicator(_, npc)
@@ -37,7 +37,7 @@ local function BallsOfSteelArmorIndicator(_, npc)
     color:SetColorize(0, 0, 0.6, 0.35)
     npc:GetSprite().Color = color
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, BallsOfSteelArmorIndicator)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, BallsOfSteelArmorIndicator)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_BALLS_OF_STEEL, "Balls Of Steel",

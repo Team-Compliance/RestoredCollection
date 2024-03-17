@@ -10,7 +10,7 @@ function NoDamage(_, entity)
 
     return false
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, NoDamage)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, NoDamage)
 
 
 ---@param npc EntityNPC
@@ -41,7 +41,7 @@ function NPCUpdate(_, npc)
 
     if data.InvincivilityTimer == 0 then data.InvincivilityTimer = nil end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_SUNSHINE, "Feels like I'm walking on sunshine!",

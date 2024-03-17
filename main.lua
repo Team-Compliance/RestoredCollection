@@ -1,13 +1,13 @@
 
-RestoredItemsPack = RegisterMod("Restored Items Pack", 1)
+RestoredItemsCollection = RegisterMod("Restored Items Collection", 1)
 
 --Functions that will be called when starting run
-RestoredItemsPack.CallOnStart = {}
+RestoredItemsCollection.CallOnStart = {}
 
 local LOCAL_TSIL = require("lua.extraLibs.loi.TSIL")
 LOCAL_TSIL.Init("lua.extraLibs.loi")
 local HiddenItemManager = include("lua.extraLibs.hidden_item_manager")
-RestoredItemsPack.HiddenItemManager = HiddenItemManager:Init(RestoredItemsPack)
+RestoredItemsCollection.HiddenItemManager = HiddenItemManager:Init(RestoredItemsCollection)
 
 include("lua.extraLibs.customhealthapi.core")
 include("lua.extraLibs.custom_shockwave_api")

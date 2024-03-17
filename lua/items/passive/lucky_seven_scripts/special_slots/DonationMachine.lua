@@ -107,7 +107,7 @@ function DonationMachine:OnCoinUpdate(coin)
     coin.Visible = true
     coin.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, DonationMachine.OnCoinUpdate, EntityType.ENTITY_ULTRA_COIN)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, DonationMachine.OnCoinUpdate, EntityType.ENTITY_ULTRA_COIN)
 
 
 ---@param coin EntityNPC
@@ -121,7 +121,7 @@ function DonationMachine:OnCoinDamage(coin, _, _, source)
         return false
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DonationMachine.OnCoinDamage, EntityType.ENTITY_ULTRA_COIN)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DonationMachine.OnCoinDamage, EntityType.ENTITY_ULTRA_COIN)
 
 
 return DonationMachine

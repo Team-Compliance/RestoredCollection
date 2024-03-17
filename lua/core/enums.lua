@@ -162,4 +162,4 @@ Enums.Callbacks = {
 	ON_DICE_BOMB_EXPLOSION = "ON_DICE_BOMB_EXPLOSION",
 }
 
-RestoredItemsPack.Enums = Enums
+RestoredItemsCollection.Enums = Enums

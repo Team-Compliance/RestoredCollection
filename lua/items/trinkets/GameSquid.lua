@@ -1,6 +1,6 @@
 local GameSquid = {}
 local Helpers = require("lua.helpers.Helpers")
-GameSquid.ID = RestoredItemsPack.Enums.TrinketType.TRINKET_GAME_SQUID
+GameSquid.ID = RestoredItemsCollection.Enums.TrinketType.TRINKET_GAME_SQUID
 GameSquid.BASE_CHANCE = 0.05
 --This chance will be added for each multiplier
 GameSquid.EXTRA_CHANCE = 0.03
@@ -29,7 +29,7 @@ function GameSquid:OnFireTear(tear)
         tear.Color = Color(GameSquid.TEAR_COLOR.R, GameSquid.TEAR_COLOR.G, GameSquid.TEAR_COLOR.B)
     end
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_POST_FIRE_TEAR,
     GameSquid.OnFireTear
 )
@@ -39,7 +39,7 @@ function GameSquid:OnBombInit(bomb)
     --if not bomb.IsFetus then return end
     GameSquid:OnFireTear(bomb)
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_POST_BOMB_INIT,
     GameSquid.OnBombInit
 )
@@ -58,7 +58,7 @@ function GameSquid:OnFetusRocketInit(rocket)
         Helpers.GetData(rocket).IsGameSquidTear = true        
     end
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_POST_EFFECT_INIT,
     GameSquid.OnFetusRocketInit,
     EffectVariant.ROCKET
@@ -80,7 +80,7 @@ function GameSquid:OnEntityRemoved(entity)
         )
     end
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_POST_ENTITY_REMOVE,
     GameSquid.OnEntityRemoved
 )
@@ -174,7 +174,7 @@ function GameSquid:OnEntityDamage(entity, _, flags, source)
         CheckForExplosion(entity, source.Entity)
     end
 end
-RestoredItemsPack:AddCallback(
+RestoredItemsCollection:AddCallback(
     ModCallbacks.MC_ENTITY_TAKE_DMG,
     GameSquid.OnEntityDamage
 )

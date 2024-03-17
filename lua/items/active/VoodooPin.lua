@@ -10,11 +10,11 @@ function VoodooPin:DisableSwitching(entity, hook, button)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_INPUT_ACTION, VoodooPin.DisableSwitching, InputHook.IS_ACTION_TRIGGERED)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_INPUT_ACTION, VoodooPin.DisableSwitching, InputHook.IS_ACTION_TRIGGERED)
 
 function VoodooPin:UseVoodooPin(collectible, _, player, _, slot)
 	local data = Helpers.GetData(player)
-	if collectible == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN then
+	if collectible == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN then
 		if REPENTOGON then
 			if player:GetItemState() == collectible then
 				player:SetItemState(collectible)
@@ -22,24 +22,24 @@ function VoodooPin:UseVoodooPin(collectible, _, player, _, slot)
 			elseif player:GetItemState() == 0 then
 				data.VoodooWaitFrames = 20
 				player:SetItemState(collectible)
-				player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "LiftItem", "PlayerPickup")
+				player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "LiftItem", "PlayerPickup")
 			end
 			return {Discharge = false, Remove = false, ShowAnim = false}
 		else
 			if data.HoldingVoodoo ~= slot then
 				data.HoldingVoodoo = slot
-				player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "LiftItem", "PlayerPickup")
+				player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "LiftItem", "PlayerPickup")
 				data.BowlWaitFrames = 20
 			else
 				data.HoldingVoodoo = nil
 				data.BowlWaitFrames = 0
-				player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
+				player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
 			end
 			return {Discharge = false, Remove = false, ShowAnim = false}
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_USE_ITEM, VoodooPin.UseVoodooPin)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, VoodooPin.UseVoodooPin)
 
 --reseting state/slot number on new room
 function VoodooPin:VoodooRoomUpdate()
@@ -65,10 +65,10 @@ function VoodooPin:DamagedWithVoodoo(player,dmg,dmgFlags,dmgSource,dmgCountDownF
 	end
 	return nil
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, VoodooPin.DamagedWithVoodoo, EntityType.ENTITY_PLAYER)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, VoodooPin.DamagedWithVoodoo, EntityType.ENTITY_PLAYER)
 
 if not REPENTOGON then
-	RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, VoodooPin.VoodooRoomUpdate)
+	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, VoodooPin.VoodooRoomUpdate)
 end
 
 --shooting tears from bowl
@@ -81,20 +81,20 @@ function VoodooPin:VoodooThrow(player)
 	end
 	local slot = data.HoldingVoodoo
 	if slot and slot ~= -1 then
-		if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN and data.HoldingVoodoo ~= 2 then
+		if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN and data.HoldingVoodoo ~= 2 then
 			data.HoldingVoodoo = nil
-			player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
+			player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
 			data.VoodooWaitFrames = 0
 		end
 	end
-	local state = REPENTOGON and player:GetItemState() == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN or data.HoldingVoodoo ~= nil
+	local state = REPENTOGON and player:GetItemState() == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN or data.HoldingVoodoo ~= nil
 	if state and data.VoodooWaitFrames <= 0 then
 		local idx = player.ControllerIndex
 		local left = Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT,idx)
 		local right = Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT,idx)
 		local up = Input.GetActionValue(ButtonAction.ACTION_SHOOTUP,idx)
 		local down = Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN,idx)
-		local mouseclick = Input.IsMouseBtnPressed(RestoredItemsPack.Enums.MouseClick.LEFT)
+		local mouseclick = Input.IsMouseBtnPressed(RestoredItemsCollection.Enums.MouseClick.LEFT)
 		if (left > 0 or right > 0 or down > 0 or up > 0 or mouseclick) and data.VoodooWaitFrames <= 0 then
 			local shootVector
 			if mouseclick then
@@ -103,11 +103,11 @@ function VoodooPin:VoodooThrow(player)
 				shootVector = Vector(right-left,down-up):Resized(10)
 			end
 			local vecShoot = shootVector + player.Velocity
-			Isaac.Spawn(EntityType.ENTITY_TEAR, RestoredItemsPack.Enums.Entities.VOODOO_PIN_TEAR.Variant, 0, player.Position, vecShoot, player):ToTear()
+			Isaac.Spawn(EntityType.ENTITY_TEAR, RestoredItemsCollection.Enums.Entities.VOODOO_PIN_TEAR.Variant, 0, player.Position, vecShoot, player):ToTear()
 			
-			local charge = Isaac.GetItemConfig():GetCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN).MaxCharges
+			local charge = Isaac.GetItemConfig():GetCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN).MaxCharges
 			for i = 0, 2 do
-				if player:GetActiveItem(i) == RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN then
+				if player:GetActiveItem(i) == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN then
 					if REPENTOGON then
 						player:AddActiveCharge(-charge, i, true, false, true)
 					else
@@ -122,9 +122,9 @@ function VoodooPin:VoodooThrow(player)
 			else
 				data.HoldingVoodoo = nil
 			end
-			player:AnimateCollectible(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
+			player:AnimateCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "HideItem", "PlayerPickup")
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				player:AddWisp(RestoredItemsPack.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, player.Position)
+				player:AddWisp(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, player.Position)
 			end
 		end
 	end
@@ -143,7 +143,7 @@ function VoodooPin:VoodooThrow(player)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, VoodooPin.VoodooThrow)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, VoodooPin.VoodooThrow)
 
 
 --taiking damage to reset state/slot number
@@ -175,7 +175,7 @@ function VoodooPin:VoodooHit(tear,collider)
 	end
 	sfx:Play(SoundEffect.SOUND_SPLATTER,1,0,false)
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, VoodooPin.VoodooHit, RestoredItemsPack.Enums.Entities.VOODOO_PIN_TEAR.Variant)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, VoodooPin.VoodooHit, RestoredItemsCollection.Enums.Entities.VOODOO_PIN_TEAR.Variant)
 
 
 local voodoo = Sprite()
@@ -212,7 +212,7 @@ function VoodooPin:OnRender()
 		VoodooPin:RenderVoodooCurse(player)
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_RENDER, VoodooPin.OnRender)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_RENDER, VoodooPin.OnRender)
 
 
 function VoodooPin:VoodooPinThrown(pin)
@@ -226,19 +226,19 @@ function VoodooPin:VoodooPinThrown(pin)
 		end
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, VoodooPin.VoodooPinThrown, RestoredItemsPack.Enums.Entities.VOODOO_PIN_TEAR.Variant)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, VoodooPin.VoodooPinThrown, RestoredItemsCollection.Enums.Entities.VOODOO_PIN_TEAR.Variant)
 
 
 function VoodooPin:VoodooShatter(pin)
-	if pin.Variant == RestoredItemsPack.Enums.Entities.VOODOO_PIN_TEAR.Variant then
-		local shatters = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsPack.Enums.Entities.VOODOO_PIN_SHATTER.Variant, 0, pin.Position, Vector.Zero, pin):GetSprite()
+	if pin.Variant == RestoredItemsCollection.Enums.Entities.VOODOO_PIN_TEAR.Variant then
+		local shatters = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.VOODOO_PIN_SHATTER.Variant, 0, pin.Position, Vector.Zero, pin):GetSprite()
 		shatters.Rotation = pin:GetSprite().Rotation
 		shatters.Offset = Vector(0,pin:ToTear().Height)
 		shatters:Play("Shatter",true)
 		sfx:Play(SoundEffect.SOUND_STONE_IMPACT,1,0,false)
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, VoodooPin.VoodooShatter, EntityType.ENTITY_TEAR)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, VoodooPin.VoodooShatter, EntityType.ENTITY_TEAR)
 
 
 function VoodooPin:VoodooShattered(pin)
@@ -247,4 +247,4 @@ function VoodooPin:VoodooShattered(pin)
 		pin:Remove()
 	end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, VoodooPin.VoodooShattered, RestoredItemsPack.Enums.Entities.VOODOO_PIN_SHATTER.Variant)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, VoodooPin.VoodooShattered, RestoredItemsCollection.Enums.Entities.VOODOO_PIN_SHATTER.Variant)

@@ -25,7 +25,7 @@ local function HalfDamage(_, entity, damage, flags, source, cd)
         end
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, HalfDamage)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, HalfDamage)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_PERCS, "Percs!",

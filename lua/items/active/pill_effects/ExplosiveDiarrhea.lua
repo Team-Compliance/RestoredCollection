@@ -16,7 +16,7 @@ local function Diarrhea(_, npc)
         data.DiarrheaTimer = nil
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_NPC_UPDATE, Diarrhea)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, Diarrhea)
 
 
 local function BombCollision(_, bomb, collider)
@@ -27,7 +27,7 @@ local function BombCollision(_, bomb, collider)
         return true
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_PRE_BOMB_COLLISION, BombCollision)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_BOMB_COLLISION, BombCollision)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_EXPLOSIVE_DIARRHEA, "Explosive Diarrhea",

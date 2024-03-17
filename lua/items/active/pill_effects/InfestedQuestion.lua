@@ -16,7 +16,7 @@ local function SpidersOnDeath(_, entity)
         end
     end
 end
-RestoredItemsPack:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, SpidersOnDeath)
+RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, SpidersOnDeath)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_INFESTED_QUESTION, "Infested?",
