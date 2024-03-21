@@ -123,6 +123,7 @@ Enums.CollectibleType =
 						COLLECTIBLE_PILL_CRUSHER = Isaac.GetItemIdByName("Pill Crusher"),
 						COLLECTIBLE_VOODOO_PIN = Isaac.GetItemIdByName("Voodoo Pin"),
 						COLLECTIBLE_PUMPKIN_MASK = Isaac.GetItemIdByName("Pumpkin Mask"),
+						COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle"),
 					}
 
 Enums.TrinketType = {
@@ -150,6 +151,10 @@ Enums.SFX =
 								ILLUSION_PICKUP = Isaac.GetSoundIdByName("PickupIllusion"),
 							},
 				}
+
+Enums.Costumes = {
+	MELTED_CANDLE = Isaac.GetCostumeIdByPath("gfx/characters/costume_melted_candle1.anm2")
+}
 
 if REPENTOGON then
 	Enums.GiantBook = {
