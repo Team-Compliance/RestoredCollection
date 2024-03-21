@@ -2,7 +2,8 @@ local MeltedCandle = {}
 local Helpers = require("lua.helpers.Helpers")
 MeltedCandle.ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE
 MeltedCandle.FIRE_DELAY = 1.05
-MeltedCandle.MIN_NUM_TEARS_PROC = 10
+MeltedCandle.MIN_TIMER_PROC = 120
+MeltedCandle.MAX_TIMER_PROC = 360
 
 local function InitCandleTears(player)
     local data = Helpers.GetData(player)
@@ -14,23 +15,25 @@ local function InitCandleTears(player)
     end
 end
 
+local function SpawnPoof(player)
+    local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 2, player.Position, Vector.Zero, nil):ToEffect()
+    poof.SpriteScale = player.SpriteScale / 2
+    poof.SpriteOffset = Vector(0, -33 * player.SpriteScale.Y)
+end
+
 ---@param player EntityPlayer
 local function CalculateCandleTears(player)
     InitCandleTears(player)
     local data = Helpers.GetData(player)
-    local numTears = data.NumTears or 1
-    if numTears >= MeltedCandle.MIN_NUM_TEARS_PROC then
-        if TSIL.Random.GetRandomInt(0, 100) <= 15 then
-            data.NumCandleTears = TSIL.Random.GetRandomInt(1,4)
-            player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-            player:EvaluateItems()
-            data.NumTears = 1
-            data.CandleTearsTimer = 120
-        else
-            data.NumTears = numTears + 1
+    if TSIL.Random.GetRandomInt(0, 100) <= 5 then
+        local prevCandleTears = data.NumCandleTears
+        data.NumCandleTears = TSIL.Random.GetRandomInt(1,4)
+        if data.NumCandleTears ~= prevCandleTears then
+            SpawnPoof(player)
         end
-    else
-        data.NumTears = numTears + 1
+        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+        player:EvaluateItems()
+        data.CandleTearsTimer = TSIL.Random.GetRandomInt(MeltedCandle.MIN_TIMER_PROC, MeltedCandle.MAX_TIMER_PROC)
     end
 end
 
@@ -65,6 +68,12 @@ if REPENTOGON then
         ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED,
         MeltedCandle.ChargeOnFire
     )
+else
+    function MeltedCandle:ChargeOnFire(player)
+		if not player:HasCollectible(MeltedCandle.ID) then return end
+        CalculateCandleTears(player)
+	end
+	RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, MeltedCandle.ChargeOnFire)
 end
 
 ---@param player EntityPlayer
@@ -72,22 +81,14 @@ function MeltedCandle:OnPlayerUpdate(player)
     if not player:HasCollectible(MeltedCandle.ID) then return end
     InitCandleTears(player)
     local data = Helpers.GetData(player)
-    
     local timer = data.CandleTearsTimer or 0
-    local prevFireDelay = data.PreviousFireDelay or 10
-    local currentFireDelay = player.FireDelay
-    data.PreviousFireDelay = currentFireDelay
-    print(timer)
-    if prevFireDelay < currentFireDelay and not REPENTOGON then
-        CalculateCandleTears(player)
-    else
-        data.CandleTearsTimer = math.max(0, timer - 1)
-    end
+    data.CandleTearsTimer = math.max(0, timer - 1)
     if data.NumCandleTears > 0 and data.CandleTearsTimer <= 0 then
         data.CandleTearsTimer = 0
         data.NumCandleTears = 0
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
+        SpawnPoof(player)
     end
 end
 RestoredItemsCollection:AddCallback(

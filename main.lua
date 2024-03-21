@@ -19,6 +19,7 @@ include("lua.core.customhealth")
 include("lua.core.dss.deadseascrolls")
 include("lua.core.BlockDisabledItems")
 include("lua.core.ReplaceItems")
+include("lua.helpers.VanillaPostTriggerWeaponFired")
 
 --entities
 include("lua.entities.clots.ImmortalClot")

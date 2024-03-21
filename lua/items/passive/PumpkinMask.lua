@@ -8,16 +8,6 @@ local function Can360Degree(player)
     player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) or player:HasCollectible(CollectibleType.COLLECTIBLE_EYE_OF_THE_OCCULT)
 end
 
-local function GetMarkedEntity(player)
-    for _, mark in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.TARGET)) do
-        mark = mark:ToEffect()
-        if mark.Parent and GetPtrHash(mark.Parent) == GetPtrHash(player) then
-            return mark
-        end
-    end
-    return nil
-end
-
 ---@param player EntityPlayer
 function PumpkinMask:FireSeeds(player)
     if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK) and not player:IsDead() then
