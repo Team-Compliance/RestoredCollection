@@ -5,7 +5,15 @@ MaxsHead.FIRE_DELAY = 1.5
 MaxsHead.FIRE_RATE_MULT = 0.5
 --The effect will proc every x tears
 MaxsHead.NUM_TEARS_PROC = 4
-
+local MaxHeadAnims = {
+    "normal",
+    "sad",
+    "silly",
+    "wink",
+    "dead",
+    "holy",
+    "666",
+}
 
 ---@param player EntityPlayer
 function MaxsHead:OnFireDelayCache(player)
@@ -25,6 +33,58 @@ RestoredItemsCollection:AddCallback(
     CacheFlag.CACHE_FIREDELAY
 )
 
+---@param effect EntityEffect
+function MaxsHead:InitHeadEffect(effect)
+    local data = Helpers.GetData(effect)
+    local sprite = effect:GetSprite()
+    sprite:Play("HeadAppear", true)
+    sprite:ReplaceSpritesheet(0, "gfx/effects/max_"..MaxHeadAnims[TSIL.Random.GetRandomInt(1, #MaxHeadAnims)]..".png")
+    sprite:LoadGraphics()
+    data.TimeToLive = 90
+end
+RestoredItemsCollection:AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
+    MaxsHead.InitHeadEffect,
+    RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant
+)
+
+---@param effect EntityEffect
+function MaxsHead:UpdateHeadEffect(effect)
+    local data = Helpers.GetData(effect)
+    local sprite = effect:GetSprite()
+    if sprite:IsFinished("HeadAppear") then
+        sprite:Play("HeadLoop", true)
+    end
+    local timer = data.TimeToLive or 90
+    if sprite:IsPlaying("HeadLoop") then
+        if timer <= 0 then
+            sprite:Play("HeadEnd", true)
+        else
+            data.TimeToLive = timer - 1
+        end
+    end
+    if sprite:IsFinished("HeadEnd") then
+        effect:Remove()
+    end
+end
+RestoredItemsCollection:AddCallback(
+    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    MaxsHead.UpdateHeadEffect,
+    RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant
+)
+
+---@param player EntityPlayer
+local function SpanwMaxHead(player)
+    if TSIL.Random.GetRandomInt(0, 100) <= 15 then
+        local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
+        ---@cast eff EntityEffect
+        eff:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+        eff:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+        eff:FollowParent(player)
+        local spritePos = Vector.FromAngle(TSIL.Random.GetRandomInt(0, 180)):Resized(10)
+        eff.SpriteOffset = Vector(0, -20 + player.SpriteScale.Y) + Vector(spritePos.X * player.SpriteScale.X, -spritePos.Y * player.SpriteScale.Y * TSIL.Random.GetRandomFloat(0.6, 1.4))
+    end
+end
 
 if REPENTOGON then
     function MaxsHead:ChargeOnFire(dir, amount, owner)
@@ -38,6 +98,7 @@ if REPENTOGON then
             if numTears >= MaxsHead.NUM_TEARS_PROC then
                 data.NumTears = 1
                 player.FireDelay = Helpers.Round(player.FireDelay * MaxsHead.FIRE_RATE_MULT, 2)
+                SpanwMaxHead(player)
             else
                 data.NumTears = numTears + 1
             end
@@ -63,6 +124,7 @@ else
             if numTears >= MaxsHead.NUM_TEARS_PROC then
                 data.NumTears = 1
                 player.FireDelay = Helpers.Round(currentFireDelay * MaxsHead.FIRE_RATE_MULT, 2)
+                SpanwMaxHead(player)
             else
                 data.NumTears = numTears + 1
             end

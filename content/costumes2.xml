@@ -11,5 +11,8 @@
 	<costume id="9" anm2path="077x_lucky7.anm2" type="passive" hasOverlay="true" />
 	<!-- Pacifist -->
 	<costume id="10" anm2path="662_Pacifist.anm2" type="passive" />
+	<!-- Max's Head -->
+	<costume id="13" anm2path="maxs_head.anm2" type="passive" hasSkinAlt="false" />
+	<!-- Melted Candle -->
 	<costume id="21" anm2path="costume_meltedcandle.anm2" type="passive" priority="99"/>
 </costumes>

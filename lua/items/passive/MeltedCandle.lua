@@ -25,15 +25,18 @@ end
 local function CalculateCandleTears(player)
     InitCandleTears(player)
     local data = Helpers.GetData(player)
-    if TSIL.Random.GetRandomInt(0, 100) <= 5 then
+    if TSIL.Random.GetRandomInt(0, 100) <= 25 then
         local prevCandleTears = data.NumCandleTears
-        data.NumCandleTears = TSIL.Random.GetRandomInt(1,4)
+        data.NumCandleTears = math.min(4, data.NumCandleTears + 1)
+        if TSIL.Random.GetRandomInt(0, 100) <= 15 then
+            data.NumCandleTears = 0
+        end
         if data.NumCandleTears ~= prevCandleTears then
             SpawnPoof(player)
         end
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
-        data.CandleTearsTimer = TSIL.Random.GetRandomInt(MeltedCandle.MIN_TIMER_PROC, MeltedCandle.MAX_TIMER_PROC)
+        data.CandleTearsTimer = data.NumCandleTears > 0 and MeltedCandle.MAX_TIMER_PROC or 0
     end
 end
 
@@ -84,8 +87,8 @@ function MeltedCandle:OnPlayerUpdate(player)
     local timer = data.CandleTearsTimer or 0
     data.CandleTearsTimer = math.max(0, timer - 1)
     if data.NumCandleTears > 0 and data.CandleTearsTimer <= 0 then
-        data.CandleTearsTimer = 0
-        data.NumCandleTears = 0
+        data.NumCandleTears = math.max(0, data.NumCandleTears - 1)
+        data.CandleTearsTimer = data.NumCandleTears > 0 and MeltedCandle.MAX_TIMER_PROC or 0
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
         SpawnPoof(player)
