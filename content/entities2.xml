@@ -29,7 +29,7 @@
     <entity name="Blank Explosion" anm2path="blank_explosion.anm2" id="1000" variant=""/>
 
     <!-- Max's Face -->
-    <entity name="Max's Face" anm2path="maxvisions.anm2" id="1000" variant=""/>
+    <entity name="Max's Face" anm2path="maxvisions.anm2" id="1000" variant="1002"/>
  
     <!-- Donkey Jawbone -->
     <entity anm2path="donkeyjawbone.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="75" friction="1" id="1000" name="Antibirth Donkey Jawbone" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="1001">

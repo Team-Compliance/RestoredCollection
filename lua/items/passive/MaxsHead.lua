@@ -56,7 +56,7 @@ function MaxsHead:UpdateHeadEffect(effect)
         sprite:Play("HeadLoop", true)
     end
     local timer = data.TimeToLive or 90
-    if sprite:IsPlaying("HeadLoop") then
+    if sprite:GetAnimation() == "HeadLoop" then
         if timer <= 0 then
             sprite:Play("HeadEnd", true)
         else
@@ -82,7 +82,8 @@ local function SpanwMaxHead(player)
         eff:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
         eff:FollowParent(player)
         local spritePos = Vector.FromAngle(TSIL.Random.GetRandomInt(0, 180)):Resized(10)
-        eff.SpriteOffset = Vector(0, -20 + player.SpriteScale.Y) + Vector(spritePos.X * player.SpriteScale.X, -spritePos.Y * player.SpriteScale.Y * TSIL.Random.GetRandomFloat(0.6, 1.4))
+        eff.SpriteOffset = Vector(0, -20 * player.SpriteScale.Y) + Vector(spritePos.X * player.SpriteScale.X, -spritePos.Y * player.SpriteScale.Y * TSIL.Random.GetRandomFloat(0.6, 1.4))
+        eff.DepthOffset = 5
     end
 end
 
