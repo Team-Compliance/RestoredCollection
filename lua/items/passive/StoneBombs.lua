@@ -12,10 +12,10 @@ function StoneBombs:BombInit(bomb)
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if player then
 		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS) then
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS) then
 			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
 				if bomb.Variant == 0 then
-					bomb.Variant = RestoredItemsCollection.Enums.BombVariant.BOMB_STONE
+					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_STONE
 				end
 			end
 			data.isStoneBomb = true
@@ -25,7 +25,7 @@ function StoneBombs:BombInit(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, StoneBombs.BombInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, StoneBombs.BombInit)
 
 function StoneBombs:BombUpdate(bomb)
 	local player = Helpers.GetPlayerFromTear(bomb)
@@ -39,7 +39,7 @@ function StoneBombs:BombUpdate(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, StoneBombs.BombUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, StoneBombs.BombUpdate)
 
 function StoneBombs:SB_Explode(bomb, player)
 	for _, dir in pairs(directions) do

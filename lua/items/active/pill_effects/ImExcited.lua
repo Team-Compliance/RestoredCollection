@@ -20,7 +20,7 @@ local function OnUpdate()
 
     lastExcitedStacks = excitedStacks
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_IM_EXCITED, "I'm Excited!!!")

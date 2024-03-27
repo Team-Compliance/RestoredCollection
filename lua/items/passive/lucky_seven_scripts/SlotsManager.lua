@@ -3,11 +3,11 @@ local Helpers = require("lua.helpers.Helpers")
 
 
 function SlotsManager:OnNewRoom()
-    for _, slotMachines in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)) do
+    for _, slotMachines in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, RestoredCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)) do
         slotMachines:Remove()
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SlotsManager.OnNewRoom)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SlotsManager.OnNewRoom)
 
 if REPENTOGON then
     function SlotsManager:LuckySevenSlotUpdate(slot)
@@ -60,7 +60,7 @@ if REPENTOGON then
         end
 
     end
-    RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, SlotsManager.LuckySevenSlotUpdate, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, SlotsManager.LuckySevenSlotUpdate, RestoredCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)
 
     ---@param slot EntitySlot
     ---@param collider Entity
@@ -73,7 +73,7 @@ if REPENTOGON then
             data.LuckySevenSlotObject:OnCollision(slot, player)
         end
     end
-    RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_SLOT_COLLISION, SlotsManager.OnLuckySlotCollision, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)
+    RestoredCollection:AddCallback(ModCallbacks.MC_PRE_SLOT_COLLISION, SlotsManager.OnLuckySlotCollision, RestoredCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant)
 else
     ---@param player EntityPlayer
     ---@param slot Entity
@@ -96,7 +96,7 @@ else
     function SlotsManager:OnFrameUpdate()
         local luckySevenSlotsInRoomAux = {}
 
-        for _, luckySevenSlot in ipairs(RestoredItemsCollection.LuckySevenSlotsInRoom) do
+        for _, luckySevenSlot in ipairs(RestoredCollection.LuckySevenSlotsInRoom) do
             local keepMachine = true
             local data = Helpers.GetData(luckySevenSlot)
 
@@ -161,16 +161,16 @@ else
             end
         end
 
-        RestoredItemsCollection.LuckySevenSlotsInRoom = luckySevenSlotsInRoomAux
+        RestoredCollection.LuckySevenSlotsInRoom = luckySevenSlotsInRoomAux
     end
-    RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, SlotsManager.OnFrameUpdate)
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, SlotsManager.OnFrameUpdate)
 end
 
 ---@param source EntityRef
 function SlotsManager:OnPlayerDamage(_, _, _, source)
-    if (source.Type == EntityType.ENTITY_SLOT and source.Variant == RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant) or
-    (source.SpawnerType == EntityType.ENTITY_SLOT and source.SpawnerVariant == RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant) then
+    if (source.Type == EntityType.ENTITY_SLOT and source.Variant == RestoredCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant) or
+    (source.SpawnerType == EntityType.ENTITY_SLOT and source.SpawnerVariant == RestoredCollection.Enums.Entities.LUCKY_SEVEN_SLOT.Variant) then
         return false
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SlotsManager.OnPlayerDamage, EntityType.ENTITY_PLAYER)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SlotsManager.OnPlayerDamage, EntityType.ENTITY_PLAYER)

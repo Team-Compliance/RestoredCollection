@@ -36,7 +36,7 @@ local function OnUpdate()
         end
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_LUCK_DOWN, "Luck Down")

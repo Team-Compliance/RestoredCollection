@@ -9,7 +9,7 @@ local function OnProjectileUpdate(_, projectile)
 
     projectile.Height = projectile.Height + rangeDownStacks * 4
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_RANGE_DOWN, "Range Down")

@@ -32,19 +32,19 @@ function SaveManager:OnPlayerInit()
 
     local isContinue = IsContinue()
 
-    if isContinue and RestoredItemsCollection:HasData() then
+    if isContinue and RestoredCollection:HasData() then
         CustomHealthAPI.Helper.LoadData()
-        RestoredItemsCollection.HiddenItemManager:LoadData(TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "HiddenItemMangerSave"))
+        RestoredCollection.HiddenItemManager:LoadData(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HiddenItemMangerSave"))
     end
-    for _, funct in ipairs(RestoredItemsCollection.CallOnStart) do
+    for _, funct in ipairs(RestoredCollection.CallOnStart) do
         funct()
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnPlayerInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnPlayerInit)
 
 function SaveManager:SaveData(isSaving)
     if isSaving then
-        TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "HiddenItemMangerSave", RestoredItemsCollection.HiddenItemManager:GetSaveData())
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveManager.SaveData)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveManager.SaveData)

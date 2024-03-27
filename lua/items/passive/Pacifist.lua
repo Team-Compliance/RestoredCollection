@@ -28,7 +28,7 @@ local PickupsToSpawn = {}
 
 local function GetPacifistLevel()
 	local level = game:GetLevel()
-	local pacifistLevels = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "PacifistLevels")
+	local pacifistLevels = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PacifistLevels")
 	for _, pacifistLevel in ipairs(pacifistLevels) do
 		if pacifistLevel.stage == level:GetStage() and
 		pacifistLevel.ascent == level:IsAscent() then
@@ -46,7 +46,7 @@ end
 
 
 function PacifistMod:PacifistEffect(player)
-	if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then return end
+	if not player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then return end
 	if HasSelectedPickups then return end
 	local sprite = player:GetSprite()
 	if not sprite:IsPlaying("Trapdoor") then return end
@@ -103,7 +103,7 @@ function PacifistMod:PacifistEffect(player)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, PacifistMod.PacifistEffect)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, PacifistMod.PacifistEffect)
 
 
 function PacifistMod:OnUpdate()
@@ -142,7 +142,7 @@ function PacifistMod:OnUpdate()
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, PacifistMod.OnUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, PacifistMod.OnUpdate)
 
 
 function PacifistMod:PickupsDrop() -- Spawn pickups every level after pickup
@@ -150,7 +150,7 @@ function PacifistMod:PickupsDrop() -- Spawn pickups every level after pickup
 
 	local pacifistPlayer
 	for _, player in ipairs(Helpers.GetPlayers()) do
-		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
 			sfx:Play(SoundEffect.SOUND_THUMBSUP, 1, 0)
 			player:AnimateHappy()
 			pacifistPlayer = player
@@ -202,7 +202,7 @@ function PacifistMod:PickupsDrop() -- Spawn pickups every level after pickup
 	PickupsToSpawn = {}
 	HasSelectedPickups = false
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PacifistMod.PickupsDrop)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PacifistMod.PickupsDrop)
 
 ---@param source EntityRef
 function PacifistMod:OnEntityDMG(_, _, _, source)
@@ -217,7 +217,7 @@ function PacifistMod:OnEntityDMG(_, _, _, source)
 
 	return false
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, PacifistMod.OnEntityDMG)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, PacifistMod.OnEntityDMG)
 
 ---@param effect EntityEffect
 function PacifistMod:OnLightRayUpdate(effect)
@@ -242,4 +242,4 @@ function PacifistMod:OnLightRayUpdate(effect)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, variant, subtype, effect.Position, Vector.Zero, effect)
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, PacifistMod.OnLightRayUpdate, EffectVariant.CRACK_THE_SKY)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, PacifistMod.OnLightRayUpdate, EffectVariant.CRACK_THE_SKY)

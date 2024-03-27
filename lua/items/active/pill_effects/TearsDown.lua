@@ -39,7 +39,7 @@ local function OnProjectileUpdate(_, projectile)
         projectile.Color = Color(1, 1, 1)
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, OnProjectileUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_TEARS_DOWN, "Tears Down")

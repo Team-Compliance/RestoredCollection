@@ -19,7 +19,7 @@ local function OnLiquidPoopCreepUpdate(_, creep)
 
     creep.SpriteScale = slipperyCreep.SpriteScale
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnLiquidPoopCreepUpdate, EffectVariant.CREEP_LIQUID_POOP)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnLiquidPoopCreepUpdate, EffectVariant.CREEP_LIQUID_POOP)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_X_LAX, "X-Lax",

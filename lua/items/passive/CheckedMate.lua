@@ -2,7 +2,7 @@ local CheckedMateMod = {}
 local game = Game()
 local Helpers = require("lua.helpers.Helpers")
 
-local checkedMateDesc = Isaac.GetItemConfig():GetCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
+local checkedMateDesc = Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
 local sfx = SFXManager()
 
 -- Main code
@@ -71,7 +71,7 @@ local SewingMachineLandCrownOffsets = {
 
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
+	Sewn_API:MakeFamiliarAvailable(RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
 end
 
 
@@ -149,7 +149,7 @@ function CheckedMateMod:checkedMateInit(entity)
 	entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL
 	entity.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, CheckedMateMod.checkedMateInit, RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, CheckedMateMod.checkedMateInit, RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant)
 
 
 ---@param entity EntityFamiliar
@@ -373,12 +373,12 @@ function CheckedMateMod:checkedMateUpdate(entity)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, CheckedMateMod.checkedMateUpdate, RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, CheckedMateMod.checkedMateUpdate, RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant)
 
 
 function CheckedMateMod:checkedMateNewRoom()
 	for i, f in pairs(Isaac.GetRoomEntities()) do
-		if f.Type == EntityType.ENTITY_FAMILIAR and f.Variant == RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant then
+		if f.Type == EntityType.ENTITY_FAMILIAR and f.Variant == RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant then
 			local room = game:GetRoom()
 			f.Position = room:GetGridPosition(room:GetGridIndex(f:ToFamiliar().Player.Position))
 
@@ -389,13 +389,13 @@ function CheckedMateMod:checkedMateNewRoom()
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, CheckedMateMod.checkedMateNewRoom)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, CheckedMateMod.checkedMateNewRoom)
 
 
 
 function CheckedMateMod:checkedMateCheck(player)
-	local numFamiliars = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE) + player:GetEffects():GetCollectibleEffectNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
+	local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE) + player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
 
-	player:CheckFamiliar(RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant, numFamiliars, player:GetCollectibleRNG(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE), checkedMateDesc)	
+	player:CheckFamiliar(RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE), checkedMateDesc)	
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, CheckedMateMod.checkedMateCheck, CacheFlag.CACHE_FAMILIARS)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, CheckedMateMod.checkedMateCheck, CacheFlag.CACHE_FAMILIARS)

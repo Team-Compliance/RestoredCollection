@@ -2,8 +2,8 @@ local AncientRevelation = {}
 local Helpers = require("lua.helpers.Helpers")
 
 function AncientRevelation:EvaluateCache(player, cacheFlag)
-	if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) then
-		local acNum = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
+	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) then
+		local acNum = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
 		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = Helpers.tearsUp(player.MaxFireDelay, acNum)
 		elseif cacheFlag == CacheFlag.CACHE_SHOTSPEED then
@@ -19,23 +19,23 @@ function AncientRevelation:EvaluateCache(player, cacheFlag)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, AncientRevelation.EvaluateCache)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, AncientRevelation.EvaluateCache)
 
 if REPENTOGON then
 	function AncientRevelation:AddImmortalHearts(collectible, charge, firstTime, slot, VarData, player)
-		if firstTime and collectible == RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION then
+		if firstTime and collectible == RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION then
 			player:AddSoulHearts(-4)
 			ComplianceImmortal.AddImmortalHearts(player, 4)
 		end
 	end
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, AncientRevelation.AddImmortalHearts)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, AncientRevelation.AddImmortalHearts)
 else
 	---@param player EntityPlayer
 	function AncientRevelation:OnPlayerInit(player)
 		local data = Helpers.GetData(player)
-		data.AncientCount = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
+		data.AncientCount = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
 	end
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, AncientRevelation.OnPlayerInit)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, AncientRevelation.OnPlayerInit)
 
 	function AncientRevelation:ARUpdate(player, cache)
 		if player.Parent ~= nil then return end
@@ -43,12 +43,12 @@ else
 			player = player:GetMainTwin()
 		end
 		local data = Helpers.GetData(player)
-		if player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) > data.AncientCount then
+		if player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) > data.AncientCount then
 			local p = player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN and player:GetSubPlayer() or player
 			p:AddSoulHearts(-4)
 			ComplianceImmortal.AddImmortalHearts(p, 4)
 		end
-		data.AncientCount = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
+		data.AncientCount = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
 	end
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, AncientRevelation.ARUpdate, CacheFlag.CACHE_TEARFLAG)
+	RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, AncientRevelation.ARUpdate, CacheFlag.CACHE_TEARFLAG)
 end

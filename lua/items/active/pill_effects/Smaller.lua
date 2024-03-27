@@ -17,7 +17,7 @@ local function OnNPCUpdate(_, npc)
     data.ShrinkDuration = nil
     npc:ClearEntityFlags(EntityFlag.FLAG_SHRINK)
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_NPC_UPDATE, OnNPCUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_SMALLER, "One makes you small",

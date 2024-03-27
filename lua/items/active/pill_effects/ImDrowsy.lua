@@ -22,7 +22,7 @@ local function OnUpdate()
 
     lastDrowsyStacks = drowsyStacks
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, OnUpdate)
 
 
 local function OnCache(_, player)
@@ -32,7 +32,7 @@ local function OnCache(_, player)
     local drowsyStacks = math.max(0, drowsyCrushed - excitedCrushed)
 	player.MaxFireDelay = player.MaxFireDelay * (1 + 0.25 * drowsyStacks)
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, OnCache, CacheFlag.CACHE_FIREDELAY)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, OnCache, CacheFlag.CACHE_FIREDELAY)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_IM_DROWSY, "I'm drowsy...",

@@ -9,7 +9,7 @@ local Wiki = include("lua.mod_compat.encyclopedia.wiki")
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
 	WikiDesc = Wiki.StoneBombs,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_BOMB_BUM,
@@ -22,7 +22,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
 	WikiDesc = Wiki.BlankBombs,
 	Pools = {
 	  Encyclopedia.ItemPools.POOL_TREASURE,
@@ -33,7 +33,7 @@ Encyclopedia.AddItem({
 
 --Checked mate
 Encyclopedia.AddItem({
-	ID =RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
+	ID =RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
 	WikiDesc = Wiki.CheckedMate,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
@@ -47,7 +47,7 @@ Encyclopedia.AddItem({
 })
 if Sewn_API then
 	Sewn_API:AddEncyclopediaUpgrade(
-		RestoredItemsCollection.Enums.Familiars.CHECKED_MATE.Variant,
+		RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant,
 		"Increases damage",
 		"Increases damage further and range"
 	)
@@ -57,7 +57,7 @@ end
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
 	WikiDesc = Wiki.BookOfDespair,
 	Pools = {
 	  	Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -71,7 +71,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS,
 	WikiDesc = Wiki.BowlOfTears,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
@@ -83,7 +83,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
 	WikiDesc = Wiki.DonkeyJawbone,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
@@ -95,7 +95,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
 	WikiDesc = Wiki.Menorah,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
@@ -115,7 +115,7 @@ end
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
     WikiDesc = Wiki.DiceBombs,
     Pools = {
         Encyclopedia.ItemPools.POOL_SECRET,
@@ -127,7 +127,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION,
     WikiDesc = Wiki.AncientRevelation,
     Pools = {
         Encyclopedia.ItemPools.POOL_ANGEL,
@@ -140,7 +140,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART,
     WikiDesc = Wiki.BethsHeart,
     Pools = {
         Encyclopedia.ItemPools.POOL_TREASURE,
@@ -153,7 +153,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS,
     WikiDesc = Wiki.BookOfIllusions,
     Pools = {
         Encyclopedia.ItemPools.POOL_DEVIL,
@@ -166,7 +166,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE,
     WikiDesc = Wiki.KeepersRope,
     Pools = {
         Encyclopedia.ItemPools.POOL_SECRET,
@@ -178,7 +178,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN,
     WikiDesc = Wiki.LuckySeven,
     Pools = {
         Encyclopedia.ItemPools.POOL_TREASURE,
@@ -191,7 +191,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST,
     WikiDesc = Wiki.Pacifist,
     Pools = {
         Encyclopedia.ItemPools.POOL_ANGEL
@@ -202,7 +202,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER,
     WikiDesc = Wiki.PillCrusher,
     Pools = {
         Encyclopedia.ItemPools.POOL_SHOP,
@@ -212,7 +212,7 @@ Encyclopedia.AddItem({
 
 --Safety bombs
 Encyclopedia.AddItem({
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS,
     WikiDesc = Wiki.SafetyBombs,
     Pools = {
         Encyclopedia.ItemPools.POOL_TREASURE,
@@ -225,7 +225,7 @@ Encyclopedia.AddItem({
 
 --Voodoo Pin
 Encyclopedia.AddItem({
-    ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN,
+    ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN,
     WikiDesc = Wiki.VoodooPin,
     Pools = {
         Encyclopedia.ItemPools.POOL_SHOP,
@@ -238,7 +238,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
 	WikiDesc = Wiki.MaxsHead,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
@@ -250,21 +250,21 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
 	WikiDesc = Wiki.OlLopper,
 })
 
 Encyclopedia.AddItem({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
 	WikiDesc = Wiki.PumpkinMask,
 })
 
 Encyclopedia.AddTrinket({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredItemsCollection.Enums.TrinketType.TRINKET_GAME_SQUID,
+	ID = RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID,
 	WikiDesc = Wiki.GameSquid,
 })
 
@@ -274,7 +274,7 @@ for i = 0, 5 do
 	Encyclopedia.AddItem({
 		ModName = "Compliance",
 		Class = "Compliance",
-		ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i,
+		ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i,
 		WikiDesc = Wiki.LunchBox,
 		Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
@@ -307,4 +307,4 @@ for _, item in ipairs(TransformationItems) do
 	})
 end
 
-RestoredItemsCollection.Enums.Wiki = Wiki
+RestoredCollection.Enums.Wiki = Wiki

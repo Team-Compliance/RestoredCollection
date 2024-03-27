@@ -33,7 +33,7 @@ local function BatteriesOnDeath(_, entity)
 
     Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, subtype, entity.Position, Vector.Zero, nil)
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, BatteriesOnDeath)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, BatteriesOnDeath)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_48HOUR_ENERGY, "48 Hour Energy",

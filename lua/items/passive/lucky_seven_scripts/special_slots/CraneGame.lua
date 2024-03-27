@@ -38,7 +38,7 @@ local function ShootGrappleAtClosestEnemy(slot, data)
 
     local targetClawVelocity = Vector(9, 0):Rotated(shootAngle)
 
-    local cordEnd = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CORD_END.Variant, 0, slot.Position, targetClawVelocity, slot):ToEffect()
+    local cordEnd = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.LUCKY_SEVEN_CORD_END.Variant, 0, slot.Position, targetClawVelocity, slot):ToEffect()
     cordEnd.Parent = slot
     cordEnd:Update()
     cordEnd.Visible = false
@@ -147,7 +147,7 @@ end
 
 ---@param cordEnd EntityEffect
 local function SpawnCord(cordEnd)
-    local head = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CORD_HANDLER.Variant, 0, cordEnd.Position, Vector.Zero, cordEnd):ToEffect()
+    local head = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.LUCKY_SEVEN_CORD_HANDLER.Variant, 0, cordEnd.Position, Vector.Zero, cordEnd):ToEffect()
     head.Parent = cordEnd.Parent
     head.Visible = false
     head:Update()
@@ -162,7 +162,7 @@ local function SpawnCord(cordEnd)
     Helpers.GetData(handler).IsCordHandler = true
     handler:Update()
 
-    local rope = Isaac.Spawn(EntityType.ENTITY_EVIS, 10, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CRANE_CORD.SubType, cordEnd.Parent.Position, Vector.Zero, cordEnd)
+    local rope = Isaac.Spawn(EntityType.ENTITY_EVIS, 10, RestoredCollection.Enums.Entities.LUCKY_SEVEN_CRANE_CORD.SubType, cordEnd.Parent.Position, Vector.Zero, cordEnd)
     cordEnd.Child = rope
     head.Child = rope
 
@@ -265,7 +265,7 @@ function OnCordEndUpdate(_, cordEnd)
     cordEnd.Child:Update()
     cordEnd.Child:Update()
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnCordEndUpdate, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CORD_END.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnCordEndUpdate, RestoredCollection.Enums.Entities.LUCKY_SEVEN_CORD_END.Variant)
 
 
 local function OnCordHandlerUpdate(_, handler)
@@ -276,7 +276,7 @@ local function OnCordHandlerUpdate(_, handler)
         handler.Velocity = handler.Parent.Velocity
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnCordHandlerUpdate, RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CORD_HANDLER.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, OnCordHandlerUpdate, RestoredCollection.Enums.Entities.LUCKY_SEVEN_CORD_HANDLER.Variant)
 
 
 
@@ -299,11 +299,11 @@ local function PreHorfHandlerUpdate(_, npc)
 
     return true
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PreHorfHandlerUpdate, EntityType.ENTITY_HORF)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PreHorfHandlerUpdate, EntityType.ENTITY_HORF)
 
 
 local function PreEvisCordUpdate(_, npc)
-    if npc.Variant == 10 and npc.SubType == RestoredItemsCollection.Enums.Entities.LUCKY_SEVEN_CRANE_CORD.SubType then
+    if npc.Variant == 10 and npc.SubType == RestoredCollection.Enums.Entities.LUCKY_SEVEN_CRANE_CORD.SubType then
         if npc.Target and npc.Target.Type == EntityType.ENTITY_PLAYER then
             npc:Remove()
         end
@@ -312,7 +312,7 @@ local function PreEvisCordUpdate(_, npc)
         return false
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PreEvisCordUpdate, EntityType.ENTITY_EVIS)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PreEvisCordUpdate, EntityType.ENTITY_EVIS)
 
 
 return CraneGame

@@ -1,7 +1,7 @@
 BethsHeart = {}
 local BethsHeartLocal = {}
 local Helpers = require("lua.helpers.Helpers")
-local bethsheartdesc = Isaac.GetItemConfig():GetCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
+local bethsheartdesc = Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
 local sfx = SFXManager()
 
 BethsHeart.HeartCharges = {
@@ -47,11 +47,11 @@ local DIRECTION_VECTOR = {
 
 
 function BethsHeartLocal:HeartCollectibleUpdate(player)
-	local numFamiliars = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART) +
-		player:GetEffects():GetCollectibleEffectNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
+	local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART) +
+		player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
 
-	player:CheckFamiliar(RestoredItemsCollection.Enums.Familiars.BETHS_HEART.Variant, numFamiliars,
-		player:GetCollectibleRNG(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART), bethsheartdesc)
+	player:CheckFamiliar(RestoredCollection.Enums.Familiars.BETHS_HEART.Variant, numFamiliars,
+		player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART), bethsheartdesc)
 end
 
 function BethsHeartLocal:BethsHeartInit(heart)
@@ -148,7 +148,7 @@ function BethsHeartLocal:BethsHeartUpdate(heart)
 end
 
 function BethsHeartLocal:BethInputUpdate(player)
-	for _, heart in ipairs(Isaac.FindByType(3, RestoredItemsCollection.Enums.Familiars.BETHS_HEART.Variant)) do
+	for _, heart in ipairs(Isaac.FindByType(3, RestoredCollection.Enums.Familiars.BETHS_HEART.Variant)) do
 		if GetPtrHash(player) == GetPtrHash(heart:ToFamiliar().Player) then
 			heart = heart:ToFamiliar()
 			local heartData = Helpers.GetData(heart)
@@ -228,7 +228,7 @@ function BethsHeartLocal:BethInputUpdate(player)
 	end
 end
 
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, BethsHeartLocal.BethsHeartInit, RestoredItemsCollection.Enums.Familiars.BETHS_HEART.Variant)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, BethsHeartLocal.BethsHeartUpdate, RestoredItemsCollection.Enums.Familiars.BETHS_HEART.Variant)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, BethsHeartLocal.BethInputUpdate)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, BethsHeartLocal.HeartCollectibleUpdate, CacheFlag.CACHE_FAMILIARS)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, BethsHeartLocal.BethsHeartInit, RestoredCollection.Enums.Familiars.BETHS_HEART.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, BethsHeartLocal.BethsHeartUpdate, RestoredCollection.Enums.Familiars.BETHS_HEART.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, BethsHeartLocal.BethInputUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, BethsHeartLocal.HeartCollectibleUpdate, CacheFlag.CACHE_FAMILIARS)

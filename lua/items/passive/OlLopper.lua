@@ -1,8 +1,8 @@
 local OlLopper = {}
 local Helpers = require("lua.helpers.Helpers")
-OlLopper.ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER
-OlLopper.HEAD_HELPER = RestoredItemsCollection.Enums.Entities.OL_LOPPER_HEAD_HELPER
-OlLopper.NECK = RestoredItemsCollection.Enums.Entities.OL_LOPPER_NECK
+OlLopper.ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER
+OlLopper.HEAD_HELPER = RestoredCollection.Enums.Entities.OL_LOPPER_HEAD_HELPER
+OlLopper.NECK = RestoredCollection.Enums.Entities.OL_LOPPER_NECK
 
 --The head can move without speed limitation within the free range.
 --When it exits the free range it will be slowed (like forgotten's soul)
@@ -204,7 +204,7 @@ function OlLopper:OnPlayerRender(player)
     player:RenderBody(renderPosition)
     player:RenderTop(renderPosition)
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_POST_PLAYER_RENDER,
     OlLopper.OnPlayerRender
 )
@@ -224,7 +224,7 @@ function OlLopper:OnPeffectUpdate(player)
         RemoveHeadHelper(player)
     end
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_POST_PEFFECT_UPDATE,
     OlLopper.OnPeffectUpdate
 )
@@ -322,7 +322,7 @@ function OlLopper:OnHeadHelperUpdate(headHelper)
     HandleHeadMovement(headHelper, player)
     DealContactDamage(headHelper, player)
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_FAMILIAR_UPDATE,
     OlLopper.OnHeadHelperUpdate,
     OlLopper.HEAD_HELPER.Variant
@@ -380,7 +380,7 @@ function OlLopper:OnHeadHelperRender(headHelper)
     RenderPlayerHead(player, headHelper.Position)
     RenderPlayerNeck(player, headHelper.Position)
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_POST_FAMILIAR_RENDER,
     OlLopper.OnHeadHelperRender,
     OlLopper.HEAD_HELPER.Variant

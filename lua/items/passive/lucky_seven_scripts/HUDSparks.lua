@@ -35,7 +35,7 @@ function HUDSparks:OnRender()
 
     wasGamePaused = isGamePaused
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_RENDER, HUDSparks.OnRender)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_RENDER, HUDSparks.OnRender)
 
 
 ---@return boolean
@@ -182,7 +182,7 @@ function HUDSparks:OnFrameUpdate()
         SevenShinySparks[pickup] = UpdateSparkSprites(sparks, pickup)
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, HUDSparks.OnFrameUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, HUDSparks.OnFrameUpdate)
 
 
 local function RenderSparks(sparks)
@@ -199,8 +199,8 @@ end
 function HUDSparks:OnHud(shaderName)
     if shaderName ~= "LostItemsPackNothingShader" then return end
     if not Game():GetHUD():IsVisible() then return end
-    local anyPlayer = REPENTOGON and PlayerManager.AnyoneHasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) 
-    or #Helpers.GetPlayersByCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) > 0
+    local anyPlayer = REPENTOGON and PlayerManager.AnyoneHasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) 
+    or #Helpers.GetPlayersByCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) > 0
     if not anyPlayer then return end
 
     local player = Game():GetPlayer(0)
@@ -220,4 +220,4 @@ function HUDSparks:OnHud(shaderName)
         RenderSparks(SevenShinySparks.Poops)
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, HUDSparks.OnHud)
+RestoredCollection:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, HUDSparks.OnHud)

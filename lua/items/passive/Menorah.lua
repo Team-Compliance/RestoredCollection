@@ -5,12 +5,12 @@ function Menorah:onEvaluateCache(player, cacheFlag)
 	local data = Helpers.GetEntityData(player)
 
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
-		local numFamiliars = player:GetCollectibleNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) + player:GetEffects():GetCollectibleEffectNum(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
-		player:CheckFamiliar(FamiliarVariant.MENORAH, numFamiliars, player:GetCollectibleRNG(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
+		local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) + player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+		player:CheckFamiliar(FamiliarVariant.MENORAH, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
 	end
 	
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 			if data.MenorahFlames then
 				if data.MenorahFlames > 0 then
 					player.MaxFireDelay = (player.MaxFireDelay / (data.SewingMachineDenominator or 2)) * (data.MenorahFlames + 2)		
@@ -19,7 +19,7 @@ function Menorah:onEvaluateCache(player, cacheFlag)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, Menorah.onEvaluateCache)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, Menorah.onEvaluateCache)
 
 if REPENTOGON then
 	function Menorah:MultiShopUpdate(player)
@@ -28,7 +28,7 @@ if REPENTOGON then
 		local weaponType = weapon:GetWeaponType()
 		local multiShotParams = player:GetMultiShotParams(weaponType)
 		---@cast multiShotParams MultiShotParams
-		if data.MenorahFlames and data.MenorahFlames > 1 and player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+		if data.MenorahFlames and data.MenorahFlames > 1 and player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 			multiShotParams:SetNumTears(multiShotParams:GetNumTears() * (data.MenorahFlames))
 			multiShotParams:SetNumLanesPerEye(multiShotParams:GetNumLanesPerEye() * (data.MenorahFlames))
 			if weaponType ~= WeaponType.WEAPON_SPIRIT_SWORD then
@@ -37,7 +37,7 @@ if REPENTOGON then
 			return multiShotParams
 		end
 	end
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, Menorah.MultiShopUpdate)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, Menorah.MultiShopUpdate)
 else
 	local function DupeTear(tear)
 		local nt = Isaac.Spawn(tear.Type, tear.Variant, tear.SubType, tear.Position, tear.Velocity, tear):ToTear()
@@ -61,7 +61,7 @@ else
 		local tearData = Helpers.GetData(tear)
 		if player then
 			local data = Helpers.GetEntityData(player)
-			if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+			if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 				tear:Remove()
 				for i = 1, data.MenorahFlames do
 					local correctedVelocity = tear.Velocity
@@ -94,7 +94,7 @@ else
 		if player then
 			local data = Helpers.GetEntityData(player)
 			
-			if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+			if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 				if (laser.FrameCount == 1) and (laser.Parent) then
 					if (not laserData.isSpreadLaser) and (laser.Parent:ToPlayer() or laserData.IsFamiliarPlayerTear) then
 						if (laser.SubType == LaserSubType.LASER_SUBTYPE_LINEAR) and laser.Timeout ~= -1 then
@@ -206,7 +206,7 @@ else
 		
 		if player then
 			local data = Helpers.GetEntityData(player)
-			if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+			if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 				if (bomb.FrameCount == 1) and (bomb.Parent) and (bomb.IsFetus == true) then
 					if (not bombData.isSpreadBomb) and (bomb.Parent:ToPlayer() or bombData.IsFamiliarPlayerTear) then
 						for i = 1, data.MenorahFlames do
@@ -247,9 +247,9 @@ else
 			end
 		end
 	end
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, Menorah.postFireTear)
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, Menorah.onLaserUpdate)
-	RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, Menorah.onBombUpdate)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, Menorah.postFireTear)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, Menorah.onLaserUpdate)
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, Menorah.onBombUpdate)
 end
 
 function Menorah:onFamiliarInit(menorah)
@@ -261,7 +261,7 @@ function Menorah:onFamiliarInit(menorah)
 	
 	menorah:AddToFollowers()
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, Menorah.onFamiliarInit, FamiliarVariant.MENORAH)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, Menorah.onFamiliarInit, FamiliarVariant.MENORAH)
 
 function Menorah:onFamiliarUpdate(menorah)
 	local sprite = menorah:GetSprite()
@@ -329,13 +329,13 @@ function Menorah:onFamiliarUpdate(menorah)
 	end
 	menorah:FollowParent()
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, Menorah.onFamiliarUpdate, FamiliarVariant.MENORAH)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, Menorah.onFamiliarUpdate, FamiliarVariant.MENORAH)
 
 function Menorah:onDamage(tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
 	local player = tookDamage:ToPlayer()
 	local data = Helpers.GetEntityData(player)
 		
-	if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
+	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 		if data.MenorahFlames > 0 then
 			data.MenorahFlames = data.MenorahFlames + 1
 				
@@ -348,17 +348,17 @@ function Menorah:onDamage(tookDamage, damageAmount, damageFlags, damageSource, d
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, Menorah.onDamage, EntityType.ENTITY_PLAYER)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, Menorah.onDamage, EntityType.ENTITY_PLAYER)
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(FamiliarVariant.MENORAH, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+	Sewn_API:MakeFamiliarAvailable(FamiliarVariant.MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
 
 	local function MenorahSewingUpdateDefault(_, menorah)
-		local data = RestoredItemsCollection.GetEntityData(menorah.Player)
+		local data = RestoredCollection.GetEntityData(menorah.Player)
 		data.SewingMachineDenominator = 3
 	end
 	local function MenorahSewingUpdateUltra(_, menorah)
-		local data = RestoredItemsCollection.GetEntityData(menorah.Player)
+		local data = RestoredCollection.GetEntityData(menorah.Player)
 		data.SewingMachineDenominator = 4
 		data.SewingMachineUltra = true
 	end

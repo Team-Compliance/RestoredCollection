@@ -10,7 +10,7 @@ function LuckySevenLasers:OnLaserInit(laser)
 
     local player = laser.SpawnerEntity:ToPlayer()
 
-    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
+    if not player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
     if not Helpers.DoesPlayerHaveRightAmountOfPickups(player) then return end
 
     local laserData = Helpers.GetData(laser)
@@ -26,7 +26,7 @@ function LuckySevenLasers:OnLaserInit(laser)
         laserData.IsLuckySevenLaser = true
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_LASER_INIT, LuckySevenLasers.OnLaserInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_INIT, LuckySevenLasers.OnLaserInit)
 
 
 ---@param laser EntityLaser
@@ -43,7 +43,7 @@ function LuckySevenLasers:OnLaserRender(laser)
     end
     laser.Color = color
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, LuckySevenLasers.OnLaserRender)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, LuckySevenLasers.OnLaserRender)
 
 
 ---@param entity Entity
@@ -53,7 +53,7 @@ function LuckySevenLasers:OnEntityDamage(entity, _, flags, source)
     if not Helpers.IsTargetableEnemy(entity) then return end
     if source.Type ~= EntityType.ENTITY_PLAYER then return end
     local player = source.Entity:ToPlayer()
-    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) or
+    if not player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) or
     player:HasCollectible(CollectibleType.COLLECTIBLE_LUDOVICO_TECHNIQUE) then return end
     if flags & DamageFlag.DAMAGE_LASER == 0 then return end
 
@@ -74,4 +74,4 @@ function LuckySevenLasers:OnEntityDamage(entity, _, flags, source)
         end
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, LuckySevenLasers.OnEntityDamage)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, LuckySevenLasers.OnEntityDamage)

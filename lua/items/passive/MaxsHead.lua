@@ -1,6 +1,6 @@
 local MaxsHead = {}
 local Helpers = require("lua.helpers.Helpers")
-MaxsHead.ID = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD
+MaxsHead.ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD
 MaxsHead.FIRE_DELAY = 1.5
 MaxsHead.FIRE_RATE_MULT = 0.5
 --The effect will proc every x tears
@@ -27,7 +27,7 @@ function MaxsHead:OnFireDelayCache(player)
     end
     player.MaxFireDelay = Helpers.ToMaxFireDelay(tps)
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_EVALUATE_CACHE,
     MaxsHead.OnFireDelayCache,
     CacheFlag.CACHE_FIREDELAY
@@ -42,10 +42,10 @@ function MaxsHead:InitHeadEffect(effect)
     sprite:LoadGraphics()
     data.TimeToLive = 90
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_POST_EFFECT_INIT,
     MaxsHead.InitHeadEffect,
-    RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant
+    RestoredCollection.Enums.Entities.MAXS_HEAD.Variant
 )
 
 ---@param effect EntityEffect
@@ -67,16 +67,16 @@ function MaxsHead:UpdateHeadEffect(effect)
         effect:Remove()
     end
 end
-RestoredItemsCollection:AddCallback(
+RestoredCollection:AddCallback(
     ModCallbacks.MC_POST_EFFECT_UPDATE,
     MaxsHead.UpdateHeadEffect,
-    RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant
+    RestoredCollection.Enums.Entities.MAXS_HEAD.Variant
 )
 
 ---@param player EntityPlayer
 local function SpanwMaxHead(player)
     if TSIL.Random.GetRandomInt(0, 100) <= 15 then
-        local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredItemsCollection.Enums.Entities.MAXS_HEAD.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
+        local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.MAXS_HEAD.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
         ---@cast eff EntityEffect
         eff:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
         eff:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
@@ -105,7 +105,7 @@ if REPENTOGON then
             end
 		end
 	end
-	RestoredItemsCollection:AddCallback(
+	RestoredCollection:AddCallback(
         ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED,
         MaxsHead.ChargeOnFire
     )
@@ -131,7 +131,7 @@ else
             end
         end
     end
-    RestoredItemsCollection:AddCallback(
+    RestoredCollection:AddCallback(
         ModCallbacks.MC_POST_PEFFECT_UPDATE,
         MaxsHead.OnPlayerUpdate
     )

@@ -157,10 +157,6 @@ Enums.SFX =
 							},
 				}
 
-Enums.Costumes = {
-	MELTED_CANDLE = Isaac.GetCostumeIdByPath("gfx/characters/costume_melted_candle1.anm2")
-}
-
 if REPENTOGON then
 	Enums.GiantBook = {
 		BOOK_OF_DESPAIR = Isaac.GetGiantBookIdByName("Book of Despair"),
@@ -173,4 +169,4 @@ Enums.Callbacks = {
 	VANILLA_POST_TRIGGER_WEAPON_FIRED = "VANILLA_POST_TRIGGER_WEAPON_FIRED",
 }
 
-RestoredItemsCollection.Enums = Enums
+RestoredCollection.Enums = Enums

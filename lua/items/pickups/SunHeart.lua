@@ -15,7 +15,7 @@ function ComplianceSun.CanPickSunHearts(player)
 end
 
 function ComplianceSunLocal:SunHeartCollision(pickup, collider)
-	if collider.Type == EntityType.ENTITY_PLAYER and pickup.SubType == RestoredItemsCollection.Enums.Pickups.Hearts.HEART_SUN then
+	if collider.Type == EntityType.ENTITY_PLAYER and pickup.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_SUN then
 		local player = collider:ToPlayer()
 		if not Helpers.CanCollectCustomShopPickup(player, pickup) then
 			return true
@@ -28,7 +28,7 @@ function ComplianceSunLocal:SunHeartCollision(pickup, collider)
 			if not Helpers.IsGhost(player) then
 				ComplianceSun.AddSunHearts(player, 2)
 			end
-			sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.SUN_PICKUP, 1, 0)
+			sfx:Play(RestoredCollection.Enums.SFX.Hearts.SUN_PICKUP, 1, 0)
 			Game():GetLevel():SetHeartPicked()
 			Game():ClearStagesWithoutHeartsPicked()
 			Game():SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
@@ -38,16 +38,16 @@ function ComplianceSunLocal:SunHeartCollision(pickup, collider)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, ComplianceSunLocal.SunHeartCollision, PickupVariant.PICKUP_HEART)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, ComplianceSunLocal.SunHeartCollision, PickupVariant.PICKUP_HEART)
 
 ---@param pickup EntityPickup
 function ComplianceSunLocal:PreEternalSpawn(pickup)
-	if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "SunHeartSpawnChance") / 100) 
+	if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "SunHeartSpawnChance") / 100) 
 	and pickup.SubType == HeartSubType.HEART_ETERNAL then
-		pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredItemsCollection.Enums.Pickups.Hearts.HEART_SUN, true, true)
+		pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredCollection.Enums.Pickups.Hearts.HEART_SUN, true, true)
 	end
 end
-RestoredItemsCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, ComplianceSunLocal.PreEternalSpawn, PickupVariant.PICKUP_HEART)
+RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, ComplianceSunLocal.PreEternalSpawn, PickupVariant.PICKUP_HEART)
 
 function ComplianceSunLocal:SunClear(rng, pos)
 	for i=0, Game():GetNumPlayers()-1 do
@@ -70,7 +70,7 @@ function ComplianceSunLocal:SunClear(rng, pos)
 							player:SetActiveCharge(charge + newcharge, slot)
 							player:AddActiveCharge(newcharge, slot, true, false, true)
 							Game():GetHUD():FlashChargeBar(player, slot)
-							sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.SUN_PICKUP,1,0)
+							sfx:Play(RestoredCollection.Enums.SFX.Hearts.SUN_PICKUP,1,0)
 							local BatteryEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BATTERY, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
 							BatteryEffect:GetSprite().Offset = Vector(0, -15)
 							break
@@ -81,4 +81,4 @@ function ComplianceSunLocal:SunClear(rng, pos)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, ComplianceSunLocal.SunClear)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, ComplianceSunLocal.SunClear)

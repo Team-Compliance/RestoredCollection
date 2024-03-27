@@ -5,7 +5,7 @@ local function FireTear(player)
     local data = Helpers.GetData(player)
     if data.PrevDelay and player.HeadFrameDelay > data.PrevDelay and player.HeadFrameDelay > 1 then 
         --Helpers.ChargeBowl(player)
-        Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+        Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
     end 
     data.PrevDelay = player.HeadFrameDelay
 end
@@ -18,7 +18,7 @@ local function LudoCharge(entity)
             if entity.TearFlags & TearFlags.TEAR_LUDOVICO == TearFlags.TEAR_LUDOVICO and GetPtrHash(player:GetActiveWeaponEntity()) == GetPtrHash(entity) then
                 if math.fmod(entity.FrameCount, player.MaxFireDelay) == 1 and not data.KnifeLudoCharge then
                     --Helpers.ChargeBowl(player)
-                    Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+                    Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
                     data.KnifeLudoCharge = true
                 elseif math.fmod(entity.FrameCount, player.MaxFireDelay) == ((player.MaxFireDelay - 2) > 1 and (player.MaxFireDelay - 2) or 1) and data.KnifeLudoCharge then
                     data.KnifeLudoCharge = nil
@@ -48,7 +48,7 @@ function VPTWF:KnifeBowlCharge(entityKnife)
         if entityKnife.Variant == 10 and entityKnife.SubType == 0 then --spirit sword
             if sk:GetFrame() == 3 and not data.SwordSpin then
                 --Helpers.ChargeBowl(player)
-                Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+                Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
                 data.SwordSpin = true
             elseif data.SwordSpin then
                 for _,s in ipairs({"Left","Right","Down","Up"}) do
@@ -62,14 +62,14 @@ function VPTWF:KnifeBowlCharge(entityKnife)
             data.Flying = true
             if GetPtrHash(player:GetActiveWeaponEntity()) == GetPtrHash(entityKnife) then
                 --Helpers.ChargeBowl(player)
-                Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+                Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
             end
         elseif not entityKnife:IsFlying() and data.Flying then --one charge check
             data.Flying = nil
         elseif entityKnife.Variant == 1 or entityKnife.Variant == 3 and GetPtrHash(player:GetActiveWeaponEntity()) == GetPtrHash(entityKnife) then
             if sk:GetFrame() == 1 and not data.BoneSwing then
                 --Helpers.ChargeBowl(player)
-                Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+                Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
                 data.BoneSwing = true
             end
         else
@@ -104,7 +104,7 @@ function VPTWF:BrimstoneBowlCharge(entityLaser)
                 local delay = player:GetActiveWeaponEntity().SubType == LaserSubType.LASER_SUBTYPE_RING_LUDOVICO and player.MaxFireDelay or 5
                 if math.fmod(player:GetActiveWeaponEntity().FrameCount, delay) == 1 then
                     --Helpers.ChargeBowl(player)
-                    Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+                    Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
                 end
             end
         end
@@ -116,12 +116,12 @@ function VPTWF:EpicBowlCharge(entityRocet)
     local player = Helpers.GetPlayerFromTear(entityRocet)
     if player then
         --Helpers.ChargeBowl(player)
-        Isaac.RunCallback(RestoredItemsCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
+        Isaac.RunCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, player)
     end
 end
 
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, VPTWF.TearBowlCharge)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, VPTWF.KnifeBowlCharge)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, VPTWF.TearUpdateBOT)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, VPTWF.BrimstoneBowlCharge)
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, VPTWF.EpicBowlCharge, EffectVariant.ROCKET)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, VPTWF.TearBowlCharge)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, VPTWF.KnifeBowlCharge)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, VPTWF.TearUpdateBOT)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, VPTWF.BrimstoneBowlCharge)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, VPTWF.EpicBowlCharge, EffectVariant.ROCKET)

@@ -17,7 +17,7 @@ local function DoublePlayerDamage(_, player, damage, flags, source, cd)
         return false
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DoublePlayerDamage, EntityType.ENTITY_PLAYER)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, DoublePlayerDamage, EntityType.ENTITY_PLAYER)
 
 
 local function PlayerUpdate(_, player)
@@ -29,7 +29,7 @@ local function PlayerUpdate(_, player)
     data.DoubleDamageFrames = data.DoubleDamageFrames - 1
     if data.DoubleDamageFrames <= 0 then data.DoubleDamageFrames = nil end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PlayerUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PlayerUpdate)
 
 
 PillCrusher:AddPillCrusherEffect(PillEffect.PILLEFFECT_POWER, "Power Pill!",

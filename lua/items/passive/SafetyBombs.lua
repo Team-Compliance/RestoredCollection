@@ -24,10 +24,10 @@ function SafetyBombsMod:BombInit(bomb)
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if player then
 		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS) then
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS) then
 			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
 				if bomb.Variant == 0 then
-					bomb.Variant = RestoredItemsCollection.Enums.BombVariant.BOMB_SAFETY
+					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_SAFETY
 				end
 			end
 			data.isSafetyBomb = true
@@ -37,7 +37,7 @@ function SafetyBombsMod:BombInit(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, SafetyBombsMod.BombInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, SafetyBombsMod.BombInit)
 
 ---@param bomb EntityBomb
 function SafetyBombsMod:BombUpdate(bomb)
@@ -98,7 +98,7 @@ function SafetyBombsMod:BombUpdate(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, SafetyBombsMod.BombUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, SafetyBombsMod.BombUpdate)
 
 
 local function DoRenderRadar(bomb)
@@ -151,4 +151,4 @@ function SafetyBombsMod:BombRadar(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_RENDER, SafetyBombsMod.BombRadar)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_RENDER, SafetyBombsMod.BombRadar)

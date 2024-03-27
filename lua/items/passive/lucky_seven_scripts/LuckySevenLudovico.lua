@@ -24,7 +24,7 @@ local function CheckForLudoTear(entity, tear)
         return
     end
 
-    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
+    if not player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
     if not Helpers.DoesPlayerHaveRightAmountOfPickups(player) then return end
 
     local rng = tear:GetDropRNG()
@@ -40,7 +40,7 @@ end
 ---@param entity Entity
 ---@param player EntityPlayer
 local function CheckForLudoLaser(entity, player)
-    if not player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
+    if not player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) then return end
     if not Helpers.DoesPlayerHaveRightAmountOfPickups(player) then return end
 
     local hitLaser
@@ -85,4 +85,4 @@ function LuckySevenLudovico:OnEntityDamage(entity, _, flags, source)
         CheckForLudoLaser(entity, player)
     end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, LuckySevenLudovico.OnEntityDamage)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, LuckySevenLudovico.OnEntityDamage)

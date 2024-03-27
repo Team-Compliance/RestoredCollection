@@ -3,7 +3,7 @@ local game = Game()
 local Helpers = require("lua.helpers.Helpers")
 local LunchBoxCharge = {}
 local sfx = SFXManager()
-local RepentogonTargetCol = REPENTOGON and RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX or (RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - 4)
+local RepentogonTargetCol = REPENTOGON and RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX or (RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - 4)
 
 function LunchBox.AddPickup(variant, subtype, charge, func)
     if type(variant) ~= "number" or type(subtype) ~= "number" or type(charge) ~= "number" or type(func) ~= "function" then
@@ -26,7 +26,7 @@ local function isNoRedHealthCharacter(p)
 	return CustomHealthAPI.PersistentData.CharactersThatCantHaveRedHealth[t] or Helpers.IsGhost(p) or t == PlayerType.PLAYER_THESOUL
 end
 
-RestoredItemsCollection.CallOnStart[#RestoredItemsCollection.CallOnStart+1] = function ()
+RestoredCollection.CallOnStart[#RestoredCollection.CallOnStart+1] = function ()
     LunchBoxCharge = {}
     LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, 1, function (player)
         sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
@@ -103,7 +103,7 @@ end
 ---@return boolean
 local function DoesLunchBoxNeedsCharge(player)
     for slot = 0,2 do
-        for col = RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX, RepentogonTargetCol, -1 do
+        for col = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX, RepentogonTargetCol, -1 do
             if player:GetActiveItem(slot) == col then
                 local item = Isaac:GetItemConfig():GetCollectible(player:GetActiveItem(slot))
                 local charge = Helpers.GetCharge(player, slot)
@@ -155,10 +155,10 @@ function LunchBoxLocal:Use(collectible, rng, player, useflag, slot, customvardat
     end
     return true
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, LunchBoxLocal.Use, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX)
+RestoredCollection:AddCallback(ModCallbacks.MC_USE_ITEM, LunchBoxLocal.Use, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX)
 if not REPENTOGON then
     for i = 1, 5 do
-        RestoredItemsCollection:AddCallback(ModCallbacks.MC_USE_ITEM, LunchBoxLocal.Use, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
+        RestoredCollection:AddCallback(ModCallbacks.MC_USE_ITEM, LunchBoxLocal.Use, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
     end
 end
 
@@ -175,7 +175,7 @@ local function HPLeft(player, slot, hp, collectible)
     return hp
 end
 
-RestoredItemsCollection:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.IMPORTANT, function (_, pickup, collider, low)
+RestoredCollection:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.IMPORTANT, function (_, pickup, collider, low)
     if collider.Type == EntityType.ENTITY_PLAYER and collider.Variant == 0 then
         local player = collider:ToPlayer()
         if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
@@ -194,7 +194,7 @@ RestoredItemsCollection:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION
             
             for slot = 0,2 do
                 for i = 0, 5 do
-                    hp = HPLeft(player, slot, hp, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
+                    hp = HPLeft(player, slot, hp, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
                 end
             end
             LunchBoxCharge[pickup.Variant][pickup.SubType].Function(player)

@@ -121,7 +121,7 @@ function IllusionModLocal:UpdateClones(p)
 		p:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, IllusionModLocal.UpdateClones)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, IllusionModLocal.UpdateClones)
 
 function IllusionModLocal:CloneRoomUpdate()
 	for i = 0, game:GetNumPlayers()-1 do
@@ -135,7 +135,7 @@ function IllusionModLocal:CloneRoomUpdate()
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, IllusionModLocal.CloneRoomUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, IllusionModLocal.CloneRoomUpdate)
 
 
 ---@param player EntityPlayer
@@ -338,7 +338,7 @@ function IllusionMod:addIllusion(player, isIllusion, addWisp)
 	end
 
 	if addWisp then
-		local wisp = player:AddWisp(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, player.Position)
+		local wisp = player:AddWisp(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, player.Position)
 		local wispData = Helpers.GetEntityData(wisp)
 
 		wispData.isIllusion = true
@@ -367,7 +367,7 @@ function IllusionModLocal:CloneCache(p, _)
 		d = nil
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, IllusionModLocal.CloneCache)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, IllusionModLocal.CloneCache)
 
 function IllusionModLocal:HackyLazWorkAround(player,cache)
 	local d = Helpers.GetEntityData(player)
@@ -390,7 +390,7 @@ function IllusionModLocal:HackyLazWorkAround(player,cache)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, IllusionModLocal.HackyLazWorkAround)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, IllusionModLocal.HackyLazWorkAround)
 
 function IllusionModLocal:preIllusionHeartPickup(pickup, collider)
 	local player = collider:ToPlayer()
@@ -402,18 +402,18 @@ function IllusionModLocal:preIllusionHeartPickup(pickup, collider)
 		else
 			d = nil
 		end
-		if pickup.Variant == PickupVariant.PICKUP_HEART and pickup.SubType == RestoredItemsCollection.Enums.Pickups.Hearts.HEART_ILLUSION and not player.Parent then
+		if pickup.Variant == PickupVariant.PICKUP_HEART and pickup.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION and not player.Parent then
 			pickup.Velocity = Vector.Zero
 			pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
 			pickup:GetSprite():Play("Collect", true)
 			pickup:Die()
 			IllusionMod:addIllusion(player, true, false)
-			sfx:Play(RestoredItemsCollection.Enums.SFX.Hearts.ILLUSION_PICKUP, 1, 0, false)
+			sfx:Play(RestoredCollection.Enums.SFX.Hearts.ILLUSION_PICKUP, 1, 0, false)
 			return true
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, IllusionModLocal.preIllusionHeartPickup)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, IllusionModLocal.preIllusionHeartPickup)
 
 function IllusionModLocal:preIllusionWhiteFlame(p, collider)
 	if collider.Type == EntityType.ENTITY_FIREPLACE and collider.Variant == 4 then
@@ -430,16 +430,16 @@ function IllusionModLocal:preIllusionWhiteFlame(p, collider)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, IllusionModLocal.preIllusionWhiteFlame)
+RestoredCollection:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, IllusionModLocal.preIllusionWhiteFlame)
 
 ---@param pickup EntityPickup
 function IllusionModLocal:PreGoldenSpawn(pickup)
-	if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "IllusionHeartSpawnChance") / 100) 
+	if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance") / 100) 
 	and pickup.SubType == HeartSubType.HEART_GOLDEN then
-		pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredItemsCollection.Enums.Pickups.Hearts.HEART_ILLUSION, true, true)
+		pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION, true, true)
 	end
 end
-RestoredItemsCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, IllusionModLocal.PreGoldenSpawn, PickupVariant.PICKUP_HEART)
+RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, IllusionModLocal.PreGoldenSpawn, PickupVariant.PICKUP_HEART)
 
 ---@param player EntityPlayer
 local function KillIllusion(player)
@@ -463,7 +463,7 @@ function IllusionModLocal:onEntityTakeDamage(tookDamage)
        	KillIllusion(player)
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, IllusionModLocal.onEntityTakeDamage, EntityType.ENTITY_PLAYER)
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, IllusionModLocal.onEntityTakeDamage, EntityType.ENTITY_PLAYER)
 
 function IllusionModLocal:AfterDeath(e)
 	if e.Type == EntityType.ENTITY_PLAYER then
@@ -473,7 +473,7 @@ function IllusionModLocal:AfterDeath(e)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, IllusionModLocal.AfterDeath)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, IllusionModLocal.AfterDeath)
 
 function IllusionModLocal:DarkEsau(e)
 	if e.SpawnerEntity and e.SpawnerEntity:ToPlayer() then
@@ -488,10 +488,10 @@ function IllusionModLocal:DarkEsau(e)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, IllusionModLocal.DarkEsau, EntityType.ENTITY_DARK_ESAU)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, IllusionModLocal.DarkEsau, EntityType.ENTITY_DARK_ESAU)
 
 function IllusionModLocal:ClonesControls(entity,hook,action)
-	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "IllusionClonesPlaceBombs") then
+	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") then
 		local p = entity:ToPlayer()
 		local d = Helpers.GetEntityData(p)
         if not d then return end
@@ -506,4 +506,4 @@ function IllusionModLocal:ClonesControls(entity,hook,action)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_INPUT_ACTION, IllusionModLocal.ClonesControls)
+RestoredCollection:AddCallback(ModCallbacks.MC_INPUT_ACTION, IllusionModLocal.ClonesControls)

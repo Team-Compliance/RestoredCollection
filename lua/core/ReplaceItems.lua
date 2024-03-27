@@ -7,30 +7,30 @@ local function AddReplacableItems(old, new)
     end
 end
 
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     ReplaceTable = {}
     if AntibirthItemPack then
-        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
-        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS)
-        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE)
-        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_MENORAH, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
-        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_STONE_BOMBS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS)
+        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR)
+        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS)
+        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE)
+        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+        AddReplacableItems(AntibirthItemPack.CollectibleType.COLLECTIBLE_STONE_BOMBS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS)
     end
     if LostItemsPack then
-        AddReplacableItems(LostItemsPack.CollectibleType.ANCIENT_REVELATION, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
-        AddReplacableItems(LostItemsPack.CollectibleType.BETHS_HEART, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
-        AddReplacableItems(LostItemsPack.CollectibleType.BLANK_BOMBS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)
-        AddReplacableItems(LostItemsPack.CollectibleType.BOOK_OF_ILLUSIONS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS)
-        AddReplacableItems(LostItemsPack.CollectibleType.CHECKED_MATE, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
-        AddReplacableItems(LostItemsPack.CollectibleType.DICE_BOMBS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
-        AddReplacableItems(LostItemsPack.CollectibleType.KEEPERS_ROPE, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE)
-        AddReplacableItems(LostItemsPack.CollectibleType.LUCKY_SEVEN, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN)
-        AddReplacableItems(LostItemsPack.CollectibleType.MAXS_HEAD, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD)
-        AddReplacableItems(LostItemsPack.CollectibleType.OL_LOPPER, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER)
-        AddReplacableItems(LostItemsPack.CollectibleType.PACIFIST, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST)
-        AddReplacableItems(LostItemsPack.CollectibleType.PILL_CRUSHER, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
-        AddReplacableItems(LostItemsPack.CollectibleType.SAFETY_BOMBS, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS)
-        AddReplacableItems(LostItemsPack.CollectibleType.VOODOO_PIN, RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN)
+        AddReplacableItems(LostItemsPack.CollectibleType.ANCIENT_REVELATION, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION)
+        AddReplacableItems(LostItemsPack.CollectibleType.BETHS_HEART, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BETHS_HEART)
+        AddReplacableItems(LostItemsPack.CollectibleType.BLANK_BOMBS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)
+        AddReplacableItems(LostItemsPack.CollectibleType.BOOK_OF_ILLUSIONS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS)
+        AddReplacableItems(LostItemsPack.CollectibleType.CHECKED_MATE, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE)
+        AddReplacableItems(LostItemsPack.CollectibleType.DICE_BOMBS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
+        AddReplacableItems(LostItemsPack.CollectibleType.KEEPERS_ROPE, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE)
+        AddReplacableItems(LostItemsPack.CollectibleType.LUCKY_SEVEN, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN)
+        AddReplacableItems(LostItemsPack.CollectibleType.MAXS_HEAD, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD)
+        AddReplacableItems(LostItemsPack.CollectibleType.OL_LOPPER, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER)
+        AddReplacableItems(LostItemsPack.CollectibleType.PACIFIST, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST)
+        AddReplacableItems(LostItemsPack.CollectibleType.PILL_CRUSHER, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
+        AddReplacableItems(LostItemsPack.CollectibleType.SAFETY_BOMBS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS)
+        AddReplacableItems(LostItemsPack.CollectibleType.VOODOO_PIN, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN)
     end
 
     if REPENTOGON then
@@ -44,7 +44,7 @@ RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(
 end)
 
 ---@param player EntityPlayer
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     local itemConf = Isaac.GetItemConfig()
     for oldItem, newItem in pairs(ReplaceTable) do
         if ItemConfig.Config.IsValidCollectible(oldItem) then
@@ -69,7 +69,7 @@ RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function
     end
 end)
 
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, function(_, collectible)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, function(_, collectible)
     for oldItem, newItem in pairs(ReplaceTable) do
         if ItemConfig.Config.IsValidCollectible(oldItem) then
             if collectible == oldItem then
@@ -80,7 +80,7 @@ RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, functi
 end)
 
 ---@param pickup EntityPickup
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
     for oldItem, newItem in pairs(ReplaceTable) do
         if ItemConfig.Config.IsValidCollectible(oldItem) then
             if pickup.SubType == oldItem then

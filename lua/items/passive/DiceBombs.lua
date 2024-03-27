@@ -35,11 +35,11 @@ function DiceBombsLocal:D1BombExplode(bomb, player, radius)
     end
     return true
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D1BombExplode, CollectibleType.COLLECTIBLE_D1)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D1BombExplode, CollectibleType.COLLECTIBLE_D1)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:D4BombExplode(bomb, player, radius)
-    local itemConf = Isaac.GetItemConfig():GetCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
+    local itemConf = Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
     if REPENTOGON then
         itemConf.Tags = itemConf.Tags | ItemConfig.TAG_QUEST
     end
@@ -56,7 +56,7 @@ function DiceBombsLocal:D4BombExplode(bomb, player, radius)
 
     return true
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D4BombExplode, CollectibleType.COLLECTIBLE_D4)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D4BombExplode, CollectibleType.COLLECTIBLE_D4)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:D6BombExplode(bomb, player, radius)		
@@ -69,7 +69,7 @@ function DiceBombsLocal:D6BombExplode(bomb, player, radius)
         end
     end
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D6BombExplode, CollectibleType.COLLECTIBLE_D6)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D6BombExplode, CollectibleType.COLLECTIBLE_D6)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:D8BombExplode(bomb, player, radius)
@@ -80,7 +80,7 @@ function DiceBombsLocal:D8BombExplode(bomb, player, radius)
     end
     return true
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D8BombExplode, CollectibleType.COLLECTIBLE_D8)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D8BombExplode, CollectibleType.COLLECTIBLE_D8)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:D20BombExplode(bomb, player, radius)
@@ -91,7 +91,7 @@ function DiceBombsLocal:D20BombExplode(bomb, player, radius)
     end
     return true
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D20BombExplode, CollectibleType.COLLECTIBLE_D20)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.D20BombExplode, CollectibleType.COLLECTIBLE_D20)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:SpindownBombExplode(bomb, player, radius)
@@ -111,9 +111,9 @@ function DiceBombsLocal:SpindownBombExplode(bomb, player, radius)
         end
     end
 end
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.SpindownBombExplode, CollectibleType.COLLECTIBLE_SPINDOWN_DICE)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, DiceBombsLocal.SpindownBombExplode, CollectibleType.COLLECTIBLE_SPINDOWN_DICE)
 
-RestoredItemsCollection:AddCallback(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, function(_, bomb, player, radius)
+RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION, function(_, bomb, player, radius)
     DiceBombsLocal:D1BombExplode(bomb, player, radius)
     DiceBombsLocal:D4BombExplode(bomb, player, radius)
     DiceBombsLocal:D6BombExplode(bomb, player, radius)
@@ -145,10 +145,10 @@ function DiceBombsLocal:BombInit(bomb)
     local player = Helpers.GetPlayerFromTear(bomb)
 	if player then
 		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredItemsCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS) then
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS) then
 			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
 				if bomb.Variant == 0 then
-					bomb.Variant = RestoredItemsCollection.Enums.BombVariant.BOMB_DICE
+					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_DICE
 				end
 			end
 			
@@ -178,7 +178,7 @@ function DiceBombsLocal:BombInit(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, DiceBombsLocal.BombInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, DiceBombsLocal.BombInit)
 
 ---@param bomb EntityBomb
 function DiceBombsLocal:BombUpdate(bomb)
@@ -188,8 +188,8 @@ function DiceBombsLocal:BombUpdate(bomb)
 	
 	if data.DiceBombVariant then
         local sprite = bomb:GetSprite()
-        if bomb.Variant == RestoredItemsCollection.Enums.BombVariant.BOMB_DICE and bomb.FrameCount == 0 then
-            if bomb.Variant == RestoredItemsCollection.Enums.BombVariant.BOMB_DICE
+        if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_DICE and bomb.FrameCount == 0 then
+            if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_DICE
             and not bomb:HasTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB) then
                 local diceBombGFX = DiceBombSpritesheets[CollectibleType.COLLECTIBLE_D6]
                 if DiceBombSpritesheets[data.DiceBombVariant] then
@@ -205,7 +205,7 @@ function DiceBombsLocal:BombUpdate(bomb)
             end
         end
 		if sprite:IsPlaying("Explode") then
-            local callbacks = Isaac.GetCallbacks(RestoredItemsCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION)
+            local callbacks = Isaac.GetCallbacks(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION)
             local d6Ran = false
             local isBomber = player:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)
             local radius = Helpers.GetBombRadiusFromDamage(bomb.ExplosionDamage, isBomber)
@@ -221,4 +221,4 @@ function DiceBombsLocal:BombUpdate(bomb)
 		end
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, DiceBombsLocal.BombUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, DiceBombsLocal.BombUpdate)

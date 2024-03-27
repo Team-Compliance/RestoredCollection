@@ -32,7 +32,7 @@ function MenuProvider.SaveSaveData()
 end
 
 local function GetDSSOptions()
-    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "DSS")
+    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DSS")
 end
 
 function MenuProvider.GetPaletteSetting()
@@ -107,7 +107,7 @@ local function InitDisableMenu()
 
     local itemConfig = Isaac.GetItemConfig()
     ---@type ItemConfigItem[]
-    for _, collectible in pairs(RestoredItemsCollection.Enums.CollectibleType) do
+    for _, collectible in pairs(RestoredCollection.Enums.CollectibleType) do
         local collectibleConf = itemConfig:GetCollectible(collectible)
         orderedItems[#orderedItems+1] = collectibleConf
     end
@@ -161,11 +161,11 @@ local function InitDisableMenu()
             -- The "load" function for a button should return what its current setting should be
             -- This generally means looking at your mod's save data, and returning whatever setting you have stored
             load = function()
-                if not TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "DisabledItems") then
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "DisableItems", {})
+                if not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems") then
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "DisableItems", {})
                 end
 
-                for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "DisabledItems")) do
+                for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
                     if disabledItem == collectible.ID then
                         return 2
                     end
@@ -176,10 +176,10 @@ local function InitDisableMenu()
             -- When the menu is closed, "store" will be called on all settings-buttons
             -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
             store = function(var)
-                if not TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "DisabledItems") then
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "DisableItems", {})
+                if not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems") then
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "DisableItems", {})
                 end
-                local disabledItem = TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "DisabledItems")
+                local disabledItem = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")
                 for index, disabledItem in ipairs(disabledItem) do
                     if disabledItem == collectible.ID then
                         if var == 1 then
@@ -292,13 +292,13 @@ local restoreditemsdirectory = {
                 -- The "load" function for a button should return what its current setting should be
                 -- This generally means looking at your mod's save data, and returning whatever setting you have stored
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "HeartStyleRender") or 1
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender") or 1
                 end,
 
                 -- When the menu is closed, "store" will be called on all settings-buttons
                 -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
                 store = function(var)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "HeartStyleRender", var)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HeartStyleRender", var)
                     local animfile = "gfx/ui/ui_remix_hearts"
                     if var == 2 then
                         animfile = animfile.."_aladar"
@@ -353,10 +353,10 @@ local restoreditemsdirectory = {
                 variable = "ImmortalHeartSpawnChance",
 
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "ImmortalHeartSpawnChance") or 20
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance") or 20
                 end,
                 store = function(newOption)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "ImmortalHeartSpawnChance", newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance", newOption)
                 end,
 
                 tooltip = {strset = {'how often', 'immortal hearts', 'can spawn?'}},
@@ -381,13 +381,13 @@ local restoreditemsdirectory = {
                 -- The "load" function for a button should return what its current setting should be
                 -- This generally means looking at your mod's save data, and returning whatever setting you have stored
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "ActOfContrictionImmortal") or 1
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") or 1
                 end,
 
                 -- When the menu is closed, "store" will be called on all settings-buttons
                 -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
                 store = function(var)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "ActOfContrictionImmortal", var)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", var)
                 end,
 
                 -- A simple way to define tooltips is using the "strset" tag, where each string in the table is another line of the tooltip
@@ -413,10 +413,10 @@ local restoreditemsdirectory = {
                 variable = "SunHeartSpawnChance",
 
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "SunHeartSpawnChance") or 20
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "SunHeartSpawnChance") or 20
                 end,
                 store = function(newOption)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "SunHeartSpawnChance", newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "SunHeartSpawnChance", newOption)
                 end,
 
                 tooltip = {strset = {'how often', 'sun hearts', 'can spawn?'}},
@@ -441,10 +441,10 @@ local restoreditemsdirectory = {
                 variable = "IllusionHeartSpawnChance",
 
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "IllusionHeartSpawnChance") or 20
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance") or 20
                 end,
                 store = function(newOption)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "IllusionHeartSpawnChance", newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance", newOption)
                 end,
 
                 tooltip = {strset = {'how often', 'illusion hearts', 'can spawn?'}},
@@ -458,11 +458,11 @@ local restoreditemsdirectory = {
                 variable = 'IllusionClonesPlaceBombs',
 
                 load = function ()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredItemsCollection, "IllusionClonesPlaceBombs") or 1
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") or 1
                 end,
 
                 store = function(newOption)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredItemsCollection, "IllusionClonesPlaceBombs", newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs", newOption)
                 end,
 
                 tooltip = {strset = {'can illusions', 'place bombs?'}}
@@ -535,7 +535,7 @@ local function OverridePause(self, player, hook, action)
 		return true
 	end
 end
-RestoredItemsCollection:AddCallback(ModCallbacks.MC_INPUT_ACTION, OverridePause, InputHook.IS_ACTION_PRESSED)
+RestoredCollection:AddCallback(ModCallbacks.MC_INPUT_ACTION, OverridePause, InputHook.IS_ACTION_PRESSED)
 
 local function FreezeGame(unfreeze)
 	if unfreeze then
