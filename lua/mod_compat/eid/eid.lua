@@ -184,10 +184,17 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEA
 --Ol' Lopper
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Disconnects Isaac's head from his body allowing it to move like Mr. Maw head", "Ol' Lopper")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Отсоединяет голову Айзека то его тела, позволяя ей двигаться как голова Мистера Пасть", "Ol' Lopper", "ru")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "", "", "spa")
 
 --Pumpkin Mask
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "Fires a rapid inacurate strike of seeds#Seeds are fired within 30° of shooting direction", "Pumkin Mask")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "Выпускает быстрые неточные выстрелы семенами#Семена выстреливаются в пределах 30° направления стрельбы", "Тыквенная маска", "ru")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "", "", "spa")
+
+--Melted Candle
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax a tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Зажигает огонь всечи при стрельбе#↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажигается при стрельбе#10% зажечь большой огонь при заженном меленьком огне#При заженном мелком огне 30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#Не стреляя 5 секунд огонь свечи уменьшается", "Расплавленная свеча", "ru")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "", "", "spa")
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "5% change to shoot slowing tear that leaves black puddle on impact")

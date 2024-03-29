@@ -115,7 +115,7 @@ function MeltedCandle:TearInit(tear)
         end
     end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, MeltedCandle.TearInit)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, MeltedCandle.TearInit)
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_INIT, MeltedCandle.TearInit)
 
 ---@param tear EntityTear
@@ -130,6 +130,7 @@ function MeltedCandle:TearCollide(tear, collider)
             if not collider:HasEntityFlags(EntityFlag.FLAG_SLOW) then
                 collider:AddSlowing(EntityRef(tear.SpawnerEntity), 60, 1.4, Color(2, 2, 2, 1, 0.196, 0.196, 0.196))
             end
+            tear:AddTearFlags(TSIL.Random.GetRandomElementsFromTable({TearFlags.TEAR_HP_DROP, TearFlags.TEAR_COIN_DROP_DEATH})[1])
         end
     end
 end
