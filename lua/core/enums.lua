@@ -28,6 +28,11 @@ Enums.Entities = {
 						Variant = Isaac.GetEntityVariantByName("Machine Sparkles"),
 						SubType = 0
 					},
+					LUCKY_SEVEN_TEAR_SPARKLES = {
+						Type = Isaac.GetEntityTypeByName("Tear Sparkles"),
+						Variant = Isaac.GetEntityVariantByName("Tear Sparkles"),
+						SubType = 0
+					},
 					LUCKY_SEVEN_CORD_END = {
 						Type = Isaac.GetEntityTypeByName("Crane Cord End"),
 						Variant = Isaac.GetEntityVariantByName("Crane Cord End"),
