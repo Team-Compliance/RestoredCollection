@@ -73,6 +73,11 @@ Enums.Entities = {
 						Variant = Isaac.GetEntityVariantByName("Max's Face"),
 						SubType = 0,
 					},
+					WAX = {
+						Type = Isaac.GetEntityTypeByName("Wax Tear Effect"),
+						Variant = Isaac.GetEntityVariantByName("Wax Tear Effect"),
+						SubType = 0,
+					},
 				}
 
 Enums.Familiars = 

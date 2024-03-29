@@ -67,11 +67,7 @@ function MaxsHead:UpdateHeadEffect(effect)
         effect:Remove()
     end
 end
-RestoredCollection:AddCallback(
-    ModCallbacks.MC_POST_EFFECT_UPDATE,
-    MaxsHead.UpdateHeadEffect,
-    RestoredCollection.Enums.Entities.MAXS_HEAD.Variant
-)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, MaxsHead.UpdateHeadEffect, RestoredCollection.Enums.Entities.MAXS_HEAD.Variant)
 
 ---@param player EntityPlayer
 local function SpanwMaxHead(player)
@@ -105,10 +101,7 @@ if REPENTOGON then
             end
 		end
 	end
-	RestoredCollection:AddCallback(
-        ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED,
-        MaxsHead.ChargeOnFire
-    )
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, MaxsHead.ChargeOnFire)
 else
     ---@param player EntityPlayer
     function MaxsHead:OnPlayerUpdate(player)
@@ -131,8 +124,5 @@ else
             end
         end
     end
-    RestoredCollection:AddCallback(
-        ModCallbacks.MC_POST_PEFFECT_UPDATE,
-        MaxsHead.OnPlayerUpdate
-    )
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, MaxsHead.OnPlayerUpdate)
 end

@@ -204,10 +204,7 @@ function OlLopper:OnPlayerRender(player)
     player:RenderBody(renderPosition)
     player:RenderTop(renderPosition)
 end
-RestoredCollection:AddCallback(
-    ModCallbacks.MC_POST_PLAYER_RENDER,
-    OlLopper.OnPlayerRender
-)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, OlLopper.OnPlayerRender)
 
 
 ---@param player EntityPlayer
@@ -224,10 +221,7 @@ function OlLopper:OnPeffectUpdate(player)
         RemoveHeadHelper(player)
     end
 end
-RestoredCollection:AddCallback(
-    ModCallbacks.MC_POST_PEFFECT_UPDATE,
-    OlLopper.OnPeffectUpdate
-)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, OlLopper.OnPeffectUpdate)
 
 
 ---@param headHelper Entity
@@ -322,11 +316,7 @@ function OlLopper:OnHeadHelperUpdate(headHelper)
     HandleHeadMovement(headHelper, player)
     DealContactDamage(headHelper, player)
 end
-RestoredCollection:AddCallback(
-    ModCallbacks.MC_FAMILIAR_UPDATE,
-    OlLopper.OnHeadHelperUpdate,
-    OlLopper.HEAD_HELPER.Variant
-)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, OlLopper.OnHeadHelperUpdate, OlLopper.HEAD_HELPER.Variant)
 
 
 ---@param player EntityPlayer
@@ -380,8 +370,4 @@ function OlLopper:OnHeadHelperRender(headHelper)
     RenderPlayerHead(player, headHelper.Position)
     RenderPlayerNeck(player, headHelper.Position)
 end
-RestoredCollection:AddCallback(
-    ModCallbacks.MC_POST_FAMILIAR_RENDER,
-    OlLopper.OnHeadHelperRender,
-    OlLopper.HEAD_HELPER.Variant
-)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, OlLopper.OnHeadHelperRender, OlLopper.HEAD_HELPER.Variant)

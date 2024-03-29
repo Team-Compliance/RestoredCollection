@@ -562,7 +562,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
-			{ str = "Spritework by Sr. Kalaka!" },
+			{ str = "Spritework by Firework!" },
 			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
 		},
 	},
@@ -665,7 +665,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude!" },
-			{ str = "Spritework by !" },
+			{ str = "Spritework by Firework!" },
 			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
 		},
 	},
