@@ -29,7 +29,7 @@ function PumpkinMask:FireSeeds(player)
                 for i = 0, TSIL.Random.GetRandomInt(3,5) do
                     Helpers.scheduleForUpdate(function ()
                         if not player:IsDead() then
-                            local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, player.Position, shootVec:Rotated(TSIL.Random.GetRandomInt(-15, 15)) * player.ShotSpeed, player)
+                            local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, player.Position + player.TearsOffset, shootVec:Rotated(TSIL.Random.GetRandomInt(-15, 15)) * player.ShotSpeed, player)
                             tear.CollisionDamage = player.Damage * 0.85
                         end
                     end, 2 * i)

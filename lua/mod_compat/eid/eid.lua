@@ -1,7 +1,7 @@
 if not EID then return end
 
 -- Mod Icon (TODO)
-EID:setModIndicatorName("Restored Items Pack")
+EID:setModIndicatorName("Restored Collection")
 local iconSprite = Sprite()
 iconSprite:Load("gfx/eid_restored_icon.anm2", true)
 --EID:addIcon("Restored Items Icon", "Icon", 0, 10, 9, 1, 1, iconSprite)
@@ -192,8 +192,8 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
 --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "", "", "spa")
 
 --Melted Candle
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax a tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Зажигает огонь всечи при стрельбе#↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажигается при стрельбе#10% зажечь большой огонь при заженном меленьком огне#При заженном мелком огне 30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#Не стреляя 5 секунд огонь свечи уменьшается", "Расплавленная свеча", "ru")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax a tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Зажигает огонь всечи при стрельбе#↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажигается при стрельбе#10% зажечь большой огонь при заженном меленьком огне#При заженном мелком огне 30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#Не стреляя 5 секунд огонь свечи уменьшается", "Расплавленная свеча", "ru")
 --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "", "", "spa")
 
 --Game Squid
