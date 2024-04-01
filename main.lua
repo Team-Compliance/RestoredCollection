@@ -52,7 +52,7 @@ include("lua.items.passive.SafetyBombs")
 include("lua.items.passive.OlLopper")
 include("lua.items.passive.MaxsHead")
 include("lua.items.passive.PumpkinMask")
---include("lua.items.passive.MeltedCandle")
+include("lua.items.passive.MeltedCandle")
 
 --trinkets
 include("lua.items.trinkets.GameSquid")

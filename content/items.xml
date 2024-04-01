@@ -30,7 +30,7 @@
 	<active id="19" name="Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="4" shopprice="10" chargetype="normal" quality="3"/>
 	
 	<passive id="20" name="Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="3" cache="firedelay" tags="offensive summonable" />
-	<!--passive id="21" name="Melted Candle" description="Tears up" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable" /-->
+	<passive id="21" name="Melted Candle" description="Tears up" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable"/>
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />

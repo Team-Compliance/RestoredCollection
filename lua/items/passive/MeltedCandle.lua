@@ -14,13 +14,6 @@ local function InitCandleTears(player)
     end
 end
 
-local function SpawnWaxEffect(parent)
-    local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.WAX.Variant, 0, parent.Position, Vector.Zero, parent):ToEffect()
-    effect.Parent = parent
-    effect:FollowParent(parent)
-    effect.DepthOffset = -10
-end
-
 local function SpawnPoof(player)
     local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 2, player.Position, Vector.Zero, nil):ToEffect()
     poof.SpriteScale = player.SpriteScale / 2
@@ -108,9 +101,6 @@ function MeltedCandle:TearInit(tear)
             
             if Helpers.GetData(player).NumCandleTears == 1 and TSIL.Random.GetRandomInt(0, 100) <= 30 then
                 data.IsWaxTear = true
-                if tear:ToTear() then
-                    SpawnWaxEffect(tear)
-                end
             end
         end
     end
@@ -146,9 +136,6 @@ function MeltedCandle:TearUpdate(tear)
             data.IsWaxTear = nil
         elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= 30 and not data.IsWaxTear then
             data.IsWaxTear = true
-            if tear:ToTear() then
-                SpawnWaxEffect(tear)
-            end
         end
     end
     if data.IsWaxTear then
@@ -160,21 +147,3 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, MeltedCandle.TearUpdate)
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, MeltedCandle.TearUpdate)
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, MeltedCandle.TearUpdate)
-
----@param effect EntityEffect
-function MeltedCandle:WaxEffectUpdate(effect)
-    if not effect.Parent or not effect.Parent:ToTear() or effect.Parent:IsDead() 
-    or not Helpers.GetData(effect.Parent).IsWaxTear then
-        effect:Remove()
-        return
-    end
-    local tear = effect.Parent:ToTear()
-    local player = Helpers.GetPlayerFromTear(tear)
-    effect.Position = tear.Position
-    local tearHitParams = player:GetTearHitParams(WeaponType.WEAPON_TEARS)
-    local ludoMul = tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) and 1.4 or 1
-
-    effect.SpriteScale = Vector(1, 1) * tearHitParams.TearScale * ludoMul
-    effect.SpriteRotation = (tear.Velocity + Vector(0, tear.FallingSpeed):Resized(5)):GetAngleDegrees()
-end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, MeltedCandle.WaxEffectUpdate, RestoredCollection.Enums.Entities.WAX.Variant)
