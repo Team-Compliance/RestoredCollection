@@ -131,10 +131,11 @@ RestoredCollection:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, MeltedCandle
 ---@param tear EntityTear | EntityLaser
 function MeltedCandle:TearUpdate(tear)
     local data = Helpers.GetData(tear)
+    local player = Helpers.GetPlayerFromTear(tear)
     if tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) or tear:ToKnife() then
         if data.IsWaxTear and TSIL.Random.GetRandomInt(0, 20) == 1 then
             data.IsWaxTear = nil
-        elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= 30 and not data.IsWaxTear then
+        elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= 30 and not data.IsWaxTear and player:HasCollectible(MeltedCandle.ID) then
             data.IsWaxTear = true
         end
     end
