@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="23000" name="We Strvn - [TC] - Clone Conspiracy" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23000" name="We Strvn - [TC] - Clone Conspiracy" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -33,7 +33,7 @@
 			<entity type="33" variant="3" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - The unmatched power of the sun" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23001" name="We Strvn - [TC] - The unmatched power of the sun" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -66,7 +66,7 @@
 			<entity type="5" variant="10" subtype="910" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - But who really is immortal here" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23002" name="We Strvn - [TC] - But who really is immortal here" type="3" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -114,7 +114,7 @@
 			<entity type="9000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - Illusion cast" type="8" subtype="33" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="23000" name="We Strvn - [TC] - Illusion cast" type="8" subtype="33" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -123,7 +123,7 @@
 			<entity type="5" variant="10" subtype="9000" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - Immortal Andy" type="8" subtype="15" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23001" name="We Strvn - [TC] - Immortal Andy" type="8" subtype="15" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -132,7 +132,7 @@
 			<entity type="5" variant="10" subtype="902" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - The Sun!" type="8" subtype="19" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23002" name="We Strvn - [TC] - The Sun!" type="8" subtype="19" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -141,7 +141,7 @@
 			<entity type="5" variant="10" subtype="910" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - Sundial" type="12" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="23000" name="We Strvn - [TC] - Sundial" type="12" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -168,7 +168,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - Satan should wear purple in The Bible 2" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23000" name="We Strvn - [TC] - Satan should wear purple in The Bible 2" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -210,7 +210,7 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - Mastama colors" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25">
+	<room variant="23001" name="We Strvn - [TC] - Mastama colors" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -237,7 +237,7 @@
 			<entity type="5" variant="10" subtype="6" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - Clonejitsu Teacher" type="14" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23002" name="We Strvn - [TC] - Clonejitsu Teacher" type="14" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -282,7 +282,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - Splendor is immortal" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23000" name="We Strvn - [TC] - Splendor is immortal" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -306,7 +306,7 @@
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - The Holy Sun" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="23001" name="We Strvn - [TC] - The Holy Sun" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -336,7 +336,7 @@
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - What a weird color combo" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25">
+	<room variant="23002" name="We Strvn - [TC] - What a weird color combo" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -367,7 +367,7 @@
 			<entity type="5" variant="10" subtype="910" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23003" name="We Strvn - [TC] - White Chocolate my beloved" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25">
+	<room variant="23003" name="We Strvn - [TC] - White Chocolate my beloved" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -409,7 +409,7 @@
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - The sun's reign over the stars" type="24" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="23000" name="We Strvn - [TC] - The sun's reign over the stars" type="24" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-03T21:41+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
