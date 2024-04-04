@@ -2,7 +2,6 @@ local MeltedCandle = {}
 local Helpers = require("lua.helpers.Helpers")
 MeltedCandle.ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE
 MeltedCandle.FIRE_DELAY = 0.5
-MeltedCandle.MAX_TIMER_PROC = 150
 
 local function InitCandleTears(player)
     local data = Helpers.GetData(player)
@@ -14,29 +13,39 @@ local function InitCandleTears(player)
     end
 end
 
+local function CandleTimer(player, effnum)
+    if effnum == 2 then
+        return player.MaxFireDelay * 3
+    end
+    return 150
+end
+
 local function SpawnPoof(player)
     local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 2, player.Position, Vector.Zero, nil):ToEffect()
     poof.SpriteScale = player.SpriteScale / 2
     poof.SpriteOffset = Vector(0, -33 * player.SpriteScale.Y)
 end
 
+local function SpawnWaxTearEffect(tear)
+    local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.WAX_TEAR_EFFECT.Variant, 0, tear.Position, Vector.Zero, tear):ToEffect()
+    effect.Parent = tear
+    effect:FollowParent(tear)
+end
+
 ---@param player EntityPlayer
 local function CalculateCandleTears(player)
     InitCandleTears(player)
     local data = Helpers.GetData(player)
-    if TSIL.Random.GetRandomInt(0, 100) <= 10 or data.NumCandleTears == 0 then
+    if TSIL.Random.GetRandomInt(0, 100) <= 10 or data.NumCandleTears ~= 1 then
         local prevCandleTears = data.NumCandleTears
         data.NumCandleTears = math.min(2, data.NumCandleTears + 1)
-        if TSIL.Random.GetRandomInt(0, 100) <= 5 and data.NumCandleTears > 1 then
-            data.NumCandleTears = 0
-        end
         if data.NumCandleTears ~= prevCandleTears then
             SpawnPoof(player)
         end
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
     end
-    data.CandleTearsTimer = data.NumCandleTears > 0 and MeltedCandle.MAX_TIMER_PROC or 0
+    data.CandleTearsTimer = data.NumCandleTears > 0 and CandleTimer(player, data.NumCandleTears) or 0
 end
 
 ---@param player EntityPlayer
@@ -84,7 +93,7 @@ function MeltedCandle:OnPlayerUpdate(player)
     data.CandleTearsTimer = math.max(0, timer - 1)
     if data.NumCandleTears > 0 and data.CandleTearsTimer <= 0 then
         data.NumCandleTears = math.max(0, data.NumCandleTears - 1)
-        data.CandleTearsTimer = data.NumCandleTears > 0 and MeltedCandle.MAX_TIMER_PROC or 0
+        data.CandleTearsTimer = data.NumCandleTears > 0 and CandleTimer(player, data.NumCandleTears) or 0
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
         SpawnPoof(player)
@@ -143,8 +152,48 @@ function MeltedCandle:TearUpdate(tear)
         local tearColor = tear.Color
         tearColor:SetColorize(3, 3, 3, 1)
         tear.Color = tearColor
+        if not data.WaxTearEffect and tear:ToTear() then
+            SpawnWaxTearEffect(tear)
+            data.WaxTearEffect = true
+        end
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, MeltedCandle.TearUpdate)
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, MeltedCandle.TearUpdate)
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, MeltedCandle.TearUpdate)
+
+---@param effect EntityEffect
+function MeltedCandle:WaxTearEffectInit(effect)
+    local tear = effect.SpawnerEntity
+    if not tear or not tear:ToTear() then
+        effect:Remove()
+        return
+    end
+    tear = tear:ToTear()
+    effect.DepthOffset = -1
+    local player = Helpers.GetPlayerFromTear(tear)
+    local thp = player:GetTearHitParams(WeaponType.WEAPON_TEARS)
+    local color = thp.TearColor
+    effect.Color = Color(color.R, color.G, color.B, color.A, color.RO + 1, color.GO + 1, color.BO + 1)
+    effect.SpriteRotation = (tear.Velocity + Vector(0, tear.FallingSpeed)):GetAngleDegrees()
+    effect.SpriteScale = thp.TearScale * 0.7 * Vector.One
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, MeltedCandle.WaxTearEffectInit, RestoredCollection.Enums.Entities.WAX_TEAR_EFFECT.Variant)
+
+---@param effect EntityEffect
+function MeltedCandle:WaxTearEffectRender(effect, offset)
+    local tear = effect.SpawnerEntity
+    if not tear or not tear:ToTear() then
+        effect:Remove()
+        return
+    end
+    tear = tear:ToTear()
+    effect.DepthOffset = -1
+    local visible = Helpers.GetData(tear).IsWaxTear and tear.FrameCount > 0
+    local player = Helpers.GetPlayerFromTear(tear)
+    local thp = player:GetTearHitParams(WeaponType.WEAPON_TEARS)
+    local ludoRotation = thp.TearFlags & TearFlags.TEAR_LUDOVICO > 0 and Vector(0, tear.FallingSpeed) or Vector.Zero
+    effect.SpriteRotation = (tear.Velocity + ludoRotation):GetAngleDegrees()
+    effect.SpriteScale = visible and (thp.TearScale * Vector.One) or Vector.Zero
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, MeltedCandle.WaxTearEffectRender, RestoredCollection.Enums.Entities.WAX_TEAR_EFFECT.Variant)
