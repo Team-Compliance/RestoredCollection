@@ -13,7 +13,7 @@
     <passive id="9" name="Lucky Seven" description="Fortune favors the bold" gfx="collectibles_010_lucky_seven.png" quality="2" cache="luck" tags="summonable offensive"/>
     <passive id="10" name="Pacifist" description="Make love, not war" gfx="collectibles_011_pacifist.png" quality="2" tags="summonable offensive nocantrip nogreed lazarusshared" />
 	<passive id="11" name="Safety Bombs" description="For your own good" gfx="collectibles_012_safety_bombs.png" bombs="7" quality="0" tags="summonable offensive"/>
-    <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive"/>
+    <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
     <passive id="13" name="Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="2" cache="firedelay" tags="summonable offensive"/>
 	<!-- Active Items -->
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>

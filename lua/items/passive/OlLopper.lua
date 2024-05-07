@@ -23,55 +23,6 @@ OlLopper.CONTACT_DAMAGE_FREQUENCY = 4
 
 
 ---@param player EntityPlayer
----@return Entity?
-local function GetHeadHelper(player)
-    ---@type EntityRef?
-    local headHelper = Helpers.GetData(player).OlLopperHeadHelper
-
-    if not headHelper then
-        return
-    end
-
-    if not headHelper.Entity:Exists() then
-        return
-    end
-
-    return headHelper.Entity
-end
-
-
----@param player EntityPlayer
----@return Entity
-local function CreateHeadHelper(player)
-    local headHelper = Isaac.Spawn(
-        OlLopper.HEAD_HELPER.Type,
-        OlLopper.HEAD_HELPER.Variant,
-        OlLopper.HEAD_HELPER.SubType,
-        player.Position,
-        Vector.Zero,
-        player
-    )
-    headHelper:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-
-    headHelper.DepthOffset = 10
-
-    Helpers.GetData(player).OlLopperHeadHelper = EntityRef(headHelper)
-    return headHelper
-end
-
-
----@param player EntityPlayer
-local function RemoveHeadHelper(player)
-    local headHelper = GetHeadHelper(player)
-
-    if headHelper then
-        Helpers.GetData(player).OlLopperHeadHelper = nil
-        headHelper:Remove()
-    end
-end
-
-
----@param player EntityPlayer
 local function TrySpawnLight(player)
     local data = Helpers.GetData(player)
     ---@type EntityRef
@@ -104,11 +55,11 @@ local function TrySpawnLight(player)
 end
 
 
----@param player EntityPlayer
+---@param parent EntityFamiliar
 ---@return EntityEffect[]?
-local function GetNeckPieces(player)
+local function GetNeckPieces(parent)
     ---@type EntityRef[]?
-    local neck = Helpers.GetData(player).OlLopperNeckPieces
+    local neck = Helpers.GetData(parent).OlLopperNeckPieces
 
     if not neck then
         return
@@ -130,23 +81,23 @@ local function GetNeckPieces(player)
 end
 
 
----@param player EntityPlayer
-local function RemoveNeckPieces(player)
-    local neckPieces = GetNeckPieces(player)
+---@param parent EntityFamiliar
+local function RemoveNeckPieces(parent)
+    local neckPieces = GetNeckPieces(parent)
     if neckPieces then
         for _, neckPiece in ipairs(neckPieces) do
             neckPiece:Remove()
         end
 
-        Helpers.GetData(player).OlLopperNeckPieces = nil
+        Helpers.GetData(parent).OlLopperNeckPieces = nil
     end
 end
 
 
----@param player EntityPlayer
+---@param parent EntityFamiliar
 ---@return EntityEffect[]
-local function CreateNeckPieces(player)
-    RemoveNeckPieces(player)
+local function CreateNeckPieces(parent)
+    RemoveNeckPieces(parent)
 
     local entityRefs = {}
     local effects = {}
@@ -156,18 +107,15 @@ local function CreateNeckPieces(player)
             OlLopper.NECK.Type,
             OlLopper.NECK.Variant,
             OlLopper.NECK.SubType,
-            player.Position,
+            parent.Position,
             Vector.Zero,
-            player
-        ):ToEffect()
-
-        neckPiece.DepthOffset = 20
+            parent):ToEffect()
 
         entityRefs[#entityRefs+1] = EntityRef(neckPiece)
         effects[#effects+1] = neckPiece
     end
 
-    Helpers.GetData(player).OlLopperNeckPieces = entityRefs
+    Helpers.GetData(parent).OlLopperNeckPieces = entityRefs
     return effects
 end
 
@@ -178,8 +126,6 @@ function OlLopper:OnPlayerRender(player)
 
     if not player:HasCollectible(OlLopper.ID) then
         if data.UsedToHaveOlLopper then
-            RemoveHeadHelper(player)
-            RemoveNeckPieces(player)
             player.TearsOffset = Vector(0, 0)
             player.PositionOffset = Vector(0, 0)
             data.UsedToHaveOlLopper = nil
@@ -207,28 +153,10 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, OlLopper.OnPlayerRender)
 
 
----@param player EntityPlayer
-function OlLopper:OnPeffectUpdate(player)
-    if player:HasCollectible(OlLopper.ID) then
-        local headHelper = GetHeadHelper(player)
-        if not headHelper then
-            headHelper = CreateHeadHelper(player)
-        end
-
-        local posOffset = headHelper.Position - player.Position
-        player.TearsOffset = posOffset
-    else
-        RemoveHeadHelper(player)
-    end
-end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, OlLopper.OnPeffectUpdate)
-
-
----@param headHelper Entity
----@param player EntityPlayer
-local function HandleHeadMovement(headHelper, player)
+---@param headHelper EntityFamiliar
+local function HandleHeadMovement(headHelper)
     local data = Helpers.GetData(headHelper)
-
+    local player = headHelper.Player
     local fireDir = player:GetFireDirection()
 
     local prevFireDir = data.PrevDirection or Direction.NO_DIRECTION
@@ -278,16 +206,15 @@ local function HandleHeadMovement(headHelper, player)
     end
 end
 
-
----@param headHelper Entity
----@param player EntityPlayer
-local function DealContactDamage(headHelper, player)
+---@param headHelper EntityFamiliar
+local function DealContactDamage(headHelper)
     if headHelper:IsFrame(OlLopper.CONTACT_DAMAGE_FREQUENCY, headHelper.InitSeed) then
         local enemies = Isaac.FindInRadius(
             headHelper.Position,
             OlLopper.CONTACT_DAMAGE_RANGE,
             EntityPartition.ENEMY
         )
+        local player = headHelper.Player
         for _, enemy in ipairs(enemies) do
             local ref = EntityRef(enemy)
             if not ref.IsFriendly and enemy:IsActiveEnemy() and enemy:IsVulnerableEnemy() then
@@ -298,26 +225,34 @@ local function DealContactDamage(headHelper, player)
     end
 end
 
-
----@param headHelper Entity
+---@param headHelper EntityFamiliar
 function OlLopper:OnHeadHelperUpdate(headHelper)
     local spawner = headHelper.SpawnerEntity
     if not spawner then
         headHelper:Remove()
+        RemoveNeckPieces(headHelper)
         return
     end
 
     local player = spawner:ToPlayer()
     if not player then
         headHelper:Remove()
+        RemoveNeckPieces(headHelper)
         return
     end
-
-    HandleHeadMovement(headHelper, player)
-    DealContactDamage(headHelper, player)
+    player.TearsOffset = headHelper.Position - player.Position
+    HandleHeadMovement(headHelper)
+    DealContactDamage(headHelper)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, OlLopper.OnHeadHelperUpdate, OlLopper.HEAD_HELPER.Variant)
 
+---@param headHelper Entity
+function OlLopper:OnHeadHelperRemove(headHelper)
+    if headHelper.Variant == OlLopper.HEAD_HELPER.Variant or headHelper.Variant == FamiliarVariant.GUILLOTINE then
+        RemoveNeckPieces(headHelper:ToFamiliar())
+    end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, OlLopper.OnHeadHelperRemove, EntityType.ENTITY_FAMILIAR)
 
 ---@param player EntityPlayer
 ---@param headPos Vector
@@ -328,14 +263,14 @@ function RenderPlayerHead(player, headPos)
 end
 
 
----@param player EntityPlayer
+---@param parent EntityFamiliar
 ---@param headPos Vector
-function RenderPlayerNeck(player, headPos)
-    local neckPieces = GetNeckPieces(player)
+function RenderPlayerNeck(parent, headPos)
+    local neckPieces = GetNeckPieces(parent)
     if not neckPieces then
-        neckPieces = CreateNeckPieces(player)
+        neckPieces = CreateNeckPieces(parent)
     end
-
+    local player = parent.Player
     local playerPos = player.Position + Vector(0, -17)
     local neckPos = headPos + Vector(0, -17)
 
@@ -348,12 +283,16 @@ function RenderPlayerNeck(player, headPos)
     for i = 1, segments-1, 1 do
         local neckPiece = neckPieces[i]
         local targetPos = playerPos + direction:Resized(i * distanceStep)
-        neckPiece.Velocity = targetPos - neckPiece.Position
+        if parent.Variant == FamiliarVariant.GUILLOTINE then
+            neckPiece.Position = targetPos
+        else
+            neckPiece.Velocity = (targetPos - neckPiece.Position)
+        end
+        neckPiece.Visible = player.Visible and not Helpers.IsPlayingExtraAnimation(player) and not player:IsDead() and not player:IsCoopGhost()
     end
 end
 
-
----@param headHelper Entity
+---@param headHelper EntityFamiliar
 function OlLopper:OnHeadHelperRender(headHelper)
     local spawner = headHelper.SpawnerEntity
     if not spawner then
@@ -366,8 +305,106 @@ function OlLopper:OnHeadHelperRender(headHelper)
         headHelper:Remove()
         return
     end
-
+    headHelper.DepthOffset = 20
     RenderPlayerHead(player, headHelper.Position)
-    RenderPlayerNeck(player, headHelper.Position)
+    RenderPlayerNeck(headHelper, headHelper.Position)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, OlLopper.OnHeadHelperRender, OlLopper.HEAD_HELPER.Variant)
+
+---@param neck EntityEffect
+function OlLopper:OnNeckPieceRender(neck)
+    local spawner = neck.SpawnerEntity
+    if not spawner then
+        neck:Remove()
+        return
+    end
+
+    local head = spawner:ToFamiliar()
+    if not head then
+        neck:Remove()
+        return
+    end
+    neck.DepthOffset = head.Variant == FamiliarVariant.GUILLOTINE and 15 or 20
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, OlLopper.OnNeckPieceRender, OlLopper.NECK.Variant)
+
+---@param player EntityPlayer
+---@param cache CacheFlag | integer
+function OlLopper:EvalCache(player, cache)
+    local num = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_GUILLOTINE) > 0 and 0 or (player:GetCollectibleNum(OlLopper.ID) > 0 and 1 or 0)
+    player:CheckFamiliar(OlLopper.HEAD_HELPER.Variant, num, player:GetCollectibleRNG(OlLopper.ID), Isaac.GetItemConfig():GetCollectible(OlLopper.ID))
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, OlLopper.EvalCache, CacheFlag.CACHE_FAMILIARS)
+
+---@param head EntityFamiliar
+function OlLopper:OnGuillotineHeadRender(head)
+    local spawner = head.SpawnerEntity
+    if not spawner then
+        head:Remove()
+        return
+    end
+
+    local player = spawner:ToPlayer()
+    if not player then
+        head:Remove()
+        return
+    end
+    if not player:HasCollectible(OlLopper.ID) then
+        RemoveNeckPieces(head)
+        return
+    end
+    RenderPlayerNeck(head, head.Position)
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, OlLopper.OnGuillotineHeadRender, FamiliarVariant.GUILLOTINE)
+
+---@param headHelper EntityFamiliar
+local function HandleGuillotineHeadMovement(headHelper)
+    local data = Helpers.GetData(headHelper)
+    data.OldHeadDistance = data.OldHeadDistance or headHelper.OrbitDistance
+    local player = headHelper.Player
+    local fireDir = player:GetFireDirection()
+
+    local prevFireDir = data.PrevDirection or Direction.NO_DIRECTION
+    data.PrevDirection = fireDir
+
+    if fireDir == Direction.NO_DIRECTION and prevFireDir ~= Direction.NO_DIRECTION then
+        data.MovementProgress = 0
+        data.StartMovementPos = headHelper.Position
+    end
+
+    if Helpers.IsPlayingExtraAnimation(player) then
+        data.MovementProgress = 1
+        data.PrevDirection = fireDir
+
+        headHelper.OrbitDistance = data.OldHeadDistance
+    elseif fireDir == Direction.NO_DIRECTION then
+        local movementProgress = data.MovementProgress or 1
+
+        if movementProgress < 1 then
+            local t = Helpers.EaseOutBack(movementProgress)
+            headHelper.OrbitDistance = Helpers.Lerp(headHelper.OrbitDistance, data.OldHeadDistance, t / 4)
+
+            data.MovementProgress = math.min(movementProgress + OlLopper.HEAD_RETURN_VELOCITY, 1)
+            data.GuillotineHeadAccel = data.GuillotineHeadAccel and Helpers.Lerp(data.GuillotineHeadAccel, 0, t) or 0
+        end
+    else
+        data.GuillotineHeadAccel = data.GuillotineHeadAccel and Helpers.Lerp(data.GuillotineHeadAccel, OlLopper.HEAD_VELOCITY / 4, OlLopper.HEAD_ACCEL) or 0
+        local distanceToPlayer = headHelper.Position:Distance(player.Position)
+
+        if distanceToPlayer > OlLopper.HEAD_FREE_RANGE then
+            data.GuillotineHeadAccel = 0
+        end
+        headHelper.OrbitDistance = headHelper.OrbitDistance + Vector.One:Resized(data.GuillotineHeadAccel)
+    end
+end
+
+---@param head EntityFamiliar
+function OlLopper:OnGuillotineHeadUpdate(head)
+    if head.Player then
+        local player = head.Player
+        if player:HasCollectible(OlLopper.ID) then
+            HandleGuillotineHeadMovement(head)
+        end
+    end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, OlLopper.OnGuillotineHeadUpdate, FamiliarVariant.GUILLOTINE)
