@@ -51,6 +51,9 @@ function IllusionMod.AddForbiddenCharItem(type, i)
 	table.insert(ForbiddenPCombos,{PlayerType = type, Item = i})
 end
 
+local function AddIllusionHearts(player, hp)
+	CustomHealthAPI.Library.AddHealth(player, "HEART_ILLUSION", hp)
+end
 
 local function BlackList(collectible)
 	for _,i in ipairs(ForbiddenItems) do
@@ -322,9 +325,9 @@ function IllusionMod:addIllusion(player, isIllusion, addWisp)
 
 		AddTransformationsToIllusion(player, illusionPlayer)
 
-		SetIllusionHealth(illusionPlayer)
-
 		data.IsIllusion = true
+
+		SetIllusionHealth(illusionPlayer)
 
 		if playerType == PlayerType.PLAYER_THEFORGOTTEN_B then
 			local twinData = Helpers.GetEntityData(illusionPlayer:GetOtherTwin())
@@ -363,6 +366,24 @@ function IllusionModLocal:CloneCache(p, _)
 		local color = Color(sColor.R, sColor.G, sColor.B, 0.45, 0.518, 0.15, 0.8)
 		local s = p:GetSprite()
 		s.Color = color
+		if p:GetMaxHearts() > 0 then
+			p:AddMaxHearts(-p:GetMaxHearts())
+		end
+		if p:GetBoneHearts() > 0 then
+			p:AddBoneHearts(-p:GetBoneHearts())
+		end
+		if p:GetGoldenHearts() > 0 then
+			p:AddGoldenHearts(-p:GetGoldenHearts())
+		end
+		if p:GetEternalHearts() > 0 then
+			p:AddEternalHearts(-p:GetEternalHearts())
+		end
+		if (CustomHealthAPI.Library.GetHPOfKey(p, "HEART_ILLUSION") < 2 
+		or CustomHealthAPI.Helper.GetTotalSoulHP(p) ~= CustomHealthAPI.Library.GetHPOfKey(p, "HEART_ILLUSION")) 
+		and not p:IsDead() and not p:IsCoopGhost() then
+			p:AddSoulHearts(-p:GetSoulHearts())
+			AddIllusionHearts(p, 2)
+		end
 	else
 		d = nil
 	end

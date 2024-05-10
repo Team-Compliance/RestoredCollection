@@ -322,11 +322,10 @@ local restoreditemsdirectory = {
                         animfile = animfile.."_duxi"
                     end
                     
-                    if CustomHealthAPI.PersistentData.HealthDefinitions["HEART_IMMORTAL"] then
-                        CustomHealthAPI.PersistentData.HealthDefinitions["HEART_IMMORTAL"].AnimationFilename = animfile..".anm2"
-                    end
-                    if CustomHealthAPI.PersistentData.HealthDefinitions["HEART_SUN"] then
-                        CustomHealthAPI.PersistentData.HealthDefinitions["HEART_SUN"].AnimationFilename = animfile..".anm2"
+                    for _, heart in pairs({"HEART_IMMORTAL", "HEART_SUN", "HEART_ILLUSION"}) do
+                        if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
+                            CustomHealthAPI.PersistentData.HealthDefinitions[heart].AnimationFilename = animfile..".anm2"
+                        end
                     end
                 end,
 

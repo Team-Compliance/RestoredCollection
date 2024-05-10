@@ -1,4 +1,5 @@
 local sfx = SFXManager()
+local Helpers = require("lua.helpers.Helpers")
 
 if CustomHealthAPI and CustomHealthAPI.Library and CustomHealthAPI.Library.UnregisterCallbacks then
     CustomHealthAPI.Library.UnregisterCallbacks("RestoredCollection")
@@ -48,7 +49,36 @@ CustomHealthAPI.Library.RegisterSoulHealth(
         PickupEntities = {
             {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredCollection.Enums.Pickups.Hearts.HEART_SUN}
         },
-        SumptoriumSubType = 30,  -- immortal heart clot
+        SumptoriumSubType = 30,  -- sun heart clot
+        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
+        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
+        SumptoriumCollectSoundSettings = {
+            ID = SoundEffect.SOUND_MEAT_IMPACTS,
+            Volume = 1.0,
+            FrameDelay = 0,
+            Loop = false,
+            Pitch = 1.0,
+            Pan = 0
+        }
+    }
+)
+
+CustomHealthAPI.Library.RegisterSoulHealth(
+    "HEART_ILLUSION",
+    {
+        AnimationFilename = "gfx/ui/ui_remix_hearts.anm2",
+        AnimationName = {"IllusionHeartFull", "IllusionHeartHalf"},
+        SortOrder = 100,
+        AddPriority = 125,
+        HealFlashRO = 240/255, 
+        HealFlashGO = 240/255,
+        HealFlashBO = 240/255,
+        MaxHP = 2,
+        PrioritizeHealing = false,
+        PickupEntities = {
+            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION}
+        },
+        SumptoriumSubType = 31,  -- illusion heart clot
         SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
         SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
         SumptoriumCollectSoundSettings = {
@@ -126,6 +156,15 @@ end)
 CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.PRE_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, otherKey, otherHPDamaged, amountToRemove)
 	if otherKey == "HEART_IMMORTAL" then
 		return 1
+	end
+end)
+
+CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH, 0, function(player, key, hp)
+	local d = Helpers.GetEntityData(player)
+	if key == "HEART_ILLUSION" then
+		if not d or d and not d.IsIllusion then
+			return "HEART_SOUL", hp
+		end
 	end
 end)
 
