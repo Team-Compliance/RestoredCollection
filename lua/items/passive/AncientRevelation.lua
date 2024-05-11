@@ -43,7 +43,7 @@ else
 			player = player:GetMainTwin()
 		end
 		local data = Helpers.GetData(player)
-		if player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) > data.AncientCount then
+		if data.AncientCount and player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION) > data.AncientCount then
 			local p = player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN and player:GetSubPlayer() or player
 			p:AddSoulHearts(-4)
 			ComplianceImmortal.AddImmortalHearts(p, 4)

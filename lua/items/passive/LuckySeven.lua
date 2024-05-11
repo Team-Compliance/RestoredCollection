@@ -45,7 +45,7 @@ else
 			player = player:GetMainTwin()
 		end
 		local data = Helpers.GetData(player)
-		if player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) > data.LuckySevenCount then
+		if data.LuckySevenCount and player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SEVEN) > data.LuckySevenCount then
 			local room = Game():GetRoom()
             for _ = 1, 7, 1 do
                 local spawningPos = room:FindFreePickupSpawnPosition(player.Position, 1, true)

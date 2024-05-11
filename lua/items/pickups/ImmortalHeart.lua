@@ -97,7 +97,7 @@ else
 			player = player:GetMainTwin()
 		end
 		local data = Helpers.GetData(player)
-		if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION) > data.ActCount then
+		if data.ActCount and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION) > data.ActCount then
 			local p = player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN and player:GetSubPlayer() or player
 			player:AddEternalHearts(-1)
 			ComplianceImmortal.AddImmortalHearts(p, 2)
