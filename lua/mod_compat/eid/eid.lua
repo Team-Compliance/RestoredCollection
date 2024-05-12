@@ -39,11 +39,11 @@ end
 --Dice Bombs
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombs#Explosions will reroll pedestal items within its explosion radius#Holding certain dice actives will add additional effects", "Dice Bombs")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#Имея определенные кубики, добавляются дополнительные еффекты", "Бомбы-кубики", "ru")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombas#Las explosiones cambiarán los pedestales de objetos que se encuentren dentro de su radio de explosión#Poseer objetos activos de dados otorgará efectos adicionales", "Bombas de dados", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombas#Las explosiones cambiarán los pedestales de objetos que se encuentren dentro de su radio de explosión#Poseer ciertos objetos activos de dados otorgará efectos adicionales", "Bombas de dados", "spa")
 
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use", "Book of Despair", "en_us")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} Lágrimas +100% al usarlo", "El Libro de la Desesperación", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} Lágrimas +100% al usarlo# ↓ El efecto es menos efectivo cuanto más se use", "El Libro de la Desesperación", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} +100% к скорострельности при использовании# ↓ Эффект менее эффективен при каждом использовании", "Книга отчаяния", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} +100% Lágrimas quando usado", "Livro de Despeiro", "pt_br")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "12") -- Bookworm
@@ -62,7 +62,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_J
 
 --Menorah
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH, "Spawns a menorah familiar that causes Isaac's tears to be multiplied by the number of lit candles#↓ {{Tears}} Halves tear delay and then multiplies it by the sum of lit candles plus 1#Getting hit with 7 lit candles bursts 8 blue flames and makes Isaac unable to shoot for a little while", "Menorah", "en_us")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH, "Genera un familiar Menorah#El número de lágirmas Isaac aumentan en función de las velas encendidas, máximo 7 velas#↓ {{Tears}} Menos lágrimas mientras más velas encendidas#Las velas se encienden recibiendo daño", "Menorah", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH, "Genera un familiar Menorah#El número de lágirmas Isaac aumentan en función de las velas encendidas, máximo 7 velas#↓ {{Tears}} Reduce el tiempo de disparo entre dos y lo multiplica por la suma de las velas encendidas mas 1 #Recibir daño con 7 velas encendidas hace estallar 8 llamas azules y hace que Isaac no pueda disparar por un rato", "Menorah", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH, "Создает подсвечник, который заставляет слезы Исаака размножиться на количество зажжённых свечей#↓ {{Tears}} Уменьшает скорострельность, а затем умножает её на количество зажженных свечей плюс 1#Получая урон с 7 заженными свечами разбрасывает 8 синих огней и делает Айзека неспособным стрелять некоторое время", "Менора", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH, "Gere um familiar menorah que causa as lágrimas des Isaac para ser multiplicadas por o número de velas acesas#O tempo entre cada lágrima e dividido por 2, e consequentemente multiplicado por a soma das velas acesas mais 1", "Menorah", "pt_br")
 
@@ -111,7 +111,7 @@ EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType
 --Keeper's Rope
 local KeepersRopeDescEng = "Grants flight#↓ {{Luck}} -2 Luck down if not playing as {{Player14}} Keeper or {{Player33}} Tainted Keeper#{{Coin}} When monsters spawn they have a 25% chance to contain 1-3 pennies which can extracted by damaging them#{{Player14}} When playing as Keeper monsters have 16.7% chance to contain 1-2 pennies#{{Player33}} When playing as Tainted Keeper monsters have 12.5% chance to contain 1 penny#!!! The pennies disappear after 3 seconds"
 local KeepersRopeDescRu = "Даёт полёт#↓ {{Luck}} -2 к удаче если играть не за {{Player14}} Хранителя или {{Player33}} Порченого Хранителя#{{Coin}} Когда монстры появляются у них есть 25% шанс иметь 1-3 монет, которые выпадают при нанесении им урона#{{Player14}} При игре за Хранителя у монстров есть 16.7% шанс иметь 1-2 монеты#{{Player33}} При игре за Порченого Хранителя у монстров есть 12.5% шанс иметь 1 монету#!!! Монеты исчезают через 3 секунды"
-local KeepersRopeDescSpa = "Puedes volar##{{Luck}} Suerte -2#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas#Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos"
+local KeepersRopeDescSpa = "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos"
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescEng, "Keeper's Rope")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescRu, "Веревка Хранителя", "ru")
@@ -140,7 +140,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST
 
 ---Pill crusher
 local PCDesc = "{{Pill}} Gives a random pill when picked up#Increase pill drop rate when held#Consumes currently held pill and applies an effect to the entire room depending on the type of pill"
-local PCDescSpa = "{{Pill}} Genera una píldora aleatoria al tomarlo#{{Pill}} Las píldora aparecen con mas frecuencia#Consume la píldora que posees y aplica un efecto a la sala, basado en la píldora"
+local PCDescSpa = "{{Pill}} Genera una píldora aleatoria al tomarlo#Las píldora aparecen con mas frecuencia#Consume la píldora que posees y aplica un efecto a la sala, basado en la píldora"
 local PCDescRu = "{{Pill}} Дает случайную пилюлю#{{Pill}} Увеличивает шанс появления пилюль#Использует текущую пилюлю и накладывает зависимый от её типа эффект на всю комнату"
 local PCDescPt_Br = "{{Pill}} Gere uma pílula aleatória quando pego#{{Pill}} Almente a taxa de queda de pílulas# Consome a pílula segurada e aplique um efeito na sala inteira dependendo no tipo de pílula"
 
@@ -163,7 +163,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_B
 --Voodoo Pin
 local VDPdesc = "Isaac holds up a voodoo pin that can be thrown into enemy#If the pin hits a monster, its hitbox will swap with Isaac's hitbox. Lasts until enemy is dead#Hitting bosses makes it last for 5 seconds"
 local VDPdescRu = "Исаак достает булавку, которую можно бросить во врага#Если булавка попала в монстра, то его хитбокс поменяется местами с хитбоксом Исаака#При подании в босса действует 5 секунды"
-local VDPdescSpa = "Isaac sostiene un pin de vudú que puede ser lanzado al enemigo#Si el pin golpea a un monstruo, su hitbox será intercambiada por la de Isaac hasta que muera#Si golpea a un jefe si golpea a un jefe, durará 5 segundos"
+local VDPdescSpa = "Isaac sostiene un pin de vudú que puede ser lanzado al enemigo#Si el pin golpea a un monstruo, su hitbox será intercambiada por la de Isaac hasta que muera#Si golpea a un jefe, durará 5 segundos"
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, VDPdesc, "Voodoo Pin")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, VDPdescRu, "Вуду булавка", "ru")
@@ -173,33 +173,33 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_P
 for i = 0, 5 do
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Charged by collecting {{Heart}} red hearts#On use spawns one of the 'food' items#Disappears after 6 uses", "Lunch Box")
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Заряжается подпором {{Heart}} красных сердец#При использовании спавнит один из 'съедобных' предметов#Исчезает после 6 использований", "Коробка c ланчем", "ru")
-    --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "", "", "spa")
+    --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Se carga colleccionando {{Heart}} corazones rojos#Cuando se usa, aparece uno de los objetos de 'comida'#Desaparece después de 6 usos", "Caja del almuerzo", "spa")
 end
 
 --Max's Head
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 tears up#Every 4th tear is shot faster", "Max's Head")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает быстрее", "Голова Макса", "ru")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "", "", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
 
 --Ol' Lopper
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Disconnects Isaac's head from his body allowing it to move like Mr. Maw head", "Ol' Lopper")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Отсоединяет голову Айзека то его тела, позволяя ей двигаться как голова Мистера Пасть", "Ol' Lopper", "ru")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "", "", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Desconecta la cabeza de Isaac de su cuerpo, permitiéndole moverla como la cabeza de Sr. Maw", "Ol' Looper", "spa")
 
 --Pumpkin Mask
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "Fires a rapid inacurate strike of seeds#Seeds are fired within 30° of shooting direction", "Pumkin Mask")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "Выпускает быстрые неточные выстрелы семенами#Семена выстреливаются в пределах 30° направления стрельбы", "Тыквенная маска", "ru")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "", "", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, "Dispara rápidamente y sin precisión una ráfaga de semillas#Las semillas están disparadas en un rango de 30º desde la dirección de disparo", "Mascara de Calabaza", "spa")
 
 --Melted Candle
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax a tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
 --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Зажигает огонь всечи при стрельбе#↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажигается при стрельбе#10% зажечь большой огонь при заженном меленьком огне#При заженном мелком огне 30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#Не стреляя 5 секунд огонь свечи уменьшается", "Расплавленная свеча", "ru")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "", "", "spa")
+--EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Prende una llama en una vela cuando disparas#↑ Lágrimas hacia arriba +0.5 cuando un fuego pequeño es encendido#↑ Lágrimas arriba +1.5 cuando un fuego grande es encendido#10% de encender un fuego grande cuando un fuego pequeño es encendido#Cuando un fuego pequeño es encendido, 30% de disparar una lágrima de cera que ralentiza y prende fuego a enemigos#Después de 5 segundos sin disparar, el fuego de la vela disminuye", "Vela derretida", "spa")
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "5% change to shoot slowing tear that leaves black puddle on impact")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "5% шанс выстрелить замедляющей слезой, которая оставляет черную лужу при столкновении", "Игровой кальмар", "ru")
---EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "", "", "spa")
+EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "5% de disparar una lágrima ralentizada que deja un charco negro cuando impacta", "", "spa")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "↑ +3% on top for every trinket multiplier")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "↑ +3% дополнительно за каждый множитель брелка", nil, nil, "ru")
---EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "↑ +3% on top for every trinket multiplier", nil, nil, "spa")
+EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "↑ +3% cuando se usa con cualquier trinket de multiplicador", nil, nil, "spa")
