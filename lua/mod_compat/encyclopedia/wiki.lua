@@ -88,7 +88,7 @@ local Wiki = {
 			{ str = "Coded by kittenchilly, PixelPlz and Thicco Catto!" },
 			{ str = "Animations by Firework!" },
 			{ str = "BFFS! spritework by Amy!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 			{ str = "Special thanks to Xalum for helping with the improved pathfinding code!" },
 		},
 	},
@@ -278,7 +278,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and BrakeDude!" },
 			{ str = "Spritework by Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	BethsHeart = {
@@ -378,7 +378,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad and BrakeDude!" },
 			{ str = "Spritework by ALADAR!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	LuckySeven = {
@@ -418,7 +418,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude, fly_6 and Thicco Catto!" },
 			{ str = "Spritework by Akad, Chug all This and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	Pacifist = {
@@ -445,7 +445,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and Thicco Catto!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	PillCrusher = {
@@ -477,7 +477,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad, BrakeDude, kittenchilly and Thicco Catto!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	SafetyBombs = {
@@ -508,7 +508,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude, kittenchilly and Thicco Catto!" },
 			{ str = "Spritework by Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	VoodooPin = {
@@ -538,7 +538,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude and Thicco Catto!" },
 			{ str = "Spritework by Amy!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	MaxsHead = {
@@ -563,7 +563,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	OlLopper = {
@@ -591,7 +591,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	LunchBox = {
@@ -619,7 +619,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Brake!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	GameSquid = {
@@ -641,8 +641,8 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
-			{ str = "Spritework by !" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Spritework by Sr. Kalaka!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 	PumpkinMask = {
@@ -666,7 +666,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
 		},
 	},
 }

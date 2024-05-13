@@ -48,22 +48,24 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, p
     local itemConf = Isaac.GetItemConfig()
     for oldItem, newItem in pairs(ReplaceTable) do
         if ItemConfig.Config.IsValidCollectible(oldItem) then
-            if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_ACTIVE then
-                for i = 0, 2 do
-                    if player:GetActiveItem(i) == oldItem then
-                        local charge = Helpers.GetCharge(player, i)
-                        player:RemoveCollectible(oldItem, false, i, false)
-                        local varData = 0
-                        if REPENTOGON then
-                            varData = player:GetActiveItemDesc(i).VarData
+            if player:HasCollectible(oldItem, true) then
+                if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_ACTIVE then
+                    for i = 0, 2 do
+                        if player:GetActiveItem(i) == oldItem then
+                            local charge = Helpers.GetCharge(player, i)
+                            player:RemoveCollectible(oldItem, false, i, false)
+                            local varData = 0
+                            if REPENTOGON then
+                                varData = player:GetActiveItemDesc(i).VarData
+                            end
+                            player:AddCollectible(newItem, charge, false, i, varData)
                         end
-                        player:AddCollectible(newItem, charge, false, i, varData)
                     end
                 end
-            end
-            if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_PASSIVE then
-                player:RemoveCollectible(oldItem, false, ActiveSlot.SLOT_PRIMARY, false)
-                player:AddCollectible(newItem, 0, false)
+                if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_PASSIVE then
+                    player:RemoveCollectible(oldItem, false, ActiveSlot.SLOT_PRIMARY, false)
+                    player:AddCollectible(newItem, 0, false)
+                end
             end
         end
     end
