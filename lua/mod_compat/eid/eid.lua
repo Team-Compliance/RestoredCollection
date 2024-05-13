@@ -186,7 +186,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_P
 for i = 0, 5 do
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Charged by collecting {{Heart}} red hearts#On use spawns one of the 'food' items#Disappears after 6 uses", "Lunch Box")
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Заряжается подпором {{Heart}} красных сердец#При использовании спавнит один из 'съедобных' предметов#Исчезает после 6 использований", "Коробка c ланчем", "ru")
-    --EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Se carga colleccionando {{Heart}} corazones rojos#Cuando se usa, aparece uno de los objetos de 'comida'#Desaparece después de 6 usos", "Caja del almuerzo", "spa")
+    EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i, "Se carga colleccionando {{Heart}} corazones rojos#Cuando se usa, aparece uno de los objetos de 'comida'#Desaparece después de 6 usos", "Caja del almuerzo", "spa")
 end
 
 --Max's Head
