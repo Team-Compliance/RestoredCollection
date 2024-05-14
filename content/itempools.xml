@@ -15,12 +15,13 @@
 		<Item Name="Voodoo Pin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Beth's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lunch Box" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Safety Bombs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Pumpkin Mask" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
-	
+			<Item Name="Voodoo Pin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Menorah" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -29,11 +30,12 @@
 		<Item Name="Pacifist" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
-		<Item Name="Dice Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Dice Bombs" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Keeper's Rope" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Illusions" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
+		<Item Name="Dice Bombs" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Despair" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Ancient Revelation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>		
 	</Pool>
@@ -95,5 +97,10 @@
 	<Pool Name="babyShop">
 		<Item Name="Checked Mate" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Beth's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	</Pool>
+	<Pool Name="rottenBeggar">
+		<Item Name="Pumpkin Mask" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>
