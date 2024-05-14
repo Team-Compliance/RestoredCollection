@@ -115,6 +115,9 @@ function BowlOfTears:BowlShoot(player)
 				angle = Vector(right-left,down-up):Normalized():GetAngleDegrees()
 			end
 			local shootVector = Vector.FromAngle(angle)
+			if Helpers.InMirrorWorld() then
+				shootVector = Vector(shootVector.X * -1, shootVector.Y)
+			end
 			local charge = Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_TEARS).MaxCharges
 			for _ = 1, TSIL.Random.GetRandomInt(10, 16) do
 				local tear = player:FireTear(player.Position, (shootVector * player.ShotSpeed):Rotated(TSIL.Random.GetRandomInt(-10, 10)) * TSIL.Random.GetRandomInt(10, 16) + player.Velocity, false, true, false, player)

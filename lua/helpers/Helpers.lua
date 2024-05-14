@@ -126,6 +126,14 @@ function Helpers.CollectCustomPickup(player,pickup)
 	return nil
 end
 
+function Helpers.InBoilerMirrorWorld()
+	return FFGRACE and FFGRACE:IsBoilerMirrorWorld()
+end
+
+function Helpers.InMirrorWorld()
+	return Game():GetRoom():IsMirrorWorld() or Helpers.InBoilerMirrorWorld()
+end
+
 ---@param enemy Entity
 ---@param allEnemies boolean?
 ---@return boolean

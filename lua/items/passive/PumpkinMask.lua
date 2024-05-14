@@ -50,4 +50,4 @@ function PumpkinMask:SeedUpdate(tear)
         tear.SpriteRotation = tear.Velocity:GetAngleDegrees() + 90
     end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_RENDER, PumpkinMask.SeedUpdate)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, PumpkinMask.SeedUpdate)
