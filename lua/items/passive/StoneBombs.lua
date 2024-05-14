@@ -45,7 +45,7 @@ function StoneBombs:SB_Explode(bomb, player)
 	for _, dir in pairs(directions) do
 		--local crackwave = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACKWAVE, 1, bomb.Position, bomb.Velocity, player)
 		--crackwave:ToEffect().Rotation = dir
-		CustomShockwaveAPI:SpawnCustomCrackwave(bomb.Position, player, 30, dir, 2, 50)
+		CustomShockwaveAPI:SpawnCustomCrackwave(bomb.Position, player, 30, dir, 2, bomb.ExplosionDamage / 2, bomb.ExplosionDamage)
 		-- crackwave.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NOPITS
 	end
 end
