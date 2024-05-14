@@ -85,20 +85,12 @@
 		<Item Name="Dice Bombs" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>
 		<Item Name="Safety Bombs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="batteryBum">
-		
-	</Pool>
 	<Pool Name="woodenChest">
 		<Item Name="Checked Mate" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-	</Pool>
-	<Pool Name="demonBeggar">
-		
 	</Pool>
 	<Pool Name="babyShop">
 		<Item Name="Checked Mate" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Beth's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-	</Pool>
-
 	</Pool>
 	<Pool Name="rottenBeggar">
 		<Item Name="Pumpkin Mask" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
