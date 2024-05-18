@@ -92,4 +92,7 @@
 
     <!-- Wax Tear Effect -->
     <entity name="Wax Tear Effect" anm2path="firemindteareffect.anm2" id="1000" variant=""/>
+
+    <!-- Menorah -->
+    <entity anm2path="003.205_menorah.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="TC Menorah" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant=""/>
 </entities>

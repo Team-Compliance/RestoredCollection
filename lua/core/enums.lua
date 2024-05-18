@@ -77,7 +77,7 @@ Enums.Entities = {
 						Type = Isaac.GetEntityTypeByName("Wax Tear Effect"),
 						Variant = Isaac.GetEntityVariantByName("Wax Tear Effect"),
 						SubType = 0,
-					}
+					},
 				}
 
 Enums.Familiars = 
@@ -105,6 +105,11 @@ Enums.Familiars =
 									Variant = Isaac.GetEntityVariantByName("Beth's Heart"),
 									SubType = 0
 								},
+					MENORAH =   {
+						Type = Isaac.GetEntityTypeByName("TC Menorah"),
+						Variant = Isaac.GetEntityVariantByName("TC Menorah"),
+						SubType = 0
+					},
 				}
 
 Enums.BombVariant = {
