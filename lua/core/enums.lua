@@ -121,8 +121,8 @@ Enums.CollectibleType =
 						COLLECTIBLE_BLANK_BOMBS = Isaac.GetItemIdByName("Blank Bombs"),
 						COLLECTIBLE_CHECKED_MATE = Isaac.GetItemIdByName("Checked Mate"),
 						COLLECTIBLE_DICE_BOMBS = Isaac.GetItemIdByName("Dice Bombs"),
-						COLLECTIBLE_DONKEY_JAWBONE = Isaac.GetItemIdByName("Donkey Jawbone"),
-						COLLECTIBLE_MENORAH = Isaac.GetItemIdByName("Menorah"),
+						COLLECTIBLE_DONKEY_JAWBONE = Isaac.GetItemIdByName("​Donkey Jawbone"),
+						COLLECTIBLE_MENORAH = Isaac.GetItemIdByName("​Menorah"),
 						COLLECTIBLE_ANCIENT_REVELATION = Isaac.GetItemIdByName("Ancient Revelation"),
 						COLLECTIBLE_BETHS_HEART = Isaac.GetItemIdByName("Beth's Heart"),
 						COLLECTIBLE_KEEPERS_ROPE = Isaac.GetItemIdByName("Keeper's Rope"),
@@ -130,19 +130,19 @@ Enums.CollectibleType =
 						COLLECTIBLE_PACIFIST = Isaac.GetItemIdByName("Pacifist"),
 						COLLECTIBLE_SAFETY_BOMBS = Isaac.GetItemIdByName("Safety Bombs"),
 						COLLECTIBLE_OL_LOPPER = Isaac.GetItemIdByName("Ol' Lopper"),
-						COLLECTIBLE_MAXS_HEAD = Isaac.GetItemIdByName("Max's Head"),
+						COLLECTIBLE_MAXS_HEAD = Isaac.GetItemIdByName("​Max's Head"),
 						COLLECTIBLE_LUNCH_BOX = Isaac.GetItemIdByName("Lunch Box"),
 						COLLECTIBLE_BOOK_OF_DESPAIR = Isaac.GetItemIdByName("Book of Despair"),
 						COLLECTIBLE_BOWL_OF_TEARS = Isaac.GetItemIdByName("Bowl of Tears"),
 						COLLECTIBLE_BOOK_OF_ILLUSIONS = Isaac.GetItemIdByName("Book of Illusions"),
 						COLLECTIBLE_PILL_CRUSHER = Isaac.GetItemIdByName("Pill Crusher"),
-						COLLECTIBLE_VOODOO_PIN = Isaac.GetItemIdByName("Voodoo Pin"),
-						COLLECTIBLE_PUMPKIN_MASK = Isaac.GetItemIdByName("Pumpkin Mask"),
+						COLLECTIBLE_VOODOO_PIN = Isaac.GetItemIdByName("​Voodoo Pin"),
+						COLLECTIBLE_PUMPKIN_MASK = Isaac.GetItemIdByName("​Pumpkin Mask"),
 						COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle"),
 					}
 
 Enums.TrinketType = {
-						TRINKET_GAME_SQUID = Isaac.GetTrinketIdByName("Game Squid"),
+						TRINKET_GAME_SQUID_TC = Isaac.GetTrinketIdByName("​Game Squid"),
 					}
 
 Enums.Pickups = 

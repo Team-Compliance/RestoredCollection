@@ -45,6 +45,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnP
 function SaveManager:SaveData(isSaving)
     if isSaving then
         TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
+        CustomHealthAPI.Helper.SaveData(isSaving)
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveManager.SaveData)

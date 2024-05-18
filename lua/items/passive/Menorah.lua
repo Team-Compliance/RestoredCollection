@@ -7,8 +7,7 @@ function Menorah:onEvaluateCache(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) + player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
 		player:CheckFamiliar(FamiliarVariant.MENORAH, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
-	end
-	
+	end	
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 			if data.MenorahFlames then
@@ -34,10 +33,13 @@ if REPENTOGON then
 			if weaponType ~= WeaponType.WEAPON_SPIRIT_SWORD then
 				multiShotParams:SetSpreadAngle(weaponType, multiShotParams:GetSpreadAngle(weaponType) + 3 * (data.MenorahFlames))
 			end
+			if communityRemix then
+				Isaac.RunCallback("CR_MC_MULTISHOT_PARAMS", player, multiShotParams, weaponType)
+			end
 			return multiShotParams
 		end
 	end
-	RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, Menorah.MultiShopUpdate)
+	RestoredCollection:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, CallbackPriority.EARLY, Menorah.MultiShopUpdate)
 else
 	local function DupeTear(tear)
 		local nt = Isaac.Spawn(tear.Type, tear.Variant, tear.SubType, tear.Position, tear.Velocity, tear):ToTear()
@@ -354,11 +356,11 @@ if Sewn_API then
 	Sewn_API:MakeFamiliarAvailable(FamiliarVariant.MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
 
 	local function MenorahSewingUpdateDefault(_, menorah)
-		local data = RestoredCollection.GetEntityData(menorah.Player)
+		local data = Helpers.GetEntityData(menorah.Player)
 		data.SewingMachineDenominator = 3
 	end
 	local function MenorahSewingUpdateUltra(_, menorah)
-		local data = RestoredCollection.GetEntityData(menorah.Player)
+		local data = Helpers.GetEntityData(menorah.Player)
 		data.SewingMachineDenominator = 4
 		data.SewingMachineUltra = true
 	end

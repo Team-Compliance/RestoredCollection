@@ -631,7 +631,7 @@ local Wiki = {
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Game Squid originated in Binding of Isaac: Eternal Edition." },
-			{ str = "Game Squid was replaces by Chewing Pen." },
+			{ str = "Game Squid was replaced by Chewing Pen." },
 			{ str = "Game Squid is self reference to Florian Himsl - coder for flash version of Binding of Isaac and its DLCs." },
 		},
 		{ -- Mod Compatibility

@@ -38,7 +38,7 @@ Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleT
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, "Книга иллюзий", "Армия тебя", "ru")
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER, "Дробилка пилюль", "Раздай их всем!", "ru")
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "Вуду булавка", "Ай!", "ru")
-Translations:AddTranslation("trinket", RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "Игровой кальмар", "Подтекающий приятель", "ru")
+Translations:AddTranslation("trinket", RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC, "Игровой кальмар", "Подтекающий приятель", "ru")
 
 --spa
 --Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Stone Bombs", "Rock blast +5 bombs", "spa")
@@ -63,7 +63,7 @@ end
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_ILLUSIONS, "Libro de las ilusiones", "Un ejército de ti", "spa")
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER, "Triturador de píldoras", "¡Dáselas a todos!", "spa")
 Translations:AddTranslation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, "Pin de vudú", "Comparte tu dolor", "spa")
---Translations:AddTranslation("trinket", RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID, "Game Squid", "Leaky buddy", "spa")
+--Translations:AddTranslation("trinket", RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC, "Game Squid", "Leaky buddy", "spa")
 
 local function ShowTranslation(queue, translationTable)
     local translations = translationTable[Options.Language]

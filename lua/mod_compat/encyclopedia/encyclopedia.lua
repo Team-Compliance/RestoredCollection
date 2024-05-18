@@ -264,7 +264,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddTrinket({
 	ModName = "Compliance",
 	Class = "Compliance",
-	ID = RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID,
+	ID = RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
 	WikiDesc = Wiki.GameSquid,
 })
 

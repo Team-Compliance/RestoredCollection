@@ -32,7 +32,10 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         AddReplacableItems(LostItemsPack.CollectibleType.SAFETY_BOMBS, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS)
         AddReplacableItems(LostItemsPack.CollectibleType.VOODOO_PIN, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN)
     end
-
+    if communityRemix then
+        AddReplacableItems(CollectibleType.COLLECTIBLE_MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+    end
+    
     if REPENTOGON then
         local itemConf = Isaac.GetItemConfig()
         for oldItem, newItem in pairs(ReplaceTable) do

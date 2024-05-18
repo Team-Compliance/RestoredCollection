@@ -126,7 +126,9 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, SpriteChange, PickupVariant.PICKUP_HEART)
 
 CustomHealthAPI.Library.AddCallback("RestoredCollection",CustomHealthAPI.Enums.Callbacks.ON_SAVE, 0, function (savedata, isPreGameExit)
-    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", savedata)
+	if isPreGameExit then
+    	TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", savedata)
+	end
 end)
 
 CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.ON_LOAD, 0, function()

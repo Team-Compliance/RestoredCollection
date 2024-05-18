@@ -1,4 +1,4 @@
-local localversion = 1.0
+local localversion = 1.1
 
 local function load()
     CustomShockwaveAPI = RegisterMod("Custom Shockwave", 1)
@@ -29,6 +29,13 @@ local function load()
         table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
     end
     --#endregion
+
+    local function NewRoomClear()
+        for callback, _ in pairs(delayedFuncs) do
+            delayedFuncs[callback] = {}
+        end
+    end
+    CustomShockwaveAPI:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, NewRoomClear)
 
     --#region Pain
     ---comment

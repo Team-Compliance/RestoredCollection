@@ -300,7 +300,6 @@ function PillCrusherLocal:spawnPill(rng, pos)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PillCrusherLocal.spawnPill)
 
-
 function PillCrusherLocal:item_effect()
 	for _,player in ipairs(Helpers.GetPlayers()) do
 		local rng = player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER)
