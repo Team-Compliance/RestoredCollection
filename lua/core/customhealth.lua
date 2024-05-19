@@ -125,16 +125,6 @@ local function SpriteChange(_, entity)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, SpriteChange, PickupVariant.PICKUP_HEART)
 
-CustomHealthAPI.Library.AddCallback("RestoredCollection",CustomHealthAPI.Enums.Callbacks.ON_SAVE, 0, function (savedata, isPreGameExit)
-	if isPreGameExit then
-    	TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", savedata)
-	end
-end)
-
-CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.ON_LOAD, 0, function()
-	return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "CustomHealthAPISave")
-end)
-
 CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.POST_HEALTH_DAMAGED, 0, function(player, flags, key, hpDamaged, wasDepleted, wasLastDamaged)
 	if key == "HEART_SUN" then
 		if wasDepleted then
