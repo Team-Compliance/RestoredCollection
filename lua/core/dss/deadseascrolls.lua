@@ -27,12 +27,12 @@ local modMenuName = "Restored Items Pack"
 -- Every MenuProvider function below must have its own implementation in your mod, in order to handle menu save data.
 local MenuProvider = {}
 
-function MenuProvider.SaveSaveData()
-    
-end
-
 local function GetDSSOptions()
     return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DSS")
+end
+
+function MenuProvider.SaveSaveData()
+    
 end
 
 function MenuProvider.GetPaletteSetting()
@@ -322,7 +322,7 @@ local restoreditemsdirectory = {
                         animfile = animfile.."_duxi"
                     end
                     
-                    for _, heart in pairs({"HEART_IMMORTAL", "HEART_SUN", "HEART_ILLUSION"}) do
+                    for _, heart in pairs({"HEART_IMMORTAL", "HEART_SUN"}) do
                         if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
                             CustomHealthAPI.PersistentData.HealthDefinitions[heart].AnimationFilename = animfile..".anm2"
                         end

@@ -209,36 +209,26 @@ end
 
 function Helpers.GetEntityData(entity)
 	if entity then
+		local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "GlobalData")
 		if entity:ToPlayer() then
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
 			local index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
-			if not data[index] then
-				data[index] = {}
+			if not data.PlayerData[index] then
+				data.PlayerData[index] = {}
 			end
-			if not data[index].BethsHeartIdentifier then
-				data[index].BethsHeartIdentifier = tonumber(index)
+			if not data.PlayerData[index].BethsHeartIdentifier then
+				data.PlayerData[index].BethsHeartIdentifier = tonumber(index)
 			end
-			if not data[index].Pepper then
-				data[index].Pepper = 0
-			end
-			if not data[index].PrevPepper then
-				data[index].PrevPepper = data[index].Pepper
-			end
-			if not data[index].LithiumUses then
-				data[index].LithiumUses = 0
-			end
-			return data[index]
+			return data.PlayerData[index]
 		elseif entity:ToFamiliar() then
 			local index = tostring(entity:ToFamiliar().InitSeed)
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
-			if not data[index] then
-				data[index] = {}
+			if not data.FamiliarData[index] then
+				data.FamiliarData[index] = {}
 			end
-			return data[index]
+			return data.FamiliarData[index]
 		end
 	end
 	return nil
@@ -247,18 +237,19 @@ end
 function Helpers.RemoveEntityData(entity)
 	if entity then
 		local index
+		local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "GlobalData")
 		if entity:ToPlayer() then
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
 			index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
-			data[index] = nil
+			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
+			data.PlayerData[index] = nil
 		elseif entity:ToFamiliar() then
 			index = tostring(entity:ToFamiliar().InitSeed)
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
-			data[index] = nil
+			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
+			data.FamiliarData[index] = nil
 		end
 	end
 end
@@ -765,6 +756,18 @@ function Helpers.scheduleForUpdate(foo, delay, callback)
     table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
 end
 --#endregion
+
+function Helpers.AddCustomBombFlag(bomb, flag)
+	bomb.SubType = bomb.SubType | flag
+end
+
+function Helpers.HasCustomBombFlag(bomb, flag)
+	return bomb.SubType & flag == flag
+end
+
+function Helpers.RemoveCustomBombFlag(bomb, flag)
+	bomb.SubType = bomb.SubType & ~flag
+end
 
 RestoredCollection.Helpers = Helpers
 

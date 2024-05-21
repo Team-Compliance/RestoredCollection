@@ -14,7 +14,7 @@ EID:addIcon("IllusionHeart", "Icon", 2, 10, 9, 1, 1, iconSprite)
 --Stone Bombs
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Placed bombs now explode and create rock waves in all 4 cardinal directions#The rock waves can damage enemies, destroy objects, and reveal secret rooms#+5 Bombs", "Stone Bombs", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Las bombas colocadas ahora generan olas de piedra en los 4 puntos cardinales al explotar#Las olas de piedra pueden dañar enemigos, destruir objetos y revelar salas secretas#+5 bombas", "Bombas de Piedra", "spa")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты# + 5 бомб", "Каменные бомбы", "ru")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты#+5 бомб", "Каменные бомбы", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS, "Bombas colocadas agora explodem e criam ondas de pedra em todas as 4 direções cardeais#As ondas de pedra podem causar dano aos inimigos, destruir objetos, e revelar salas secretas#+5 Bombas", "Bombas de Pedra", "pt_br")
 
 --Blank Bombs
@@ -24,7 +24,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BO
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS, "{{Bomb}} +5 Bombas#-50% de dano de bomba.#Pressione {{ButtonRT}} + {{ButtonLB}} para colocar bombas normais. 100% de dano de bomba. O jogador é imune a dano de suas próprias bombas#Bombas colocadas destroem projetéis de inimigos e empurram os inimigos ao seu redor", "Bombas de Festim", "pt_br")
 
 --Checked Mate
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE, "Spawns a familiar that moves by jumping from tile to tile.#20 AOE damage is delt upon each landing.#If the familiar lands directly on a monster, 40 damage is delt.", "Checked Mate", "en_us")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE, "Spawns a familiar that moves by jumping from tile to tile.#20 AOE damage is dealt upon each landing.#If the familiar lands directly on a monster, 40 damage is dealt.", "Checked Mate", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE, "Создает фамильяра, который перемещается, прыгая с места на место.#20 урона по площади при каждом приземлении.#Если фамильяр приземляется прямо на монстра, тот получает 40 единиц урона.", "Checked Mate", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE, "Genera un Rey de Ajedréz que saltará de cuadro en cuadro#Inflige 20 puntos de daño en área cada vez que aterriza#Si la pieza aterriza directamente sobre un enemigo, inflige 40 puntos de daño", "Rey en jaque", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE, "Gera um familiar que se movimenta pulando de quadrado em quadrado.#Causa 20 pontos de dano em área ao aterrissar.#Se o familiar aterrissar diretamente sobre um inimigo, causa 40 de dano.", "Xeque Mate", "pt_br")
@@ -38,10 +38,10 @@ if Sewn_API then
 end
 
 --Dice Bombs
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombs#Explosions will reroll pedestal items within its explosion radius#Holding certain dice actives will add additional effects", "Dice Bombs")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#Имея определенные кубики, добавляются дополнительные еффекты", "Бомбы-кубики", "ru")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombs#Explosions will reroll pedestal items within its explosion radius#Has a 25% chance to destroy items instead of rerolling them#Holding certain dice actives will add additional effects", "Dice Bombs")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#25% шанс уничтожить пьедестал вместо замены артефакта#Имея определенные кубики, добавляются дополнительные еффекты", "Бомбы-кубики", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombas#Las explosiones cambiarán los pedestales de objetos que se encuentren dentro de su radio de explosión#Poseer ciertos objetos activos de dados otorgará efectos adicionales", "Bombas de dados", "spa")
-EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombas#Explosões agora irão rerolar os pedestais de item pegos na área de explosão#Possuir certos items ativos de dados adicionará efeitos adicionais", "Bombas de Dado", "pt_br")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS, "{{Bomb}} +5 Bombas#Explosões agora irão rerolar os pedestais de item pegos na área de explosão#Tem 25% de chance de destruir items ao invés de rerolar eles#Possuir certos items ativos de dados adicionará efeitos adicionais", "Bombas de Dado", "pt_br")
 
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use", "Book of Despair", "en_us")
@@ -194,7 +194,6 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEA
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает быстрее", "Голова Макса", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD, "↑ {{Tears}} +1.50 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
-
 
 --Ol' Lopper
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER, "Disconnects Isaac's head from his body allowing it to move like Mr. Maw head", "Ol' Lopper")

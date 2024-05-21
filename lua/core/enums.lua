@@ -77,7 +77,7 @@ Enums.Entities = {
 						Type = Isaac.GetEntityTypeByName("Wax Tear Effect"),
 						Variant = Isaac.GetEntityVariantByName("Wax Tear Effect"),
 						SubType = 0,
-					},
+					}
 				}
 
 Enums.Familiars = 
@@ -171,6 +171,13 @@ Enums.SFX =
 								ILLUSION_PICKUP = Isaac.GetSoundIdByName("PickupIllusion"),
 							},
 				}
+
+Enums.CustomBombFlags = {
+	STONE_BOMB = 1 << 0,
+	BLANK_BOMB = 1 << 1,
+	DICE_BOMB = 1 << 2,
+	SAFETY_BOMB = 1 << 3
+}
 
 if REPENTOGON then
 	Enums.GiantBook = {

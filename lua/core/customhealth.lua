@@ -63,35 +63,6 @@ CustomHealthAPI.Library.RegisterSoulHealth(
     }
 )
 
-CustomHealthAPI.Library.RegisterSoulHealth(
-    "HEART_ILLUSION",
-    {
-        AnimationFilename = "gfx/ui/ui_remix_hearts.anm2",
-        AnimationName = {"IllusionHeartFull", "IllusionHeartHalf"},
-        SortOrder = 100,
-        AddPriority = 125,
-        HealFlashRO = 240/255, 
-        HealFlashGO = 240/255,
-        HealFlashBO = 240/255,
-        MaxHP = 2,
-        PrioritizeHealing = false,
-        PickupEntities = {
-            {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION}
-        },
-        SumptoriumSubType = 31,  -- illusion heart clot
-        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
-        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
-        SumptoriumCollectSoundSettings = {
-            ID = SoundEffect.SOUND_MEAT_IMPACTS,
-            Volume = 1.0,
-            FrameDelay = 0,
-            Loop = false,
-            Pitch = 1.0,
-            Pan = 0
-        }
-    }
-)
-
 local function SpriteChange(_, entity)
 	if entity.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_SUN
 	or entity.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION
@@ -151,15 +122,35 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 	end
 end)
 
-CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH, 0, function(player, key, hp)
-	local d = Helpers.GetEntityData(player)
-	if key == "HEART_ILLUSION" then
-		if not d or d and not d.IsIllusion then
-			return "HEART_SOUL", hp
+CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.PRE_RENDER_HEART, 0, function(player, index, hp, redHP, filename, animname, color, offset)
+	local data = Helpers.GetEntityData(player)
+	if data.IsIllusion and not player:IsDead() then
+		local var = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender")
+		local animfile = "gfx/ui/ui_remix_hearts"
+		if var == 2 then
+			animfile = animfile.."_aladar"
 		end
+		if var == 3 then
+			animfile = animfile.."_peas"
+		end
+		if var == 4 then
+			animfile = animfile.."_beautiful"
+		end
+		if var == 5 then
+			animfile = animfile.."_flashy"
+		end
+		if var == 6 then
+			animfile = animfile.."_bettericons"
+		end
+		if var == 7 then
+			animfile = animfile.."_eternalupdate"
+		end
+		if var == 8 then
+			animfile = animfile.."_duxi"
+		end
+		return {AnimationName = "IllusionHeartFull", AnimationFilename = animfile..".anm2"}
 	end
 end)
-
 
 CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.POST_SUMPTORIUM_CLOT_INIT, 0, function(familiar, key)
 	if key == "HEART_IMMORTAL" then

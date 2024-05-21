@@ -30,7 +30,6 @@ include("lua.entities.clots.SunClot")
 include("lua.items.active.LunchBox")
 include("lua.items.active.BookOfDespair")
 include("lua.items.active.BowlOfTears")
-
 include("lua.items.active.BookOfIllusions")
 include("lua.items.active.PillCrusher")
 include("lua.items.active.VoodooPin")
@@ -52,7 +51,7 @@ include("lua.items.passive.SafetyBombs")
 include("lua.items.passive.OlLopper")
 include("lua.items.passive.MaxsHead")
 include("lua.items.passive.PumpkinMask")
-include("lua.items.passive.MeltedCandle")
+--include("lua.items.passive.MeltedCandle")
 
 --trinkets
 include("lua.items.trinkets.GameSquid")

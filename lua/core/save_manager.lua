@@ -1,5 +1,4 @@
 local SaveManager = {}
-
 --Amazing save manager
 local continue = false
 local function IsContinue()
@@ -43,12 +42,19 @@ function SaveManager:OnPlayerInit()
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnPlayerInit)
 
-function SaveManager:SaveData(isSaving)
-    if isSaving then
-        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
-        local hp = CustomHealthAPI.Library.GetHealthBackup()
-        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", hp)
-        TSIL.SaveManager.SaveToDisk()
+local function SaveAll()
+    if not TSIL.Stage.OnFirstFloor() then
+        SaveManager:SaveData(true)
     end
 end
+
+function SaveManager:SaveData(isSaving)
+    if isSaving then
+        TSIL.SaveManager.LoadFromDisk()
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", CustomHealthAPI.Library.GetHealthBackup())
+    end
+    TSIL.SaveManager.SaveToDisk()
+end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveManager.SaveData)
+RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.PRE_NEW_LEVEL, SaveAll)

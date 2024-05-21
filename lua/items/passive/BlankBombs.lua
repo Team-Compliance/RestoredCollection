@@ -13,7 +13,7 @@ local function IsBlankBomb(bomb)
 	if bomb.Type ~= EntityType.ENTITY_BOMB then return false end
 	bomb = bomb:ToBomb()
 	local data = Helpers.GetData(bomb)
-	if not data.isBlankBomb then return false end
+	if not Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB) then return false end
 
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if not player then return false end
@@ -33,7 +33,8 @@ local function CanBombInstaDetonate(bomb)
 	end
 
 	return not (wasInRoom or bomb.IsFetus or bomb.Variant == BombVariant.BOMB_ROCKET or
-	bomb.Variant == BombVariant.BOMB_GIGA or bomb.Variant == BombVariant.BOMB_ROCKET_GIGA)
+	bomb.Variant == BombVariant.BOMB_GIGA or bomb.Variant == BombVariant.BOMB_ROCKET_GIGA or
+	not Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB))
 end
 
 
@@ -80,25 +81,6 @@ local function DoBlankEffect(center, radius)
 	end
 end
 
-function BlankBombsMod:BombInit(bomb)
-	local player = Helpers.GetPlayerFromTear(bomb)
-	if player then
-		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then
-			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
-				if bomb.Variant == 0 then
-					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_BLANK
-				end
-			end
-			data.isBlankBomb = true
-		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
-		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
-			data.isBlankBomb = true
-		end
-	end
-end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, BlankBombsMod.BombInit)
-
 function BlankBombsMod:OnNewRoom()
 	BombsInRoom = {}
 	for _, bomb in ipairs(Isaac.FindByType(EntityType.ENTITY_BOMB)) do
@@ -117,7 +99,6 @@ function BlankBombsMod:OnBombInitLate(bomb)
 	if bomb.Variant == BombVariant.BOMB_GIGA then return end
 	if Helpers.GetData(bomb).IsBlankBombInstaDetonating then return end
 
-
 	local sprite = bomb:GetSprite()
 	if bomb.Variant == BombVariant.BOMB_ROCKET then
 		local spritesheetPreffix = ""
@@ -134,30 +115,46 @@ function BlankBombsMod:OnBombInitLate(bomb)
 		sprite:LoadGraphics()
 	end
 
+	local player = Helpers.GetPlayerFromTear(bomb)
+	if player and not Helpers.GetData(bomb).BombInit then
+		local rng = bomb:GetDropRNG()
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) and 
+        (not bomb.IsFetus or bomb.IsFetus and rng:RandomInt(100) < 20) then
+			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
+				if bomb.Variant == 0 then
+					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_BLANK
+				end
+			end
+			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB)
+		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
+		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
+			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB)
+		end
+	end
+
 	--Instantly explode if player isn't pressing ctrl
 	if not CanBombInstaDetonate(bomb) then return end
 
-	local player = Helpers.GetPlayerFromTear(bomb)
     if not player then return end
 	local controller = player.ControllerIndex
 
 	if not Input.IsActionPressed(ButtonAction.ACTION_DROP, controller) then
 		if not player:HasEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK) then
 			player:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
-			player:GetData().AddNoKnockBackFlag = 2
+			Helpers.GetData(player).AddNoKnockBackFlag = 2
 
 			local holyMantleNum = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-			player:GetData().AddHolyMantles = holyMantleNum
+			Helpers.GetData(player).AddHolyMantles = holyMantleNum
 			player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
 		end
 
 		if player.Parent and player.Parent.Type == EntityType.ENTITY_PLAYER then
 			local playerParent = player.Parent:ToPlayer()
 			playerParent:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
-			playerParent:GetData().AddNoKnockBackFlag = 2
+			Helpers.GetData(playerParent).AddNoKnockBackFlag = 2
 
 			local holyMantleNum = playerParent:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-			playerParent:GetData().AddHolyMantles = holyMantleNum
+			Helpers.GetData(playerParent).AddHolyMantles = holyMantleNum
 			playerParent:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
 		end
 
@@ -170,10 +167,10 @@ function BlankBombsMod:OnBombInitLate(bomb)
 
 				if playerIndex == otherPlayerParentIndex then
 					otherPlayer:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
-					otherPlayer:GetData().AddNoKnockBackFlag = 2
+					Helpers.GetData(otherPlayer).AddNoKnockBackFlag = 2
 
 					local holyMantleNum = otherPlayer:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-					otherPlayer:GetData().AddHolyMantles = holyMantleNum
+					Helpers.GetData(otherPlayer).AddHolyMantles = holyMantleNum
 					otherPlayer:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
 				end
 			end
@@ -192,11 +189,19 @@ end
 
 ---@param bomb EntityBomb
 function BlankBombsMod:BombUpdate(bomb)
-	if not IsBlankBomb(bomb) then return end
-
+	
 	if bomb.FrameCount == 1 then
 		BlankBombsMod:OnBombInitLate(bomb)
+		if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_BLANK then
+            local sprite = bomb:GetSprite()
+            local anim = sprite:GetAnimation()
+            local file = sprite:GetFilename()
+            sprite:Load("gfx/items/pick ups/bombs/blank"..file:sub(file:len()-5), true)
+            sprite:Play(anim, true)
+        end
 	end
+
+	if not IsBlankBomb(bomb) then return end
 
 	local sprite = bomb:GetSprite()
 	if sprite:IsPlaying("Explode") or Helpers.GetData(bomb).IsBlankBombInstaDetonating then
@@ -242,7 +247,9 @@ function BlankBombsMod:OnEpicFetusRocketUpdate(rocket)
 	local player = rocket.SpawnerEntity
 	if not player then return end
 	if not player:ToPlayer() then return end
-	if not player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then return end
+	if not player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) 
+	or player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) and
+	rocket:GetDropRNG():RandomInt(100) >= 20 then return end
 
 	if rocket.Timeout ~= 0 then return end
 
@@ -301,21 +308,21 @@ RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, BlankBombsMod.On
 
 ---@param player EntityPlayer
 function BlankBombsMod:OnPlayerUpdate(player)
-	if player:GetData().AddHolyMantles then
-		local holyMantleNum = player:GetData().AddHolyMantles
+	if Helpers.GetData(player).AddHolyMantles then
+		local holyMantleNum = Helpers.GetData(player).AddHolyMantles
 		player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, holyMantleNum)
-		player:GetData().AddHolyMantles = nil
+		Helpers.GetData(player).AddHolyMantles = nil
 	end
 
-	if not player:GetData().AddNoKnockBackFlag then return end
+	if not Helpers.GetData(player).AddNoKnockBackFlag then return end
 
 	player:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
 
-	player:GetData().AddNoKnockBackFlag = player:GetData().AddNoKnockBackFlag - 1
+	Helpers.GetData(player).AddNoKnockBackFlag = Helpers.GetData(player).AddNoKnockBackFlag - 1
 
-	if player:GetData().AddNoKnockBackFlag == 0 then
-		player:GetData().AddNoKnockBackFlag = nil
-		if player:GetData().RemoveHostHat then
+	if Helpers.GetData(player).AddNoKnockBackFlag == 0 then
+		Helpers.GetData(player).AddNoKnockBackFlag = nil
+		if Helpers.GetData(player).RemoveHostHat then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_HOST_HAT)
 		end
 	end
