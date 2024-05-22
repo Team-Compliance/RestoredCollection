@@ -298,3 +298,40 @@ function DiceBombsLocal:BombUpdate(bomb)
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, DiceBombsLocal.BombUpdate)
+
+RestoredCollection:AddCallback("ON_STOMP_EXPLOSION", function(_, player, bombDamage, radius)
+    local DiceBombVariant = CollectibleType.COLLECTIBLE_D6
+    for i = 0, 3 do
+        if DiceBombSpritesheets[player:GetActiveItem(i)] then
+            DiceBombVariant = player:GetActiveItem(i)
+            break
+        end
+        if REPENTOGON and player:GetActiveItem(i) == CollectibleType.COLLECTIBLE_D_INFINITY then
+            DiceBombVariant = CollectibleType.COLLECTIBLE_D6
+            local DiceVarData = {
+                [0] = CollectibleType.COLLECTIBLE_D1,
+                [0x10000] = CollectibleType.COLLECTIBLE_D4,
+                [0x30000] = CollectibleType.COLLECTIBLE_D6,
+                [0x50000] = CollectibleType.COLLECTIBLE_D8,
+                [0x80000] = CollectibleType.COLLECTIBLE_D20,
+                [0x90000] = CollectibleType.COLLECTIBLE_D100,
+            }
+            local activeItemDesc = player:GetActiveItemDesc(i)
+            local dice = DiceVarData[activeItemDesc.VarData] or DiceVarData[activeItemDesc.VarData - player:GetActiveMinUsableCharge(i)]
+            if dice then
+                DiceBombVariant = dice
+            end
+        end
+    end
+	local callbacks = Isaac.GetCallbacks(RestoredCollection.Enums.Callbacks.ON_DICE_BOMB_EXPLOSION)
+    local d6Ran = false
+    for _, callback in ipairs(callbacks) do
+        if callback.Param and callback.Param == DiceBombVariant then
+            local ret = callback.Function(callback.Mod, player, player, radius)
+            if ret ~= nil and type(ret) == "boolean" and ret == true and not d6Ran then
+                d6Ran = true
+                DiceBombsLocal:D6BombExplode(player, player, radius)
+            end
+        end
+    end
+end, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
