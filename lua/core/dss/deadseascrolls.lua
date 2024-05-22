@@ -60,7 +60,7 @@ function MenuProvider.SaveMenuKeybindSetting(var)
 end
 
 function MenuProvider.GetMenuHintSetting()
-    return  GetDSSOptions().MenuHint
+    return GetDSSOptions().MenuHint
 end
 
 function MenuProvider.SaveMenuHintSetting(var)
@@ -100,7 +100,7 @@ local function InitDisableMenu()
     local itemTogglesMenu = {}
     local orderedItems = {}
     itemTogglesMenu = {
-        {str = 'Choose what items', fsize = 2, nosel = true},
+        {str = 'choose what items', fsize = 2, nosel = true},
         {str = 'show up', fsize = 2, nosel = true},
         {str = '', fsize = 2, nosel = true},
     }

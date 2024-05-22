@@ -35,7 +35,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if communityRemix then
         AddReplacableItems(CollectibleType.COLLECTIBLE_MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
     end
-    
+
     if REPENTOGON then
         local itemConf = Isaac.GetItemConfig()
         for oldItem, newItem in pairs(ReplaceTable) do

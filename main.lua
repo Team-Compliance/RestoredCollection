@@ -11,6 +11,7 @@ RestoredCollection.HiddenItemManager = HiddenItemManager:Init(RestoredCollection
 
 include("lua.extraLibs.customhealthapi.core")
 include("lua.extraLibs.custom_shockwave_api")
+include("lua.extraLibs.custom_bomb_flags")
 --core
 include("lua.core.enums")
 include("lua.core.globals")

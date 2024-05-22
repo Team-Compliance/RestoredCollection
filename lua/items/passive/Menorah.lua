@@ -7,7 +7,7 @@ function Menorah:onEvaluateCache(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) + player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
 		player:CheckFamiliar(RestoredCollection.Enums.Familiars.MENORAH.Variant, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
-	end	
+	end
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 			if data.MenorahFlames then

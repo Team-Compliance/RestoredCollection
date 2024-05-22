@@ -33,10 +33,10 @@ function SafetyBombsMod:BombInit(bomb)
 					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_SAFETY
 				end
 			end
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.SAFETY_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "SAFETY_BOMB")
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
 		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.SAFETY_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "SAFETY_BOMB")
 		end
 	end
 end
@@ -65,7 +65,7 @@ function SafetyBombsMod:BombUpdate(bomb)
 		isBomber = player:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)
 	end
 
-	if Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.SAFETY_BOMB) then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "SAFETY_BOMB") then
 		
 		if data.IsBlankBombInstaDetonating then
 			return
@@ -146,7 +146,7 @@ function SafetyBombsMod:BombRadar(bomb)
 	if Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
 	local data = Helpers.GetData(bomb)
 	
-	if Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.SAFETY_BOMB) then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "SAFETY_BOMB") then
 		if not data.BombRadar then
 			local player = Helpers.GetPlayerFromTear(bomb)
 			local isBomber = player and player:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)

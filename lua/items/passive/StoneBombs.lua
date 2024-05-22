@@ -46,10 +46,10 @@ function StoneBombs:BombInit(bomb)
 					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_STONE
 				end
 			end
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.STONE_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "STONE_BOMB")
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
 		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.STONE_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "STONE_BOMB")
 		end
 	end
 end
@@ -58,7 +58,7 @@ end
 function StoneBombs:BombUpdate(bomb)
 	local player = Helpers.GetPlayerFromTear(bomb)
 	local data = Helpers.GetData(bomb)
-	
+
 	if bomb.FrameCount == 1 then
         StoneBombs:BombInit(bomb)
         if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_STONE then
@@ -70,7 +70,7 @@ function StoneBombs:BombUpdate(bomb)
         end
     end
 
-	if Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.STONE_BOMB) then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "STONE_BOMB") then
 		local sprite = bomb:GetSprite()
 
 		if sprite:IsPlaying("Explode") then
@@ -85,3 +85,9 @@ function StoneBombs:SB_Explode(bomb, player)
 		CustomShockwaveAPI:SpawnCustomCrackwave(bomb.Position, player, 30, dir, 2, bomb.ExplosionDamage / 2, bomb.ExplosionDamage)
 	end
 end
+
+RestoredCollection:AddCallback("ON_STOMP_EXPLOSION", function(_, player, bombDamage, radius)
+	for _, dir in pairs(directions) do
+		CustomShockwaveAPI:SpawnCustomCrackwave(player.Position, player, 30, dir, 2, bombDamage / 2, bombDamage)
+	end
+end, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS)

@@ -743,31 +743,19 @@ end
 
 local delayedFuncs = {}
 function Helpers.scheduleForUpdate(foo, delay, callback)
-    callback = callback or ModCallbacks.MC_POST_UPDATE
-    if not delayedFuncs[callback] then
-        delayedFuncs[callback] = {}
-        RestoredCollection:AddCallback(callback, function()
-            runUpdates(delayedFuncs[callback])
-        end)
+	callback = callback or ModCallbacks.MC_POST_UPDATE
+	if not delayedFuncs[callback] then
+		delayedFuncs[callback] = {}
+		RestoredCollection:AddCallback(callback, function()
+			runUpdates(delayedFuncs[callback])
+		end)
 		RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 			delayedFuncs[callback] = {}
 		end)
-    end
-    table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
+	end
+	table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
 end
 --#endregion
-
-function Helpers.AddCustomBombFlag(bomb, flag)
-	bomb.SubType = bomb.SubType | flag
-end
-
-function Helpers.HasCustomBombFlag(bomb, flag)
-	return bomb.SubType & flag == flag
-end
-
-function Helpers.RemoveCustomBombFlag(bomb, flag)
-	bomb.SubType = bomb.SubType & ~flag
-end
 
 RestoredCollection.Helpers = Helpers
 

@@ -12,8 +12,7 @@ local function IsBlankBomb(bomb)
 	if not bomb then return false end
 	if bomb.Type ~= EntityType.ENTITY_BOMB then return false end
 	bomb = bomb:ToBomb()
-	local data = Helpers.GetData(bomb)
-	if not Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB) then return false end
+	if not BombFlagsAPI.HasCustomBombFlag(bomb, "BLANK_BOMB") then return false end
 
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if not player then return false end
@@ -34,7 +33,7 @@ local function CanBombInstaDetonate(bomb)
 
 	return not (wasInRoom or bomb.IsFetus or bomb.Variant == BombVariant.BOMB_ROCKET or
 	bomb.Variant == BombVariant.BOMB_GIGA or bomb.Variant == BombVariant.BOMB_ROCKET_GIGA or
-	not Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB))
+	not BombFlagsAPI.HasCustomBombFlag(bomb, "BLANK_BOMB"))
 end
 
 
@@ -125,10 +124,10 @@ function BlankBombsMod:OnBombInitLate(bomb)
 					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_BLANK
 				end
 			end
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "BLANK_BOMB")
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
 		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.BLANK_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "BLANK_BOMB")
 		end
 	end
 
@@ -189,7 +188,7 @@ end
 
 ---@param bomb EntityBomb
 function BlankBombsMod:BombUpdate(bomb)
-	
+
 	if bomb.FrameCount == 1 then
 		BlankBombsMod:OnBombInitLate(bomb)
 		if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_BLANK then
@@ -247,7 +246,7 @@ function BlankBombsMod:OnEpicFetusRocketUpdate(rocket)
 	local player = rocket.SpawnerEntity
 	if not player then return end
 	if not player:ToPlayer() then return end
-	if not player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) 
+	if not player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)
 	or player:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) and
 	rocket:GetDropRNG():RandomInt(100) >= 20 then return end
 
@@ -362,3 +361,7 @@ function BlankBombsMod:OnLocustCollision(locust, collider)
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, BlankBombsMod.OnLocustCollision, FamiliarVariant.ABYSS_LOCUST)
+
+RestoredCollection:AddCallback("ON_STOMP_EXPLOSION", function(_, player, bombDamage, radius)
+	DoBlankEffect(player.Position, radius)
+end, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)

@@ -203,7 +203,7 @@ function DiceBombsLocal:BombInit(bomb)
 					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_DICE
 				end
 			end            
-			Helpers.AddCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.DICE_BOMB)
+			BombFlagsAPI.AddCustomBombFlag(bomb, "DICE_BOMB")
             InitDiceVariant(bomb)
 		end
 	end
@@ -251,7 +251,7 @@ function DiceBombsLocal:BombUpdate(bomb)
 
 	local data = Helpers.GetData(bomb)
 	
-	if bomb.FrameCount == 1 then
+    if bomb.FrameCount == 1 then
         DiceBombsLocal:BombInit(bomb)
         if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_DICE then
             local sprite = bomb:GetSprite()
@@ -262,7 +262,7 @@ function DiceBombsLocal:BombUpdate(bomb)
         end
     end
     
-	if Helpers.HasCustomBombFlag(bomb, RestoredCollection.Enums.CustomBombFlags.DICE_BOMB) then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "DICE_BOMB") then
         local sprite = bomb:GetSprite()
         InitDiceVariant(bomb)
         if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_DICE
