@@ -209,27 +209,28 @@ end
 
 function Helpers.GetEntityData(entity)
 	if entity then
-		local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "GlobalData")
 		if entity:ToPlayer() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
 			if not player then return nil end
 			local index = tostring(Helpers.GetPlayerIndex(player))
-			if not data.PlayerData[index] then
-				data.PlayerData[index] = {}
+			if not data[index] then
+				data[index] = {}
 			end
-			if not data.PlayerData[index].BethsHeartIdentifier then
-				data.PlayerData[index].BethsHeartIdentifier = tonumber(index)
+			if not data[index].BethsHeartIdentifier then
+				data[index].BethsHeartIdentifier = tonumber(index)
 			end
-			return data.PlayerData[index]
+			return data[index]
 		elseif entity:ToFamiliar() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
 			local index = tostring(entity:ToFamiliar().InitSeed)
-			if not data.FamiliarData[index] then
-				data.FamiliarData[index] = {}
+			if not data[index] then
+				data[index] = {}
 			end
-			return data.FamiliarData[index]
+			return data[index]
 		end
 	end
 	return nil
@@ -238,8 +239,8 @@ end
 function Helpers.RemoveEntityData(entity)
 	if entity then
 		local index
-		local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "GlobalData")
 		if entity:ToPlayer() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
@@ -249,6 +250,7 @@ function Helpers.RemoveEntityData(entity)
 			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			data.PlayerData[index] = nil
 		elseif entity:ToFamiliar() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
 			index = tostring(entity:ToFamiliar().InitSeed)
 			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
 			data.FamiliarData[index] = nil

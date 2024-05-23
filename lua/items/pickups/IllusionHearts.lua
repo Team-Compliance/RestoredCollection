@@ -474,7 +474,7 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, IllusionModLocal.onEntityTakeDamage, EntityType.ENTITY_PLAYER)
 
 function IllusionModLocal:AfterDeath(e)
-	if e.Type == EntityType.ENTITY_PLAYER then
+	if e and e:ToPlayer() then
 		if e:ToPlayer():GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
 			local data = Helpers.GetEntityData(e)
 			if data and data.isIllusion then

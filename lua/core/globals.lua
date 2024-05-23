@@ -1,5 +1,6 @@
 local Helpers = require("lua.helpers.Helpers")
-TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "GlobalData", {PlayerData = {}, FamiliarData = {}}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
+TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "PlayerData", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
+TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "FamiliarData", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HasMorphedKeepersRope", false, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "CustomHealthAPISave", "", TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HiddenItemMangerSave", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
