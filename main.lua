@@ -11,6 +11,7 @@ RestoredCollection.HiddenItemManager = HiddenItemManager:Init(RestoredCollection
 
 include("lua.extraLibs.customhealthapi.core")
 include("lua.extraLibs.custom_shockwave_api")
+include("lua.extraLibs.custom_bomb_flags")
 --core
 include("lua.core.enums")
 include("lua.core.globals")
@@ -30,7 +31,6 @@ include("lua.entities.clots.SunClot")
 include("lua.items.active.LunchBox")
 include("lua.items.active.BookOfDespair")
 include("lua.items.active.BowlOfTears")
-
 include("lua.items.active.BookOfIllusions")
 include("lua.items.active.PillCrusher")
 include("lua.items.active.VoodooPin")
@@ -52,7 +52,7 @@ include("lua.items.passive.SafetyBombs")
 include("lua.items.passive.OlLopper")
 include("lua.items.passive.MaxsHead")
 include("lua.items.passive.PumpkinMask")
-include("lua.items.passive.MeltedCandle")
+--include("lua.items.passive.MeltedCandle")
 
 --trinkets
 include("lua.items.trinkets.GameSquid")
@@ -66,6 +66,7 @@ include("lua.items.pickups.IllusionHearts")
 include("lua.mod_compat.eid.eid")
 include("lua.mod_compat.encyclopedia.encyclopedia")
 include("lua.mod_compat.MiniMapiItems.MiniMapiItems")
+include("lua.mod_compat.community_remix.cr_compat")
 
 --misc
 include("lua.items.funny")

@@ -21,23 +21,26 @@ local SpecialSynergies = {
 }
 
 function SafetyBombsMod:BombInit(bomb)
+	if Helpers.GetData(bomb).BombInit then return end
 	local player = Helpers.GetPlayerFromTear(bomb)
 	if player then
 		local data = Helpers.GetData(bomb)
-		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS) then
+		local rng = bomb:GetDropRNG()
+		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS) and 
+        (not bomb.IsFetus or bomb.IsFetus and rng:RandomInt(100) < 20) then
 			if (bomb.Variant > BombVariant.BOMB_SUPERTROLL or bomb.Variant < BombVariant.BOMB_TROLL) then
 				if bomb.Variant == 0 then
 					bomb.Variant = RestoredCollection.Enums.BombVariant.BOMB_SAFETY
 				end
 			end
-			data.isSafetyBomb = true
+			BombFlagsAPI.AddCustomBombFlag(bomb, "SAFETY_BOMB")
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
 		player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 10 then
-			data.isSafetyBomb = true
+			BombFlagsAPI.AddCustomBombFlag(bomb, "SAFETY_BOMB")
 		end
 	end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, SafetyBombsMod.BombInit)
+--RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, SafetyBombsMod.BombInit)
 
 ---@param bomb EntityBomb
 function SafetyBombsMod:BombUpdate(bomb)
@@ -45,6 +48,16 @@ function SafetyBombsMod:BombUpdate(bomb)
 	local data = Helpers.GetData(bomb)
 	local fuseCD = REPENTOGON and bomb:GetExplosionCountdown() or 30
 	local isBomber
+	if bomb.FrameCount == 1 then
+        SafetyBombsMod:BombInit(bomb)
+        if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_SAFETY then
+            local sprite = bomb:GetSprite()
+            local anim = sprite:GetAnimation()
+            local file = sprite:GetFilename()
+            sprite:Load("gfx/items/pick ups/bombs/safety"..file:sub(file:len()-5), true)
+            sprite:Play(anim, true)
+        end
+    end
 	if player then
 		if player:HasTrinket(TrinketType.TRINKET_SHORT_FUSE) then
 			fuseCD = 2
@@ -52,7 +65,7 @@ function SafetyBombsMod:BombUpdate(bomb)
 		isBomber = player:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)
 	end
 
-	if data.isSafetyBomb then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "SAFETY_BOMB") then
 		
 		if data.IsBlankBombInstaDetonating then
 			return
@@ -133,7 +146,7 @@ function SafetyBombsMod:BombRadar(bomb)
 	if Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
 	local data = Helpers.GetData(bomb)
 	
-	if data.isSafetyBomb then
+	if BombFlagsAPI.HasCustomBombFlag(bomb, "SAFETY_BOMB") then
 		if not data.BombRadar then
 			local player = Helpers.GetPlayerFromTear(bomb)
 			local isBomber = player and player:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)

@@ -63,8 +63,8 @@ local Wiki = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Spawns a familiar that moves by jumping from tile to tile." },
-			{ str = "20 AOE damage is delt upon each landing." },
-			{ str = "If the familiar lands directly on a monster, 40 damage is delt." },
+			{ str = "20 AOE damage is dealt upon each landing." },
+			{ str = "If the familiar lands directly on a monster, 40 damage is dealt." },
 		},
 		{ -- Synergies
 			{ str = "Synergies", fsize = 2, clr = 3, halign = 0 },
@@ -225,6 +225,7 @@ local Wiki = {
 			{ str = "+5 bombs." },
 			{ str = "Collectibles within the explosion radius will be rerolled." },
 			{ str = "Holding dice active items will add additional effects." },
+			{ str = "25% chance for D6 and Spindown effects to destroy items." },
 		},
 		{ -- Synergies
 			{ str = "Synergies", fsize = 2, clr = 3, halign = 0 },

@@ -51,10 +51,6 @@ function IllusionMod.AddForbiddenCharItem(type, i)
 	table.insert(ForbiddenPCombos,{PlayerType = type, Item = i})
 end
 
-local function AddIllusionHearts(player, hp)
-	CustomHealthAPI.Library.AddHealth(player, "HEART_ILLUSION", hp)
-end
-
 local function BlackList(collectible)
 	for _,i in ipairs(ForbiddenItems) do
 		if i == collectible then
@@ -366,9 +362,6 @@ function IllusionModLocal:CloneCache(p, _)
 		local color = Color(sColor.R, sColor.G, sColor.B, 0.45, 0.518, 0.15, 0.8)
 		local s = p:GetSprite()
 		s.Color = color
-		if p:GetMaxHearts() > 0 then
-			p:AddMaxHearts(-p:GetMaxHearts())
-		end
 		if p:GetBoneHearts() > 0 then
 			p:AddBoneHearts(-p:GetBoneHearts())
 		end
@@ -377,12 +370,6 @@ function IllusionModLocal:CloneCache(p, _)
 		end
 		if p:GetEternalHearts() > 0 then
 			p:AddEternalHearts(-p:GetEternalHearts())
-		end
-		if (CustomHealthAPI.Library.GetHPOfKey(p, "HEART_ILLUSION") < 2 
-		or CustomHealthAPI.Helper.GetTotalSoulHP(p) ~= CustomHealthAPI.Library.GetHPOfKey(p, "HEART_ILLUSION")) 
-		and not p:IsDead() and not p:IsCoopGhost() then
-			p:AddSoulHearts(-p:GetSoulHearts())
-			AddIllusionHearts(p, 2)
 		end
 	else
 		d = nil
@@ -487,10 +474,12 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, IllusionModLocal.onEntityTakeDamage, EntityType.ENTITY_PLAYER)
 
 function IllusionModLocal:AfterDeath(e)
-	if e.Type == EntityType.ENTITY_PLAYER then
-	    local data = Helpers.GetEntityData(e)
-		if data and data.isIllusion then
-			Helpers.RemoveEntityData(e)
+	if e and e:ToPlayer() then
+		if e:ToPlayer():GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
+			local data = Helpers.GetEntityData(e)
+			if data and data.isIllusion then
+				Helpers.RemoveEntityData(e)
+			end
 		end
 	end
 end
@@ -512,7 +501,7 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, IllusionModLocal.DarkEsau, EntityType.ENTITY_DARK_ESAU)
 
 function IllusionModLocal:ClonesControls(entity,hook,action)
-	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") then
+	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") == 1 then
 		local p = entity:ToPlayer()
 		local d = Helpers.GetEntityData(p)
         if not d then return end

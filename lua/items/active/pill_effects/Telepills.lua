@@ -156,6 +156,7 @@ local function TeleportMonsterAnim(_, npc)
 					Seed = npc.InitSeed,
 					HitPoints = npc.HitPoints
 				})
+				TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MonsterTeleTable", monsterTeleTable)
 			end
 
 			npc:Remove()

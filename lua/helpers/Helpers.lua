@@ -66,7 +66,7 @@ end
 
 function Helpers.IsLost(player)
     if REPENTOGON then
-		return player:GetHealthType() == HealthType.NO_HEALTH
+		return player:GetHealthType() == HealthType.NO_HEALTH and player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B
 	end
 	for _,pType in ipairs({PlayerType.PLAYER_THELOST, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_JACOB2_B}) do
 		if Helpers.IsPlayerType(player, pType) then
@@ -210,31 +210,23 @@ end
 function Helpers.GetEntityData(entity)
 	if entity then
 		if entity:ToPlayer() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
+			if not player then return nil end
 			local index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			if not data[index] then
 				data[index] = {}
 			end
 			if not data[index].BethsHeartIdentifier then
 				data[index].BethsHeartIdentifier = tonumber(index)
 			end
-			if not data[index].Pepper then
-				data[index].Pepper = 0
-			end
-			if not data[index].PrevPepper then
-				data[index].PrevPepper = data[index].Pepper
-			end
-			if not data[index].LithiumUses then
-				data[index].LithiumUses = 0
-			end
 			return data[index]
 		elseif entity:ToFamiliar() then
-			local index = tostring(entity:ToFamiliar().InitSeed)
 			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
+			local index = tostring(entity:ToFamiliar().InitSeed)
 			if not data[index] then
 				data[index] = {}
 			end
@@ -248,17 +240,20 @@ function Helpers.RemoveEntityData(entity)
 	if entity then
 		local index
 		if entity:ToPlayer() then
+			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
 			local player = entity:ToPlayer()
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
+			if not player then return nil end
 			index = tostring(Helpers.GetPlayerIndex(player))
-			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
-			data[index] = nil
+			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
+			data.PlayerData[index] = nil
 		elseif entity:ToFamiliar() then
-			index = tostring(entity:ToFamiliar().InitSeed)
 			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
-			data[index] = nil
+			index = tostring(entity:ToFamiliar().InitSeed)
+			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
+			data.FamiliarData[index] = nil
 		end
 	end
 end
@@ -752,17 +747,17 @@ end
 
 local delayedFuncs = {}
 function Helpers.scheduleForUpdate(foo, delay, callback)
-    callback = callback or ModCallbacks.MC_POST_UPDATE
-    if not delayedFuncs[callback] then
-        delayedFuncs[callback] = {}
-        RestoredCollection:AddCallback(callback, function()
-            runUpdates(delayedFuncs[callback])
-        end)
+	callback = callback or ModCallbacks.MC_POST_UPDATE
+	if not delayedFuncs[callback] then
+		delayedFuncs[callback] = {}
+		RestoredCollection:AddCallback(callback, function()
+			runUpdates(delayedFuncs[callback])
+		end)
 		RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 			delayedFuncs[callback] = {}
 		end)
-    end
-    table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
+	end
+	table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
 end
 --#endregion
 

@@ -19,14 +19,13 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BO
     "Las bombas colocadas ahora generan olas de piedra en los 4 puntos cardinales al explotar#Las olas de piedra pueden dañar enemigos, destruir objetos y revelar salas secretas#+5 bombas",
     "Bombas de Piedra", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
-    "Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты# + 5 бомб",
+    "Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты#+5 бомб",
     "Каменные бомбы", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
     "Bombas colocadas agora explodem e criam ondas de pedra em todas as 4 direções cardeais#As ondas de pedra podem causar dano aos inimigos, destruir objetos, e revelar salas secretas#+5 Bombas",
     "Bombas de Pedra", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
     "放置的炸弹现在会爆炸并在所有4个基本方向产生岩石波#岩石波可以伤害敌人，摧毁物体，并揭示隐藏房#+5炸弹", "岩石炸弹", "zh_cn")
-
 --Blank Bombs
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
     "{{Bomb}} +5 Bombs#Bombs explode instantly. -50% bomb damage#Press {{ButtonRT}} + {{ButtonLB}} to place normal bombs. 100% bomb damage#The player is immune from their own bombs#Placed bombs destroy enemy projectiles and knock back enemies within a radius",
@@ -46,7 +45,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BO
 
 --Checked Mate
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
-    "Spawns a familiar that moves by jumping from tile to tile.#20 AOE damage is delt upon each landing.#If the familiar lands directly on a monster, 40 damage is delt.",
+    "Spawns a familiar that moves by jumping from tile to tile.#20 AOE damage is dealt upon each landing.#If the familiar lands directly on a monster, 40 damage is dealt.",
     "Checked Mate", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
     "Создает фамильяра, который перемещается, прыгая с места на место.#20 урона по площади при каждом приземлении.#Если фамильяр приземляется прямо на монстра, тот получает 40 единиц урона.",
@@ -60,7 +59,6 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
     "生成一个从方块到方块跳跃的宠物#每次着陆时造成20点范围伤害#如果宠物直接着陆在敌人上,造成40点伤害",
     "将军", "zh_cn")
-
 if Sewn_API then
     Sewn_API:AddFamiliarDescription(
         RestoredCollection.Enums.Familiars.CHECKED_MATE.Variant,
@@ -71,21 +69,19 @@ end
 
 --Dice Bombs
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
-    "{{Bomb}} +5 Bombs#Explosions will reroll pedestal items within its explosion radius#Holding certain dice actives will add additional effects",
+    "{{Bomb}} +5 Bombs#Explosions will reroll pedestal items within its explosion radius#Has a 25% chance to destroy items instead of rerolling them#Holding certain dice actives will add additional effects",
     "Dice Bombs")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
-    "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#Имея определенные кубики, добавляются дополнительные еффекты",
+    "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#25% шанс уничтожить пьедестал вместо замены артефакта#Имея определенные кубики, добавляются дополнительные еффекты",
     "Бомбы-кубики", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
     "{{Bomb}} +5 Bombas#Las explosiones cambiarán los pedestales de objetos que se encuentren dentro de su radio de explosión#Poseer ciertos objetos activos de dados otorgará efectos adicionales",
     "Bombas de dados", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
-    "{{Bomb}} +5 Bombas#Explosões agora irão rerolar os pedestais de item pegos na área de explosão#Possuir certos items ativos de dados adicionará efeitos adicionais",
+    "{{Bomb}} +5 Bombas#Explosões agora irão rerolar os pedestais de item pegos na área de explosão#Tem 25% de chance de destruir items ao invés de rerolar eles#Possuir certos items ativos de dados adicionará efeitos adicionais",
     "Bombas de Dado", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
-    "{{Bomb}} +5 Bombs#爆炸将重置爆炸范围内的基座物品#持有某些骰子物品将添加额外效果",
-    "骰子炸弹", "zh_cn")
-
+    "{{Bomb}} +5 Bombs#爆炸将重置爆炸范围内的基座物品#持有某些骰子物品将添加额外效果", "骰子炸弹", "zh_cn")
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
     "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use", "Book of Despair", "en_us")
@@ -370,7 +366,6 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEA
     "↑ {{Tears}} +1.50 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
     "^{{Tears}}+1.5射速#第4滴眼泪射速更快", "麦克斯的头", "zh_cn")
-
 
 
 

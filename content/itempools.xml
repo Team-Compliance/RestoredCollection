@@ -21,7 +21,7 @@
 		<Item Name="​Pumpkin Mask" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
-			<Item Name="​Voodoo Pin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="​Voodoo Pin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="​Menorah" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -63,9 +63,10 @@
 		<Item Name="​Voodoo Pin" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Beth's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Ol' Lopper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Safety Bombs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
-		<Item Name="Book of Illusions" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Book of Illusions" Weight="0.7" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="​Pumpkin Mask" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedAngel">

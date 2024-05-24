@@ -105,6 +105,11 @@ Enums.Familiars =
 									Variant = Isaac.GetEntityVariantByName("Beth's Heart"),
 									SubType = 0
 								},
+					MENORAH =   {
+									Type = Isaac.GetEntityTypeByName("TC Menorah"),
+									Variant = Isaac.GetEntityVariantByName("TC Menorah"),
+									SubType = 0
+								},
 				}
 
 Enums.BombVariant = {
@@ -166,6 +171,11 @@ Enums.SFX =
 								ILLUSION_PICKUP = Isaac.GetSoundIdByName("PickupIllusion"),
 							},
 				}
+
+BombFlagsAPI.AddNewCustomBombFlag("STONE_BOMB", Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS)
+BombFlagsAPI.AddNewCustomBombFlag("BLANK_BOMB", Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)
+BombFlagsAPI.AddNewCustomBombFlag("DICE_BOMB", Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS)
+BombFlagsAPI.AddNewCustomBombFlag("SAFETY_BOMB", Enums.CollectibleType.COLLECTIBLE_SAFETY_BOMBS)
 
 if REPENTOGON then
 	Enums.GiantBook = {

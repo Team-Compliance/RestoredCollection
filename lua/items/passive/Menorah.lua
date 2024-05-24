@@ -6,8 +6,8 @@ function Menorah:onEvaluateCache(player, cacheFlag)
 
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local numFamiliars = player:GetCollectibleNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) + player:GetEffects():GetCollectibleEffectNum(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
-		player:CheckFamiliar(FamiliarVariant.MENORAH, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
-	end	
+		player:CheckFamiliar(RestoredCollection.Enums.Familiars.MENORAH.Variant, numFamiliars, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH), Isaac.GetItemConfig():GetCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH))
+	end
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 		if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH) then
 			if data.MenorahFlames then
@@ -263,7 +263,7 @@ function Menorah:onFamiliarInit(menorah)
 	
 	menorah:AddToFollowers()
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, Menorah.onFamiliarInit, FamiliarVariant.MENORAH)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, Menorah.onFamiliarInit, RestoredCollection.Enums.Familiars.MENORAH.Variant)
 
 function Menorah:onFamiliarUpdate(menorah)
 	local sprite = menorah:GetSprite()
@@ -331,7 +331,7 @@ function Menorah:onFamiliarUpdate(menorah)
 	end
 	menorah:FollowParent()
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, Menorah.onFamiliarUpdate, FamiliarVariant.MENORAH)
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, Menorah.onFamiliarUpdate, RestoredCollection.Enums.Familiars.MENORAH.Variant)
 
 function Menorah:onDamage(tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
 	local player = tookDamage:ToPlayer()
@@ -353,7 +353,7 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, Menorah.onDamage, EntityType.ENTITY_PLAYER)
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(FamiliarVariant.MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+	Sewn_API:MakeFamiliarAvailable(RestoredCollection.Enums.Familiars.MENORAH.Variant, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
 
 	local function MenorahSewingUpdateDefault(_, menorah)
 		local data = Helpers.GetEntityData(menorah.Player)
@@ -365,6 +365,6 @@ if Sewn_API then
 		data.SewingMachineUltra = true
 	end
 
-	Sewn_API:AddCallback(Sewn_API.Enums.ModCallbacks.FAMILIAR_UPDATE, MenorahSewingUpdateDefault, FamiliarVariant.MENORAH)
-	Sewn_API:AddCallback(Sewn_API.Enums.ModCallbacks.FAMILIAR_UPDATE, MenorahSewingUpdateUltra, FamiliarVariant.MENORAH,  Sewn_API.Enums.FamiliarLevelFlag.FLAG_ULTRA)
+	Sewn_API:AddCallback(Sewn_API.Enums.ModCallbacks.FAMILIAR_UPDATE, MenorahSewingUpdateDefault, RestoredCollection.Enums.Familiars.MENORAH.Variant)
+	Sewn_API:AddCallback(Sewn_API.Enums.ModCallbacks.FAMILIAR_UPDATE, MenorahSewingUpdateUltra, RestoredCollection.Enums.Familiars.MENORAH.Variant,  Sewn_API.Enums.FamiliarLevelFlag.FLAG_ULTRA)
 end
