@@ -27,7 +27,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and BrakeDude!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -55,7 +55,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly, Thicco Catto and BrakeDude!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	  },
@@ -88,7 +88,7 @@ local Wiki = {
 			{ str = "Coded by kittenchilly, PixelPlz and Thicco Catto!" },
 			{ str = "Animations by Firework!" },
 			{ str = "BFFS! spritework by Amy!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Xalum for helping with the improved pathfinding code!" },
 		},
 	},
@@ -113,7 +113,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and BrakeDude!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -147,7 +147,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -184,7 +184,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly, BrakeDude and Kotry!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -215,7 +215,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and BrakeDude!" },
 			{ str = "Spritework by ALADAR and Demi!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -253,7 +253,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by ratratrat and BrakeDude!" },
 			{ str = "Spritework by Demi!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"}
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"}
 		},
 	},
 	AncientRevelation = {
@@ -280,7 +280,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and BrakeDude!" },
 			{ str = "Spritework by Demi!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	BethsHeart = {
@@ -309,7 +309,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad, BrakeDude and im_tem!" },
 			{ str = "Familiar animations by Firework!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -337,7 +337,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad, BrakeDude, kittenchilly, and Thicco Catto!" },
 			{ str = "Special thanks to Mark Shwedow for the Illusion Heart SFX!" },
-			{ str = "Translations by BrakeDude (Russian) & Kotry (Spanish)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish) and YouDuckBoom (Chinese)!" },
 			{ str = "Special thanks to Sky for Portuguese (Brazil) translation!" },
 		},
 	},
@@ -380,7 +380,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad and BrakeDude!" },
 			{ str = "Spritework by ALADAR!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 		},
 	},
 	LuckySeven = {
@@ -420,7 +420,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude, fly_6 and Thicco Catto!" },
 			{ str = "Spritework by Akad, Chug all This and Demi!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	Pacifist = {
@@ -447,7 +447,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by kittenchilly and Thicco Catto!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	PillCrusher = {
@@ -479,7 +479,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Akad, BrakeDude, kittenchilly and Thicco Catto!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 		},
 	},
 	SafetyBombs = {
@@ -510,7 +510,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude, kittenchilly and Thicco Catto!" },
 			{ str = "Spritework by Demi!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	VoodooPin = {
@@ -540,7 +540,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude and Thicco Catto!" },
 			{ str = "Spritework by Amy!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"}
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"}
 		},
 	},
 	MaxsHead = {
@@ -565,7 +565,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	OlLopper = {
@@ -593,7 +593,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese)!" },
+			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
 	LunchBox = {
@@ -621,7 +621,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Brake!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 		},
 	},
 	GameSquid = {
@@ -644,7 +644,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by Thicco Catto!" },
 			{ str = "Spritework by Sr. Kalaka!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 		},
 	},
 	PumpkinMask = {
@@ -668,7 +668,7 @@ local Wiki = {
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude!" },
 			{ str = "Spritework by Firework!" },
-			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese)!"},
+			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
 		},
 	},
 }

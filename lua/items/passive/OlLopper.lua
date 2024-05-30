@@ -366,7 +366,7 @@ if REPENTOGON then
     function OlLopper:PrePlayerRenderHead(player, renderPos)
         if not player:IsHeadless() then
             local headHelper = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, OlLopper.HEAD_HELPER.Variant)[1]
-            if headHelper then
+            if headHelper and GetPtrHash(headHelper:ToFamiliar().Player) == GetPtrHash(player) then
                 return Isaac.WorldToScreen(headHelper.Position)
             end
         end

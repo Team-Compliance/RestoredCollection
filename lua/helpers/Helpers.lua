@@ -248,12 +248,12 @@ function Helpers.RemoveEntityData(entity)
 			if not player then return nil end
 			index = tostring(Helpers.GetPlayerIndex(player))
 			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PlayerData")
-			data.PlayerData[index] = nil
+			data[index] = nil
 		elseif entity:ToFamiliar() then
 			local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
 			index = tostring(entity:ToFamiliar().InitSeed)
 			--local data = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "FamiliarData")
-			data.FamiliarData[index] = nil
+			data[index] = nil
 		end
 	end
 end
