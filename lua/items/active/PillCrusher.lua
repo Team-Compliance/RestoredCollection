@@ -229,7 +229,10 @@ function PillCrusherLocal:UsePillCrusher(_, rng, player)
 		sfx:Play(SoundEffect.SOUND_BONE_BREAK)
 	end
 
-	player:UsePill(-1, 1, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
+	--player:UsePill(-1, 1, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
+	if REPENTOGON then
+		Game():SetBloom(30, 1)
+	end
 	
 	if showName then
 		hud:ShowItemText(name, "")
