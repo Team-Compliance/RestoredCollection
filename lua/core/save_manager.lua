@@ -57,4 +57,4 @@ function SaveManager:SaveData(isSaving)
     TSIL.SaveManager.SaveToDisk()
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveManager.SaveData)
-RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.PRE_NEW_LEVEL, SaveAll)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveAll)
