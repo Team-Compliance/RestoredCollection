@@ -229,8 +229,13 @@ end
 
 local function InitImGuiMenu()
     TSIL.SaveManager.LoadFromDisk()
-    if not ImGui.ElementExists("restoredCollectionMenu") then
-        ImGui.CreateMenu("restoredCollectionMenu", "Restored Collection")
+
+    if not ImGui.ElementExists("tcMods") then
+        ImGui.CreateMenu("tcMods", "TC Mods")
+    end
+
+    if ImGui.ElementExists("restoredCollectionMenu") then
+        ImGui.RemoveMenu("restoredCollectionMenu")
     end
     
     if ImGui.ElementExists("restoredCollectionSettings") then
@@ -240,6 +245,8 @@ local function InitImGuiMenu()
     if not ImGui.ElementExists("restoredCollectionSettingsWindow") then
         ImGui.CreateWindow("restoredCollectionSettingsWindow", "Restored Collection settings")
     end
+
+    ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
 
     ImGui.AddElement("restoredCollectionMenu", "restoredCollectionSettings", ImGuiElement.MenuItem, "\u{f013} Settings")
 
@@ -349,7 +356,7 @@ local function InitImGuiMenu()
         ImGui.CreateWindow("restoredCollectionItemsBlacklistWindow", "Restored Collection items blacklist")
     end
 
-    ImGui.AddElement("restoredCollectionMenu", "restoredCollectionItemsBlacklistSettings", ImGuiElement.MenuItem, "\u{f03a} Items blacklist")
+    ImGui.AddElement("restoredCollectionMenu", "restoredCollectionItemsBlacklistSettings", ImGuiElement.MenuItem, "\u{f05e} Items blacklist")
 
     ImGui.LinkWindowToElement("restoredCollectionItemsBlacklistWindow", "restoredCollectionItemsBlacklistSettings")
 
