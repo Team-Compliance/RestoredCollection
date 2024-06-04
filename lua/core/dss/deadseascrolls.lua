@@ -246,13 +246,15 @@ local function InitImGuiMenu()
         ImGui.CreateWindow("restoredCollectionSettingsWindow", "Restored Collection settings")
     end
 
-    ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
+    if not ImGui.ElementExists("restoredCollectionMenu") then
+        ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
+    end
 
     ImGui.AddElement("restoredCollectionMenu", "restoredCollectionSettings", ImGuiElement.MenuItem, "\u{f013} Settings")
 
     ImGui.LinkWindowToElement("restoredCollectionSettingsWindow", "restoredCollectionSettings")
 
-    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 300)
+    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 325)
 
     if ImGui.ElementExists("restoredCollectionSettingsHeartsStyle") then
         ImGui.RemoveElement("restoredCollectionSettingsHeartsStyle")
@@ -360,7 +362,7 @@ local function InitImGuiMenu()
 
     ImGui.LinkWindowToElement("restoredCollectionItemsBlacklistWindow", "restoredCollectionItemsBlacklistSettings")
 
-    ImGui.SetWindowSize("restoredCollectionItemsBlacklistWindow", 350, 600)
+    ImGui.SetWindowSize("restoredCollectionItemsBlacklistWindow", 350, 700)
 
     local orderedItems = {}
 
