@@ -94,7 +94,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
     "↑ {{Tears}} +100% Lágrimas quando usado ↓ Efeito é menos efetivo com cada uso", "Livro do Desespero", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% 射速# ↓ 使用后效果会逐渐减弱", "绝望之书", "zh_cn")
+    "↑ {{Tears}} +100% 射速# ↓ 在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "12") -- Bookworm
 
 --Bowl of Tears
