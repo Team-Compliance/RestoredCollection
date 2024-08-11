@@ -5,7 +5,7 @@ Relics thought to be lost have been found, and are now in the basement! Restored
 
 ![](https://i.imgur.com/2nl7gVV.png)
 
-- 21 collectibles to discover, ranging from items cut from Antibirth to items based on old design documents.
+- 22 collectibles to discover, ranging from items cut from Antibirth to items based on old design documents.
 - 1 new squishy trinket!
 - 3 new heart pickups, each with their own abilities!
 - Ancient variations of already existing items, which function how they did before being changed.

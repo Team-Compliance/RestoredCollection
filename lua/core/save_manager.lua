@@ -36,11 +36,15 @@ function SaveManager:OnPlayerInit()
         CustomHealthAPI.Library.LoadHealthFromBackup(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "CustomHealthAPISave"))
         RestoredCollection.HiddenItemManager:LoadData(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HiddenItemMangerSave"))
     end
-    for _, funct in ipairs(RestoredCollection.CallOnStart) do
-        funct()
-    end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnPlayerInit)
+
+if REPENTOGON then
+    function SaveManager:LoadDSSImGui()
+        TSIL.SaveManager.LoadFromDisk()
+    end
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, SaveManager.LoadDSSImGui)
+end
 
 local function SaveAll()
     if not TSIL.Stage.OnFirstFloor() then

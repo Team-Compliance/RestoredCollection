@@ -761,6 +761,17 @@ function Helpers.scheduleForUpdate(foo, delay, callback)
 end
 --#endregion
 
+---@param item CollectibleType | integer
+---@return boolean
+function Helpers.IsItemDisabled(item)
+	for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
+        if item == RestoredCollection.Enums.CollectibleType[disabledItem] then
+            return true
+        end
+    end
+	return false
+end
+
 RestoredCollection.Helpers = Helpers
 
 return Helpers

@@ -2,6 +2,35 @@ local DSSModName = "Dead Sea Scrolls (Restored Collection)"
 
 local DSSCoreVersion = 7
 
+local function HeartGfxSuffix(var, hud)
+    local suf = ""
+    if var == 2 then
+        suf = "_aladar"
+    end
+    if var == 3 then
+        suf = "_peas"
+    end
+    if var == 4 and hud then
+        suf = "_beautiful"
+    end
+    if var == 5 then
+        suf = "_flashy"
+    end
+    if var == 6 then
+        suf = "_bettericons"
+    end
+    if var == 7 and hud then
+        suf = "_eternalupdate"
+    end
+    if var == 8 then
+        suf = "_duxi"
+    end
+    if var == 9 and not hud then
+        suf = "_sussy"
+    end
+    return suf
+end
+
 local modMenuName = "Restored Collection"
 -- Those functions were taken from Balance Mod, just to make things easier 
 	local BREAK_LINE = {str = "", fsize = 1, nosel = true}
@@ -114,6 +143,15 @@ local function SplitStr(inputstr, sep)
     return t
 end
 
+local function GetItemsEnum(id)
+    for enum, collectible in pairs(RestoredCollection.Enums.CollectibleType) do
+        if id == collectible then
+            return enum
+        end
+    end
+    return ""
+end
+
 local function InitDisableMenu()
     local itemTogglesMenu = {}
     local orderedItems = {}
@@ -126,10 +164,8 @@ local function InitDisableMenu()
     local itemConfig = Isaac.GetItemConfig()
     ---@type ItemConfigItem[]
     for _, collectible in pairs(RestoredCollection.Enums.CollectibleType) do
-        if collectible ~= RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE then
-            local collectibleConf = itemConfig:GetCollectible(collectible)
-            orderedItems[#orderedItems+1] = collectibleConf
-        end
+        local collectibleConf = itemConfig:GetCollectible(collectible)
+        orderedItems[#orderedItems+1] = collectibleConf
     end
     table.sort(orderedItems, function (a, b)
         return RemoveZeroWidthSpace(a.Name) < RemoveZeroWidthSpace(b.Name)
@@ -175,7 +211,7 @@ local function InitDisableMenu()
                 end
 
                 for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
-                    if disabledItem == collectible.ID then
+                    if disabledItem == GetItemsEnum(collectible.ID) then
                         return 2
                     end
                 end
@@ -190,7 +226,7 @@ local function InitDisableMenu()
                 end
                 local disabledItems = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")
                 for index, disabledItem in ipairs(disabledItems) do
-                    if disabledItem == collectible.ID then
+                    if disabledItem == GetItemsEnum(collectible.ID) then
                         if var == 1 then
                             table.remove(disabledItems, index)
                         end
@@ -199,7 +235,7 @@ local function InitDisableMenu()
                 end
 
                 if var == 2 then
-                    table.insert(disabledItems, collectible.ID)
+                    table.insert(disabledItems, GetItemsEnum(collectible.ID))
                 end
                 TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "DisabledItems", disabledItems)
             end,
@@ -234,23 +270,17 @@ local function InitImGuiMenu()
         ImGui.CreateMenu("tcMods", "TC Mods")
     end
 
-    if ImGui.ElementExists("restoredCollectionMenu") then
-        ImGui.RemoveMenu("restoredCollectionMenu")
-    end
-    
-    if ImGui.ElementExists("restoredCollectionSettings") then
-        ImGui.RemoveElement("restoredCollectionSettings")
+    if not ImGui.ElementExists("restoredCollectionMenu") then   
+        ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
     end
    
     if not ImGui.ElementExists("restoredCollectionSettingsWindow") then
         ImGui.CreateWindow("restoredCollectionSettingsWindow", "Restored Collection settings")
     end
 
-    if not ImGui.ElementExists("restoredCollectionMenu") then
-        ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
+    if not ImGui.ElementExists("restoredCollectionSettings") then
+        ImGui.AddElement("restoredCollectionMenu", "restoredCollectionSettings", ImGuiElement.MenuItem, "\u{f013} Settings")
     end
-
-    ImGui.AddElement("restoredCollectionMenu", "restoredCollectionSettings", ImGuiElement.MenuItem, "\u{f013} Settings")
 
     ImGui.LinkWindowToElement("restoredCollectionSettingsWindow", "restoredCollectionSettings")
 
@@ -264,27 +294,8 @@ local function InitImGuiMenu()
         local var = index + 1
         TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HeartStyleRender", var)
         local animfile = "gfx/ui/ui_remix_hearts"
-        if var == 2 then
-            animfile = animfile.."_aladar"
-        end
-        if var == 3 then
-            animfile = animfile.."_peas"
-        end
-        if var == 4 then
-            animfile = animfile.."_beautiful"
-        end
-        if var == 5 then
-            animfile = animfile.."_flashy"
-        end
-        if var == 6 then
-            animfile = animfile.."_bettericons"
-        end
-        if var == 7 then
-            animfile = animfile.."_eternalupdate"
-        end
-        if var == 8 then
-            animfile = animfile.."_duxi"
-        end
+        
+            animfile = animfile..HeartGfxSuffix(var, true)
         
         for _, heart in pairs({"HEART_IMMORTAL", "HEART_SUN"}) do
             if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
@@ -362,7 +373,7 @@ local function InitImGuiMenu()
 
     ImGui.LinkWindowToElement("restoredCollectionItemsBlacklistWindow", "restoredCollectionItemsBlacklistSettings")
 
-    ImGui.SetWindowSize("restoredCollectionItemsBlacklistWindow", 350, 700)
+    ImGui.SetWindowSize("restoredCollectionItemsBlacklistWindow", 350, 600)
 
     local orderedItems = {}
 
@@ -396,7 +407,7 @@ local function InitImGuiMenu()
                 end
                 local disabledItems = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")
                 for indexItem, disabledItem in ipairs(disabledItems) do
-                    if disabledItem == collectible.ID then
+                    if disabledItem == GetItemsEnum(collectible.ID) then
                         if val then
                             table.remove(disabledItems, indexItem)
                         end
@@ -405,7 +416,7 @@ local function InitImGuiMenu()
                 end
                 
                 if not val then
-                    table.insert(disabledItems, collectible.ID)
+                    table.insert(disabledItems, GetItemsEnum(collectible.ID))
                 end
                 TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "DisabledItems", disabledItems)
                 TSIL.SaveManager.SaveToDisk()
@@ -417,20 +428,16 @@ local function InitImGuiMenu()
         ImGui.AddCallback(elemName, ImGuiCallback.Render, function()
             local val = true
             for indexItem, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
-                if disabledItem == collectible.ID then
+                if disabledItem == GetItemsEnum(collectible.ID) then
                     val = false
                     break
                 end
             end
-            ImGui.UpdateData(elemName, ImGuiData.Value, val)
+            ImGui.UpdateData(elemName, ImGuiData.Value, val and 0 or 1)
         end)
     end
 end
 
--- Creating a menu like any other DSS menu is a simple process.
--- You need a "Directory", which defines all of the pages ("items") that can be accessed on your menu, and a "DirectoryKey", which defines the state of the menu.
-local itemSprite = Sprite()
-itemSprite:Load("gfx/ui/dss_item.anm2", false)
 
 -- Creating a menu like any other DSS menu is a simple process.
 -- You need a "Directory", which defines all of the pages ("items") that can be accessed on your menu, and a "DirectoryKey", which defines the state of the menu.
@@ -509,28 +516,7 @@ local restoreditemsdirectory = {
                 -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
                 store = function(var)
                     TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HeartStyleRender", var)
-                    local animfile = "gfx/ui/ui_remix_hearts"
-                    if var == 2 then
-                        animfile = animfile.."_aladar"
-                    end
-                    if var == 3 then
-                        animfile = animfile.."_peas"
-                    end
-                    if var == 4 then
-                        animfile = animfile.."_beautiful"
-                    end
-                    if var == 5 then
-                        animfile = animfile.."_flashy"
-                    end
-                    if var == 6 then
-                        animfile = animfile.."_bettericons"
-                    end
-                    if var == 7 then
-                        animfile = animfile.."_eternalupdate"
-                    end
-                    if var == 8 then
-                        animfile = animfile.."_duxi"
-                    end
+                    local animfile = "gfx/ui/ui_remix_hearts"..HeartGfxSuffix(var, true)
                     
                     for _, heart in pairs({"HEART_IMMORTAL", "HEART_SUN"}) do
                         if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
@@ -806,5 +792,6 @@ if REPENTOGON then
     InitImGuiMenu()
 end
 
+include("lua.core.dss.changelog")
 -- There are a lot more features that DSS supports not covered here, like sprite insertion and scroller menus, that you'll have to look at other mods for reference to use.
 -- But, this should be everything you need to create a simple menu for configuration or other simple use cases!

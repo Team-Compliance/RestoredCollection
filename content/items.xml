@@ -16,12 +16,12 @@
     <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
     <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="2" cache="firedelay" tags="summonable offensive"/>
 	<!-- Active Items -->
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" hidden="true"/>
-	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" shopprice="10" chargetype="special" tags="offensive" />
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" tags="offensive" />
 	<active id="15" name="Book of Despair" description="Temporary tears up" gfx="collectibles_016_book_of_despair.png" maxcharges="3" quality="3" cache="firedelay" tags="book offensive lazarussharedglobal" />
 	<active	id="16" name="Bowl of Tears" description="Splash!" gfx="collectibles_017_bowl_of_tears.png" maxcharges="6" chargetype="special" quality="4" tags="offensive"/>
 	
@@ -30,7 +30,7 @@
 	<active id="19" name="​Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="4" shopprice="10" chargetype="normal" quality="3"/>
 	
 	<passive id="20" name="​Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="2" cache="firedelay" tags="offensive summonable" />
-	<passive id="21" name="Melted Candle" description="Tears up" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable" hidden="true"/>
+	<passive id="21" name="Melted Candle" description="Tears up + Wax is melting" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable"/>
 
 	<!-- Trinkets -->
 	<trinket id="0" name="​Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />

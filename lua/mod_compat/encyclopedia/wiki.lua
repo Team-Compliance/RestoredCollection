@@ -95,7 +95,7 @@ local Wiki = {
 	BookOfDespair = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Halves tear delay for the current room."},
+			{str = "Halves tear delay for the current room. Each use in the same room effect is weaker."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -669,6 +669,38 @@ local Wiki = {
 			{ str = "Coded by BrakeDude!" },
 			{ str = "Spritework by Firework!" },
 			{ str = "Translations by BrakeDude (Russian), Kotry and XxX_Lucia_2007_XxX (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!"},
+		},
+	},
+	MeltedCandle = {
+		{ -- Effect
+			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
+			{ str = "+0.5 Tears up." },
+			{ str = "Double red hearts appear more often." },
+			{ str = "When shooting:" },
+			{ str = "- has a chance to make candle's flame bigger;" },
+			{ str = "-- big flame gives additional +1.5 Tears up;" },
+			{ str = "-- after stoping shooting or after 5 seconds of shooting flame becomes small;" },
+			{ str = "- aura appears, that burns enemies in it;"},
+			{ str = "-- aura's size depends on flame's size and player's size;"},
+			{ str = "- has a chance to fire a wax tear;" },
+			{ str = "-- wax tear can be shot only when candle's flame is small;" },
+			{ str = "-- wax tear slows and burns enemies on impact;" },
+			{ str = "-- enemies have a chance to drop heart or coin on death to wax tear." },
+		},
+		{ -- Trivia
+				{ str = "Melted Candle was an unused idea from Antibirth, it only existed in concept art and as a sprite on P.E.N.I.S. team's website with spritesheet of Antibirth items." },
+				{ str = "Melted Candle was supposed to work like Tammy's Tail from the Binding of Isaac: Community Remix." },
+		},
+		{ -- Mod Compatibility
+			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
+			{ str = "EID - Shows a description for the item." },
+			{ str = "Encyclopedia - Shows a more detailed description for the item." },
+		},
+		{ -- Credits
+			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
+			{ str = "Coded by BrakeDude!" },
+			{ str = "Spritework by Firework!" },
+			{ str = "Translation by BrakeDude (Russian)!"},
 		},
 	},
 }

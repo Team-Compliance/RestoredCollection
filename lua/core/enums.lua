@@ -3,6 +3,18 @@ local Enums = {}
 Enums.MouseClick = {LEFT = 0, RIGHT = 1, WHEEL = 2, BACK = 3, FORWARD = 4}
 
 Enums.Entities = {
+					IMMORTAL_HEART_CHARGE = 
+					{
+						Type = Isaac.GetEntityTypeByName("Immortal Heart Charge"),
+						Variant = Isaac.GetEntityVariantByName("Immortal Heart Charge"),
+						SubType = 0
+					},
+					IMMORTAL_HEART_BREAK = 
+					{
+						Type = Isaac.GetEntityTypeByName("Immortal Heart Break"),
+						Variant = Isaac.GetEntityVariantByName("Immortal Heart Break"),
+						SubType = 0
+					},
 					BLANK_EXPLOSION_EFFECT =
 					{
 						Type = Isaac.GetEntityTypeByName("Blank Explosion"),
@@ -48,11 +60,6 @@ Enums.Entities = {
 						Variant = 10,
 						SubType = 231
 					},
-					VOODOO_PIN_TEAR = {
-						Type = Isaac.GetEntityTypeByName("Voodoo Pin Tear"),
-						Variant = Isaac.GetEntityVariantByName("Voodoo Pin Tear"),
-						SubType = 0
-					},
 					VOODOO_PIN_SHATTER = {
 						Type = Isaac.GetEntityTypeByName("Voodoo Pin Shatter"),
 						Variant = Isaac.GetEntityVariantByName("Voodoo Pin Shatter"),
@@ -77,7 +84,17 @@ Enums.Entities = {
 						Type = Isaac.GetEntityTypeByName("Wax Tear Effect"),
 						Variant = Isaac.GetEntityVariantByName("Wax Tear Effect"),
 						SubType = 0,
-					}
+					},
+					WAX_FIRE_EFFECT = {
+						Type = Isaac.GetEntityTypeByName("Wax Fire Effect"),
+						Variant = Isaac.GetEntityVariantByName("Wax Fire Effect"),
+						SubType = 0,
+					},
+					PUMPKIN_SEED_SHATTER = {
+						Type = Isaac.GetEntityTypeByName("Pumpkin Seed Poof"),
+						Variant = Isaac.GetEntityVariantByName("Pumpkin Seed Poof"),
+						SubType = 0,
+					},
 				}
 
 Enums.Familiars = 
@@ -118,6 +135,11 @@ Enums.BombVariant = {
 	BOMB_DICE = Isaac.GetEntityVariantByName("Dice Bomb"),
 	BOMB_BLANK = Isaac.GetEntityVariantByName("Blank Bomb"),
 	BOMB_THUNDER = Isaac.GetEntityVariantByName("Thunder Bomb"),
+}
+
+Enums.TearVariant = {
+	PUMPKIN_SEED = Isaac.GetEntityVariantByName("Pumpkin Seed Tear"),
+	VOODOO_PIN = Isaac.GetEntityVariantByName("Voodoo Pin Tear"),
 }
 
 Enums.CollectibleType = 

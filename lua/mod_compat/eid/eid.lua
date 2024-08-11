@@ -84,15 +84,15 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOM
     "{{Bomb}} +5 Bombs#爆炸将重置爆炸范围内的基座物品#持有某些骰子物品将添加额外效果", "骰子炸弹", "zh_cn")
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use", "Book of Despair", "en_us")
+    "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use in the same room", "Book of Despair", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} Lágrimas +100% al usarlo# ↓ El efecto es menos efectivo cuanto más se use",
+    "↑ {{Tears}} Lágrimas +100% al usarlo# ↓ El efecto es menos efectivo con cada uso en la misma habitación",
     "El Libro de la Desesperación", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% к скорострельности при использовании# ↓ Эффект менее эффективен при каждом использовании",
+    "↑ {{Tears}} +100% к скорострельности при использовании# ↓ Эффект менее эффективен при каждом использовании в той же комнате",
     "Книга отчаяния", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Lágrimas quando usado ↓ Efeito é menos efetivo com cada uso", "Livro do Desespero", "pt_br")
+    "↑ {{Tears}} +100% Lágrimas quando usado ↓ O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
     "↑ {{Tears}} +100% 射速# ↓ 在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "12") -- Bookworm
@@ -398,9 +398,14 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
     "快速不准确地发射种子#种子在射击方向的30°范围内发射", "南瓜面具", "zh_cn")
 
 --Melted Candle
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Lights a candle fire when shooting#↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit when shooting#10% light a large fire when a small fire is lit#When a small fire is lit 30% chance to shoot a wax tear that slows down and sets enemies on fire#After 5 seconds without shooting the candle fire diminishes")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Зажигает огонь всечи при стрельбе#↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажигается при стрельбе#10% зажечь большой огонь при заженном меленьком огне#При заженном мелком огне 30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#Не стреляя 5 секунд огонь свечи уменьшается", "Расплавленная свеча", "ru")
---EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, "Prende una llama en una vela cuando disparas#↑ Lágrimas hacia arriba +0.5 cuando un fuego pequeño es encendido#↑ Lágrimas arriba +1.5 cuando un fuego grande es encendido#10% de encender un fuego grande cuando un fuego pequeño es encendido#Cuando un fuego pequeño es encendido, 30% de disparar una lágrima de cera que ralentiza y prende fuego a enemigos#Después de 5 segundos sin disparar, el fuego de la vela disminuye", "Vela derretida", "spa")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
+"↑ +0.5 tears up when a small fire is lit#↑ +1.5 tears up when a large fire is lit#A small fire is always lit#10% light a large fire when a small fire is lit#30% chance to shoot a wax tear that slows down and sets enemies on fire#{{Luck}} 70% maximum chance at 28 luck#Wax tear can be shot only with small flame#After 5 seconds of shooting or stopping shooting with large fire, it diminishes#Increases chance for {{Heart}} doulbe red hearts to spawn")
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
+"↑ +0.5 к скорострельности при заженном маленьком огне#↑ +1.5 к скорострельности при заженном большом огне#Маленький огонь всегда зажжён#10% зажечь большой огонь при заженном меленьком огне#30% шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#{{Luck}} 70% максимум шанс при 28 удачи#Стрелять восковой слезой можно только при маленьком огне#После 5 секунд стерльбы или перестав стрелять большой огонь свечи уменьшается#Увеличивает шанс появления {{Heart}} двойных красных сердец",
+"Расплавленная свеча", "ru")
+--[[EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
+"↑ Lágrimas hacia arriba +0.5 cuando un fuego pequeño es encendido#↑ Lágrimas arriba +1.5 cuando un fuego grande es encendido#10% de encender un fuego grande cuando un fuego pequeño es encendido#Cuando un fuego pequeño es encendido, 30% de disparar una lágrima de cera que ralentiza y prende fuego a enemigos#Después de 5 segundos sin disparar, el fuego de la vela disminuye", 
+"Vela derretida", "spa")]]
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,

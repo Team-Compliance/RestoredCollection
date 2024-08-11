@@ -252,6 +252,11 @@ Encyclopedia.AddItem({
 	Class = "Compliance",
 	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
 	WikiDesc = Wiki.OlLopper,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	}
 })
 
 Encyclopedia.AddItem({
@@ -259,6 +264,18 @@ Encyclopedia.AddItem({
 	Class = "Compliance",
 	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
 	WikiDesc = Wiki.PumpkinMask,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+		Encyclopedia.ItemPools.POOL_ROTTEN_BEGGAR,
+	}
+})
+
+Encyclopedia.AddItem({
+	ModName = "Compliance",
+	Class = "Compliance",
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
+	WikiDesc = Wiki.MeltedCandle,
 })
 
 Encyclopedia.AddTrinket({

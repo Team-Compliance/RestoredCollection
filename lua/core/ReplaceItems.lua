@@ -1,5 +1,5 @@
 local ReplaceTable = {}
-local Helpers = require("lua.helpers.Helpers")
+local Helpers = RestoredCollection.Helpers
 
 local function AddReplacableItems(old, new)
     if old and old > 0 and new and new > 0 then

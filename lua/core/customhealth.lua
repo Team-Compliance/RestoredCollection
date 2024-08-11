@@ -1,5 +1,5 @@
 local sfx = SFXManager()
-local Helpers = require("lua.helpers.Helpers")
+local Helpers = RestoredCollection.Helpers
 
 if CustomHealthAPI and CustomHealthAPI.Library and CustomHealthAPI.Library.UnregisterCallbacks then
     CustomHealthAPI.Library.UnregisterCallbacks("RestoredCollection")
@@ -63,6 +63,36 @@ CustomHealthAPI.Library.RegisterSoulHealth(
     }
 )
 
+local function HeartGfxSuffix(var, hud)
+    local suf = ""
+    if var == 2 then
+        suf = "_aladar"
+    end
+    if var == 3 then
+        suf = "_peas"
+    end
+    if var == 4 and hud then
+        suf = "_beautiful"
+    end
+    if var == 5 then
+        suf = "_flashy"
+    end
+    if var == 6 then
+        suf = "_bettericons"
+    end
+    if var == 7 and hud then
+        suf = "_eternalupdate"
+    end
+    if var == 8 then
+        suf = "_duxi"
+    end
+    if var == 9 and not hud then
+        suf = "_sussy"
+    end
+    return suf
+end
+
+
 local function SpriteChange(_, entity)
 	if entity.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_SUN
 	or entity.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION
@@ -70,25 +100,7 @@ local function SpriteChange(_, entity)
 		local sprite = entity:GetSprite()
 		local spritename = "gfx/items/pick ups/pickup_001_remix_heart"
 		local style = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender")
-		if style == 2 then
-			spritename = spritename.."_aladar"
-		end
-		if style == 3 then
-			spritename = spritename.."_peas"
-		end
-		if style == 5 then
-			spritename = spritename.."_flashy"
-		end
-		if style == 6 then
-			spritename = spritename.."_bettericons"
-		end
-		if style == 8 then
-			spritename = spritename.."_duxi"
-		end
-		if style == 9 then
-			spritename = spritename.."_sussy" 
-		end
-		spritename = spritename..".png"
+		spritename = spritename..HeartGfxSuffix(style)..".png"
 		
 		sprite:ReplaceSpritesheet(0,spritename)
 		sprite:LoadGraphics()
@@ -108,7 +120,7 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
     if key == "HEART_IMMORTAL" then
 		if wasDepleted then
 			sfx:Play(RestoredCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
-			local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, 904, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
+			local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_BREAK.Variant, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
 			shatterSPR.PlaybackSpeed = 2
 		else
 			player:GetData().ImmortalHeartDamage = true
@@ -126,28 +138,7 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 	local data = Helpers.GetEntityData(player)
 	if data.IsIllusion and not player:IsDead() then
 		local var = TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender")
-		local animfile = "gfx/ui/ui_remix_hearts"
-		if var == 2 then
-			animfile = animfile.."_aladar"
-		end
-		if var == 3 then
-			animfile = animfile.."_peas"
-		end
-		if var == 4 then
-			animfile = animfile.."_beautiful"
-		end
-		if var == 5 then
-			animfile = animfile.."_flashy"
-		end
-		if var == 6 then
-			animfile = animfile.."_bettericons"
-		end
-		if var == 7 then
-			animfile = animfile.."_eternalupdate"
-		end
-		if var == 8 then
-			animfile = animfile.."_duxi"
-		end
+		local animfile = "gfx/ui/ui_remix_hearts"..HeartGfxSuffix(var, true)
 		return {AnimationName = "IllusionHeartFull", AnimationFilename = animfile..".anm2"}
 	end
 end)
@@ -158,7 +149,7 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 		if player then
 			if  ComplianceImmortal.GetImmortalHeartsNum(player) % 2 == 0 then
 				sfx:Play(RestoredCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
-				local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, 904, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
+				local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_BREAK.Variant, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
 				shatterSPR.PlaybackSpeed = 2
 			end
 			local clot
@@ -172,7 +163,7 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 			if clot ~= nil and clot.InitSeed ~= familiar.InitSeed then
 				local clotData = clot:GetData()
 				clotData.TC_HP = clotData.TC_HP + 1
-				local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, 903, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
+				local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_CHARGE.Variant, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
 				ImmortalEffect:GetSprite().Offset = Vector(0, -10)
 				familiar:Remove()
 			end

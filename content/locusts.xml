@@ -36,7 +36,9 @@
 	<!-- Lucky Seven -->
 	<locust id="9" tearFlags="74" color="fly_yellow" />
 	<!-- Pacifist -->
-	<locust id="10" tearflags="13" color="fly_pac" />
+	<locust id="10" tearFlags="13" color="fly_pac" />
 	<!-- Voodoo Pin -->
 	<locust id="19" color="fly_black" />
+	<!-- Melted Candle -->
+	<locust id="21" color="fly_white" tearFlags2="22" procChance="0.4"/>
 </locusts>

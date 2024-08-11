@@ -1,17 +1,25 @@
 
-RestoredCollection = RegisterMod("Restored Items Collection", 1)
-
---Functions that will be called when starting run
-RestoredCollection.CallOnStart = {}
+RestoredCollection = RegisterMod("Restored Collection", 1)
 
 local LOCAL_TSIL = require("lua.extraLibs.loi.TSIL")
 LOCAL_TSIL.Init("lua.extraLibs.loi")
 local HiddenItemManager = include("lua.extraLibs.hidden_item_manager")
 RestoredCollection.HiddenItemManager = HiddenItemManager:Init(RestoredCollection)
 
-include("lua.extraLibs.customhealthapi.core")
-include("lua.extraLibs.custom_shockwave_api")
-include("lua.extraLibs.custom_bomb_flags")
+include("lua.helpers.Helpers")
+include("lua.extraLibs.hellfirejuneMSHack")
+
+--apis
+include("lua.extraLibs.APIs.customhealthapi.core")
+include("lua.extraLibs.APIs.custom_shockwave_api")
+include("lua.extraLibs.APIs.custom_bomb_flags")
+include("lua.extraLibs.APIs.ImmortalAPI")
+include("lua.extraLibs.APIs.SunAPI")
+include("lua.extraLibs.APIs.IllusionAPI")
+include("lua.extraLibs.APIs.PillCrusherAPI")
+include("lua.extraLibs.APIs.LunchBoxAPI")
+include("lua.extraLibs.APIs.DiceBombsAPI")
+
 --core
 include("lua.core.enums")
 include("lua.core.globals")
@@ -20,47 +28,47 @@ include("lua.core.customhealth")
 include("lua.core.dss.deadseascrolls")
 include("lua.core.BlockDisabledItems")
 include("lua.core.ReplaceItems")
-include("lua.helpers.VanillaPostTriggerWeaponFired")
+include("lua.core.VanillaPostTriggerWeaponFired")
 
 --entities
-include("lua.entities.clots.ImmortalClot")
-include("lua.entities.clots.SunClot")
+include("lua.entities.clots.ImmortalClot.main")
+include("lua.entities.clots.SunClot.main")
 
 --items
 --active
-include("lua.items.active.LunchBox")
-include("lua.items.active.BookOfDespair")
-include("lua.items.active.BowlOfTears")
-include("lua.items.active.BookOfIllusions")
-include("lua.items.active.PillCrusher")
-include("lua.items.active.VoodooPin")
+include("lua.items.active.LunchBox.main")
+include("lua.items.active.BookOfDespair.main")
+include("lua.items.active.BowlOfTears.main")
+include("lua.items.active.BookOfIllusions.main")
+include("lua.items.active.PillCrusher.main")
+include("lua.items.active.VoodooPin.main")
 
 --passive
-include("lua.items.passive.BlankBombs")
-include("lua.items.passive.StoneBombs")
-include("lua.items.passive.CheckedMate")
-include("lua.items.passive.DiceBombs")
-include("lua.items.passive.DonkeyJawbone")
-include("lua.items.passive.Menorah")
+include("lua.items.passive.BlankBombs.main")
+include("lua.items.passive.StoneBombs.main")
+include("lua.items.passive.CheckedMate.main")
+include("lua.items.passive.DiceBombs.main")
+include("lua.items.passive.DonkeyJawbone.main")
+include("lua.items.passive.Menorah.main")
 
-include("lua.items.passive.AncientRevelation")
-include("lua.items.passive.BethsHeart")
-include("lua.items.passive.KeepersRope")
-include("lua.items.passive.LuckySeven")
-include("lua.items.passive.Pacifist")
-include("lua.items.passive.SafetyBombs")
-include("lua.items.passive.OlLopper")
-include("lua.items.passive.MaxsHead")
-include("lua.items.passive.PumpkinMask")
---include("lua.items.passive.MeltedCandle")
+include("lua.items.passive.AncientRevelation.main")
+include("lua.items.passive.BethsHeart.main")
+include("lua.items.passive.KeepersRope.main")
+include("lua.items.passive.LuckySeven.main")
+include("lua.items.passive.Pacifist.main")
+include("lua.items.passive.SafetyBombs.main")
+include("lua.items.passive.OlLopper.main")
+include("lua.items.passive.MaxsHead.main")
+include("lua.items.passive.PumpkinMask.main")
+include("lua.items.passive.MeltedCandle.main")
 
 --trinkets
-include("lua.items.trinkets.GameSquid")
+include("lua.items.trinkets.GameSquid.main")
 
 -- pickups
-include("lua.items.pickups.ImmortalHeart")
-include("lua.items.pickups.SunHeart")
-include("lua.items.pickups.IllusionHearts")
+include("lua.items.pickups.ImmortalHeart.main")
+include("lua.items.pickups.SunHeart.main")
+include("lua.items.pickups.IllusionHearts.main")
 
 --mod compatibility
 include("lua.mod_compat.eid.eid")

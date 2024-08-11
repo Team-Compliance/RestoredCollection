@@ -1,4 +1,4 @@
-local Helpers = require("lua.helpers.Helpers")
+local Helpers = RestoredCollection.Helpers
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "PlayerData", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "FamiliarData", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HasMorphedKeepersRope", false, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
@@ -23,10 +23,3 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
         Helpers.GetData(bomb).BombInit = true
     end
 end)
-
-DiceBombs = {}
-LunchBox = {}
-IllusionMod = {}
-ComplianceSun = {}
-ComplianceImmortal = {}
-PillCrusher = {}

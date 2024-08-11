@@ -7,7 +7,7 @@ function BlockDisabledItems:OnGameStart(isContinue)
     local itemPool = Game():GetItemPool()
 
     for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
-        itemPool:RemoveCollectible(disabledItem)
+        itemPool:RemoveCollectible(RestoredCollection.Enums.CollectibleType[disabledItem])
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, BlockDisabledItems.OnGameStart)
@@ -21,7 +21,7 @@ function BlockDisabledItems:PostGetCollectible(selectedItem, poolType, decrease,
     local isDisabledItem = false
 
     for _, disabledItem in ipairs(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "DisabledItems")) do
-        if selectedItem == disabledItem then
+        if selectedItem == RestoredCollection.Enums.CollectibleType[disabledItem] then
             isDisabledItem = true
             break
         end
