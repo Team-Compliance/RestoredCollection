@@ -276,6 +276,10 @@ Encyclopedia.AddItem({
 	Class = "Compliance",
 	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
 	WikiDesc = Wiki.MeltedCandle,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	}
 })
 
 Encyclopedia.AddTrinket({
