@@ -38,7 +38,6 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		Encyclopedia.ItemPools.POOL_BABY_SHOP,
 	},
