@@ -46,7 +46,6 @@
 		<Item Name="Book of Illusions" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>
 	</Pool>
 	<Pool Name="goldenChest">
-		<Item Name="Checked Mate" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="​Max's Head" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedTreasure">
