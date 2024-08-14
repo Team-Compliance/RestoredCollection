@@ -357,7 +357,7 @@ end
 
 --Max's Head
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 tears up#Every 4th tear is shot faster", "Max's Head")
+    "↑ {{Tears}} +1.50 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
     "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает быстрее", "Голова Макса", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
@@ -399,7 +399,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
 
 --Melted Candle
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
-"↑ {{Tears}} +0.5 tears up#↑ {{Heart}}{{Heart}} Increases chance for doulbe red hearts to spawn#When shooting:#\7 30% ({{Luck}} 70% maximum at 28 luck) chance to shoot a wax tear that slows down and sets enemies on fire#{{Blank}} \7 Wax tear can be shot only with small flame#{{Blank}} \7 Enemies can drop {{Coin}} coin or {{Heart}} heart on death if last hit was with wax tear#\7 10% chance to make flame bigger#{{Blank}} \7 Big flame gives additional ↑ {{Tears}} +1.5 tears up. After 5 seconds of shooting or stopping shooting with big flame, it diminishes#Creates red aura that burns enemies inside of it. Aura's size depends on Isaac's size and what candle's flame is lit at the moment")
+"↑ {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#Enemies killed by wax tears sometimes drop pickups#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
 "↑ {{Tears}} +0.5 к скорострельности#↑ {{Heart}}{{Heart}} Увеличивает шанс появления двойных красных сердец#При стрельбе:#\7 30% (70% максимум при {{Luck}} 28 удачи) шанс выстрелить восковой слезой, которая замедляет и поджигает врагов#{{Blank}} \7 Стрелять восковой слезой можно только при маленьком огне#{{Blank}} \7 При смерти из врагов можут выпасть {{Coin}} монета или {{Heart}} сердце, если последний удар был нанесен восковой слезой#\7 10% зажечь огонь побольше#{{Blank}} \7 Большой огонь дает дополнительные ↑ {{Tears}} +1.5 к скорострельности. После 5 секунд стерльбы или перестав стрелять большой огонь свечи уменьшается#Создает красную ауру, которая поджигает врагов внутри неё. Размер ауры зависит от размера Исаака и какой огонь свечи горит в данный момент",
 "Расплавленная свеча", "ru")

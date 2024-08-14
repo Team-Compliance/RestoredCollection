@@ -12,9 +12,9 @@
     <passive id="8" name="Keeper's Rope" description="Beat the money out of them" gfx="collectibles_009_keepers_rope.png" achievement="251" cache="flying luck" quality="3" tags="summonable offensive" />
     <passive id="9" name="Lucky Seven" description="Fortune favors the bold" gfx="collectibles_010_lucky_seven.png" quality="2" cache="luck" tags="summonable offensive"/>
     <passive id="10" name="Pacifist" description="Make love, not war" gfx="collectibles_011_pacifist.png" quality="2" tags="summonable offensive nocantrip nogreed lazarusshared" />
-	<passive id="11" name="Safety Bombs" description="For your own good" gfx="collectibles_012_safety_bombs.png" bombs="7" quality="0" tags="summonable offensive"/>
+	<passive id="11" name="Safety Bombs" description="For your own good" gfx="collectibles_012_safety_bombs.png" bombs="7" quality="0" tags="summonable"/>
     <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
-    <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="2" cache="firedelay" tags="summonable offensive"/>
+    <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="3" cache="firedelay" tags="summonable offensive"/>
 	<!-- Active Items -->
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
@@ -26,11 +26,11 @@
 	<active	id="16" name="Bowl of Tears" description="Splash!" gfx="collectibles_017_bowl_of_tears.png" maxcharges="6" chargetype="special" quality="4" tags="offensive"/>
 	
 	<active id="17" name="Book of Illusions" description="Army of you" gfx="collectibles_018_book_of_illusions.png" maxcharges="12" quality="4" tags="book offensive" />
-	<active id="18" name="Pill Crusher" description="Pill dealer" gfx="collectibles_019_pill_crusher.png" quality="1" shopprice="10" tags="offensive nocantrip" />
+	<active id="18" name="Pill Crusher" description="Drug dealer" gfx="collectibles_019_pill_crusher.png" quality="1" shopprice="10" tags="offensive nocantrip" />
 	<active id="19" name="​Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="4" shopprice="10" chargetype="normal" quality="3"/>
 	
 	<passive id="20" name="​Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="2" cache="firedelay" tags="offensive summonable" />
-	<passive id="21" name="Melted Candle" description="Tears up + Wax is melting" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable"/>
+	<passive id="21" name="Melted Candle" description="Tears up + wavering heat" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable"/>
 
 	<!-- Trinkets -->
 	<trinket id="0" name="​Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />
