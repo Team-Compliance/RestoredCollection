@@ -42,11 +42,11 @@ function MaxsHead:InitHeadEffect(effect)
     sprite:LoadGraphics()
     data.TimeToLive = 90
 end
--- RestoredCollection:AddCallback(
---     ModCallbacks.MC_POST_EFFECT_INIT,
---     MaxsHead.InitHeadEffect,
---     RestoredCollection.Enums.Entities.MAXS_HEAD.Variant
--- )
+RestoredCollection:AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
+    MaxsHead.InitHeadEffect,
+    RestoredCollection.Enums.Entities.MAXS_HEAD.Variant
+)
 
 ---@param effect EntityEffect
 function MaxsHead:UpdateHeadEffect(effect)
@@ -67,11 +67,11 @@ function MaxsHead:UpdateHeadEffect(effect)
         effect:Remove()
     end
 end
--- RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, MaxsHead.UpdateHeadEffect, RestoredCollection.Enums.Entities.MAXS_HEAD.Variant)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, MaxsHead.UpdateHeadEffect, RestoredCollection.Enums.Entities.MAXS_HEAD.Variant)
 
 ---@param player EntityPlayer
 local function SpanwMaxHead(player)
-    if TSIL.Random.GetRandomInt(0, 100) <= 15 then
+    if TSIL.Random.GetRandomInt(0, 100) <= 15 and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MaxsHead") > 1 then
         local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.MAXS_HEAD.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
         ---@cast eff EntityEffect
         eff:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
@@ -95,7 +95,7 @@ if REPENTOGON then
             if numTears >= MaxsHead.NUM_TEARS_PROC then
                 data.NumTears = 1
                 player.FireDelay = Helpers.Round(player.FireDelay * MaxsHead.FIRE_RATE_MULT, 2)
-                -- SpanwMaxHead(player)
+                SpanwMaxHead(player)
             else
                 data.NumTears = numTears + 1
             end
@@ -118,7 +118,7 @@ else
             if numTears >= MaxsHead.NUM_TEARS_PROC then
                 data.NumTears = 1
                 player.FireDelay = Helpers.Round(currentFireDelay * MaxsHead.FIRE_RATE_MULT, 2)
-                -- SpanwMaxHead(player)
+                SpanwMaxHead(player)
             else
                 data.NumTears = numTears + 1
             end

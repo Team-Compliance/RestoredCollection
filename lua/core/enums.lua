@@ -75,11 +75,11 @@ Enums.Entities = {
 						Variant = Isaac.GetEntityVariantByName("Ol Lopper Neck"),
 						SubType = 0
 					},
-					-- MAXS_HEAD = {
-					-- 	Type = Isaac.GetEntityTypeByName("Max's Face"),
-					-- 	Variant = Isaac.GetEntityVariantByName("Max's Face"),
-					-- 	SubType = 0,
-					-- },
+					MAXS_HEAD = {
+					 	Type = Isaac.GetEntityTypeByName("Max's Face"),
+					 	Variant = Isaac.GetEntityVariantByName("Max's Face"),
+					 	SubType = 0,
+					},
 					WAX_TEAR_EFFECT = {
 						Type = Isaac.GetEntityTypeByName("Wax Tear Effect"),
 						Variant = Isaac.GetEntityVariantByName("Wax Tear Effect"),

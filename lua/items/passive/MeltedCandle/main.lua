@@ -2,6 +2,7 @@ local MeltedCandle = {}
 local Helpers = RestoredCollection.Helpers
 MeltedCandle.ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE
 MeltedCandle.FIRE_DELAY = 0.5
+MeltedCandle.BIG_FIRE_DELAY = 1.5
 MeltedCandle.CostumeID = Isaac.GetCostumeIdByPath("gfx/characters/costume_meltedcandle2.anm2")
 
 local function InitCandleTears(player)
@@ -50,9 +51,9 @@ function MeltedCandle:Cache(player, cache)
     InitCandleTears(player)
     local data = Helpers.GetData(player)
     player:AddNullCostume(MeltedCandle.CostumeID)
-    local mul = 0.5
+    local mul = MeltedCandle.FIRE_DELAY
     if data.NumCandleTears > 0 then
-        mul = mul + 1.5
+        mul = mul + MeltedCandle.BIG_FIRE_DELAY
     end
     player.MaxFireDelay = Helpers.tearsUp(player.MaxFireDelay, mul)
     local candle = data.NumCandleTears > 0 and 2 or 1
@@ -123,7 +124,7 @@ function MeltedCandle:TearInit(tear)
     if player then
         if player:HasCollectible(MeltedCandle.ID) then
             local data = Helpers.GetData(tear)
-            if Helpers.GetData(player).NumCandleTears == 0 and TSIL.Random.GetRandomInt(0, 100) <= math.max(30, 30 + player.Luck * 2.5) then
+            if Helpers.GetData(player).NumCandleTears == 0 and TSIL.Random.GetRandomInt(0, 100) <= math.min(70, math.max(30, 30 + player.Luck * 2.5)) then
                 data.IsWaxTear = true
             end
         end
@@ -144,7 +145,7 @@ function MeltedCandle:TearCollide(tear, collider)
             if not collider:HasEntityFlags(EntityFlag.FLAG_SLOW) then
                 collider:AddSlowing(EntityRef(tear.SpawnerEntity), 60, 1.4, Color(2, 2, 2, 1, 0.196, 0.196, 0.196))
             end
-            if TSIL.Random.GetRandomInt(0, 100) <= 20 then
+            if TSIL.Random.GetRandomInt(0, 100, collider:GetDropRNG()) <= 20 then
                 local flags = TSIL.Random.GetRandomElementFromWeightedList(collider:GetDropRNG() , {{chance = 0.25, value = TearFlags.TEAR_HP_DROP}, {chance = 0.75, value = TearFlags.TEAR_COIN_DROP_DEATH}})
                 tear:AddTearFlags(flags)
             end

@@ -547,7 +547,7 @@ local Wiki = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
 			{ str = "+1.5 Fire Rate up." },
-			{ str = "Every 4th shot is fired a bit faster." },
+			{ str = "Every 4th shot is fired with a low fire delay." },
 		},
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
@@ -699,7 +699,7 @@ local Wiki = {
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by BrakeDude!" },
-			{ str = "Spritework by Firework!" },
+			{ str = "Spritework by Firework and Yarik the Human!" },
 			{ str = "Translation by BrakeDude (Russian)!"},
 		},
 	},

@@ -1,5 +1,15 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
+
+- DSS/ImGui option to disable Max's Head
+emojis (disabled by default)
+
+{{FSIZE2}}updated
+
+- melted candle item sprites]],
+{"restored", "collection", "", "v1.14", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.13",[[{{FSIZE2}}added
 
 - melted candle

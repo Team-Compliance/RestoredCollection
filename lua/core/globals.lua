@@ -17,6 +17,7 @@ TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "SunHeartSpawnChance"
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "DisabledItems", {}, TSIL.Enums.VariablePersistenceMode.NONE, true)
+TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "MaxsHead", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
     for _, bomb in ipairs(Isaac.FindByType(EntityType.ENTITY_BOMB)) do

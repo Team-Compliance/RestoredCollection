@@ -284,7 +284,7 @@ local function InitImGuiMenu()
 
     ImGui.LinkWindowToElement("restoredCollectionSettingsWindow", "restoredCollectionSettings")
 
-    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 325)
+    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 375)
 
     if ImGui.ElementExists("restoredCollectionSettingsHeartsStyle") then
         ImGui.RemoveElement("restoredCollectionSettingsHeartsStyle")
@@ -351,6 +351,17 @@ local function InitImGuiMenu()
         TSIL.SaveManager.SaveToDisk()
     end, false)
 
+    if ImGui.ElementExists("restoredCollectionSettingsMaxsHeads") then
+        ImGui.RemoveElement("restoredCollectionSettingsMaxsHeads")
+    end
+
+    ImGui.AddCheckbox("restoredCollectionSettingsWindow", "restoredCollectionSettingsMaxsHeads", "Max's Head Emoji", function(val)
+        local newOption = val and 2 or 1
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "MaxsHead", newOption)
+        TSIL.SaveManager.SaveToDisk()
+    end, false)
+    ImGui.SetTooltip("restoredCollectionSettingsMaxsHeads", "Allow Max's head emojis appear when shooting tears.")
+
     ImGui.AddCallback("restoredCollectionMenu", ImGuiCallback.Render, function()
         ImGui.UpdateData("restoredCollectionSettingsHeartsStyle", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender") - 1)
         ImGui.UpdateData("restoredCollectionSettingsActGivesImmortalHearts", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") == 1)
@@ -358,6 +369,7 @@ local function InitImGuiMenu()
             ImGui.UpdateData("restoredCollectionSettings"..str.."Heart", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, str.."HeartSpawnChance"))
         end
         ImGui.UpdateData("restoredCollectionSettingsIllusionPlaceBombs", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") > 1)
+        ImGui.UpdateData("restoredCollectionSettingsMaxsHeads", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MaxsHead") > 1)
     end)
     
 
@@ -669,6 +681,24 @@ local restoreditemsdirectory = {
         buttons = {
             {str = '', nosel = true},
             {str = 'hearts options', dest = 'heartsoptions', tooltip = GenerateTooltip('mod\'s hearts customization'), fzise = 2},
+            {str = '', nosel = true},
+            {
+                strset = {'max\'s head', 'emojis'},
+                fsize = 2,
+                choices = {'no', 'yes'},
+                setting = 1,
+                variable = 'MaxsHeadsEmojis',
+
+                load = function ()
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MaxsHead") or 1
+                end,
+
+                store = function(newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "MaxsHead", newOption)
+                end,
+
+                tooltip = {strset = {'allow max\'s', 'head emojis to', 'appear when', 'shooting tears'}}
+            },
             {
                 -- Creating gaps in your page can be done simply by inserting a blank button.
                 -- The "nosel" tag will make it impossible to select, so it'll be skipped over when traversing the menu, while still rendering!

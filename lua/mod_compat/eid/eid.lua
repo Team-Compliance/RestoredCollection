@@ -359,7 +359,7 @@ end
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
     "↑ {{Tears}} +1.50 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает быстрее", "Голова Макса", "ru")
+    "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает с меньшей задержкой выстрела", "Голова Макса", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
     "↑ {{Tears}} +1.50 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
