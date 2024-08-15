@@ -10,7 +10,7 @@ emojis (disabled by default)
 - melted candle item sprites
 
 {{FSIZE2}}fixed
-- ol' Lopper causing errors without
+- ol' lopper causing errors without
 repentogon]],
 {"restored", "collection", "", "v1.14", "update"}, false, false)
 
