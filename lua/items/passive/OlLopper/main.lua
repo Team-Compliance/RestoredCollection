@@ -259,16 +259,6 @@ function OlLopper:OnNeckPieceRender(neck)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, OlLopper.OnNeckPieceRender, OlLopper.NECK.Variant)
 
----@param neck EntityEffect
----@param offset Vector
----@return Vector | boolean | nil
-function OlLopper:PreNeckPieceRender(neck, offset)
-    if Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then
-        return Vector(0, 21)
-    end
-end
-RestoredCollection:AddCallback(ModCallbacks.MC_PRE_EFFECT_RENDER, OlLopper.PreNeckPieceRender, OlLopper.NECK.Variant)
-
 ---@param player EntityPlayer
 function OlLopper:Update(player)
     local guillotine = player:HasCollectible(OlLopper.ID) and 1 or 0
@@ -276,6 +266,16 @@ function OlLopper:Update(player)
 end
 
 if REPENTOGON then
+    ---@param neck EntityEffect
+    ---@param offset Vector
+    ---@return Vector | boolean | nil
+    function OlLopper:PreNeckPieceRender(neck, offset)
+        if Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then
+            return Vector(0, 21)
+        end
+    end
+    RestoredCollection:AddCallback(ModCallbacks.MC_PRE_EFFECT_RENDER, OlLopper.PreNeckPieceRender, OlLopper.NECK.Variant)
+
     ---@param player EntityPlayer
     ---@param offset Vector
     function OlLopper:OnPlayerRender(player, offset)
