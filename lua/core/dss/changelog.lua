@@ -2,12 +2,16 @@ local modname = "Restored Collection"
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
 
-- DSS/ImGui option to disable Max's Head
+- dss/imgui option to disable max's head
 emojis (disabled by default)
 
 {{FSIZE2}}updated
 
-- melted candle item sprites]],
+- melted candle item sprites
+
+{{FSIZE2}}fixed
+- ol' Lopper causing errors without
+repentogon]],
 {"restored", "collection", "", "v1.14", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.13",[[{{FSIZE2}}added
