@@ -22,4 +22,8 @@ local function InitSounds()
         end
     end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, InitSounds)
+if REPENTOGON then
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, InitSounds)
+else
+    RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, InitSounds)
+end

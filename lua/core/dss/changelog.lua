@@ -39,7 +39,7 @@ multishot items/abilities
 {{FSIZE2}}removed
 
 - removed Edith]],
-{"restored", "collection", "", "v1.13", "update"}, false, true)
+{"restored", "collection", "", "v1.13", "update"}, false, false)
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.12", [[{{FSIZE2}}fixes
 
 - fixed slowdown when mod enabled]],

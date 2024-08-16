@@ -85,4 +85,7 @@
 	<sound name="Pumpkin Mask">
 		<sample weight="1" path="funny/Pumpkin Mask.wav" />
 	</sound>
+	<sound name="Melted Candle">
+		<sample weight="1" path="funny/Melted Candle.wav" />
+	</sound>
 </sounds>
