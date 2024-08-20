@@ -166,6 +166,7 @@ Enums.CollectibleType =
 						COLLECTIBLE_VOODOO_PIN = Isaac.GetItemIdByName("​Voodoo Pin"),
 						COLLECTIBLE_PUMPKIN_MASK = Isaac.GetItemIdByName("​Pumpkin Mask"),
 						COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle"),
+						COLLECTIBLE_TAMMYS_TAIL_TC = Isaac.GetItemIdByName("​Tammy's Tail"),
 					}
 
 Enums.TrinketType = {

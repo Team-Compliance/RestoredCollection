@@ -61,6 +61,7 @@ include("lua.items.passive.OlLopper.main")
 include("lua.items.passive.MaxsHead.main")
 include("lua.items.passive.PumpkinMask.main")
 include("lua.items.passive.MeltedCandle.main")
+include("lua.items.passive.TammysTail.main")
 
 --trinkets
 include("lua.items.trinkets.GameSquid.main")
