@@ -18,5 +18,5 @@
 	<!-- Melted Candle -->
 	<costume id="21" anm2path="costume_meltedcandle.anm2" type="passive" hasSkinAlt="true" />
 	
-	<costume anm2path="costume_meltedcandle2.anm2" type="none" hasOverlay="true" priority="99"/>
+	<costume anm2path="costume_meltedcandle2.anm2" type="none" priority="99"/>
 </costumes>
