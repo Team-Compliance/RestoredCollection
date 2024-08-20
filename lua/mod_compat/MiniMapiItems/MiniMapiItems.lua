@@ -38,3 +38,4 @@ MiniMapiItemsAPI:AddCollectible(RestoredCollection.Enums.CollectibleType.COLLECT
 MiniMapiItemsAPI:AddCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN, Collectibles, "CustomIcons", 19)
 MiniMapiItemsAPI:AddCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK, Collectibles, "CustomIcons", 20)
 MiniMapiItemsAPI:AddCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, Collectibles, "CustomIcons", 21)
+MiniMapiItemsAPI:AddCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC, Collectibles, "CustomIcons", 22)

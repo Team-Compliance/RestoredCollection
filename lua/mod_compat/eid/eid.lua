@@ -401,7 +401,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
 "↑ {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
-"↑ {{Tears}} +0.5 к скорострельности#{{Burning}} Дает ауру, которая сжигает врагов#{{Burning}} 30% шанс выстрелить восковой слезой, которая сжигает и замедляет врагов#Из врагов, убитых восковой слезой, могут выпадать предметы#{{Luck}} 70% шанс с 28 удачей#Пламя иногда выростает, давая {{Tears}} +1.5 к скорострельности и заменяя восковые слезы более крупной аурой#Большое пламя длится до 5 секунд",
+"↑ {{Tears}} +0.5 к скорострельности#{{Burning}} Дает ауру, которая сжигает врагов#{{Burning}} 30% шанс выстрелить восковой слезой, которая сжигает и замедляет врагов#{{Luck}} 70% шанс с 28 удачей#Пламя иногда выростает, давая {{Tears}} +1.5 к скорострельности и заменяя восковые слезы более крупной аурой#Большое пламя длится до 5 секунд",
 "Расплавленная свеча", "ru")
 --[[EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
 "↑ Lágrimas hacia arriba +0.5 cuando un fuego pequeño es encendido#↑ Lágrimas arriba +1.5 cuando un fuego grande es encendido#10% de encender un fuego grande cuando un fuego pequeño es encendido#Cuando un fuego pequeño es encendido, 30% de disparar una lágrima de cera que ralentiza y prende fuego a enemigos#Después de 5 segundos sin disparar, el fuego de la vela disminuye", 
@@ -410,6 +410,10 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_C
 --Tammy's Tail
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
 "↑ {{Tears}} +0.9 tears#{{Heart}} +20% chance for heart pickups to be double hearts#{{UnknownHeart}} +50% chance for pickups to be hearts for the room after taking damage")
+
+EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
+"↑ {{Tears}} +0.9 к скорострельности#{{Heart}} +20% шанс, что сердца будут двойными сердцами#{{UnknownHeart}} +50% шанс, что предметы будут сердцами в комнате после получения урона",
+"Хвост Тамми", "ru")
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
