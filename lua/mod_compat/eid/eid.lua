@@ -409,10 +409,10 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_C
 
 --Tammy's Tail
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
-"↑ {{Tears}} +0.9 tears#{{Heart}} +20% chance for heart pickups to be double hearts#{{UnknownHeart}} +50% chance for pickups to be hearts for the room after taking damage")
+"↑ {{Tears}} +0.5 tears#{{Heart}} +20% chance for heart pickups to be double hearts#{{UnknownHeart}} +50% chance for pickups to be hearts for the room after taking damage")
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
-"↑ {{Tears}} +0.9 к скорострельности#{{Heart}} +20% шанс, что сердца будут двойными сердцами#{{UnknownHeart}} +50% шанс, что предметы будут сердцами в комнате после получения урона",
+"↑ {{Tears}} +0.5 к скорострельности#{{Heart}} +20% шанс, что сердца будут двойными сердцами#{{UnknownHeart}} +50% шанс, что предметы будут сердцами в комнате после получения урона",
 "Хвост Тамми", "ru")
 
 --Game Squid

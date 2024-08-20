@@ -704,7 +704,7 @@ local Wiki = {
 	TammysTail = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
-			{ str = "+0.9 Tears up" },
+			{ str = "+0.5 Tears up" },
 			{ str = "+20% chance for heart pickups to spawn as double hearts." },
 			{ str = "+50% chance for pickups to spawn as hearts for the rest of the room after taking damage" },
 		},

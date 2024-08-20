@@ -1,7 +1,7 @@
 local TammysTail = {}
 local Helpers = RestoredCollection.Helpers
 TammysTail.ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC
-TammysTail.FIRE_DELAY = .9
+TammysTail.FIRE_DELAY = .5
 TammysTail.DOUBLE_HEART_CHANCE = 20
 TammysTail.ROOM_CLEAR_HEART_CHANCE = 50
 

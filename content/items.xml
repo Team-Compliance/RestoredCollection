@@ -7,14 +7,14 @@
 	<passive id="4" name="​Donkey Jawbone" description="Come at me!" gfx="collectibles_005_donkey_jawbone.png" quality="2" tags="nolostbr summonable" achievement="452"/>
     <familiar id="5" name="​Menorah" description="Shot multiplier" gfx="collectibles_006_menorah.png" quality="4" tags="uniquefamiliar summonable nolostbr" cache="firedelay" />
 	
-	<passive id="6" name="Ancient Revelation" description="Remember what came before" gfx="collectibles_007_ancient_revelation.png" achievement="470" cache="firedelay shotspeed flying tearcolor tearflag" soulhearts="4" devilprice="2" quality="4" tags="summonable offensive angel" />
+	<passive id="6" name="Ancient Revelation" description="Remember what came before" gfx="collectibles_007_ancient_revelation.png" achievement="470" cache="firedelay shotspeed flying tearcolor tearflag tearsup" soulhearts="4" devilprice="2" quality="4" tags="summonable offensive angel" />
     <familiar id="7" name="Beth's Heart" description="Faith accumulator" gfx="collectibles_008_beths_heart.png" achievement="404" quality="1" tags="summonable offensive"/>   
     <passive id="8" name="Keeper's Rope" description="Beat the money out of them" gfx="collectibles_009_keepers_rope.png" achievement="251" cache="flying luck" quality="3" tags="summonable offensive" />
     <passive id="9" name="Lucky Seven" description="Fortune favors the bold" gfx="collectibles_010_lucky_seven.png" quality="2" cache="luck" tags="summonable offensive"/>
     <passive id="10" name="Pacifist" description="Make love, not war" gfx="collectibles_011_pacifist.png" quality="2" tags="summonable offensive nocantrip nogreed lazarusshared" />
 	<passive id="11" name="Safety Bombs" description="For your own good" gfx="collectibles_012_safety_bombs.png" bombs="7" quality="0" tags="summonable"/>
     <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
-    <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="3" cache="firedelay" tags="summonable offensive"/>
+    <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="3" cache="firedelay" tags="summonable offensive tearsup"/>
 	<!-- Active Items -->
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
@@ -30,8 +30,8 @@
 	<active id="19" name="​Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="4" shopprice="10" chargetype="normal" quality="3"/>
 	
 	<passive id="20" name="​Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="2" cache="firedelay" tags="offensive summonable" />
-	<passive id="21" name="Melted Candle" description="Tears up + wavering heat" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable"/>
-	<passive id="22" name="​Tammy's Tail" description="Crying out for love" gfx="collectibles_023_tammys_tail.png" quality="3" cache="firedelay" tags="offensive summonable nolostbr" />
+	<passive id="21" name="Melted Candle" description="Tears up + wavering heat" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable tearsup"/>
+	<passive id="22" name="​Tammy's Tail" description="Crying out for love" gfx="collectibles_023_tammys_tail.png" quality="2" cache="firedelay" tags="offensive summonable nolostbr tearsup" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="​Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />
