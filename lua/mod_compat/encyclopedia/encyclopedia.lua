@@ -281,6 +281,16 @@ Encyclopedia.AddItem({
 	}
 })
 
+Encyclopedia.AddItem({
+	ModName = "Compliance",
+	Class = "Compliance",
+	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
+	WikiDesc = Wiki.TammysTail,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+	}
+})
+
 Encyclopedia.AddTrinket({
 	ModName = "Compliance",
 	Class = "Compliance",

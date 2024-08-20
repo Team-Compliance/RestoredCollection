@@ -655,9 +655,9 @@ local Wiki = {
 		},
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Pumkin Mask was an unused active item from original flash version of Binding of Isaac." },
+			{ str = "Pumpkin Mask was an unused active item from original flash version of Binding of Isaac." },
 			{ str = "Pumpkin Mask was replaced with Lump of Coal in flash version since Edmund McMillen didn't like the design." },
-			{ str = "Pumpkin Mask was reworked into Head of Crampus in Rebirth." },
+			{ str = "Pumpkin Mask was reworked into Head of Krampus in Rebirth." },
 		},
 		{ -- Mod Compatibility
 			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
@@ -675,21 +675,19 @@ local Wiki = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
 			{ str = "+0.5 Tears up." },
-			{ str = "Double red hearts appear more often." },
 			{ str = "When shooting:" },
+			{ str = "- gives an aura that burns enemies;" },
 			{ str = "- has a 30% chance (70% max at 28 luck) to fire a wax tear;" },
 			{ str = "-- wax tear can be shot only when candle's flame is small;" },
 			{ str = "-- wax tear slows and burns enemies on impact;" },
-			{ str = "-- enemies have a chance to drop heart or coin on death to wax tear." },
 			{ str = "- has a chance to make candle's flame bigger;" },
 			{ str = "-- big flame gives additional +1.5 Tears up;" },
-			{ str = "-- after stoping shooting or after 5 seconds of shooting flame becomes small;" },
-			{ str = "- aura appears, that burns enemies in it;"},
-			{ str = "-- aura's size depends on flame's size and Isaac's size;"},
+			{ str = "-- increases the size of the aura;" },
+			{ str = "-- after the player stops shooting or after 5 seconds of shooting flame becomes small;" },
 		},
 		{ -- Trivia
 				{ str = "Melted Candle was an unused idea from Antibirth, it only existed in concept art and as a sprite on P.E.N.I.S. team's website with spritesheet of Antibirth items." },
-				{ str = "Melted Candle was supposed to work like Tammy's Tail from the Binding of Isaac: Community Remix." },
+				{ str = "Melted Candle was supposed to work like Tammy's Tail from The Binding of Isaac: Community Remix." },
 		},
 		{ -- Mod Compatibility
 			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
@@ -701,6 +699,30 @@ local Wiki = {
 			{ str = "Coded by BrakeDude!" },
 			{ str = "Spritework by Firework and Yarik the Human!" },
 			{ str = "Translation by BrakeDude (Russian)!"},
+		},
+	},
+	TammysTail = {
+		{ -- Effect
+			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
+			{ str = "+0.9 Tears up" },
+			{ str = "+20% chance for heart pickups to spawn as double hearts." },
+			{ str = "+50% chance for pickups to spawn as hearts for the rest of the room after taking damage" },
+		},
+		{ -- Trivia
+			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
+			{ str = "Tammy's Tail was an item from The Binding of Isaac: Community Remix that was intended to be added to Antibirth." },
+			{ str = "The sprite for the item was left in the files for Antibirth." },
+			{ str = "The effect was expanded upon to make it more similar to Guppy's Tail." },
+		},
+		{ -- Mod Compatibility
+			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
+			{ str = "EID - Shows a description for the item." },
+			{ str = "Encyclopedia - Shows a more detailed description for the item." },
+		},
+		{ -- Credits
+			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
+			{ str = "Coded by watchmeojo!" },
+			{ str = "Translations by "},
 		},
 	},
 }

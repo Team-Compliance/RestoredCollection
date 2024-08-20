@@ -399,7 +399,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
 
 --Melted Candle
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
-"↑ {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#Enemies killed by wax tears sometimes drop pickups#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds")
+"↑ {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
 "↑ {{Tears}} +0.5 к скорострельности#{{Burning}} Дает ауру, которая сжигает врагов#{{Burning}} 30% шанс выстрелить восковой слезой, которая сжигает и замедляет врагов#Из врагов, убитых восковой слезой, могут выпадать предметы#{{Luck}} 70% шанс с 28 удачей#Пламя иногда выростает, давая {{Tears}} +1.5 к скорострельности и заменяя восковые слезы более крупной аурой#Большое пламя длится до 5 секунд",
 "Расплавленная свеча", "ru")
