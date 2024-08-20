@@ -145,10 +145,10 @@ function MeltedCandle:TearCollide(tear, collider)
             if not collider:HasEntityFlags(EntityFlag.FLAG_SLOW) then
                 collider:AddSlowing(EntityRef(tear.SpawnerEntity), 60, 1.4, Color(2, 2, 2, 1, 0.196, 0.196, 0.196))
             end
-            if TSIL.Random.GetRandomInt(0, 100, collider:GetDropRNG()) <= 20 then
-                local flags = TSIL.Random.GetRandomElementFromWeightedList(collider:GetDropRNG() , {{chance = 0.25, value = TearFlags.TEAR_HP_DROP}, {chance = 0.75, value = TearFlags.TEAR_COIN_DROP_DEATH}})
-                tear:AddTearFlags(flags)
-            end
+            -- if TSIL.Random.GetRandomInt(0, 100, collider:GetDropRNG()) <= 20 then
+            --     local flags = TSIL.Random.GetRandomElementFromWeightedList(collider:GetDropRNG() , {{chance = 0.25, value = TearFlags.TEAR_HP_DROP}, {chance = 0.75, value = TearFlags.TEAR_COIN_DROP_DEATH}})
+            --     tear:AddTearFlags(flags)
+            -- end
         end
     end
 end
@@ -247,13 +247,3 @@ function MeltedCandle:WaxFireEffectUpdate(effect)
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, MeltedCandle.WaxFireEffectUpdate, RestoredCollection.Enums.Entities.WAX_FIRE_EFFECT.Variant)
-
----@param pickup EntityPickup
-function MeltedCandle:DoubleHeartSpawn(pickup)
-    if pickup.SubType == HeartSubType.HEART_FULL or pickup.SubType == HeartSubType.HEART_SCARED then
-        if TSIL.Random.GetRandomInt(0, 100, pickup.InitSeed) <= 5 then
-            pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_DOUBLEPACK, true, true, true)
-        end
-    end
-end
-RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, MeltedCandle.DoubleHeartSpawn, PickupVariant.PICKUP_HEART)
