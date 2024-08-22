@@ -84,17 +84,17 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOM
     "{{Bomb}} +5 Bombs#爆炸将重置爆炸范围内的基座物品#持有某些骰子物品将添加额外效果", "骰子炸弹", "zh_cn")
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Tears up when used# ↓ Effect is less effective with each use in the same room", "Book of Despair", "en_us")
+    "↑ {{Tears}} +100% Tears up when used#Effect is less effective for each concecutive use in the same room", "Book of Despair", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} Lágrimas +100% al usarlo# ↓ El efecto es menos efectivo con cada uso en la misma habitación",
+    "↑ {{Tears}} Lágrimas +100% al usarlo#El efecto es menos efectivo con cada uso en la misma habitación",
     "El Libro de la Desesperación", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% к скорострельности при использовании# ↓ Эффект менее эффективен при каждом использовании в той же комнате",
+    "↑ {{Tears}} +100% к скорострельности при использовании#Эффект менее эффективен при каждом использовании в той же комнате",
     "Книга отчаяния", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Lágrimas quando usado ↓ O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
+    "↑ {{Tears}} +100% Lágrimas quando usado#O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% 射速# ↓ 在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
+    "↑ {{Tears}} +100% 射速#在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "12") -- Bookworm
 
 --Bowl of Tears
