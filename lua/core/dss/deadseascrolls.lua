@@ -445,7 +445,7 @@ local function InitImGuiMenu()
                     break
                 end
             end
-            ImGui.UpdateData(elemName, ImGuiData.Value, val and 0 or 1)
+            ImGui.UpdateData(elemName, ImGuiData.Value, val)
         end)
     end
 end

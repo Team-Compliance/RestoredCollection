@@ -576,6 +576,12 @@ function Helpers.GetPlayers(ignoreCoopBabies)
 	end)
 end
 
+local function IsBaby(variant)
+	return variant == FamiliarVariant.INCUBUS or variant == FamiliarVariant.TWISTED_BABY
+	or variant == FamiliarVariant.BLOOD_BABY or variant == FamiliarVariant.CAINS_OTHER_EYE
+	or variant == FamiliarVariant.UMBILICAL_BABY or variant == FamiliarVariant.SPRINKLER
+end
+
 function Helpers.GetPlayerFromTear(tear)
 	for i=1, 3 do
 		local check = nil
@@ -586,11 +592,12 @@ function Helpers.GetPlayerFromTear(tear)
 		end
 		if check then
 			if check.Type == EntityType.ENTITY_PLAYER then
-				return Helpers.GetPtrHashEntity(check):ToPlayer()
-			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
+				return Helpers.GetPtrHashEntity(check):ToPlayer(), false
+			elseif check.Type == EntityType.ENTITY_FAMILIAR and IsBaby(check.Variant)
+			then
 				local data = Helpers.GetData(tear)
 				data.IsIncubusTear = true
-				return check:ToFamiliar().Player:ToPlayer()
+				return check:ToFamiliar().Player:ToPlayer(), true
 			end
 		end
 	end
