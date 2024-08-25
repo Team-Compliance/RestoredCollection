@@ -371,7 +371,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEA
 
 --Ol' Lopper
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
-    "Disconnects Isaac's head from his body allowing it to move like Mr. Maw head", "Ol' Lopper")
+    "Disconnects Isaac's head from his body allowing it to move like Mr. Maw head#The head deals 10.5x Isaac's damage per second", "Ol' Lopper")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
     "Отсоединяет голову Айзека то его тела, позволяя ей двигаться как голова Мистера Пасть", "Ol' Lopper", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPER,
