@@ -210,6 +210,7 @@ local Wiki = {
 			{ str = "Encyclopedia - Shows a description of the item." },
 			{ str = "Minimap Items - Shows a minimap icon of the item." },
 			{ str = "Sewing Machine - Higher fire rate per flame and Isaac can fire even without flames on last upgrade level." },
+			{ str = "Community Remix - Removes the Community Remix Menorah from item pools." },
 		},
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
@@ -368,6 +369,7 @@ local Wiki = {
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Keeper's Rope was one of the few cancelled items that was originally planned to be in Repentance." },
+			{ str = "After creating the Keeper's Rope achievement sprite, the developers realized they had created 1 too many Keeper unlocks, so Keeper's Rope got scrapped" },
 			{ str = "According to its unlock paper sprite, Keeper's Rope was supposed to look similar to the item Transendence, so similar in fact that Team Compliance decided to edit it in order to avoid potential confusion." },
 		},
 		{ -- Mod Compatibility
@@ -560,6 +562,7 @@ local Wiki = {
 			{ str = "EID - Shows a description for the item." },
 			{ str = "Encyclopedia - Shows a more detailed description for the item." },
 			{ str = "Minimap Items - Shows a minimap icon for the item." },
+			{ str = "Community Remix - Counts towards the Max transformation." },
 		},
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
@@ -650,7 +653,7 @@ local Wiki = {
 	PumpkinMask = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Fires a burst of seeds that deal 0.85x Isaac's damage." },
+			{ str = "Fires a burst of seeds that deal 0.4x Isaac's damage." },
 			{ str = "Isaac can fire seeds again after 1.5 second delay." },
 		},
 		{ -- Trivia
@@ -718,11 +721,12 @@ local Wiki = {
 			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
 			{ str = "EID - Shows a description for the item." },
 			{ str = "Encyclopedia - Shows a more detailed description for the item." },
+			{ str = "Community Remix - Counts towards the Tammy transformation." },
 		},
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
 			{ str = "Coded by watchmeojo!" },
-			{ str = "Translations by "},
+			{ str = "Translation by BrakeDude (Russian)!"},
 		},
 	},
 }
