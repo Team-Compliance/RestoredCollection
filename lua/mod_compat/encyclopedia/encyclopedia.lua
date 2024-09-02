@@ -276,8 +276,9 @@ Encyclopedia.AddItem({
 	ID = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
 	WikiDesc = Wiki.MeltedCandle,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_SHOP,
-		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	}
 })
 
@@ -288,6 +289,8 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.TammysTail,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	}
 })
 

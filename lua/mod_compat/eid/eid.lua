@@ -16,28 +16,28 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BO
     "{{Bomb}} +5 Bombs#Bombs create rock waves in all 4 cardinal directions#The rock waves can damage enemies, destroy objects, and reveal secret rooms",
     "Stone Bombs", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
-    "Las bombas colocadas ahora generan olas de piedra en los 4 puntos cardinales al explotar#Las olas de piedra pueden dañar enemigos, destruir objetos y revelar salas secretas#+5 bombas",
+    "{{Bomb}} +5 Bombas#Las bombas colocadas ahora generan olas de piedra en los 4 puntos cardinales al explotar#Las olas de piedra pueden dañar enemigos, destruir objetos y revelar salas secretas#+5 bombas",
     "Bombas de Piedra", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
-    "Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты#+5 бомб",
+    "{{Bomb}} +5 бомб#Бомбы теперь создают каменные волны во все 4-е основные стороны#Каменные волны могут наносить урон врагам, разрушать объекты и открывать секретные комнаты#+5 бомб",
     "Каменные бомбы", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
-    "Bombas colocadas agora explodem e criam ondas de pedra em todas as 4 direções cardeais#As ondas de pedra podem causar dano aos inimigos, destruir objetos, e revelar salas secretas#+5 Bombas",
+    "{{Bomb}} +5 Bombas#Bombas colocadas agora explodem e criam ondas de pedra em todas as 4 direções cardeais#As ondas de pedra podem causar dano aos inimigos, destruir objetos, e revelar salas secretas#+5 Bombas",
     "Bombas de Pedra", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS,
-    "放置的炸弹现在会爆炸并在所有4个基本方向产生岩石波#岩石波可以伤害敌人，摧毁物体，并揭示隐藏房#+5炸弹", "岩石炸弹", "zh_cn")
+    "{{Bomb}} +5 Bombs#放置的炸弹现在会爆炸并在所有4个基本方向产生岩石波#岩石波可以伤害敌人，摧毁物体，并揭示隐藏房#+5炸弹", "岩石炸弹", "zh_cn")
 --Blank Bombs
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
     "{{Bomb}} +5 Bombs#Bombs explode instantly, -50% bomb damage#Press {{ButtonRT}} + {{ButtonLB}} to place bombs normally#The player is immune from their own bombs#Bombs destroy enemy projectiles and knock back enemies",
     "Blank Bombs", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
-    "{{Bomb}} +5 Bombas#Las bombas explotan inmediatamente. -50% daño de bomba#Pulsa {{ButtonRT}} + {{ButtonLB}} para poner bombas normales. 100% daño de bomba# El jugador es inmune a sus bombas#Las bombas que exploten eliminarán los disparos enemigos y empujarán a los enemigos cercanos",
+    "{{Bomb}} +5 Bombas#Las bombas explotan inmediatamente. -50% daño de bomba#Pulsa {{ButtonRT}} + {{ButtonLB}} para poner bombas normales#El jugador es inmune a sus bombas#Las bombas que exploten eliminarán los disparos enemigos y empujarán a los enemigos cercanos",
     "Bombas de Fogueo", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
-    "{{Bomb}} +5 бомб#Бомбы мгновенно взрываются при размещении. -50% урон от бомбы#Нажмите кнопку {{ButtonRT}} + {{ButtonLB}}, чтобы разместить обычные бомбы. 100% урон от бомбы#Игрок невосприимчив к урону от собственной бомбы#Размещенные бомбы уничтожают вражеские снаряды и отбрасывают врагов в радиусе",
+    "{{Bomb}} +5 бомб#Бомбы мгновенно взрываются, -50% урон от них#Нажмите кнопку {{ButtonRT}} + {{ButtonLB}}, чтобы разместить обычные бомбы#Игрок невосприимчив к урону от собственной бомбы#Размещенные бомбы уничтожают вражеские снаряды и отбрасывают врагов в радиусе",
     "Пустые бомбы", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
-    "{{Bomb}} +5 Bombas#-50% de dano de bomba.#Pressione {{ButtonRT}} + {{ButtonLB}} para colocar bombas normais. 100% de dano de bomba. O jogador é imune a dano de suas próprias bombas#Bombas colocadas destroem projetéis de inimigos e empurram os inimigos ao seu redor",
+    "{{Bomb}} +5 Bombas#-50% de dano de bomba.#Pressione {{ButtonRT}} + {{ButtonLB}} para colocar bombas normais#O jogador é imune a dano de suas próprias bombas#Bombas colocadas destroem projetéis de inimigos e empurram os inimigos ao seu redor",
     "Bombas de Festim", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS,
     "{{Bomb}} +5 Bombs#炸弹立即爆炸。-50%炸弹伤害#按{{ButtonRT}} + {{ButtonLB}}放置普通炸弹。100%炸弹伤害#玩家对自己的炸弹免疫#放置的炸弹会摧毁敌人的抛射物并击退周围的敌人",
@@ -48,7 +48,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_
     "Spawns a familiar that moves by jumping from tile to tile, dealing 20 damage to nearby enemies and 40 damage to enemies directly landed on",
     "Checked Mate", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
-    "Создает фамильяра, который перемещается, прыгая с места на место.#20 урона по площади при каждом приземлении.#Если фамильяр приземляется прямо на монстра, тот получает 40 единиц урона.",
+    "Создает фамильяра, который перемещается, прыгая с места на место, нанося 20 урона возле врагов и 40 урона при приземлении прямо на врагов",
     "Checked Mate", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_CHECKED_MATE,
     "Genera un Rey de Ajedréz que saltará de cuadro en cuadro#Inflige 20 puntos de daño en área cada vez que aterriza#Si la pieza aterriza directamente sobre un enemigo, inflige 40 puntos de daño",
@@ -72,7 +72,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOM
     "{{Bomb}} +5 Bombs#Bombs reroll pedestal items within its explosion radius#Has a 25% chance to destroy items instead of rerolling them#Holding certain dice actives will add additional effects",
     "Dice Bombs")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
-    "{{Bomb}} +5 бомб#Артефакты на пьедесталах меняются, если они в радиусе взрыва#25% шанс уничтожить пьедестал вместо замены артефакта#Имея определенные кубики, добавляются дополнительные еффекты",
+    "{{Bomb}} +5 бомб#Бомбы меняют артефакты на пьедесталах в радиусе взрыва#25% шанс уничтожить пьедестал вместо замены артефакта#Имея определенные кубики, добавляются дополнительные еффекты",
     "Бомбы-кубики", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOMBS,
     "{{Bomb}} +5 Bombas#Las explosiones cambiarán los pedestales de objetos que se encuentren dentro de su radio de explosión#Poseer ciertos objetos activos de dados otorgará efectos adicionales",
@@ -89,7 +89,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_
     "↑ {{Tears}} Lágrimas +100% al usarlo#El efecto es menos efectivo con cada uso en la misma habitación",
     "El Libro de la Desesperación", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% к скорострельности при использовании#Эффект менее эффективен при каждом использовании в той же комнате",
+    "↑ {{Tears}} +100% к скорострельности при использовании#Эффект слабее при каждом использовании в той же комнате",
     "Книга отчаяния", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
     "↑ {{Tears}} +100% Lágrimas quando usado#O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
@@ -119,7 +119,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_J
     "Al recibir daño, realizarás un ataque giratorio, dañando a los enemigos cercanos y bloqueando proyectiles por un momento",
     "Quijada de burro", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
-    "При получении урона заставляет совершить круговую атаку, которая наносит урон ближайшим врагам и на короткое время блокирует снаряды",
+    "При получении урона Исаак совершает круговую атаку, которая наносит 8x урона и блокирует снаряды",
     "Ослиная челюсть", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
     "Quando for atingido, esse item causa que você faça um ataque giratório, que causa dano em inimigos próximos e bloqueia projéteis por um curto período",
@@ -135,7 +135,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
     "Genera un familiar Menorah#El número de lágirmas Isaac aumentan en función de las velas encendidas, máximo 7 velas#↓ {{Tears}} Reduce el tiempo de disparo entre dos y lo multiplica por la suma de las velas encendidas mas 1 #Recibir daño con 7 velas encendidas hace estallar 8 llamas azules y hace que Isaac no pueda disparar por un rato",
     "Menorah", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "Создает подсвечник, который заставляет слезы Исаака размножиться на количество зажжённых свечей#↓ {{Tears}} Уменьшает скорострельность, а затем умножает её на количество зажженных свечей плюс 1#Получая урон с 7 заженными свечами разбрасывает 8 синих огней и делает Айзека неспособным стрелять некоторое время",
+    "Фамильяр подсвечник, который дает доп. слезы пропорционально количеству зажженных свечей#↓ {{Tears}} -0.5 скорострельности за каждую заженную свечу#Получая урон с 7 заженными свечами разбрасывает 8 синих огней и делает Исаака неспособным стрелять некоторое время",
     "Менора", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
     "Gera um familiar menorah que causa as lágrimas de Isaac serem multiplicadas pelo número de velas acesas#↓ {{Tears}} Reduz o tempo de disparo de cada lágrima pela metade e multiplica pela soma das velas acesas mais 1#Ser atingido com as 7 velas acesas gera 8 chamas azuis e impede Isaac de atirar lágrimas por um tempinho",
@@ -182,7 +182,7 @@ local BHDescEng =
 local BHDescSpa =
 "{{Throwable}} Genera un familiar lanzable#Almacena corazones de alma y corazones negros para usarlos como cargas para el objeto activo, máximo 6 cargas#{{HalfSoulHeart}}: 1 carga#{{SoulHeart}}: 2 cargas#{{BlackHeart}}: 3 cargas#Presiona {{ButtonRT}} para suministrar las cargas al objeto activo"
 local BHDescRu =
-"{{Throwable}} Создает спутника, которого можно бросать в выбранном направлении#Сохраняет синие и чёрные сердца как заряды для активируемых предметов, максимум 6 зарядов#{{HalfSoulHeart}}: 1 заряд#{{SoulHeart}}: 2 заряда#{{BlackHeart}}: 3 заряда#Для обеспечения зарядами активируемого предмета нужно нажать кнопку {{ButtonRT}}"
+"{{Throwable}} Бросаемый спутник который превращает синие и чёрные сердца в заряды для активируемых предметов, максимум 6 зарядов#{{HalfSoulHeart}}: 1 заряд#{{SoulHeart}}: 2 заряда#{{BlackHeart}}: 3 заряда#Нажав {{ButtonRT}} заряжается активный предмет"
 local BHDescPt_Br =
 "{{Throwable}} Gera um familiar arremessável#Armazenas corações de alma e negros para usar como carga para o seu item ativo, máximo de 6 cargas#{{HalfSoulHeart}}: 1 carga#{{SoulHeart}}: 2 cargas#{{BlackHeart}}: 3 cargas##Aperta {{ButtonRT}} para fornecer as cargas para o item ativo"
 local BHDescZh_cn =
@@ -223,15 +223,31 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_
  --todo have the description actively change if playing as keeper
 --Keeper's Rope
 local KeepersRopeDescEng =
-"Grants flight#↓ {{Luck}} -2 Luck down if not playing as {{Player14}} Keeper or {{Player33}} Tainted Keeper#{{Coin}} When enemies spawn they have a 25% chance to contain 1-3 pennies which can extracted by damaging them#{{Player14}} When playing as Keeper enemies have 16.7% chance to contain 1-2 pennies#{{Player33}} When playing as Tainted Keeper enemies have 12.5% chance to contain 1 penny#!!! The pennies disappear after 3 seconds"
+"Grants flight#↓ {{Luck}} -2 Luck down#{{Coin}} When enemies spawn they have a 25% chance to contain 1-3 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds"
 local KeepersRopeDescRu =
-"Даёт полёт#↓ {{Luck}} -2 к удаче если играть не за {{Player14}} Хранителя или {{Player33}} Порченого Хранителя#{{Coin}} Когда монстры появляются у них есть 25% шанс иметь 1-3 монет, которые выпадают при нанесении им урона#{{Player14}} При игре за Хранителя у монстров есть 16.7% шанс иметь 1-2 монеты#{{Player33}} При игре за Порченого Хранителя у монстров есть 12.5% шанс иметь 1 монету#!!! Монеты исчезают через 3 секунды"
+"Даёт полёт#↓ {{Luck}} -2 к удаче#{{Coin}} Когда монстры появляются у них есть 25% шанс иметь 1-3 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды"
 local KeepersRopeDescSpa =
 "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos"
 local KeepersRopeDescPt_Br =
 "Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos"
 local KeepersRopeDescZh_cn =
 "获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
+
+local KeepersRopeDesc_Keeper = {
+    en_us = "Grants flight#{{Coin}} When enemies spawn they have a 16.7% chance to contain 1-2 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds",
+    ru = "Даёт полёт#{{Coin}} Когда монстры появляются у них есть 16.7% шанс иметь 1-2 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды",
+    spa = "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
+    pt_br = "Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
+    zn_cn = "获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
+}
+
+local KeepersRopeDesc_TKeeper = {
+en_us = "Grants flight#{{Coin}} When enemies spawn they have a 12.5% chance to contain 1 penny which can extracted by damaging them#!!! The penny disappears after 3 seconds",
+ru = "Даёт полёт#{{Coin}} Когда монстры появляются у них есть 12.5% шанс иметь 1 монету, которая выпадают при нанесении им урона#!!! Монета исчезает через 3 секунды",
+spa = "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
+pt_br = "Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
+zn_cn = "获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失",
+}
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescEng, "Keeper's Rope")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescRu,
@@ -242,6 +258,30 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_
     "Corda do Keeper", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescZh_cn,
     "店长的绳子", "zh_cn")
+
+
+
+local function KeeperRopeConditions(descObj)
+    if descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE then
+        local player = Game():GetNearestPlayer(descObj.Entity.Position)
+        return player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B
+    end
+    return false
+end
+
+local function KeepersRopeKeeperModifierCallback(descObj)
+    local player = Game():GetNearestPlayer(descObj.Entity.Position)
+    local lang = EID:getLanguage()
+    if player:GetPlayerType() == PlayerType.PLAYER_KEEPER then
+        descObj.Description = KeepersRopeDesc_Keeper[lang] or KeepersRopeDesc_Keeper["en_us"]
+    end
+    if player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
+        descObj.Description = KeepersRopeDesc_TKeeper[lang] or KeepersRopeDesc_TKeeper["en_us"]
+    end
+    return descObj
+end
+
+EID:addDescriptionModifier("Keeper's Rope Keeper Modifier", KeeperRopeConditions, KeepersRopeKeeperModifierCallback)
 
 --Lucky seven
 local Sevendesc =
@@ -290,7 +330,7 @@ local PCDesc =
 local PCDescSpa =
 "{{Pill}} Genera una píldora aleatoria al tomarlo#Las píldora aparecen con mas frecuencia#Consume la píldora que posees y aplica un efecto a la sala, basado en la píldora"
 local PCDescRu =
-"{{Pill}} Дает случайную пилюлю#{{Pill}} Увеличивает шанс появления пилюль#Использует текущую пилюлю и накладывает зависимый от её типа эффект на всю комнату"
+"{{Pill}} Дает случайную пилюлю#Увеличивает шанс появления пилюль#Использует текущую пилюлю и накладывает зависимый от её типа эффект на всю комнату"
 local PCDescPt_Br =
 "{{Pill}} Gera uma pílula aleatória quando pego#{{Pill}} Aumenta a taxa de queda de pílulas enquanto segurado# Consome a sua pílula atual e aplica um efeito na sala inteira dependendo no tipo de pílula consumida"
 local PCDescZh_cn =
@@ -324,7 +364,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_SAFETY_B
 local VDPdesc =
 "Throwable voodoo pin that swaps Isaac's hitbox with enemy hitboxes#Lasts until enemy is dead#Hitting bosses makes it last for 5 seconds"
 local VDPdescRu =
-"Исаак достает булавку, которую можно бросить во врага#Если булавка попала в монстра, то его хитбокс поменяется местами с хитбоксом Исаака#При подании в босса действует 5 секунды"
+"Бросаемая булавка вуду, которая меняет хитбоксы Исаака и врага местами#Еффект длится до смерти врага#При подании в босса действует 5 секунд"
 local VDPdescSpa =
 "Isaac sostiene un pin de vudú que puede ser lanzado al enemigo#Si el pin golpea a un monstruo, su hitbox será intercambiada por la de Isaac hasta que muera#Si golpea a un jefe, durará 5 segundos"
 local VDPdescPt_Br =
@@ -345,7 +385,7 @@ for i = 0, 5 do
         "Charged by collecting {{Heart}} Red Hearts#{{Collectible664}} Spawns a 'food' item#{{Warning}} Disappears after 6 uses",
         "Lunch Box")
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i,
-        "Заряжается подпором {{Heart}} красных сердец#При использовании спавнит один из 'съедобных' предметов#Исчезает после 6 использований",
+        "Заряжается подпором {{Heart}} красных сердец#При использовании спавнит один из 'съедобных' предметов#{{Warning}} Исчезает после 6 использований",
         "Коробка c ланчем", "ru")
     EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i,
         "Se carga colleccionando {{Heart}} corazones rojos#Cuando se usa, aparece uno de los objetos de 'comida'#Desaparece después de 6 usos",
@@ -386,7 +426,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_OL_LOPPE
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
     "Fires a rapid inacurate strike of seeds at a set interval#Seeds do 40% of the player's damage", "Pumpkin Mask")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
-    "Выпускает быстрые неточные выстрелы семенами#Семена выстреливаются в пределах 30° направления стрельбы",
+    "Выпускает быстрые неточные выстрелы семенами в определенные интервалы#Семена наносят 40% урона игрока",
     "Тыквенная маска", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_MASK,
     "Dispara rápidamente y sin precisión una ráfaga de semillas#Las semillas están disparadas en un rango de 30º desde la dirección de disparo",

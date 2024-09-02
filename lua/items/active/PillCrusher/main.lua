@@ -96,7 +96,7 @@ end
 ---@param player EntityPlayer
 function PillCrusherLocal:UsePillCrusher(_, rng, player)
 	local truePillColor = player:GetPill(0)
-	if truePillColor == 0 then return end
+	if truePillColor == 0 then return {ShowAnim = false, Remove = false, Discharge = false} end
 
 	local pillColorToCheckEffect = truePillColor
 	local itemPool = Game():GetItemPool()
@@ -249,7 +249,7 @@ function PillCrusherLocal:DefaultWispInit(wisp)
 	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER) then
 		if wisp.SubType == RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PILL_CRUSHER then
 			--Wtf is this
-			wisp.SubType = CollectibleType.COLLECTIBLE_MOMS_BOTTLE_PILLS
+			wisp.SubType = CollectibleType.COLLECTIBLE_MOMS_BOTTLE_OF_PILLS
 		end
 	end
 end
