@@ -476,3 +476,18 @@ EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_S
     "↑ +3% de chance por cada multiplicador de trinkets", nil, nil, "pt_br")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑每个饰品乘数上限+3%", nil, nil, "zh_cn")
+
+local function ActOfContrictionConditions(descObj)
+    return descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") == 1
+end
+
+local function ActOfContrictionModifierCallback(descObj)
+    descObj.Description = descObj.Description:gsub("Eternal", "Immortal")
+    descObj.Description = descObj.Description:gsub("вечное", "бессмертное")
+    descObj.Description = descObj.Description:gsub("eterno", "inmortales")
+    descObj.Description = descObj.Description:gsub("Eterno", "imortais")
+    descObj.Description = descObj.Description:gsub("永恒之心", "不朽之心")
+    return descObj
+end
+
+EID:addDescriptionModifier("Immortal Act of Contriction Modifier", ActOfContrictionConditions, ActOfContrictionModifierCallback)
