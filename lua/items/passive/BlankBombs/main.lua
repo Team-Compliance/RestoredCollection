@@ -32,8 +32,9 @@ local function CanBombInstaDetonate(bomb)
 	end
 
 	return not (wasInRoom or bomb.IsFetus or bomb.Variant == BombVariant.BOMB_ROCKET or
-	bomb.Variant == BombVariant.BOMB_GIGA or bomb.Variant == BombVariant.BOMB_ROCKET_GIGA or
-	not BombFlagsAPI.HasCustomBombFlag(bomb, "BLANK_BOMB") or Helpers.GetData(bomb).NancyBlank)
+	bomb.Variant == BombVariant.BOMB_GIGA or bomb.Variant == BombVariant.BOMB_ROCKET_GIGA or 
+	bomb.Variant == BombVariant.BOMB_THROWABLE or not BombFlagsAPI.HasCustomBombFlag(bomb, "BLANK_BOMB") 
+	or Helpers.GetData(bomb).NancyBlank)
 end
 
 
