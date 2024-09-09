@@ -2,7 +2,8 @@ local LunchBoxLocal = {}
 local game = Game()
 local Helpers = RestoredCollection.Helpers
 local sfx = SFXManager()
-local RepentogonTargetCol = REPENTOGON and RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX or (RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - 4)
+local RepentogonTargetCol = REPENTOGON and RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX or (RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - 5)
+local itemConfig = Isaac.GetItemConfig()
 
 local function isNoRedHealthCharacter(p)
     local t = p:GetPlayerType()
@@ -86,7 +87,7 @@ local function DoesLunchBoxNeedsCharge(player)
     for slot = 0,2 do
         for col = RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX, RepentogonTargetCol, -1 do
             if player:GetActiveItem(slot) == col then
-                local item = Isaac:GetItemConfig():GetCollectible(player:GetActiveItem(slot))
+                local item = itemConfig:GetCollectible(player:GetActiveItem(slot))
                 local charge = Helpers.GetCharge(player, slot)
                 if charge < item.MaxCharges then
                     return true
@@ -107,7 +108,7 @@ function LunchBoxLocal:Use(collectible, rng, player, useflag, slot, customvardat
     local LunchBoxPool = {}
 	for i = 1, Helpers.GetMaxCollectibleID() do
         if ItemConfig.Config.IsValidCollectible(i) then
-            if Isaac.GetItemConfig():GetCollectible(i).Tags & ItemConfig.TAG_FOOD == ItemConfig.TAG_FOOD then
+            if itemConfig:GetCollectible(i).Tags & ItemConfig.TAG_FOOD == ItemConfig.TAG_FOOD then
                 table.insert(LunchBoxPool,i)
             end
         end
@@ -118,8 +119,11 @@ function LunchBoxLocal:Use(collectible, rng, player, useflag, slot, customvardat
     sfx:Play(SoundEffect.SOUND_CHEST_OPEN, 1, 0)
     if slot ~= -1 then
         local remove = false
+        local wispSP = collectible
         if REPENTOGON then
             local itemDesc = player:GetActiveItemDesc(slot)
+            print(itemDesc.VarData)
+            wispSP = wispSP - itemDesc.VarData
             if itemDesc.VarData > 4 then
                 remove = true
             else
@@ -132,7 +136,11 @@ function LunchBoxLocal:Use(collectible, rng, player, useflag, slot, customvardat
                 player:AddCollectible(collectible - 1, 0, false, slot)
             end
         end
-        return {Discharge = true, Remove = remove, ShowAnim = true}
+        player:SetActiveCharge(Helpers.GetCharge(player, slot) - itemConfig:GetCollectible(collectible).MaxCharges)
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
+            player:AddWisp(wispSP, player.Position)
+        end
+        return {Discharge = false, Remove = remove, ShowAnim = true}
     end
     return true
 end
@@ -145,7 +153,7 @@ end
 
 local function HPLeft(player, slot, hp, collectible)
     if player:GetActiveItem(slot) == collectible and hp > 0 then
-        local item = Isaac:GetItemConfig():GetCollectible(player:GetActiveItem(slot))
+        local item = itemConfig:GetCollectible(player:GetActiveItem(slot))
         local charge = Helpers.GetCharge(player, slot)
         if charge < item.MaxCharges then
             player:SetActiveCharge(math.min(charge + hp, item.MaxCharges), slot)

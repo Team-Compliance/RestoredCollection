@@ -22,9 +22,9 @@
 	<!-- Blank Bomb -->
 	<locust id="1" color="fly_blue"/>
 	<!-- Book of Despair -->
-	<locust id="15" speed="2" color="fly_bod" />
+	<locust id="20" speed="2" color="fly_bod" />
 	<!-- Bowl of Tears -->
-	<locust id="16" count="3" damageMultiplier="0.5" color="fly_blue" />
+	<locust id="21" count="3" damageMultiplier="0.5" color="fly_blue" />
 	<!-- Donkey Jawbone -->
 	<locust id="4" damageMultiplier="2" scale="2" color="fly_orange" />
 	<!-- Menorah -->
@@ -38,7 +38,7 @@
 	<!-- Pacifist -->
 	<locust id="10" tearFlags="13" color="fly_pac" />
 	<!-- Voodoo Pin -->
-	<locust id="19" color="fly_black" />
+	<locust id="24" color="fly_black" />
 	<!-- Melted Candle -->
-	<locust id="21" color="fly_white" tearFlags2="22" procChance="0.4"/>
+	<locust id="26" color="fly_white" tearFlags2="22" procChance="0.4"/>
 </locusts>
