@@ -71,7 +71,9 @@
 	<color name="flame_green" r="160" g="300" b="50"/>
 	<color name="core_green" r="80" g="300" b="80"/>
 	<color name="tear_green" r="180" g="320" b="30"/>
-	
+
+	<color name="tear_lunchbox1_green" r="110" g="210" b="15" />
+
 	<color name="flame_pink" r="350" g="192" b="228"/>
 	<color name="core_pink" r="342" g="216" b="244"/>
 	<color name="tear_pink" r="352" g="241" b="266"/>
@@ -85,13 +87,17 @@
 	<color name="core_plum" r="460" g="384" b="384" or="0" og="-128" ob="-128"/>
 	<color name="core_vengeful" r="512" g="255" b="255" or="255"/>
 	<color name="tear_vengeful" r="380" g="380" b="380" or="200"/>
+
+	<color name="tear_bait" r="178" g="35" b="25" or="76"/>
+	<color name="tear_light_red" r="180" g="60" b="80" or="90"/>
+
 	<!-- Lunch Box -->
-	<wisp id="14" hp="16" damage="6" fireDelay="11" flameColor="flame_dark_red" coreColor="core_dark_red" tearColor="tear_dark_red" coreGfx="meat.png" />
-	<wisp id="15" hp="13" damage="5" fireDelay="14" flameColor="flame_red" coreColor="core_red" tearColor="tear_red" coreGfx="meat.png" />
-	<wisp id="16" hp="10" damage="4" fireDelay="17" flameColor="flame_grey" coreColor="core_grey" tearColor="tear_grey" coreGfx="meat.png" />
-	<wisp id="17" hp="7" damage="3" fireDelay="20" flameColor="flame_brown" coreColor="core_brown" tearColor="tear_brown" coreGfx="meat.png" />
-	<wisp id="18" hp="3" damage="2" fireDelay="23" flameColor="flame_dark_brown" coreColor="core_dark_brown" tearColor="tear_dark_brown" coreGfx="meat.png" />
-	<wisp id="19" hp="1" damage="1" fireDelay="26" flameColor="flame_black" coreColor="core_black" tearColor="tear_black" coreGfx="meat.png" />
+	<wisp id="14" hp="10" damage="8" fireDelay="10" flameColor="flame_red" coreColor="core_red" tearColor="tear_light_red" coreGfx="meat.png" />
+	<wisp id="15" hp="13" damage="6" fireDelay="14" flameColor="flame_red" coreColor="core_red" tearColor="tear_light_red" coreGfx="meat.png" />
+	<wisp id="16" hp="10" damage="4" fireDelay="18" tearFlags2="67" tearColor2="tear_bait" flameColor="flame_brown" coreColor="core_red" tearColor="tear_dark_red" coreGfx="meat.png" />
+	<wisp id="17" hp="7" damage="3" fireDelay="24" tearFlags2="67" tearColor2="tear_bait" flameColor="flame_brown" coreColor="core_brown" tearColor="tear_brown" coreGfx="meat.png" />
+	<wisp id="18" hp="3" damage="2" fireDelay="27" tearFlags2="4" flameColor="flame_dark_brown" coreColor="core_bob" tearColor="tear_bob" procChance="0.2" tearColor2="tear_bob2"  coreGfx="meat.png" />
+	<wisp id="19" hp="2" damage="1" fireDelay="32" tearFlags2="4" procChance="0.1" flameColor="flame_green" coreColor="core_green" tearColor="tear_green" tearColor2="tear_bob2" coreGfx="meat.png" />
 	<!-- Book of Despair -->
 	<wisp id="20" hp="2" layer="1" damage="3" fireDelay="15" flameColor="flame_red" coreColor="core_black" tearColor="tear_blue" />
 	<!-- Bowl of Tears -->
@@ -99,5 +105,5 @@
 	<!-- Book of Illusions -->
 	<wisp id="22" hp="10" layer="1" damage="3" fireDelay="15" flameColor="flame_purple" coreColor="core_purple" tearColor="tear_purple" />
 	<!-- Voodoo pin -->
-	<wisp id="24" layer="2" tearflags="20" procChance="0.25" fireDeflameColor="flame_grey" coreColor="core_beige" tearColor="tear_black" />
+	<wisp id="24" layer="2" procChance="0.15" fireDeflameColor="flame_grey" coreColor="core_beige" tearColor="tear_grey" tearColor2="tear_black" tearFlags2="20" />
 </wisps>

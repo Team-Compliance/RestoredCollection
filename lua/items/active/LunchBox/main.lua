@@ -122,7 +122,6 @@ function LunchBoxLocal:Use(collectible, rng, player, useflag, slot, customvardat
         local wispSP = collectible
         if REPENTOGON then
             local itemDesc = player:GetActiveItemDesc(slot)
-            print(itemDesc.VarData)
             wispSP = wispSP - itemDesc.VarData
             if itemDesc.VarData > 4 then
                 remove = true
