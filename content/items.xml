@@ -4,49 +4,49 @@
 	<passive id="1" name="Blank Bombs" description="Enter the basement" gfx="collectibles_002_blank_bombs.png" bombs="5" quality="2" tags="summonable offensive"/>
 	<familiar id="2" name="Checked Mate" description="Chess friend" gfx="collectibles_003_checked_mate.png" quality="3" tags="summonable monstermanual offensive"/>
 	<passive id="3" name="Dice Bombs" description="Item reroller +5 bombs" gfx="collectibles_004_dice_bombs.png" bombs="5" quality="4" tags="summonable offensive"/>
-	<passive id="4" name="​Donkey Jawbone" description="Come at me!" gfx="collectibles_005_donkey_jawbone.png" quality="2" tags="nolostbr summonable" achievement="452"/>
-    <familiar id="5" name="​Menorah" description="Shot multiplier" gfx="collectibles_006_menorah.png" quality="4" tags="uniquefamiliar summonable nolostbr" cache="firedelay" />
+	<passive id="4" name="Donkey Jawbone" description="Come at me!" gfx="collectibles_005_donkey_jawbone.png" quality="2" tags="nolostbr summonable" achievement="452"/>
+	<familiar id="5" name="Menorah" description="Shot multiplier" gfx="collectibles_006_menorah.png" quality="4" tags="uniquefamiliar summonable nolostbr" cache="firedelay" />
 	
 	<passive id="6" name="Ancient Revelation" description="Remember what came before" gfx="collectibles_007_ancient_revelation.png" achievement="470" cache="firedelay shotspeed flying tearcolor tearflag tearsup" soulhearts="4" devilprice="2" quality="4" tags="summonable offensive angel" />
-    <familiar id="7" name="Beth's Heart" description="Faith accumulator" gfx="collectibles_008_beths_heart.png" achievement="404" quality="1" tags="summonable offensive"/>   
-    <passive id="8" name="Keeper's Rope" description="Beat the money out of them" gfx="collectibles_009_keepers_rope.png" achievement="251" cache="flying luck" quality="3" tags="summonable offensive" />
-    <passive id="9" name="Lucky Seven" description="Fortune favors the bold" gfx="collectibles_010_lucky_seven.png" quality="2" cache="luck" tags="summonable offensive"/>
-    <passive id="10" name="Pacifist" description="Make love, not war" gfx="collectibles_011_pacifist.png" quality="2" tags="summonable offensive nocantrip nogreed lazarusshared" />
+	<familiar id="7" name="Beth's Heart" description="Faith accumulator" gfx="collectibles_008_beths_heart.png" achievement="404" quality="1" tags="summonable offensive"/>   
+	<passive id="8" name="Keeper's Rope" description="Beat the money out of them" gfx="collectibles_009_keepers_rope.png" achievement="251" cache="flying luck" quality="3" tags="summonable offensive" />
+	<passive id="9" name="Lucky Seven" description="Fortune favors the bold" gfx="collectibles_010_lucky_seven.png" quality="2" cache="luck" tags="summonable offensive"/>
+	<passive id="10" name="Pacifist" description="Make love, not war" gfx="collectibles_011_pacifist.png" quality="2" tags="summonable offensive nocantrip nogreed lazarusshared" />
 	<passive id="11" name="Safety Bombs" description="For your own good" gfx="collectibles_012_safety_bombs.png" bombs="7" quality="0" tags="summonable"/>
-    <passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
-    <passive id="13" name="​Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="3" cache="firedelay" tags="summonable offensive tearsup"/>
+	<passive id="12" name="Ol' Lopper" description="A new point of view" gfx="collectibles_013_ol_lopper.png" quality="1" tags="summonable offensive" cache="familiars"/>
+	<passive id="13" name="Max's Head" description="Tears up" gfx="collectibles_014_maxs_head.png" quality="3" cache="firedelay" tags="summonable offensive tearsup"/>
 	<!-- Active Items -->
 	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
-	<active id="15" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
-	<active id="16" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
-	<active id="17" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
-	<active id="18" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
-	<active id="19" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" tags="offensive" />
-	<active id="20" name="Book of Despair" description="Temporary tears up" gfx="collectibles_016_book_of_despair.png" maxcharges="3" quality="3" cache="firedelay" tags="book offensive lazarussharedglobal" />
-	<active	id="21" name="Bowl of Tears" description="Splash!" gfx="collectibles_017_bowl_of_tears.png" maxcharges="6" chargetype="special" quality="4" tags="offensive"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" hidden="true"/>
+	<active id="14" name="Lunch Box" description="Portable buffet" gfx="collectibles_015_lunch_box.png" quality="2" maxcharges="6" shopprice="10" initcharge="0" chargetype="special" tags="offensive" />
+	<active id="15" name="Book of Despair" description="Temporary tears up" gfx="collectibles_016_book_of_despair.png" maxcharges="3" quality="3" cache="firedelay" tags="book offensive lazarussharedglobal" />
+	<active	id="16" name="Bowl of Tears" description="Splash!" gfx="collectibles_017_bowl_of_tears.png" maxcharges="6" chargetype="special" quality="4" tags="offensive"/>
 	
-	<active id="22" name="Book of Illusions" description="Army of you" gfx="collectibles_018_book_of_illusions.png" maxcharges="12" quality="4" tags="book offensive" />
-	<active id="23" name="Pill Crusher" description="Drug dealer" gfx="collectibles_019_pill_crusher.png" quality="1" shopprice="10" tags="offensive nocantrip" />
-	<active id="24" name="​Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="3" chargetype="normal" quality="2" tags="offensive" />
+	<active id="17" name="Book of Illusions" description="Army of you" gfx="collectibles_018_book_of_illusions.png" maxcharges="12" quality="4" tags="book offensive" />
+	<active id="18" name="Pill Crusher" description="Drug dealer" gfx="collectibles_019_pill_crusher.png" quality="1" shopprice="10" tags="offensive nocantrip" />
+	<active id="19" name="Voodoo Pin" description="Share your pain" gfx="collectibles_020_voodoo_pin.png" maxcharges="3" chargetype="normal" quality="2" tags="offensive" />
 	
-	<passive id="25" name="​Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="2" cache="firedelay" tags="offensive summonable" />
-	<passive id="26" name="Melted Candle" description="Tears up + wavering heat" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable tearsup"/>
-	<passive id="27" name="​Tammy's Tail" description="Crying out for love" gfx="collectibles_023_tammys_tail.png" quality="2" cache="firedelay" tags="offensive summonable nolostbr tearsup" />
+	<passive id="20" name="Pumpkin Mask" description="Harvest moon curse" gfx="collectibles_021_pumpkin_mask.png" quality="2" cache="firedelay" tags="offensive summonable" />
+	<passive id="21" name="Melted Candle" description="Tears up + wavering heat" gfx="collectibles_022_melted_candle.png" quality="2" cache="firedelay" tags="offensive summonable tearsup"/>
+	<passive id="22" name="Tammy's Tail" description="Crying out for love" gfx="collectibles_023_tammys_tail.png" quality="2" cache="firedelay" tags="offensive summonable nolostbr tearsup" />
 
 	<!-- Trinkets -->
-	<trinket id="0" name="​Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />
+	<trinket id="0" name="Game Squid" description="Leaky buddy" gfx="trinket_001_game_squid.png" />
 
 	<!--Reimplemented Transformations-->
-    <passive name="Spun transform" description="Counts towards spun" hidden="true" tags="syringe"/>
-    <passive name="Mom transform" description="Counts towards mom" hidden="true" tags="mom"/>
-    <passive name="Guppy transform" description="Counts towards guppy" hidden="true" tags="guppy"/>
-    <passive name="Fly transform" description="Counts towards fly" hidden="true" tags="fly"/>
-    <passive name="Bob transform" description="Counts towards bob" hidden="true" tags="bob"/>
-    <passive name="Mushroom transform" description="Counts towards mushroom" hidden="true" tags="mushroom"/>
-    <passive name="Baby transform" description="Counts towards baby" hidden="true" tags="baby"/>
-    <passive name="Angel transform" description="Counts towards angel" hidden="true" tags="angel"/>
-    <passive name="Devil transform" description="Counts towards devil" hidden="true" tags="devil"/>
-    <passive name="Poop transform" description="Counts towards poop" hidden="true" tags="poop"/>
-    <passive name="Book transform" description="Counts towards book" hidden="true" tags="book"/>
-    <passive name="Spider transform" description="Counts towards spider" hidden="true" tags="spider"/>
+	<passive name="Spun transform" description="Counts towards spun" hidden="true" tags="syringe"/>
+	<passive name="Mom transform" description="Counts towards mom" hidden="true" tags="mom"/>
+	<passive name="Guppy transform" description="Counts towards guppy" hidden="true" tags="guppy"/>
+	<passive name="Fly transform" description="Counts towards fly" hidden="true" tags="fly"/>
+	<passive name="Bob transform" description="Counts towards bob" hidden="true" tags="bob"/>
+	<passive name="Mushroom transform" description="Counts towards mushroom" hidden="true" tags="mushroom"/>
+	<passive name="Baby transform" description="Counts towards baby" hidden="true" tags="baby"/>
+	<passive name="Angel transform" description="Counts towards angel" hidden="true" tags="angel"/>
+	<passive name="Devil transform" description="Counts towards devil" hidden="true" tags="devil"/>
+	<passive name="Poop transform" description="Counts towards poop" hidden="true" tags="poop"/>
+	<passive name="Book transform" description="Counts towards book" hidden="true" tags="book"/>
+	<passive name="Spider transform" description="Counts towards spider" hidden="true" tags="spider"/>
 </items>

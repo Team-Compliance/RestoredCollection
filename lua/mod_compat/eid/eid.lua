@@ -146,7 +146,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
 
 if Sewn_API then
     Sewn_API:AddFamiliarDescription(
-        FamiliarVariant.MENORAH,
+        RestoredCollection.Enums.Familiars.MENORAH.Variant,
         "Higher fire rate per flame",
         "Higher fire rate per flame#You can keep firing even with no flames"
     )
