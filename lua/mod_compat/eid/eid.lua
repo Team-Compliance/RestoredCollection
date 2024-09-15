@@ -113,7 +113,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOWL_OF_
 
 --Donkey Jawbone
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
-    "When taking damage, Isaac does a spin attack that deals 8x damage and blocks projectiles",
+    "{{BleedingOut}} When taking damage, Isaac does a spin attack that deals 8x damage, inflicts bleed, and blocks projectiles",
     "Donkey Jawbone", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
     "Al recibir daño, realizarás un ataque giratorio, dañando a los enemigos cercanos y bloqueando proyectiles por un momento",
@@ -397,13 +397,13 @@ end
 
 --Max's Head
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
+    "↑ {{Tears}} +1.5 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 к скорострельности#Каждая 4-я слеза выстреливает с меньшей задержкой выстрела", "Голова Макса", "ru")
+    "↑ {{Tears}} +1.5 к скорострельности#Каждая 4-я слеза выстреливает с меньшей задержкой выстрела", "Голова Макса", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
+    "↑ {{Tears}} +1.5 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.50 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
+    "↑ {{Tears}} +1.5 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
     "^{{Tears}}+1.5射速#第4滴眼泪射速更快", "麦克斯的头", "zh_cn")
 
