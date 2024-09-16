@@ -119,7 +119,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_J
     "Al recibir daño, realizarás un ataque giratorio, dañando a los enemigos cercanos y bloqueando proyectiles por un momento",
     "Quijada de burro", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
-    "При получении урона Исаак совершает круговую атаку, которая наносит 8x урона и блокирует снаряды",
+    "{{BleedingOut}} При получении урона Исаак совершает круговую атаку, которая наносит 8x урона, вызывает кровотечение и блокирует снаряды",
     "Ослиная челюсть", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_JAWBONE,
     "Quando for atingido, esse item causa que você faça um ataque giratório, que causa dano em inimigos próximos e bloqueia projéteis por um curto período",
