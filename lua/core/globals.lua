@@ -13,6 +13,7 @@ TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "DSS", {}, TSIL.Enums
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HeartStyleRender", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
+TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "PerfectIllusion", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "SunHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)

@@ -1,5 +1,39 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.15",[[{{FSIZE2}}added
+
+- tammy's tails
+
+- dss/imgui option for perfect
+illusions in order to avoid
+some bugs/crashes
+(disabled by default)
+
+- lunch box book of virtues
+synergy
+
+{{FSIZE2}}updated
+
+- melted candle doesn't spawn
+pickups on enemy's death
+
+- pumpkin mask seeds now deal
+0.4x player's damage
+
+{{FSIZE2}}fixed
+- pill crusher spawning wisps
+without pills
+
+-red bombs instantly exploding
+when picking them up with
+blank bombs item
+
+-menorah compatibility with
+sewing machine mod
+
+-other minor fixes]],
+{"restored", "collection", "", "v1.15", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
 
 - dss/imgui option to disable max's head

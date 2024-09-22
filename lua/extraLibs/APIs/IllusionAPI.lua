@@ -43,6 +43,10 @@ local function load(data)
 		{PlayerType = PlayerType.PLAYER_THELOST_B, Item = CollectibleType.COLLECTIBLE_BIRTHRIGHT},
 	}
 
+	local ForbiddenCharacters = {
+
+	}
+
 	if data ~= nil then
 		TransformationItems = data.TransformationItems or TransformationItems
 		ForbiddenItems = data.ForbiddenItems or ForbiddenItems
@@ -76,6 +80,17 @@ local function load(data)
 		end
 		return false
 	end
+
+	local function ChangeCharacter(pType)
+		for _,v in ipairs(ForbiddenCharacters) do
+			if v.PlayerType and v.PlayerType == pType then
+				if v.PlayerTypeToChange then
+					return v.PlayerTypeToChange
+				end
+			end
+		end
+		return pType
+	end
 	
 	---@param player EntityPlayer
 	---@param illusionPlayer EntityPlayer
@@ -89,7 +104,9 @@ local function load(data)
 					if not BlackList(id) and not CanBeRevived(playerType, id) then
 						local itemCollectible = Isaac.GetItemConfig():GetCollectible(id)
 						if not illusionPlayer:HasCollectible(id) and player:HasCollectible(id) and
-						itemCollectible.Tags & ItemConfig.TAG_QUEST ~= ItemConfig.TAG_QUEST then
+						itemCollectible.Tags & ItemConfig.TAG_QUEST ~= ItemConfig.TAG_QUEST and 
+						not itemCollectible:HasCustomTag("revive") and 
+						not itemCollectible:HasCustomTag("reviveeffect") then
 							if itemCollectible.Type ~= ItemType.ITEM_ACTIVE then
 								for _ = 1, player:GetCollectibleNum(id) do
 									illusionPlayer:AddCollectible(id, 0, false)
@@ -139,7 +156,9 @@ local function load(data)
 					local id = item:GetItemID()
 					local itemTrinket = Isaac.GetItemConfig():GetTrinket(id)
 					if not BlackListTrinket(id) and itemTrinket then
-						if not illusionPlayer:HasTrinket(id) and player:HasTrinket(id) then
+						if not illusionPlayer:HasTrinket(id) and player:HasTrinket(id) and
+						not itemTrinket:HasCustomTag("revive") and 
+						not itemTrinket:HasCustomTag("reviveeffect") then
 							for _ = 1, player:GetTrinketMultiplier(id) do
 								illusionPlayer:AddSmeltedTrinket(id, false)
 							end
@@ -217,9 +236,12 @@ local function load(data)
 		table.insert(ForbiddenTrinkets,i)
 	end
 	
-	---@
 	function IllusionMod.AddForbiddenCharItem(type, i)
 		table.insert(ForbiddenPCombos,{PlayerType = type, Item = i})
+	end
+
+	function IllusionMod.AddForbiddenChar(type, changeType)
+		table.insert(ForbiddenCharacters,{PlayerType = type, PlayerTypeToChange = changeType})
 	end
 
 	---@param player EntityPlayer
@@ -262,9 +284,13 @@ local function load(data)
 
 			illusionPlayer:AddNullCostume(costume)
 		end
-
-		illusionPlayer:ChangePlayerType(playerType)
-
+		playerType = ChangeCharacter(playerType)
+		if (TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PerfectIllusion") == 2
+		or playerType < 41) then
+			illusionPlayer:ChangePlayerType(playerType)
+		else
+			illusionPlayer:ChangePlayerType(PlayerType.PLAYER_ISAAC)
+		end
 		if isIllusion then
 			AddItemsToIllusion(player, illusionPlayer, playerType)
 
@@ -326,6 +352,11 @@ local function load(data)
         IllusionMod.Loaded = false
     end
     IllusionMod:AddCallback(ModCallbacks.MC_PRE_MOD_UNLOAD, IllusionMod.ModReset)
+
+	if RedBaby then
+		IllusionMod.AddForbiddenChar(RedBaby.enums.PlayerType.RED_BABY_A, PlayerType.PLAYER_BLUEBABY)
+		IllusionMod.AddForbiddenItem(RedBaby.enums.CollectibleType.REDBABY_HEART)
+	end
 
 	print("[".. IllusionMod.Name .."]", "is loaded. Version "..IllusionMod.Version)
 	IllusionMod.Loaded = true

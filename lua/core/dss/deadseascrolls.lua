@@ -284,7 +284,7 @@ local function InitImGuiMenu()
 
     ImGui.LinkWindowToElement("restoredCollectionSettingsWindow", "restoredCollectionSettings")
 
-    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 375)
+    ImGui.SetWindowSize("restoredCollectionSettingsWindow", 600, 420)
 
     if ImGui.ElementExists("restoredCollectionSettingsHeartsStyle") then
         ImGui.RemoveElement("restoredCollectionSettingsHeartsStyle")
@@ -351,6 +351,16 @@ local function InitImGuiMenu()
         TSIL.SaveManager.SaveToDisk()
     end, false)
 
+    if ImGui.ElementExists("restoredCollectionSettingsIllusionPerfect") then
+        ImGui.RemoveElement("restoredCollectionSettingsIllusionPerfect")
+    end
+
+    ImGui.AddCheckbox("restoredCollectionSettingsWindow", "restoredCollectionSettingsIllusionPerfect", "Create perfect Illusion for modded characters?", function(val)
+        local newOption = val and 2 or 1
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "PerfectIllusion", newOption)
+        TSIL.SaveManager.SaveToDisk()
+    end, false)
+
     if ImGui.ElementExists("restoredCollectionSettingsMaxsHeads") then
         ImGui.RemoveElement("restoredCollectionSettingsMaxsHeads")
     end
@@ -369,6 +379,7 @@ local function InitImGuiMenu()
             ImGui.UpdateData("restoredCollectionSettings"..str.."Heart", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, str.."HeartSpawnChance"))
         end
         ImGui.UpdateData("restoredCollectionSettingsIllusionPlaceBombs", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") > 1)
+        ImGui.UpdateData("restoredCollectionSettingsIllusionPerfect", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PerfectIllusion") > 1)
         ImGui.UpdateData("restoredCollectionSettingsMaxsHeads", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MaxsHead") > 1)
     end)
     
@@ -673,6 +684,24 @@ local restoreditemsdirectory = {
                 end,
 
                 tooltip = {strset = {'can illusions', 'place bombs?'}}
+            },
+            {str = '', nosel = true},
+            {
+                str = 'perfect illusion',
+                fsize = 2,
+                choices = {'no', 'yes'},
+                setting = 1,
+                variable = 'PerfectIllusion',
+
+                load = function ()
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PerfectIllusion") or 1
+                end,
+
+                store = function(newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "PerfectIllusion", newOption)
+                end,
+
+                tooltip = {strset = {'create perfect', 'illusions for', 'modded', 'characters?'}}
             },
         },
     },
