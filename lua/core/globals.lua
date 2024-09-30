@@ -3,7 +3,9 @@ TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "PlayerData", {}, TSI
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "FamiliarData", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HasMorphedKeepersRope", false, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "CustomHealthAPISave", "", TSIL.Enums.VariablePersistenceMode.RESET_RUN)
-TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HiddenItemMangerSave", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
+if not REPENTOGON then
+    TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HiddenItemMangerSave", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
+end
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "LastPillUsed", -1, TSIL.Enums.VariablePersistenceMode.RESET_RUN)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "MonsterTeleTable", {}, TSIL.Enums.VariablePersistenceMode.RESET_LEVEL)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "HPUpDownEnemies", {}, TSIL.Enums.VariablePersistenceMode.RESET_RUN)

@@ -34,7 +34,9 @@ function SaveManager:OnPlayerInit()
     if isContinue and RestoredCollection:HasData() then
         TSIL.SaveManager.LoadFromDisk()
         CustomHealthAPI.Library.LoadHealthFromBackup(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "CustomHealthAPISave"))
-        RestoredCollection.HiddenItemManager:LoadData(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HiddenItemMangerSave"))
+        if not REPENTOGON then
+            RestoredCollection.HiddenItemManager:LoadData(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HiddenItemMangerSave"))
+        end
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveManager.OnPlayerInit)
@@ -55,7 +57,9 @@ end
 function SaveManager:SaveData(isSaving)
     if isSaving then
         TSIL.SaveManager.LoadFromDisk()
-        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
+        if not REPENTOGON then
+            TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HiddenItemMangerSave", RestoredCollection.HiddenItemManager:GetSaveData())
+        end
         TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", CustomHealthAPI.Library.GetHealthBackup())
     end
     TSIL.SaveManager.SaveToDisk()

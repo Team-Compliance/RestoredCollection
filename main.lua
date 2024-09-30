@@ -3,8 +3,11 @@ RestoredCollection = RegisterMod("Restored Collection", 1)
 
 local LOCAL_TSIL = require("lua.extraLibs.loi.TSIL")
 LOCAL_TSIL.Init("lua.extraLibs.loi")
-local HiddenItemManager = include("lua.extraLibs.hidden_item_manager")
-RestoredCollection.HiddenItemManager = HiddenItemManager:Init(RestoredCollection)
+if not REPENTOGON then
+    local HiddenItemManager = include("lua.extraLibs.hidden_item_manager")
+    RestoredCollection.HiddenItemManager = HiddenItemManager:Init(RestoredCollection)
+end
+
 
 include("lua.helpers.Helpers")
 include("lua.extraLibs.hellfirejuneMSHack")
