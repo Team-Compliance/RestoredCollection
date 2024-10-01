@@ -53,6 +53,42 @@ local modMenuName = "Restored Collection"
 	end
 -- Thanks to catinsurance for those functions
 
+local ogwikidesc = Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc
+
+local function FitEncyclopediaDesc(desc)
+    local WikiDesc = desc
+    local newDesc = {}
+    for i, tab in ipairs(WikiDesc) do
+        newDesc[i] = {}
+    
+        for j, new_str in ipairs(tab) do
+            local text = new_str
+            
+            for _, subtext in ipairs(Encyclopedia.fitTextToWidth(text.str, text.fsize or 1, 140)) do
+                local newtext = {str = subtext, fsize = text.fsize, clr = text.clr, halign = text.halign}
+                table.insert(newDesc[i], newtext)
+            end
+            
+            if j == #tab then
+                table.insert(newDesc[i], {str = "", fsize = 3})
+            elseif tab[j + 1] and tab[j + 1].str ~= "" and text.str ~= "" then
+                table.insert(newDesc[i], {str = ""})
+            end
+        end
+    end
+    return newDesc
+end
+
+local function UpdateActOfContrictionEncyclopedia(change)
+    if Encyclopedia then
+        local wikidesc = ogwikidesc
+        if change then
+            wikidesc = FitEncyclopediaDesc(RestoredCollection.Enums.Wiki.ActOfContriction)
+        end
+        Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc = wikidesc
+    end
+end
+
 -- Every MenuProvider function below must have its own implementation in your mod, in order to handle menu save data.
 local MenuProvider = {}
 
@@ -324,6 +360,7 @@ local function InitImGuiMenu()
     
     ImGui.AddCheckbox("restoredCollectionSettingsWindow", "restoredCollectionSettingsActGivesImmortalHearts", "Act of Contrition gives Immortal Heart", function(val)
         local newOption = val and 1 or 2
+        UpdateActOfContrictionEncyclopedia(val)
         TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", newOption)
         TSIL.SaveManager.SaveToDisk()
     end, true)
@@ -578,6 +615,7 @@ local restoreditemsdirectory = {
                 -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
                 store = function(var)
                     TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", var)
+                    UpdateActOfContrictionEncyclopedia(var == 1)
                 end,
 
                 -- A simple way to define tooltips is using the "strset" tag, where each string in the table is another line of the tooltip
@@ -855,6 +893,10 @@ DeadSeaScrollsMenu.AddMenu(modMenuName, {
 if REPENTOGON then
     InitImGuiMenu()
 end
+
+RestoredCollection:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE + 10, function()
+    UpdateActOfContrictionEncyclopedia(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal"))
+end)
 
 include("lua.core.dss.changelog")
 -- There are a lot more features that DSS supports not covered here, like sprite insertion and scroller menus, that you'll have to look at other mods for reference to use.
