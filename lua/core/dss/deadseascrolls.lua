@@ -53,7 +53,7 @@ local modMenuName = "Restored Collection"
 	end
 -- Thanks to catinsurance for those functions
 
-local ogwikidesc = Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc
+local ogwikidesc = Encyclopedia and Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc or nil
 
 local function FitEncyclopediaDesc(desc)
     local WikiDesc = desc

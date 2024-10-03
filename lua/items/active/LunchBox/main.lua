@@ -5,27 +5,30 @@ local sfx = SFXManager()
 local RepentogonTargetCol = REPENTOGON and RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX or (RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - 5)
 local itemConfig = Isaac.GetItemConfig()
 
-local function isNoRedHealthCharacter(p)
-    local t = p:GetPlayerType()
-    return CustomHealthAPI.PersistentData.CharactersThatCantHaveRedHealth[t] or Helpers.IsGhost(p) or t == PlayerType.PLAYER_THESOUL
+---@param player EntityPlayer
+---@return boolean
+local function isNoRedHealthCharacter(player)
+    local t = player:GetPlayerType()
+    return REPENTOGON and player:GetHealthType() ~= HealthType.RED and player:GetHealthType() ~= HealthType.COIN or
+    CustomHealthAPI and CustomHealthAPI.PersistentData.CharactersThatCantHaveRedHealth[t] or
+    Helpers.IsGhost(player) or t == PlayerType.PLAYER_THESOUL
 end
 
-LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, 1, function (player)
-    sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
+LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, 1, function (player, pickup)
+    pickup:PlayPickupSound()
 end)
-LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, 2, function (player)
-    sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
+LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, 2, function (player, pickup)
+    pickup:PlayPickupSound()
 end)
-LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, 2, function (player)
-    sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
+LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, 2, function (player, pickup)
+    pickup:PlayPickupSound()
 end)
-LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_DOUBLEPACK, 4, function (player)
-    sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
+LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_DOUBLEPACK, 4, function (player, pickup)
+    pickup:PlayPickupSound()
 end)
-LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLENDED, 1, function (player)
-    sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
+LunchBox.AddPickup(PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLENDED, 1, function (player, pickup)
     player:AddSoulHearts(1)
-    sfx:Play(SoundEffect.SOUND_HOLY, 1, 0)
+    pickup:PlayPickupSound()
 end)
 if RepentancePlusMod then
     LunchBox.AddPickup(PickupVariant.PICKUP_HEART, RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED, 8, function (player)
@@ -182,11 +185,15 @@ RestoredCollection:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, Cal
             end
             
             for slot = 0,2 do
-                for i = 0, 5 do
-                    hp = HPLeft(player, slot, hp, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
+                if REPENTOGON then
+                    hp = HPLeft(player, slot, hp, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX)
+                else
+                    for i = 0, 5 do
+                        hp = HPLeft(player, slot, hp, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUNCH_BOX - i)
+                    end
                 end
             end
-            LunchBox.GetPickupData(pickup.Variant, pickup.SubType).Function(player)
+            LunchBox.GetPickupData(pickup.Variant, pickup.SubType).Function(player, pickup)
             player:AddHearts(hp)
             Game():GetLevel():SetHeartPicked()
             Game():ClearStagesWithoutHeartsPicked()
