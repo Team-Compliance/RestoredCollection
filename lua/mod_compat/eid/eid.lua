@@ -309,7 +309,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SE
 local Pacdesc =
 "Combat rooms are cleared after 30 seconds of not damaging any enemies#Spawns chests at the start of each floor for each special room left unexplored on the previous floor"
 local PacdescRu =
-"Дает награду предметами на следующем этаже в зависимости от того, сколько комнат вы не зачистили на текущем"
+"Комнаты с врагами зачищаются после 30 секунд не нанося им урона#Сундуки появляются в начале каждого этажа за каждую непосещенную особую комнату на предыдущем этаже"
 local PacdescSpa =
 "Genera recolectables en el siguiente piso en función a cuantas habitaciones no limpiaste en el piso actual"
 local PacdescPt_Br =
