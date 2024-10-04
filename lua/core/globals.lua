@@ -18,7 +18,7 @@ TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "IllusionClonesPlaceB
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "PerfectIllusion", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "SunHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance", 20, TSIL.Enums.VariablePersistenceMode.NONE, true)
-TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
+TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "ActOfContritionImmortal", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "DisabledItems", {}, TSIL.Enums.VariablePersistenceMode.NONE, true)
 TSIL.SaveManager.AddPersistentVariable(RestoredCollection, "MaxsHead", 1, TSIL.Enums.VariablePersistenceMode.NONE, true)
 

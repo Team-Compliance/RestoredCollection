@@ -307,7 +307,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SE
 
 --Pacifist
 local Pacdesc =
-"Spawns pickup rewards at the start of a floor based on how many rooms left uncleared on the previous floor"
+"Combat rooms are cleared after 30 seconds of not damaging any enemies#Spawns chests at the start of each floor for each special room left unexplored on the previous floor"
 local PacdescRu =
 "Дает награду предметами на следующем этаже в зависимости от того, сколько комнат вы не зачистили на текущем"
 local PacdescSpa =
@@ -459,15 +459,15 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_T
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% chance to a shoot slowing tear that leaves black creep on impact")
+    "{{Slow}} 8% chance to a shoot slowing tear that leaves black creep on impact #{{Luck}} 100% chance at 18 luck")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% шанс выстрелить замедляющей слезой, которая оставляет черную лужу при столкновении", "Игровой кальмар", "ru")
+    "{{Slow}} 8% шанс выстрелить замедляющей слезой, которая оставляет черную лужу при столкновении", "Игровой кальмар", "ru")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% de disparar una lágrima ralentizada que deja un charco negro cuando impacta", "", "spa")
+    "{{Slow}} 8% de disparar una lágrima ralentizada que deja un charco negro cuando impacta", "", "spa")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% de chance de disparar uma lágrima que desascelera e deixa uma poça preta no impacto", "Lula dos Games", "pt_br")
+    "{{Slow}} 8% de chance de disparar uma lágrima que desascelera e deixa uma poça preta no impacto", "Lula dos Games", "pt_br")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5%发射减速眼泪，在击中时留下黑色水迹", "游戏鱿鱼", "zh_cn")
+    "{{Slow}} 8%发射减速眼泪，在击中时留下黑色水迹", "游戏鱿鱼", "zh_cn")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑ +3% on top for every trinket multiplier")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
@@ -479,11 +479,11 @@ EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_S
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑每个饰品乘数上限+3%", nil, nil, "zh_cn")
 
-local function ActOfContrictionConditions(descObj)
-    return descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") == 1
+local function ActOfContritionConditions(descObj)
+    return descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") == 1
 end
 
-local function ActOfContrictionModifierCallback(descObj)
+local function ActOfContritionModifierCallback(descObj)
     descObj.Description = descObj.Description:gsub("Eternal", "Immortal")
     descObj.Description = descObj.Description:gsub("вечное", "бессмертное")
     descObj.Description = descObj.Description:gsub("eterno", "inmortales")
@@ -492,4 +492,4 @@ local function ActOfContrictionModifierCallback(descObj)
     return descObj
 end
 
-EID:addDescriptionModifier("Immortal Act of Contriction Modifier", ActOfContrictionConditions, ActOfContrictionModifierCallback)
+EID:addDescriptionModifier("Immortal Act of Contrition Modifier", ActOfContritionConditions, ActOfContritionModifierCallback)

@@ -31,7 +31,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, ComplianceI
 if REPENTOGON then
 	function ComplianceImmortalLocal:ActOfImmortal(collectible, charge, firstTime, slot, VarData, player)
 		if firstTime and collectible == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION
-		and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") then
+		and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") then
 			player:AddEternalHearts(-1)
 			ComplianceImmortal.AddImmortalHearts(player, 2)
 		end
@@ -62,7 +62,7 @@ else
 
 	function ComplianceImmortalLocal:ActOfImmortal(player, cache)
 		if player.Parent ~= nil then return end
-		if not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") then return end
+		if not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") then return end
 		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			player = player:GetMainTwin()
 		end
