@@ -61,9 +61,9 @@ function KeepersRope:Rope(player)
 			TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HasMorphedKeepersRope", true)
 		end
 	end
-	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE) then
+	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE) and not hasMorphedKeepersRope then
 		TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HasMorphedKeepersRope", true)
-		if not BeastFight and not player:IsDead() then
+		--[[if not BeastFight and not player:IsDead() then
 			if not GetRope(player, true) then
 				local rope = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.KEEPERS_ROPE.Variant, 0, player.Position, Vector.Zero, player):ToEffect()
 				rope:FollowParent(player)
@@ -72,7 +72,7 @@ function KeepersRope:Rope(player)
 				--rope.Position = player.Position
 				rope.DepthOffset = -10
 			end
-		end
+		end]]
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, KeepersRope.Rope)
@@ -82,7 +82,7 @@ function KeepersRope:RopeInit(rope)
 	local sprite = rope:GetSprite()
 	sprite:SetFrame("Rope",0)
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, KeepersRope.RopeInit, RestoredCollection.Enums.Entities.KEEPERS_ROPE.Variant)
+--RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, KeepersRope.RopeInit, RestoredCollection.Enums.Entities.KEEPERS_ROPE.Variant)
 
 
 function KeepersRope:RopeUpdate(rope)
@@ -106,7 +106,7 @@ function KeepersRope:RopeUpdate(rope)
 		end
 	end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, KeepersRope.RopeUpdate, RestoredCollection.Enums.Entities.KEEPERS_ROPE.Variant)
+--RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, KeepersRope.RopeUpdate, RestoredCollection.Enums.Entities.KEEPERS_ROPE.Variant)
 
 
 local function DontGiveCoins(npc)
@@ -165,13 +165,16 @@ function KeepersRope:MoneyMoneyMoneyMoney(entity, _, damageflags, source)
 			if data.CoinsToBeat > 0 then
 				for _, player in ipairs(Helpers.GetPlayers()) do
 					local pickup = {Variant = PickupVariant.PICKUP_COIN, SubType = CoinSubType.COIN_PENNY}
-					local ropeRNG = player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE)
-					local vector = Vector(math.random(1,3) * (math.random(1,2) == 1 and 1 or -1), math.random(1,3) * (math.random(1,2) == 1 and 1 or -1))
-					if player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_KEY) and ropeRNG:RandomInt(3) == 0 then
-						pickup = {Variant = PickupVariant.PICKUP_KEY, SubType = KeySubType.KEY_NORMAL}
-					end
-					if player:HasCollectible(CollectibleType.COLLECTIBLE_MR_BOOM) and ropeRNG:RandomInt(3) == 0 then
-						pickup = {Variant = PickupVariant.PICKUP_BOMB, SubType = BombSubType.BOMB_NORMAL}
+					local rng = player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE)
+					local vector
+					if REPENTOGON then
+						vector = EntityPickup.GetRandomPickupVelocity(entity.Position, rng)
+					else
+						vector = TSIL.Vector.GetRandomVector(rng) * TSIL.Random.GetRandomElementsFromTable({1, -1}, 1, rng)[1]
+						vector:Resize(1)
+						rng:Next()
+						vector = Vector(vector.X * TSIL.Random.GetRandomInt(1,3, rng), vector.Y * TSIL.Random.GetRandomInt(1,3, rng))
+						rng:Next()
 					end
 					Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, pickup.SubType, entity.Position, vector, nil):ToPickup().Timeout = 60
 					data.CoinsToBeat = data.CoinsToBeat - 1
@@ -200,29 +203,20 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, KeepersRope.Mone
 function KeepersRope:DollarDollar(npc)
 	local data = Helpers.GetData(npc)
 	if data.CoinsToBeat and data.CoinsToBeat > 0 then
+		local rng = npc:GetDropRNG()
 		for _ = 1, data.CoinsToBeat do
-			for _, player in ipairs(Helpers.GetPlayers()) do
-				local ropeRNG = player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE):RandomInt(3)
-				local pickup
-				local vector = Vector(math.random(1,3) * (math.random(1,2) == 1 and 1 or -1), math.random(1,3) * (math.random(1,2) == 1 and 1 or -1))
-				if player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_KEY) then
-					if ropeRNG == 0 then
-						pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, KeySubType.KEY_NORMAL, npc.Position, vector, nil):ToPickup()
-					else
-						pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, npc.Position, vector, nil):ToPickup()
-					end
-				elseif player:HasCollectible(CollectibleType.COLLECTIBLE_MR_BOOM) then
-					if ropeRNG == 0 then
-						pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, npc.Position, vector, nil):ToPickup()
-					else
-						pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, npc.Position, vector, nil):ToPickup()
-					end
-				else
-					pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, npc.Position, vector, nil):ToPickup()
-				end
-				data.CoinsToBeat = data.CoinsToBeat - 1
-				pickup.Timeout = 90
+			local vector
+			if REPENTOGON then
+				vector = EntityPickup.GetRandomPickupVelocity(npc.Position, rng)
+			else
+				vector = TSIL.Vector.GetRandomVector(rng) * TSIL.Random.GetRandomElementsFromTable({1, -1}, 1, rng)[1]
+				rng:Next()
+				vector = Vector(vector.X * TSIL.Random.GetRandomInt(1,3, rng), vector.Y * TSIL.Random.GetRandomInt(1,3, rng))
+				rng:Next()
 			end
+			local pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, npc.Position, vector, nil):ToPickup()
+			data.CoinsToBeat = data.CoinsToBeat - 1
+			pickup.Timeout = 90
 		end
 	end
 end
@@ -231,15 +225,12 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, KeepersRope.Dol
 
 function KeepersRope:NoSoap(player,cacheFlag)
 	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE) then
-		if cacheFlag == CacheFlag.CACHE_FLYING then
-			player.CanFly = true
-		elseif cacheFlag == CacheFlag.CACHE_LUCK and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B then
+		if cacheFlag == CacheFlag.CACHE_LUCK and not Helpers.IsAnyPlayerType(player, PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_KEEPER_B) then
 			player.Luck = player.Luck - 2
 		end
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, KeepersRope.NoSoap)
-
 
 function KeepersRope:RopeReplacement(keeper)
 	if not TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HasMorphedKeepersRope") then

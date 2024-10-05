@@ -33,7 +33,8 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         AddReplacableItems(LostItemsPack.CollectibleType.VOODOO_PIN, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_VOODOO_PIN)
     end
     if communityRemix then
-        AddReplacableItems(CollectibleType.COLLECTIBLE_MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+        AddReplacableItems(communityRemix.CollectibleType.COLLECTIBLE_MENORAH, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
+        AddReplacableItems(communityRemix.CollectibleType.COLLECTIBLE_TAMMYS_TAIL, RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH)
     end
 
     if REPENTOGON then

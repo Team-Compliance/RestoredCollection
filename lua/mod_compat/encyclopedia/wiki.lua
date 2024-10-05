@@ -345,7 +345,6 @@ local Wiki = {
 	KeepersRope = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Grants flight." },
 			{ str = "-2 Luck down when not playing as Keeper or Tainted Keeper." },
 			{ str = "When monsters spawn they have a 25% chance to contain 1-3 pennies." },
 			{ str = "When playing as Keeper monsters have 16.7% chance to contain 1-2 pennies." },
@@ -360,11 +359,7 @@ local Wiki = {
 		},
 		{ -- Synergies
 			{ str = "Synergies", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Dad's Key - Dropped coins have a 33% chance to be replaced with keys." },
-			{ str = "Mr. Boom - Dropped coins have a 33% chance to be replaced with bombs." },
-			{ str = "Crooked Penny - Dropped coins have a 50% chance to be doubled." },
-			{ str = "Humbling Bundle - Dropped coins, bombs, and keys have a 50% chance to be doubled." },
-			{ str = "BOGO Bombs - Dropped bombs from the Mr. Boom synergy have a 100% chance to be doubled." },
+			{ str = "Humbling Bundle - Dropped coins have a 50% chance to be doubled." },
 		},
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },

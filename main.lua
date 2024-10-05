@@ -33,6 +33,7 @@ include("lua.core.BlockDisabledItems")
 include("lua.core.ReplaceItems")
 
 include("lua.core.VanillaPostTriggerWeaponFired")
+include("lua.core.achievements")
 
 --entities
 include("lua.entities.clots.ImmortalClot.main")

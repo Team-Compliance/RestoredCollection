@@ -1,0 +1,6 @@
+<achievements gfxroot="gfx/ui/achievement/">
+	<achievement name="Donkey Jawbone" text="452" gfx="achievement_donkeysjawbone.png" />
+	<achievement name="Ancient Revelation" text="470" gfx="achievement_ancientrevelation.png" />
+	<achievement name="Beth's Heart" text="404" gfx="achievement_bethsheart.png" />
+	<achievement name="Keeper's Rope" text="251" gfx="achievement_keepersrope.png" />
+</achievements>

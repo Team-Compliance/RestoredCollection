@@ -199,6 +199,19 @@ function Helpers.IsPlayerType(player, type)
 	return player:GetPlayerType() == type
 end
 
+function Helpers.IsAnyPlayerType(player, ...)
+	local pTypeTable = {...}
+	if #pTypeTable > 0 then
+		for _, pType in pairs(pTypeTable) do
+			if Helpers.IsPlayerType(player, pType) then
+				return true
+			end
+		end
+		
+	end
+	return false
+end
+
 function Helpers.GetPlayerIndex(player)
     local id = 1
 	if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
