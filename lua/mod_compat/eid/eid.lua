@@ -1,5 +1,5 @@
 if not EID then return end
-
+local Helpers = RestoredCollection.Helpers
 -- Mod Icon (TODO)
 EID:setModIndicatorName("Restored Collection")
 local iconSprite = Sprite()
@@ -84,17 +84,17 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DICE_BOM
     "{{Bomb}} +5 Bombs#爆炸将重置爆炸范围内的基座物品#持有某些骰子物品将添加额外效果", "骰子炸弹", "zh_cn")
 --Book of Despair
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Tears up when used#Less effective for each concecutive use in the same room", "Book of Despair", "en_us")
+    "↑ {{Blank}} {{Tears}} +100% Tears up when used#Less effective for each concecutive use in the same room", "Book of Despair", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} Lágrimas +100% al usarlo#El efecto es menos efectivo con cada uso en la misma habitación",
+    "↑ {{Blank}} {{Tears}} Lágrimas +100% al usarlo#El efecto es menos efectivo con cada uso en la misma habitación",
     "El Libro de la Desesperación", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% к скорострельности при использовании#Эффект слабее при каждом использовании в той же комнате",
+    "↑ {{Blank}} {{Tears}} +100% к скорострельности при использовании#Эффект слабее при каждом использовании в той же комнате",
     "Книга отчаяния", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% Lágrimas quando usado#O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
+    "↑ {{Blank}} {{Tears}} +100% Lágrimas quando usado#O efeito é menos efetivo à cada uso na mesma sala", "Livro do Desespero", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR,
-    "↑ {{Tears}} +100% 射速#在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
+    "↑ {{Blank}} {{Tears}} +100% 射速#在同一房间使用后效果会逐渐减弱", "绝望之书", "zh_cn")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_DESPAIR, "12") -- Bookworm
 
 --Bowl of Tears
@@ -129,19 +129,19 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_DONKEY_J
 
 --Menorah
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "Menorah familiar that gives multishot proportionate to the number of lit candles#↓ {{Tears}} -0.5x tear rate for each candle lit#Getting hit with 7 lit candles bursts 8 blue flames and makes Isaac unable to shoot for a little while",
+    "Menorah familiar that gives multishot proportionate to the number of lit candles#↓ {{Blank}} {{Tears}} -0.5x tear rate for each candle lit#Getting hit with 7 lit candles bursts 8 blue flames and makes Isaac unable to shoot for a little while",
     "Menorah", "en_us")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "Genera un familiar Menorah#El número de lágirmas Isaac aumentan en función de las velas encendidas, máximo 7 velas#↓ {{Tears}} Reduce el tiempo de disparo entre dos y lo multiplica por la suma de las velas encendidas mas 1 #Recibir daño con 7 velas encendidas hace estallar 8 llamas azules y hace que Isaac no pueda disparar por un rato",
+    "Genera un familiar Menorah#El número de lágirmas Isaac aumentan en función de las velas encendidas, máximo 7 velas#↓ {{Blank}} {{Tears}} Reduce el tiempo de disparo entre dos y lo multiplica por la suma de las velas encendidas mas 1 #Recibir daño con 7 velas encendidas hace estallar 8 llamas azules y hace que Isaac no pueda disparar por un rato",
     "Menorah", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "Фамильяр подсвечник, который дает доп. слезы пропорционально количеству зажженных свечей#↓ {{Tears}} -0.5 скорострельности за каждую заженную свечу#Получая урон с 7 заженными свечами разбрасывает 8 синих огней и делает Исаака неспособным стрелять некоторое время",
+    "Фамильяр подсвечник, который дает доп. слезы пропорционально количеству зажженных свечей#↓ {{Blank}} {{Tears}} -0.5 скорострельности за каждую заженную свечу#Получая урон с 7 заженными свечами разбрасывает 8 синих огней и делает Исаака неспособным стрелять некоторое время",
     "Менора", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "Gera um familiar menorah que causa as lágrimas de Isaac serem multiplicadas pelo número de velas acesas#↓ {{Tears}} Reduz o tempo de disparo de cada lágrima pela metade e multiplica pela soma das velas acesas mais 1#Ser atingido com as 7 velas acesas gera 8 chamas azuis e impede Isaac de atirar lágrimas por um tempinho",
+    "Gera um familiar menorah que causa as lágrimas de Isaac serem multiplicadas pelo número de velas acesas#↓ {{Blank}} {{Tears}} Reduz o tempo de disparo de cada lágrima pela metade e multiplica pela soma das velas acesas mais 1#Ser atingido com as 7 velas acesas gera 8 chamas azuis e impede Isaac de atirar lágrimas por um tempinho",
     "Menorah", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MENORAH,
-    "生成一个烛台宠物，使玩家发射眼泪数量乘火焰数量#受伤增加火焰数量#↓ {{Tears}} 减半射击延迟，然后乘火焰数量加1#7个火焰受伤爆炸#爆炸产生8个蓝色火焰并使玩家无法射击一小段时间",
+    "生成一个烛台宠物，使玩家发射眼泪数量乘火焰数量#受伤增加火焰数量#↓ {{Blank}} {{Tears}} 减半射击延迟，然后乘火焰数量加1#7个火焰受伤爆炸#爆炸产生8个蓝色火焰并使玩家无法射击一小段时间",
     "烛台", "zh_cn")
 
 if Sewn_API then
@@ -154,15 +154,15 @@ end
 
 --Ancient Revelation
 local AncientDesc =
-"Grants flight#{{ImmortalHeart}} +2 Immortal Hearts#↑ {{Shotspeed}} +0.48 Shot Speed#↑ {{Tears}} +1 Tears#Spectral tears#Tears turn 90 degrees to target enemies that they may have missed"
+"Grants flight#{{ImmortalHeart}} +2 Immortal Hearts#↑ {{Blank}} {{Shotspeed}} +0.48 Shot Speed#↑ {{Blank}} {{Tears}} +1 Tears#Spectral tears#Tears turn 90 degrees to target enemies that they may have missed"
 local AncientDescRu =
-"Даёт полёт#{{ImmortalHeart}} +2 бессмертных сердца#↑ {{Shotspeed}} +0.48 к скорости полёта слезы#↑ {{Tears}} +1 к скорострельности#Спектральные слёзы#Слёзы поворачиваются на 90 градусов, чтобы попасть во врагов, которых они могли пропустить"
+"Даёт полёт#{{ImmortalHeart}} +2 бессмертных сердца#↑ {{Blank}} {{Shotspeed}} +0.48 к скорости полёта слезы#↑ {{Blank}} {{Tears}} +1 к скорострельности#Спектральные слёзы#Слёзы поворачиваются на 90 градусов, чтобы попасть во врагов, которых они могли пропустить"
 local AncientDescSpa =
-"Otorga vuelo#{{ImmortalHeart}} +2 Corazones inmortales#↑ {{Shotspeed}} Vel. de tiro +0.48#↑ {{Tears}} Lágrimas +1#Lágrimas espectrales#Las lágrimas girarán en 90 grados hacia un enemigo si es que fallan"
+"Otorga vuelo#{{ImmortalHeart}} +2 Corazones inmortales#↑ {{Blank}} {{Shotspeed}} Vel. de tiro +0.48#↑ {{Blank}} {{Tears}} Lágrimas +1#Lágrimas espectrales#Las lágrimas girarán en 90 grados hacia un enemigo si es que fallan"
 local AncientDescPt_Br =
-"Concede voo#{{ImmortalHeart}} +2 Corações imortais#↑ {{Shotspeed}} +0.48 Vel. de tiro#↑ {{Tears}} +1 Lágrimas#Lágrimas espectrais#Lágrimas viram 90 graus para atingir inimigos que elas não acertaram"
+"Concede voo#{{ImmortalHeart}} +2 Corações imortais#↑ {{Blank}} {{Shotspeed}} +0.48 Vel. de tiro#↑ {{Blank}} {{Tears}} +1 Lágrimas#Lágrimas espectrais#Lágrimas viram 90 graus para atingir inimigos que elas não acertaram"
 local AncientDescZh_Cn =
-"获得飞行能力#{{ImmortalHeart}} +2 不朽之心#↑ {{Shotspeed}} +0.48 泪速#↑ {{Tears}} +1 射速#幽灵眼泪#眼泪转向90度以瞄准未击中的敌人"
+"获得飞行能力#{{ImmortalHeart}} +2 不朽之心#↑ {{Blank}} {{Shotspeed}} +0.48 泪速#↑ {{Blank}} {{Tears}} +1 射速#幽灵眼泪#眼泪转向90度以瞄准未击中的敌人"
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION, AncientDesc,
     "Ancient Revelation", "en_us")
@@ -223,30 +223,30 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BOOK_OF_
  --todo have the description actively change if playing as keeper
 --Keeper's Rope
 local KeepersRopeDescEng =
-"Grants flight#↓ {{Luck}} -2 Luck down#{{Coin}} When enemies spawn they have a 25% chance to contain 1-3 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds"
+"↓ {{Blank}} {{Luck}} -2 Luck down#{{Coin}} When enemies spawn they have a 25% chance to contain 1-3 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds"
 local KeepersRopeDescRu =
-"Даёт полёт#↓ {{Luck}} -2 к удаче#{{Coin}} Когда монстры появляются у них есть 25% шанс иметь 1-3 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды"
+"↓ {{Blank}} {{Luck}} -2 к удаче#{{Coin}} Когда монстры появляются у них есть 25% шанс иметь 1-3 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды"
 local KeepersRopeDescSpa =
-"Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos"
+"↓ {{Blank}} {{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos"
 local KeepersRopeDescPt_Br =
-"Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos"
+"↓ {{Blank}} {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos"
 local KeepersRopeDescZh_cn =
-"获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
+"↓ {{Blank}} {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
 
 local KeepersRopeDesc_Keeper = {
-    en_us = "Grants flight#{{Coin}} When enemies spawn they have a 16.7% chance to contain 1-2 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds",
-    ru = "Даёт полёт#{{Coin}} Когда монстры появляются у них есть 16.7% шанс иметь 1-2 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды",
-    spa = "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
-    pt_br = "Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
-    zn_cn = "获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
+    en_us = "{{Coin}} When enemies spawn they have a 16.7% chance to contain 1-2 pennies which can extracted by damaging them#!!! The pennies disappear after 3 seconds",
+    ru = "{{Coin}} Когда монстры появляются у них есть 16.7% шанс иметь 1-2 монет, которые выпадают при нанесении им урона#!!! Монеты исчезают через 3 секунды",
+    spa = "{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
+    pt_br = "↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
+    zn_cn = "↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失"
 }
 
 local KeepersRopeDesc_TKeeper = {
-en_us = "Grants flight#{{Coin}} When enemies spawn they have a 12.5% chance to contain 1 penny which can extracted by damaging them#!!! The penny disappears after 3 seconds",
-ru = "Даёт полёт#{{Coin}} Когда монстры появляются у них есть 12.5% шанс иметь 1 монету, которая выпадают при нанесении им урона#!!! Монета исчезает через 3 секунды",
-spa = "Puedes volar##{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
-pt_br = "Concede voo#↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
-zn_cn = "获得飞行能力#↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失",
+en_us = "{{Coin}} When enemies spawn they have a 12.5% chance to contain 1 penny which can extracted by damaging them#!!! The penny disappears after 3 seconds",
+ru = "{{Coin}} Когда монстры появляются у них есть 12.5% шанс иметь 1 монету, которая выпадают при нанесении им урона#!!! Монета исчезает через 3 секунды",
+spa = "{{Luck}} Suerte -2 si no se está jugando como {{Player14}} Keeper o {{Player33}} Tainted Keeper#{{Coin}} Cuando se generen los enemigos, tendrán un 25% de tener 1-3 monedas #Las puedes obtener al hacerles daño#{{Player14}} Con Keeper los enemigos tendrán 16.7% de tener 1-2 monedas#{{Player33}} Con Tainted Keeper Contaminado los enemigos tendrán un 12.5% de tener 1 moneda#!!! Las monedas desaparecen después de 3 segundos",
+pt_br = "↓ {{Luck}} -2 sorte caso não esteja jogando como {{player14}} Keeper ou {{Player33}} Tainted Keeper#{{Coin}} Quando monstros surgem, possuem 25% de chance de conter entre 1-3 moedas que podem ser extraidas ao causar dano a eles#{{Player14}} Ao jogar de Keeper, monstros tem 16.7% de chance de conter 1-2 moedas#{{Player33}} Ao jogar de Tainted Keeper, monstros tem 12.5% de chance de conter 1 moeda#!!! As moedas desaparecerão após 3 segundos",
+zn_cn = "↓ {{Luck}} 如果不是{{Player14}} 店长或{{Player33}} 里店长则-2幸运#{{Coin}} 当怪物生成时，它们有25%的几率包含1-3个硬币，可以通过对它们造成伤害来提取#{{Player14}} 作为店长时，怪物有16.7%的几率包含1-2个硬币#{{Player33}} 作为里店长时，怪物有12.5%的几率包含1个硬币#!!! 硬币在3秒后消失",
 }
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE, KeepersRopeDescEng, "Keeper's Rope")
@@ -264,7 +264,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_
 local function KeeperRopeConditions(descObj)
     if descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == RestoredCollection.Enums.CollectibleType.COLLECTIBLE_KEEPERS_ROPE then
         local player = Game():GetNearestPlayer(descObj.Entity.Position)
-        return player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B
+        return Helpers.IsAnyPlayerType(player, PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_KEEPER_B)
     end
     return false
 end
@@ -272,11 +272,11 @@ end
 local function KeepersRopeKeeperModifierCallback(descObj)
     local player = Game():GetNearestPlayer(descObj.Entity.Position)
     local lang = EID:getLanguage()
-    if player:GetPlayerType() == PlayerType.PLAYER_KEEPER then
-        descObj.Description = KeepersRopeDesc_Keeper[lang] or KeepersRopeDesc_Keeper["en_us"]
+    if Helpers.IsPlayerType(player, PlayerType.PLAYER_KEEPER) then
+        descObj.Description = KeepersRopeDesc_Keeper[lang] or descObj.Description
     end
-    if player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
-        descObj.Description = KeepersRopeDesc_TKeeper[lang] or KeepersRopeDesc_TKeeper["en_us"]
+    if Helpers.IsPlayerType(player, PlayerType.PLAYER_KEEPER_B) then
+        descObj.Description = KeepersRopeDesc_TKeeper[lang] or descObj.Description
     end
     return descObj
 end
@@ -307,9 +307,9 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_LUCKY_SE
 
 --Pacifist
 local Pacdesc =
-"Spawns pickup rewards at the start of a floor based on how many rooms left uncleared on the previous floor"
+"Combat rooms are cleared after 30 seconds of not damaging any enemies#Spawns chests at the start of each floor for each special room left unexplored on the previous floor"
 local PacdescRu =
-"Дает награду предметами на следующем этаже в зависимости от того, сколько комнат вы не зачистили на текущем"
+"Комнаты с врагами зачищаются после 30 секунд не нанося им урона#Сундуки появляются в начале каждого этажа за каждую непосещенную особую комнату на предыдущем этаже"
 local PacdescSpa =
 "Genera recolectables en el siguiente piso en función a cuantas habitaciones no limpiaste en el piso actual"
 local PacdescPt_Br =
@@ -397,15 +397,15 @@ end
 
 --Max's Head
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.5 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
+    "↑ {{Blank}} {{Tears}} +1.5 tears up#Every 4th tear is shot with low fire delay", "Max's Head")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.5 к скорострельности#Каждая 4-я слеза выстреливает с меньшей задержкой выстрела", "Голова Макса", "ru")
+    "↑ {{Blank}} {{Tears}} +1.5 к скорострельности#Каждая 4-я слеза выстреливает с меньшей задержкой выстрела", "Голова Макса", "ru")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.5 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
+    "↑ {{Blank}} {{Tears}} +1.5 lagrimas hacia arriba#Cada cuarta lagrima, el disparo acelera", "Cabeza de Max", "spa")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "↑ {{Tears}} +1.5 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
+    "↑ {{Blank}} {{Tears}} +1.5 lágrimas#Toda quarta lágrima é mais veloz", "Cabeça do Max", "pt_br")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MAXS_HEAD,
-    "^{{Tears}}+1.5射速#第4滴眼泪射速更快", "麦克斯的头", "zh_cn")
+    "↑ {{Blank}} {{Tears}} +1.5射速#第4滴眼泪射速更快", "麦克斯的头", "zh_cn")
 
 
 
@@ -439,10 +439,10 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PUMPKIN_
 
 --Melted Candle
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE,
-"↑ {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds",
+"↑ {{Blank}} {{Tears}} +0.5 tears#{{Burning}} Gives an aura that burns enemies#{{Burning}} 30% chance to shoot a wax tear that burns and slows enemies#{{Luck}} 70% chance with 28 luck#The flame sometimes grows, giving {{Tears}} +1.5 tears and replacing wax tears with a larger aura#Large flame lasts up to 5 seconds",
     "Melted Candle")
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
-"↑ {{Tears}} +0.5 к скорострельности#{{Burning}} Дает ауру, которая сжигает врагов#{{Burning}} 30% шанс выстрелить восковой слезой, которая сжигает и замедляет врагов#{{Luck}} 70% шанс с 28 удачей#Пламя иногда выростает, давая {{Tears}} +1.5 к скорострельности и заменяя восковые слезы более крупной аурой#Большое пламя длится до 5 секунд",
+"↑ {{Blank}} {{Tears}} +0.5 к скорострельности#{{Burning}} Дает ауру, которая сжигает врагов#{{Burning}} 30% шанс выстрелить восковой слезой, которая сжигает и замедляет врагов#{{Luck}} 70% шанс с 28 удачей#Пламя иногда выростает, давая {{Tears}} +1.5 к скорострельности и заменяя восковые слезы более крупной аурой#Большое пламя длится до 5 секунд",
     "Расплавленная свеча", "ru")
 --[[EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE, 
 "↑ Lágrimas hacia arriba +0.5 cuando un fuego pequeño es encendido#↑ Lágrimas arriba +1.5 cuando un fuego grande es encendido#10% de encender un fuego grande cuando un fuego pequeño es encendido#Cuando un fuego pequeño es encendido, 30% de disparar una lágrima de cera que ralentiza y prende fuego a enemigos#Después de 5 segundos sin disparar, el fuego de la vela disminuye", 
@@ -450,24 +450,24 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_C
 
 --Tammy's Tail
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
-"↑ {{Tears}} +0.5 tears#{{Heart}} +20% chance for heart pickups to be double hearts#{{UnknownHeart}} +50% chance for pickups to be hearts for the room after taking damage",
+"↑ {{Blank}} {{Tears}} +0.5 tears#{{Heart}} +20% chance for heart pickups to be double hearts#{{UnknownHeart}} +50% chance for pickups to be hearts for the room after taking damage",
     "Tammy's Tail")
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
-"↑ {{Tears}} +0.5 к скорострельности#{{Heart}} +20% шанс, что сердца будут двойными сердцами#{{UnknownHeart}} +50% шанс, что предметы будут сердцами в комнате после получения урона",
+"↑ {{Blank}} {{Tears}} +0.5 к скорострельности#{{Heart}} +20% шанс, что сердца будут двойными сердцами#{{UnknownHeart}} +50% шанс, что предметы будут сердцами в комнате после получения урона",
     "Хвост Тамми", "ru")
 
 --Game Squid
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% chance to a shoot slowing tear that leaves black creep on impact")
+    "{{Slow}} 8% chance to a shoot slowing tear that leaves black creep on impact #{{Luck}} 100% chance at 18 luck")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% шанс выстрелить замедляющей слезой, которая оставляет черную лужу при столкновении", "Игровой кальмар", "ru")
+    "{{Slow}} 8% шанс выстрелить замедляющей слезой, которая оставляет черную лужу при столкновении", "Игровой кальмар", "ru")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% de disparar una lágrima ralentizada que deja un charco negro cuando impacta", "", "spa")
+    "{{Slow}} 8% de disparar una lágrima ralentizada que deja un charco negro cuando impacta", "", "spa")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5% de chance de disparar uma lágrima que desascelera e deixa uma poça preta no impacto", "Lula dos Games", "pt_br")
+    "{{Slow}} 8% de chance de disparar uma lágrima que desascelera e deixa uma poça preta no impacto", "Lula dos Games", "pt_br")
 EID:addTrinket(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
-    "5%发射减速眼泪，在击中时留下黑色水迹", "游戏鱿鱼", "zh_cn")
+    "{{Slow}} 8%发射减速眼泪，在击中时留下黑色水迹", "游戏鱿鱼", "zh_cn")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑ +3% on top for every trinket multiplier")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
@@ -479,11 +479,11 @@ EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_S
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑每个饰品乘数上限+3%", nil, nil, "zh_cn")
 
-local function ActOfContrictionConditions(descObj)
-    return descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") == 1
+local function ActOfContritionConditions(descObj)
+    return descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") == 1
 end
 
-local function ActOfContrictionModifierCallback(descObj)
+local function ActOfContritionModifierCallback(descObj)
     descObj.Description = descObj.Description:gsub("Eternal", "Immortal")
     descObj.Description = descObj.Description:gsub("вечное", "бессмертное")
     descObj.Description = descObj.Description:gsub("eterno", "inmortales")
@@ -492,4 +492,4 @@ local function ActOfContrictionModifierCallback(descObj)
     return descObj
 end
 
-EID:addDescriptionModifier("Immortal Act of Contriction Modifier", ActOfContrictionConditions, ActOfContrictionModifierCallback)
+EID:addDescriptionModifier("Immortal Act of Contrition Modifier", ActOfContritionConditions, ActOfContritionModifierCallback)

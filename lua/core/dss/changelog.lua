@@ -20,6 +20,15 @@ pickups on enemy's death
 - pumpkin mask seeds now deal
 0.4x player's damage
 
+- keerep's rope doesn't grant
+flight and now quality 2 item
+
+- reworked pacifist
+rooms are cleared after 30
+seconds and chests spawn at
+start of new level for each
+unexplored special room
+
 {{FSIZE2}}fixed
 - pill crusher spawning wisps
 without pills

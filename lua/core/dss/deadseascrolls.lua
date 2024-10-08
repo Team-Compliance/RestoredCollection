@@ -79,11 +79,11 @@ local function FitEncyclopediaDesc(desc)
     return newDesc
 end
 
-local function UpdateActOfContrictionEncyclopedia(change)
+local function UpdateActOfContritionEncyclopedia(change)
     if Encyclopedia then
         local wikidesc = ogwikidesc
         if change then
-            wikidesc = FitEncyclopediaDesc(RestoredCollection.Enums.Wiki.ActOfContriction)
+            wikidesc = FitEncyclopediaDesc(RestoredCollection.Enums.Wiki.ActOfContrition)
         end
         Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc = wikidesc
     end
@@ -360,8 +360,8 @@ local function InitImGuiMenu()
     
     ImGui.AddCheckbox("restoredCollectionSettingsWindow", "restoredCollectionSettingsActGivesImmortalHearts", "Act of Contrition gives Immortal Heart", function(val)
         local newOption = val and 1 or 2
-        UpdateActOfContrictionEncyclopedia(val)
-        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", newOption)
+        UpdateActOfContritionEncyclopedia(val)
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContritionImmortal", newOption)
         TSIL.SaveManager.SaveToDisk()
     end, true)
 
@@ -411,7 +411,7 @@ local function InitImGuiMenu()
 
     ImGui.AddCallback("restoredCollectionMenu", ImGuiCallback.Render, function()
         ImGui.UpdateData("restoredCollectionSettingsHeartsStyle", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender") - 1)
-        ImGui.UpdateData("restoredCollectionSettingsActGivesImmortalHearts", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") == 1)
+        ImGui.UpdateData("restoredCollectionSettingsActGivesImmortalHearts", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") == 1)
         for _, str in ipairs({"Immortal", "Sun", "Illusion"}) do
             ImGui.UpdateData("restoredCollectionSettings"..str.."Heart", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, str.."HeartSpawnChance"))
         end
@@ -602,20 +602,20 @@ local restoreditemsdirectory = {
                 setting = 1,
 
                 -- "variable" is used as a key to story your setting; just set it to something unique for each setting!
-                variable = 'ActOfContrictionGivesImmortalHearts',
+                variable = 'ActOfContritionGivesImmortalHearts',
                 
                 -- When the menu is opened, "load" will be called on all settings-buttons
                 -- The "load" function for a button should return what its current setting should be
                 -- This generally means looking at your mod's save data, and returning whatever setting you have stored
                 load = function()
-                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal") or 1
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") or 1
                 end,
 
                 -- When the menu is closed, "store" will be called on all settings-buttons
                 -- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
                 store = function(var)
-                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal", var)
-                    UpdateActOfContrictionEncyclopedia(var == 1)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContritionImmortal", var)
+                    UpdateActOfContritionEncyclopedia(var == 1)
                 end,
 
                 -- A simple way to define tooltips is using the "strset" tag, where each string in the table is another line of the tooltip
@@ -895,7 +895,7 @@ if REPENTOGON then
 end
 
 RestoredCollection:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE + 10, function()
-    UpdateActOfContrictionEncyclopedia(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContrictionImmortal"))
+    UpdateActOfContritionEncyclopedia(TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal"))
 end)
 
 include("lua.core.dss.changelog")

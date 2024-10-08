@@ -9,22 +9,29 @@ local SpecialRoomPickups = {
 	[RoomType.ROOM_PLANETARIUM] = PickupVariant.PICKUP_LOCKEDCHEST,
 	[RoomType.ROOM_DICE] = PickupVariant.PICKUP_LOCKEDCHEST,
 	[RoomType.ROOM_CHEST] = PickupVariant.PICKUP_LOCKEDCHEST,
+	[RoomType.ROOM_BOSS] = PickupVariant.PICKUP_LOCKEDCHEST,
+
+	[RoomType.ROOM_ARCADE] = PickupVariant.PICKUP_CHEST,
 
 	[RoomType.ROOM_CURSE] = PickupVariant.PICKUP_REDCHEST,
 	[RoomType.ROOM_DEVIL] = PickupVariant.PICKUP_REDCHEST,
 
 	[RoomType.ROOM_CHALLENGE] = PickupVariant.PICKUP_BOMBCHEST,
 
-	[RoomType.ROOM_SACRIFICE] = PickupVariant.ROOM_SACRIFICE,
+	[RoomType.ROOM_SACRIFICE] = PickupVariant.PICKUP_SPIKEDCHEST,
 
 	[RoomType.ROOM_LIBRARY] = PickupVariant.PICKUP_WOODENCHEST,
 	[RoomType.ROOM_ISAACS] = PickupVariant.PICKUP_WOODENCHEST,
+	[RoomType.ROOM_BARREN] = PickupVariant.PICKUP_WOODENCHEST,
 
 	[RoomType.ROOM_ANGEL] = PickupVariant.PICKUP_ETERNALCHEST,
+
+	[RoomType.ROOM_DUNGEON] = PickupVariant.PICKUP_HAUNTEDCHEST,
 }
 
 local HasSelectedPickups = false
 local PickupsToSpawn = {}
+local TimeSparing = 0
 
 local function GetPacifistLevel()
 	local level = game:GetLevel()
@@ -68,30 +75,18 @@ function PacifistMod:PacifistEffect(player)
 			pickupToSpawn = PickupVariant.PICKUP_OLDCHEST
 		end
 
-		if not pickupToSpawn then
-			pickupToSpawn = PickupVariant.PICKUP_NULL
-		end
-
-		if not roomDesc.Clear then
+		if pickupToSpawn and not roomDesc.Clear then
 			PickupsToSpawn[#PickupsToSpawn+1] = pickupToSpawn
 		end
 	end
 
 	local pacifistLevel = GetPacifistLevel()
 
-	if pacifistLevel.HasSpawnedAngel then
+	if level:GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX).Data then
 		local roomDesc = level:GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX)
 
 		if not roomDesc.Clear then
-			PickupsToSpawn[#PickupsToSpawn+1] = PickupVariant.PICKUP_ETERNALCHEST
-		end
-	end
-
-	if pacifistLevel.HasSpawnedDevil then
-		local roomDesc = level:GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX)
-
-		if not roomDesc.Clear then
-			PickupsToSpawn[#PickupsToSpawn+1] = PickupVariant.PICKUP_REDCHEST
+			PickupsToSpawn[#PickupsToSpawn+1] = SpecialRoomPickups[roomDesc.Data.Type]
 		end
 	end
 
@@ -99,7 +94,7 @@ function PacifistMod:PacifistEffect(player)
 		local roomDesc = level:GetRoomByIdx(GridRooms.ROOM_DUNGEON_IDX)
 
 		if not roomDesc.Clear then
-			PickupsToSpawn[#PickupsToSpawn+1] = PickupVariant.PICKUP_HAUNTEDCHEST
+			PickupsToSpawn[#PickupsToSpawn+1] = SpecialRoomPickups[roomDesc.Data.Type]
 		end
 	end
 end
@@ -108,28 +103,6 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, PacifistMod.P
 
 function PacifistMod:OnUpdate()
 	local room = game:GetRoom()
-	for doorSlot = 0, DoorSlot.NUM_DOOR_SLOTS, 1 do
-		---@diagnostic disable-next-line: param-type-mismatch
-		local door = room:GetDoor(doorSlot)
-
-		if door then
-			local isDealRoom = door.TargetRoomIndex == GridRooms.ROOM_DEVIL_IDX
-			local isAngelRoom = door.TargetRoomType == RoomType.ROOM_ANGEL
-			local isDevilRoom = door.TargetRoomType == RoomType.ROOM_DEVIL
-
-			if isDealRoom then
-				local pacifistLevel = GetPacifistLevel()
-				
-				if isAngelRoom then
-					pacifistLevel.HasSpawnedAngel = true
-				end
-
-				if isDevilRoom then
-					pacifistLevel.HasSpawnedDevil = true
-				end
-			end
-		end
-	end
 
 	for i = 0, room:GetGridSize(), 1 do
 		local gridEntity = room:GetGridEntity(i)
@@ -141,8 +114,34 @@ function PacifistMod:OnUpdate()
 			pacifistLevel.HasSpawnedCrawlSpace = true
 		end
 	end
+
+	if TSIL.Players.DoesAnyPlayerHasItem(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
+		--print(TimeSparing)
+		if room:IsClear() == false and (room:GetType() == RoomType.ROOM_DEFAULT or (room:GetType() > RoomType.ROOM_DEFAULT
+		and room:GetType() ~= RoomType.ROOM_CHALLENGE and room:GetAliveBossesCount() == 0)) and TimeSparing >= 900 then --30 seconds
+
+			room:TriggerClear(false)
+			--print()
+
+			for doorSlot = 0, DoorSlot.NUM_DOOR_SLOTS, 1 do
+				---@diagnostic disable-next-line: param-type-mismatch
+				local door = room:GetDoor(doorSlot)
+
+				if door then
+					door:Open()
+					door:Update()
+				end
+			end
+		end
+		TimeSparing = TimeSparing + 1
+	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_UPDATE, PacifistMod.OnUpdate)
+
+function PacifistMod:NewRoom()
+	TimeSparing = 0
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PacifistMod.NewRoom)
 
 
 function PacifistMod:PickupsDrop() -- Spawn pickups every level after pickup
@@ -205,19 +204,25 @@ end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PacifistMod.PickupsDrop)
 
 ---@param source EntityRef
-function PacifistMod:OnEntityDMG(_, _, _, source)
+function PacifistMod:OnEntityDMG(victim, _, _, source)
 	local entity = source.Entity
 
 	if not entity then return end
-	if entity.Type ~= EntityType.ENTITY_EFFECT then return end
-	if entity.Variant ~= EffectVariant.CRACK_THE_SKY then return end
+	if entity.Type == EntityType.ENTITY_EFFECT and entity.Variant == EffectVariant.CRACK_THE_SKY then
+		local data = Helpers.GetData(entity)
 
-	local data = Helpers.GetData(entity)
-	if not data.IsPacifistLightRay then return end
+		if data.IsPacifistLightRay then
+			return false
+		end
+	end
 
-	return false
+	if entity:ToPlayer() and not victim:ToPlayer() then
+		if entity:ToPlayer():HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
+			TimeSparing = 0
+		end
+	end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, PacifistMod.OnEntityDMG)
+RestoredCollection:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, PacifistMod.OnEntityDMG)
 
 ---@param effect EntityEffect
 function PacifistMod:OnLightRayUpdate(effect)

@@ -18,16 +18,17 @@ function PumpkinMask:FireSeeds(player)
         data.FireDelaySeeds = math.max(-1, data.FireDelaySeeds - 1)
         if data.FireDelaySeeds < 0 and player:GetItemState() == 0 then
             if player:GetFireDirection() ~= Direction.NO_DIRECTION then
-                local shootVec = Helpers.GetVectorFromDirection(player:GetFireDirection())
-                if Can360Degree(player) then
-                    shootVec = player:GetAimDirection()
-                end
-                shootVec = shootVec:Resized(9) + player.Velocity
-                if shootVec:Length() < 9 then
-                    shootVec:Resize(9)
-                end
                 for i = 0, TSIL.Random.GetRandomInt(3,5) do
                     Helpers.scheduleForUpdate(function ()
+                        local shootVec = Helpers.GetVectorFromDirection(player:GetHeadDirection())
+                        if Can360Degree(player) then
+                            shootVec = player:GetAimDirection()
+                        end
+                        shootVec = shootVec:Resized(9) + player.Velocity
+                        if shootVec:Length() < 9 then
+                            shootVec:Resize(9)
+                        end
+
                         if not player:IsDead() then
                             local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, RestoredCollection.Enums.TearVariant.PUMPKIN_SEED, 0, player.Position + player.TearsOffset, shootVec:Rotated(TSIL.Random.GetRandomInt(-15, 15)) * player.ShotSpeed, player):ToTear()
                             tear.CollisionDamage = player.Damage * 0.4

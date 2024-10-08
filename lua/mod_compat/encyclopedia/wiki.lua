@@ -345,7 +345,6 @@ local Wiki = {
 	KeepersRope = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Grants flight." },
 			{ str = "-2 Luck down when not playing as Keeper or Tainted Keeper." },
 			{ str = "When monsters spawn they have a 25% chance to contain 1-3 pennies." },
 			{ str = "When playing as Keeper monsters have 16.7% chance to contain 1-2 pennies." },
@@ -360,11 +359,7 @@ local Wiki = {
 		},
 		{ -- Synergies
 			{ str = "Synergies", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Dad's Key - Dropped coins have a 33% chance to be replaced with keys." },
-			{ str = "Mr. Boom - Dropped coins have a 33% chance to be replaced with bombs." },
-			{ str = "Crooked Penny - Dropped coins have a 50% chance to be doubled." },
-			{ str = "Humbling Bundle - Dropped coins, bombs, and keys have a 50% chance to be doubled." },
-			{ str = "BOGO Bombs - Dropped bombs from the Mr. Boom synergy have a 100% chance to be doubled." },
+			{ str = "Humbling Bundle - Dropped coins have a 50% chance to be doubled." },
 		},
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
@@ -428,8 +423,9 @@ local Wiki = {
 	Pacifist = {
 		{ -- Effect
 			{ str = "Effect", fsize = 2, clr = 3, halign = 0 },
-			{ str = "After entering a new floor, gives pickups based on how many rooms haven't been cleared on the previous floor." },
-			{ str = "Skipping special rooms will reward the player with chests." },
+			{ str = "Combat rooms are cleared after 30 seconds of not dealing damage to enemies." },
+			{ str = "Enemies stay alive until the room is exited, but do not respawn on reentry." },
+			{ str = "After entering a new floor, spawns chests based on how many special rooms haven't been explored on the previous floor." },
 			{ str = "Different types of special rooms will spawn different types of chests." },
 		},
 		{ -- Notes
@@ -438,7 +434,7 @@ local Wiki = {
 		},
 		{ -- Trivia
 			{ str = "Trivia", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Pacifist was one of the few items that were apart of the Antibirth update, which never came to fruition." },
+			{ str = "Pacifist was one of the few items meant to be part of the Antibirth update, which never came to fruition." },
 		},
 		{ -- Mod Compatibility
 			{ str = "Mod Compatibility", fsize = 2, clr = 3, halign = 0 },
@@ -448,7 +444,7 @@ local Wiki = {
 		},
 		{ -- Credits
 			{ str = "Credits", fsize = 2, clr = 3, halign = 0 },
-			{ str = "Coded by kittenchilly and Thicco Catto!" },
+			{ str = "Coded by kittenchilly, Thicco Catto, and watchmeojo!" },
 			{ str = "Translations by BrakeDude (Russian), Kotry (Spanish), chupeta (Portuguese) and YouDuckBoom (Chinese)!" },
 		},
 	},
@@ -729,7 +725,7 @@ local Wiki = {
 			{ str = "Translation by BrakeDude (Russian)!"},
 		},
 	},
-	ActOfContriction = {
+	ActOfContrition = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "+0.7 tears up."},
