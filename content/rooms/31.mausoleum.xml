@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="23000" name="We Strvn - [TC] - Illusion of choice" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23000" name="We Strvn - [RC] - Illusion of choice" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -102,7 +102,7 @@
 			<entity type="969" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - Illusory Wall" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23001" name="We Strvn - [RC] - Illusory Wall" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -279,7 +279,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - Purple sauce fountain" type="1" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23002" name="We Strvn - [RC] - Purple sauce fountain" type="1" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="1.0" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -458,7 +458,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23003" name="We Strvn - [TC] - No clue what I cooked here (V. Rare)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23003" name="We Strvn - [RC] - No clue what I cooked here (V. Rare)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="False" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -616,7 +616,7 @@
 			<entity type="1000" variant="0" subtype="1" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23004" name="We Strvn - [TC] - Oh look, a free clone." type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23004" name="We Strvn - [RC] - Oh look, a free clone." type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -688,7 +688,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23000" name="We Strvn - [TC] - Purple never came back..." type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23000" name="We Strvn - [RC] - Purple never came back..." type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -706,7 +706,7 @@
 			<entity type="5" variant="10" subtype="9000" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - Immortal Access" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
+	<room variant="23001" name="We Strvn - [RC] - Immortal Access" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5" lastTestTime="2024-04-06T01:55+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

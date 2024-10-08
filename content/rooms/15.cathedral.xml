@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="23000" name="We Strvn - [TC] - Immortal Leech" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+	<room variant="23000" name="We Strvn - [RC] - Immortal Leech" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -45,7 +45,7 @@
 			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23001" name="We Strvn - [TC] - Immortal Lockbox" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="23001" name="We Strvn - [RC] - Immortal Lockbox" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -195,7 +195,7 @@
 			<entity type="86" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="23002" name="We Strvn - [TC] - Immortal Heart (V. Rare)" type="1" subtype="0" shape="3" width="13" height="7" difficulty="5" weight="0.1">
+	<room variant="23002" name="We Strvn - [RC] - Immortal Heart (V. Rare)" type="1" subtype="0" shape="3" width="13" height="7" difficulty="5" weight="0.1">
 		<door exists="True" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
 		<spawn x="4" y="4">
