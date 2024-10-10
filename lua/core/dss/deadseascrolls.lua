@@ -870,8 +870,8 @@ local function CloseRestoredItemsDSSMenu(tbl, fullClose, noAnimate)
     FreezeGame(true)
     dssmod.closeMenu(tbl, fullClose, noAnimate)
 end
-
 --#endregion
+
 DeadSeaScrollsMenu.AddMenu(modMenuName, {
     -- The Run, Close, and Open functions define the core loop of your menu
     -- Once your menu is opened, all the work is shifted off to your mod running these functions, so each mod can have its own independently functioning menu.

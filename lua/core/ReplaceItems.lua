@@ -52,7 +52,8 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, p
     for oldItem, newItem in pairs(ReplaceTable) do
         if ItemConfig.Config.IsValidCollectible(oldItem) then
             if player:HasCollectible(oldItem, true) then
-                if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_ACTIVE then
+                local item = itemConf:GetCollectible(oldItem)
+                if item.Type == ItemType.ITEM_ACTIVE then
                     for i = 0, 2 do
                         if player:GetActiveItem(i) == oldItem then
                             local charge = Helpers.GetCharge(player, i)
@@ -65,7 +66,8 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, p
                         end
                     end
                 end
-                if itemConf:GetCollectible(oldItem).Type == ItemType.ITEM_PASSIVE then
+                if item.Type == ItemType.ITEM_PASSIVE
+                or item.Type == ItemType.ITEM_FAMILIAR then
                     player:RemoveCollectible(oldItem, false, ActiveSlot.SLOT_PRIMARY, false)
                     player:AddCollectible(newItem, 0, false)
                 end
