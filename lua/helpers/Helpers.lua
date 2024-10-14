@@ -767,17 +767,23 @@ end
 
 local delayedFuncs = {}
 function Helpers.scheduleForUpdate(foo, delay, callback)
-	callback = callback or ModCallbacks.MC_POST_UPDATE
-	if not delayedFuncs[callback] then
-		delayedFuncs[callback] = {}
-		RestoredCollection:AddCallback(callback, function()
-			runUpdates(delayedFuncs[callback])
-		end)
-		RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+	if REPENTOGON then
+		Isaac.CreateTimer(foo, delay, 1, false)
+	else
+		callback = callback or ModCallbacks.MC_POST_UPDATE
+		if not delayedFuncs[callback] then
 			delayedFuncs[callback] = {}
-		end)
+			RestoredCollection:AddCallback(callback, function()
+				runUpdates(delayedFuncs[callback])
+			end)
+			local function Reset()
+				delayedFuncs[callback] = {}
+			end
+			RestoredCollection:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, Reset)
+			RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, Reset)
+		end
+		table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
 	end
-	table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
 end
 --#endregion
 

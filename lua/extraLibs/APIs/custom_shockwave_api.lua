@@ -1,4 +1,4 @@
-local localversion = 1.1
+local localversion = 1.2
 
 local function load()
     CustomShockwaveAPI = RegisterMod("Custom Shockwave", 1)
@@ -18,24 +18,26 @@ local function load()
 
     local delayedFuncs = {}
     local function scheduleForUpdate(foo, delay, callback)
-        callback = callback or ModCallbacks.MC_POST_UPDATE
-        if not delayedFuncs[callback] then
-            delayedFuncs[callback] = {}
-            CustomShockwaveAPI:AddCallback(callback, function()
-                runUpdates(delayedFuncs[callback])
-            end)
-        end
+        if REPENTOGON then
+            Isaac.CreateTimer(foo, delay, 1, false)
+        else
+            callback = callback or ModCallbacks.MC_POST_UPDATE
+            if not delayedFuncs[callback] then
+                delayedFuncs[callback] = {}
+                local function Reset()
+                    delayedFuncs[callback] = {}
+                end
+                CustomShockwaveAPI:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, Reset)
+                CustomShockwaveAPI:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, Reset)
+                CustomShockwaveAPI:AddCallback(callback, function()
+                    runUpdates(delayedFuncs[callback])
+                end)
+            end
 
-        table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
+            table.insert(delayedFuncs[callback], { Func = foo, Delay = delay })
+        end
     end
     --#endregion
-
-    local function NewRoomClear()
-        for callback, _ in pairs(delayedFuncs) do
-            delayedFuncs[callback] = {}
-        end
-    end
-    CustomShockwaveAPI:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, NewRoomClear)
 
     --#region Pain
     ---comment
