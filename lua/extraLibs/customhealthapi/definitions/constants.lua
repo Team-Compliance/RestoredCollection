@@ -1,2 +1,0 @@
-CustomHealthAPI.Constants.HEART_PIXEL_WIDTH_DEFAULT = 12
-CustomHealthAPI.Constants.HEART_PIXEL_HEIGHT_DEFAULT = 10

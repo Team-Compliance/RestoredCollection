@@ -13,7 +13,9 @@ include("lua.helpers.Helpers")
 include("lua.extraLibs.hellfirejuneMSHack")
 
 --apis
-include("lua.extraLibs.APIs.customhealthapi.core")
+if not FiendFolio then
+    include("lua.extraLibs.APIs.customhealthapi.core")
+end
 include("lua.extraLibs.APIs.custom_shockwave_api")
 include("lua.extraLibs.APIs.custom_bomb_flags")
 include("lua.extraLibs.APIs.ImmortalAPI")

@@ -2,7 +2,7 @@ local version = 0.951
 
 local root = "lua.extraLibs.APIs.customhealthapi."
 local modname = "Custom Health API (Restored Collection)"
-local modinitials = "CHATCRC"
+local modinitials = "CHARC"
 
 CustomHealthAPI = CustomHealthAPI or {}
 

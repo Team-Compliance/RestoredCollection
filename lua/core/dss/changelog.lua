@@ -40,6 +40,8 @@ blank bombs item
 -menorah compatibility with
 sewing machine mod
 
+-fiend not dying when mod is on
+
 -other minor fixes]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 

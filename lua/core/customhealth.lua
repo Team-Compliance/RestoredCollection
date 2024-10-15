@@ -143,33 +143,35 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 	end
 end)
 
-CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.POST_SUMPTORIUM_CLOT_INIT, 0, function(familiar, key)
-	if key == "HEART_IMMORTAL" then
-		local player = familiar.Player
-		if player then
-			if  ComplianceImmortal.GetImmortalHeartsNum(player) % 2 == 0 then
-				sfx:Play(RestoredCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
-				local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_BREAK.Variant, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
-				shatterSPR.PlaybackSpeed = 2
-			end
-			local clot
-			for _, s_clot in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 20)) do
-				s_clot = s_clot:ToFamiliar()
-				if GetPtrHash(s_clot.Player) == GetPtrHash(player) and GetPtrHash(familiar) ~= GetPtrHash(s_clot) then
-					clot = s_clot
-					break
-				end
-			end
-			if clot ~= nil and clot.InitSeed ~= familiar.InitSeed then
-				local clotData = clot:GetData()
-				clotData.TC_HP = clotData.TC_HP + 1
-				local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_CHARGE.Variant, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
-				ImmortalEffect:GetSprite().Offset = Vector(0, -10)
-				familiar:Remove()
-			end
-		end
-	end
-end)
+local function SpawnClot(_, familiar)
+    if familiar.SubType == 20 then
+        local player = familiar.Player
+        if player then
+            if  ComplianceImmortal.GetImmortalHeartsNum(player) % 2 == 0 then
+                sfx:Play(RestoredCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
+                local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_BREAK.Variant, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
+                shatterSPR.PlaybackSpeed = 2
+            end
+            local clot
+            for _, s_clot in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 20)) do
+                s_clot = s_clot:ToFamiliar()
+                if GetPtrHash(s_clot.Player) == GetPtrHash(player) and GetPtrHash(familiar) ~= GetPtrHash(s_clot) then
+                    clot = s_clot
+                    break
+                end
+            end
+            if clot ~= nil and clot.InitSeed ~= familiar.InitSeed then
+                local clotData = clot:GetData()
+                clotData.TC_HP = clotData.TC_HP + 1
+                local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_CHARGE.Variant, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
+                ImmortalEffect:GetSprite().Offset = Vector(0, -10)
+                familiar:Remove()
+            end
+        end
+    end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, SpawnClot, FamiliarVariant.BLOOD_BABY)
+
 
 local function StaticClotHP(_, clot)
 	if clot.SubType == 20 or clot.SubType == 30 then
