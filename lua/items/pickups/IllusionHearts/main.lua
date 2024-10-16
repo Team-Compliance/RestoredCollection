@@ -61,7 +61,8 @@ function IllusionModLocal:CloneRoomUpdate()
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, IllusionModLocal.CloneRoomUpdate)
 
-function IllusionModLocal:CloneCache(p, _)
+---@param p EntityPlayer
+function IllusionModLocal:CloneColor(p, _)
 	local d = Helpers.GetEntityData(p)
     if not d then return end
 	if d.IsIllusion then
@@ -79,13 +80,17 @@ function IllusionModLocal:CloneCache(p, _)
 		if p:GetEternalHearts() > 0 then
 			p:AddEternalHearts(-p:GetEternalHearts())
 		end
+		if p.Parent and p.Parent.MoveSpeed ~= p.MoveSpeed then
+			p:AddCacheFlags(CacheFlag.CACHE_SPEED)
+			p:EvaluateItems()
+		end
 	else
 		d = nil
 	end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, IllusionModLocal.CloneCache)
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, IllusionModLocal.CloneColor)
 
-function IllusionModLocal:HackyLazWorkAround(player,cache)
+function IllusionModLocal:Cache(player,cache)
 	local d = Helpers.GetEntityData(player)
     if not d then return end
 	if d.IsIllusion then
@@ -98,15 +103,19 @@ function IllusionModLocal:HackyLazWorkAround(player,cache)
 				player.Damage = player.Damage * 1.50
 			elseif cache == CacheFlag.CACHE_FIREDELAY then
 				player.MaxFireDelay = player.MaxFireDelay + 1
-			elseif cache == CacheFlag.CACHE_SPEED then
-				player.MoveSpeed = player.MoveSpeed - 0.1
 			elseif cache == CacheFlag.CACHE_LUCK then
 				player.Luck = player.Luck - 2
 			end
 		end
+		if cache == CacheFlag.CACHE_SPEED then
+			local parent = player.Parent
+			if parent and parent:ToPlayer() then
+				player.MoveSpeed = parent:ToPlayer().MoveSpeed
+			end
+		end
 	end
 end
-RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, IllusionModLocal.HackyLazWorkAround)
+RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, IllusionModLocal.Cache)
 
 function IllusionModLocal:preIllusionHeartPickup(pickup, collider)
 	local player = collider:ToPlayer()
@@ -115,8 +124,6 @@ function IllusionModLocal:preIllusionHeartPickup(pickup, collider)
         if not d then return end
 		if d.IsIllusion then
 			return d.IsIllusion and true or pickup:IsShopItem()
-		else
-			d = nil
 		end
 		if pickup.Variant == PickupVariant.PICKUP_HEART and pickup.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION and not player.Parent then
 			pickup.Velocity = Vector.Zero
