@@ -80,7 +80,7 @@ function IllusionModLocal:CloneColor(p, _)
 		if p:GetEternalHearts() > 0 then
 			p:AddEternalHearts(-p:GetEternalHearts())
 		end
-		if p.Parent and p.Parent.MoveSpeed ~= p.MoveSpeed then
+		if p.Parent and p.Parent:ToPlayer() and p.Parent:ToPlayer().MoveSpeed ~= p.MoveSpeed then
 			p:AddCacheFlags(CacheFlag.CACHE_SPEED)
 			p:EvaluateItems()
 		end

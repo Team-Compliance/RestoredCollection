@@ -42,6 +42,9 @@ sewing machine mod
 
 -fiend not dying when mod is on
 
+-clone's speed not syncing with
+character's
+
 -other minor fixes]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 
