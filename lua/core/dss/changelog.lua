@@ -45,7 +45,7 @@ sewing machine mod
 -clone's speed not syncing with
 character's
 
--other minor fixes]],
+-other fixes]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
