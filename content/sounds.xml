@@ -88,4 +88,7 @@
 	<sound name="Melted Candle">
 		<sample weight="1" path="funny/Melted Candle.wav" />
 	</sound>
+	<sound name="Tammy's Tail">
+		<sample weight="1" path="funny/Tammy's Tail.wav" />
+	</sound>
 </sounds>
