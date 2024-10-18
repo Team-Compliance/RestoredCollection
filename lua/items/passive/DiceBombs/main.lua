@@ -15,7 +15,8 @@ local DiceBombPickupBlacklist = {
     [PickupVariant.PICKUP_SHOPITEM] = true,
     [PickupVariant.PICKUP_THROWABLEBOMB] = true,
     [PickupVariant.PICKUP_TROPHY] = true,
-    [PickupVariant.PICKUP_COLLECTIBLE] = true
+    [PickupVariant.PICKUP_COLLECTIBLE] = true,
+    [PickupVariant.PICKUP_BROKEN_SHOVEL] = true,
 }
 
 ---@param bomb EntityBomb
