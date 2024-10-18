@@ -573,6 +573,8 @@ end
 --Helper Functions (thanks piber)--
 -----------------------------------
 
+---@param ignoreCoopBabies boolean 
+---@return EntityPlayer[]
 function Helpers.GetPlayers(ignoreCoopBabies)
 	local players
 	if REPENTOGON then

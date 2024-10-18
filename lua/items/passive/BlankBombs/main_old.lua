@@ -20,44 +20,6 @@ local function IsBlankBomb(bomb)
 	return true
 end
 
----@param rocket Entity
----@return boolean
-local function IsBlankEpicFetus(rocket)
-	if not rocket then return false end
-	if rocket.Type ~= EntityType.ENTITY_EFFECT and rocket.Variant ~= EffectVariant.ROCKET then return false end
-	rocket = rocket:ToEffect()
-
-	local player = Helpers.GetPlayerFromTear(rocket)
-	if not player then return false end
-	return Helpers.GetData(rocket).IsBlankRocket or false
-end
-
-local function DoBlankDamage(player, player2)
-	if player:GetOtherTwin() and GetPtrHash(player:GetOtherTwin()) == GetPtrHash(player2) then
-		return false
-	end
-	return GetPtrHash(player) ~= GetPtrHash(player2)
-end
-
----@param player EntityPlayer
----@param bomb EntityBomb
----@param radius integer
-local function DamageFriendlyNonParents(player, bomb, radius)
-	for _, player2 in ipairs(Isaac.FindInRadius(bomb.Position, radius, EntityPartition.PLAYER)) do
-		player2 = player2:ToPlayer()
-		---@cast player2 EntityPlayer
-		
-		if DoBlankDamage(player, player2) then
-			bomb:ClearEntityFlags(EntityFlag.FLAG_FRIENDLY)
-			player2:TakeDamage(bomb.ExplosionDamage, DamageFlag.DAMAGE_EXPLOSION, EntityRef(bomb), 30)
-			bomb:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
-			if not player2:HasEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK) then
-				local pushDirection = (player2.Position - bomb.Position):Normalized()
-				player2:AddVelocity(pushDirection * 10)
-			end
-		end
-	end
-end
 
 ---@param bomb EntityBomb
 local function CanBombInstaDetonate(bomb)
@@ -74,6 +36,7 @@ local function CanBombInstaDetonate(bomb)
 	bomb.Variant == BombVariant.BOMB_THROWABLE or not BombFlagsAPI.HasCustomBombFlag(bomb, "BLANK_BOMB") 
 	or Helpers.GetData(bomb).NancyBlank)
 end
+
 
 ---@param center Vector
 ---@param radius number
@@ -165,11 +128,45 @@ function BlankBombsMod:OnBombInitLate(bomb)
 	local controller = player.ControllerIndex
 
 	if not Input.IsActionPressed(ButtonAction.ACTION_DROP, controller) then
+		if not player:HasEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK) then
+			player:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
+			Helpers.GetData(player).AddNoKnockBackFlag = 2
+
+			local holyMantleNum = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+			Helpers.GetData(player).AddHolyMantles = holyMantleNum
+			player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
+		end
+
+		if player.Parent and player.Parent.Type == EntityType.ENTITY_PLAYER then
+			local playerParent = player.Parent:ToPlayer()
+			playerParent:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
+			Helpers.GetData(playerParent).AddNoKnockBackFlag = 2
+
+			local holyMantleNum = playerParent:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+			Helpers.GetData(playerParent).AddHolyMantles = holyMantleNum
+			playerParent:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
+		end
+
+		local playerIndex = Helpers.GetPlayerIndex(player)
+		for i = 0, Game():GetNumPlayers() - 1, 1 do
+			local otherPlayer = Game():GetPlayer(i)
+
+			if otherPlayer.Parent and otherPlayer.Parent.Type == EntityType.ENTITY_PLAYER then
+				local otherPlayerParentIndex = Helpers.GetPlayerIndex(otherPlayer.Parent:ToPlayer())
+
+				if playerIndex == otherPlayerParentIndex then
+					otherPlayer:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
+					Helpers.GetData(otherPlayer).AddNoKnockBackFlag = 2
+
+					local holyMantleNum = otherPlayer:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+					Helpers.GetData(otherPlayer).AddHolyMantles = holyMantleNum
+					otherPlayer:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, holyMantleNum)
+				end
+			end
+		end
 
 		bomb.ExplosionDamage = bomb.ExplosionDamage / 2
 		if player:HasGoldenBomb() then bomb.ExplosionDamage = bomb.ExplosionDamage / 2 end
-		bomb:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
-		DamageFriendlyNonParents(player, bomb, Helpers.GetBombExplosionRadius(bomb) * 3)
 		bomb:SetExplosionCountdown(0)
 
 		Helpers.GetData(bomb).IsBlankBombInstaDetonating = true
@@ -177,6 +174,7 @@ function BlankBombsMod:OnBombInitLate(bomb)
 		bomb:Update()
 	end
 end
+
 
 ---@param bomb EntityBomb
 function BlankBombsMod:BombUpdate(bomb)
@@ -219,7 +217,6 @@ function BlankBombsMod:BombUpdate(bomb)
 		end
 
 		local explosionRadius = Helpers.GetBombExplosionRadius(bomb)
-		
         ---@diagnostic disable-next-line: param-type-mismatch
 		if bomb:HasTearFlags(TearFlags.TEAR_GIGA_BOMB) then
 			explosionRadius = 99999
@@ -255,10 +252,10 @@ function BlankBombsMod:BlankRocketInit(rocket)
 	local proc = false
 	player = player:ToPlayer()
 	if player:HasCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) and
-	rocket:GetDropRNG():RandomInt(100) < 120
+	rocket:GetDropRNG():RandomInt(100) < 20
 	or player:HasCollectible(CollectibleType.COLLECTIBLE_NANCY_BOMBS) and
 	player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_NANCY_BOMBS):RandomInt(100) < 5
-	and not Helpers.IsItemDisabled(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then
+	and not Helpers.IsItemDisabled(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS) then 
 		Helpers.GetData(rocket).IsBlankRocket = true
 	end
 
@@ -270,12 +267,69 @@ function BlankBombsMod:BlankRocketExplode(rocket)
         local player = Helpers.GetPlayerFromTear(rocket)
         if not player then return end
         local data = Helpers.GetData(rocket)
-        if data.IsBlankRocket then
+        if data.StoneBomb then
 			DoBlankEffect(rocket.Position, 90)
         end
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, BlankBombsMod.BlankRocketExplode)
+
+---@param entity Entity
+---@param source EntityRef
+function BlankBombsMod:OnPlayerDamage(entity, _, _, source)
+	local bomb = source.Entity
+	if not IsBlankBomb(bomb) then return end
+
+	local bombPlayer = Helpers.GetPlayerFromTear(bomb)
+	local player = entity:ToPlayer()
+
+    if not bombPlayer then return end
+
+	local playerIndex = Helpers.GetPlayerIndex(player)
+	local bombPlayerIndex = Helpers.GetPlayerIndex(bombPlayer)
+	local parentIndex
+	local bombParentIndex
+
+	if player.Parent and player.Parent.Type == EntityType.ENTITY_PLAYER then
+		parentIndex = Helpers.GetPlayerIndex(player.Parent:ToPlayer())
+	end
+
+	if bombPlayer.Parent and bombPlayer.Parent.Type == EntityType.ENTITY_PLAYER then
+		bombParentIndex = Helpers.GetPlayerIndex(bombPlayer.Parent:ToPlayer())
+	end
+
+	if playerIndex == bombPlayerIndex or
+	(parentIndex and parentIndex == bombPlayerIndex) or
+	(bombParentIndex and playerIndex == bombParentIndex) then
+		return false
+	end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, BlankBombsMod.OnPlayerDamage, EntityType.ENTITY_PLAYER)
+
+
+---@param player EntityPlayer
+function BlankBombsMod:OnPlayerUpdate(player)
+	if Helpers.GetData(player).AddHolyMantles then
+		local holyMantleNum = Helpers.GetData(player).AddHolyMantles
+		player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, holyMantleNum)
+		Helpers.GetData(player).AddHolyMantles = nil
+	end
+
+	if not Helpers.GetData(player).AddNoKnockBackFlag then return end
+
+	player:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK)
+
+	Helpers.GetData(player).AddNoKnockBackFlag = Helpers.GetData(player).AddNoKnockBackFlag - 1
+
+	if Helpers.GetData(player).AddNoKnockBackFlag == 0 then
+		Helpers.GetData(player).AddNoKnockBackFlag = nil
+		if Helpers.GetData(player).RemoveHostHat then
+			player:RemoveCollectible(CollectibleType.COLLECTIBLE_HOST_HAT)
+		end
+	end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, BlankBombsMod.OnPlayerUpdate)
+
 
 ---@param effect EntityEffect
 function BlankBombsMod:OnBlankExplosionUpdate(effect)
@@ -287,22 +341,6 @@ function BlankBombsMod:OnBlankExplosionUpdate(effect)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod.OnBlankExplosionUpdate, RestoredCollection.Enums.Entities.BLANK_EXPLOSION_EFFECT.Variant)
 
----@param entity Entity
----@param source EntityRef
-function BlankBombsMod:OnPlayerDamage(entity, _, _, source)
-	local bomb = source.Entity
-	if bomb:ToBomb() and not IsBlankBomb(bomb) then return end
-	if bomb:ToEffect() and not IsBlankEpicFetus(bomb) then return end
-	local bombPlayer = Helpers.GetPlayerFromTear(bomb)
-	local player = entity:ToPlayer()
-
-    if not bombPlayer then return end
-
-	if GetPtrHash(player) == GetPtrHash(bombPlayer) then
-		return false
-	end
-end
-RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, BlankBombsMod.OnPlayerDamage, EntityType.ENTITY_PLAYER)
 
 ---@param locust EntityFamiliar
 ---@param collider Entity
