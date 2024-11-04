@@ -1,10 +1,8 @@
-function CustomHealthAPI.Library.GetHPOfKey(player, key, byActualHP, byBasegameHP, ignoreResyncing)
+function CustomHealthAPI.Library.GetHPOfKey(player, key, byActualHP, byBasegameHP)
 	CustomHealthAPI.Helper.CheckIfHealthOrderSet()
 	CustomHealthAPI.Helper.CheckHealthIsInitializedForPlayer(player)
 	CustomHealthAPI.Helper.CheckSubPlayerInfoOfPlayer(player)
-	if not ignoreResyncing then 
-		CustomHealthAPI.Helper.ResyncHealthOfPlayer(player)
-	end
+	CustomHealthAPI.Helper.ResyncHealthOfPlayer(player)
 	
 	if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 		if player:GetOtherTwin() ~= nil then
@@ -473,14 +471,6 @@ function CustomHealthAPI.Helper.GetHealableSoulHP(player)
 end
 
 function CustomHealthAPI.Helper.GetTrueHeartLimit(player)
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.GET_MAX_HP_CAP)
-	for _, callback in ipairs(callbacks) do
-		local newCap = callback.Function(player)
-		if newCap ~= nil then
-			return newCap
-		end
-	end
-
 	local limit = CustomHealthAPI.PersistentData.OverriddenFunctions.GetHeartLimit(player)
 	local brokenHearts = CustomHealthAPI.PersistentData.OverriddenFunctions.GetBrokenHearts(player)
 	

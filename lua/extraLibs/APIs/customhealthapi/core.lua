@@ -1,5 +1,7 @@
-local version = 0.951
+-- sorry for the lack of documentation atm
+-- this isn't version 1.0 for a reason
 
+local version = 0.948
 local root = "lua.extraLibs.APIs.customhealthapi."
 local modname = "Custom Health API (Restored Collection)"
 local modinitials = "CHARC"

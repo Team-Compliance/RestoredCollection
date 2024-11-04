@@ -1,5 +1,4 @@
 CustomHealthAPI.PersistentData.DoHUDPostUpdateForLivesHUD = nil
-CustomHealthAPI.PersistentData.PreventResyncing = false
 
 local avoidRecursive = false
 
@@ -18,14 +17,9 @@ function CustomHealthAPI.Mod:ResetRecursivePreventionCallback()
 		print("Custom Health API ERROR: Resyncing recursive prevention failed.")
 		avoidRecursive = false
 	end
-	
-	if CustomHealthAPI.PersistentData.PreventResyncing then
-		CustomHealthAPI.PersistentData.PreventResyncing = false
-	end
 end
 
 function CustomHealthAPI.Helper.AddCheckIfHealthValuesChangedCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_POST_UPDATE, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.CheckIfHealthValuesChangedCallback, -1)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddCheckIfHealthValuesChangedCallback)
@@ -448,75 +442,10 @@ function CustomHealthAPI.Helper.ResyncOtherHealthOfPlayer(player)
 	end
 end
 
-function CustomHealthAPI.Helper.ResyncEternalHearts(player)
-	local data = player:GetData().CustomHealthAPISavedata
-	
-	local key = "ETERNAL_HEART"
-	local hp = CustomHealthAPI.PersistentData.OverriddenFunctions.GetEternalHearts(player) - data.Overlays["ETERNAL_HEART"]
-	if hp == 0 then return end
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		local returnA, returnB = callback.Function(player, key, hp)
-		if returnA == true then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
-			return
-		elseif returnA ~= nil and returnB ~= nil then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
-			CustomHealthAPI.Helper.UpdateHealthMasks(player, returnA, returnB, true, false, true, true)
-			return
-		end
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
-	
-	data.Overlays["ETERNAL_HEART"] = CustomHealthAPI.PersistentData.OverriddenFunctions.GetEternalHearts(player)
-	data.Cached = {}
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.POST_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		callback.Function(player, key, hp)
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
-end
-
-function CustomHealthAPI.Helper.ResyncGoldHearts(player)
-	local data = player:GetData().CustomHealthAPISavedata
-	
-	local key = "GOLDEN_HEART"
-	local hp = CustomHealthAPI.PersistentData.OverriddenFunctions.GetGoldenHearts(player) - data.Overlays["GOLDEN_HEART"]
-	if hp == 0 then return end
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		local returnA, returnB = callback.Function(player, key, hp)
-		if returnA == true then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
-			return
-		elseif returnA ~= nil and returnB ~= nil then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
-			CustomHealthAPI.Helper.UpdateHealthMasks(player, returnA, returnB, true, false, true, true)
-			return
-		end
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
-	
-	data.Overlays["GOLDEN_HEART"] = CustomHealthAPI.PersistentData.OverriddenFunctions.GetGoldenHearts(player)
-	data.Cached = {}
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.POST_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		callback.Function(player, key, hp)
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
-end
-
 function CustomHealthAPI.Helper.ResyncOverlays(player)
-	CustomHealthAPI.Helper.ResyncEternalHearts(player)
-	CustomHealthAPI.Helper.ResyncGoldHearts(player)
+	local data = player:GetData().CustomHealthAPISavedata
+	data.Overlays["ETERNAL_HEART"] = CustomHealthAPI.PersistentData.OverriddenFunctions.GetEternalHearts(player)
+	data.Overlays["GOLDEN_HEART"] = CustomHealthAPI.PersistentData.OverriddenFunctions.GetGoldenHearts(player)
 end
 
 function CustomHealthAPI.Helper.HandleUnexpectedRed(player)
@@ -578,7 +507,7 @@ end
 
 function CustomHealthAPI.Helper.ResyncHealthOfPlayer(player, isSubPlayer)
 	if CustomHealthAPI.Helper.PlayerIsIgnored(player) then return end
-	if CustomHealthAPI.PersistentData.PreventResyncing then return end
+	
 	if player:GetData().CustomHealthAPIOtherData and player:GetData().CustomHealthAPIOtherData.InDamageCallback == Isaac.GetFrameCount() then return end
 	
 	player:GetData().CustomHealthAPIOtherData = player:GetData().CustomHealthAPIOtherData or {}

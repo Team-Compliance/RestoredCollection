@@ -2,7 +2,6 @@ CustomHealthAPI.PersistentData.HiddenPlayerHealthBackup = CustomHealthAPI.Persis
 CustomHealthAPI.PersistentData.HiddenSubplayerHealthBackup = CustomHealthAPI.PersistentData.HiddenSubplayerHealthBackup or {}
 
 function CustomHealthAPI.Helper.AddFlipCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_PRE_USE_ITEM, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.FlipCallback, CollectibleType.COLLECTIBLE_FLIP)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddFlipCallback)
@@ -23,7 +22,6 @@ function CustomHealthAPI.Mod:FlipCallback(id, rng, player)
 end
 
 function CustomHealthAPI.Helper.AddEsauJrCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_PRE_USE_ITEM, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.EsauJrCallback, CollectibleType.COLLECTIBLE_ESAU_JR)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddEsauJrCallback)

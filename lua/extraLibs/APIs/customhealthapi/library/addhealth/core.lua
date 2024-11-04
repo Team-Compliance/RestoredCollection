@@ -22,21 +22,18 @@ function CustomHealthAPI.Library.AddHealth(player, k, h, ignoreTaintedMaggieDoub
 	CustomHealthAPI.Helper.CheckSubPlayerInfoOfPlayer(player)
 	CustomHealthAPI.Helper.ResyncHealthOfPlayer(player)
 	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
 	local key = k
 	local hp = h
 	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH)
 	for _, callback in ipairs(callbacks) do
 		local returnA, returnB = callback.Function(player, key, hp)
 		if returnA == true then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
 			return
 		elseif returnA ~= nil and returnB ~= nil then
 			key = returnA
 			hp = returnB
 		end
 	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
 	
 	if math.ceil(hp) == 0 then
 		return
@@ -211,13 +208,6 @@ function CustomHealthAPI.Library.AddHealth(player, k, h, ignoreTaintedMaggieDoub
 	
 	CustomHealthAPI.Helper.HandleGoldenRoom(player, true)
 	CustomHealthAPI.Helper.UpdateBasegameHealthState(player)
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.POST_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		callback.Function(player, key, hp)
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
 end
 
 function CustomHealthAPI.Library.RemoveRedKey(player, index, ignoreResyncing)
@@ -395,7 +385,6 @@ function CustomHealthAPI.Library.TryConvertOtherKey(player, index, key, force)
 					newHP = 1
 					convertedHP = convertedHP - 2
 				else
----@diagnostic disable-next-line: param-type-mismatch
 					newHP = math.min(maxHpOfKey, convertedHP)
 					convertedHP = convertedHP - newHP
 				end
@@ -446,21 +435,18 @@ function CustomHealthAPI.Helper.UpdateHealthMasks(player, k, h, ignoreTaintedMag
 	CustomHealthAPI.Helper.CheckSubPlayerInfoOfPlayer(player)
 	CustomHealthAPI.Helper.FinishDamageDesync(player)
 	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
 	local key = k
 	local hp = h
 	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH)
 	for _, callback in ipairs(callbacks) do
 		local returnA, returnB = callback.Function(player, key, hp)
 		if returnA == true then
-			CustomHealthAPI.PersistentData.PreventResyncing = false
 			return
 		elseif returnA ~= nil and returnB ~= nil then
 			key = returnA
 			hp = returnB
 		end
 	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
 	
 	if math.ceil(hp) == 0 then
 		return
@@ -589,16 +575,6 @@ function CustomHealthAPI.Helper.UpdateHealthMasks(player, k, h, ignoreTaintedMag
 	end
 	
 	CustomHealthAPI.Helper.HandleGoldenRoom(player, false)
-	if player:GetData().CustomHealthAPISavedata then
-		player:GetData().CustomHealthAPISavedata.Cached = {}
-	end
-	
-	CustomHealthAPI.PersistentData.PreventResyncing = true
-	local callbacks = CustomHealthAPI.Helper.GetCallbacks(CustomHealthAPI.Enums.Callbacks.POST_ADD_HEALTH)
-	for _, callback in ipairs(callbacks) do
-		callback.Function(player, key, hp)
-	end
-	CustomHealthAPI.PersistentData.PreventResyncing = false
 end
 
 function CustomHealthAPI.Helper.UseOverriddenAddFunctionForKeeperAndLost(player, key, hp)

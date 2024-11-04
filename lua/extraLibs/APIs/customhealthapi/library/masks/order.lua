@@ -22,11 +22,6 @@ function CustomHealthAPI.Library.GetHealthInOrder(player, ignoreResyncing)
 	end
 	
 	local data = player:GetData().CustomHealthAPISavedata
-	data.Cached = data.Cached or {}
-	if data.Cached.HealthInOrder then
-		return data.Cached.HealthInOrder
-	end
-	
 	local redMasks = data.RedHealthMasks
 	local otherMasks = data.OtherHealthMasks
 	
@@ -91,7 +86,6 @@ function CustomHealthAPI.Library.GetHealthInOrder(player, ignoreResyncing)
 		end
 	end
 	
-	data.Cached.HealthInOrder = healthOrder
 	return healthOrder
 end
 

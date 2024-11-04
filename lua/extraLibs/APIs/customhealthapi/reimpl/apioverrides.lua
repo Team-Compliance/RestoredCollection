@@ -1,7 +1,6 @@
 local isEvaluateCacheFunction = 0
 
 function CustomHealthAPI.Helper.AddPreEvaluateCacheCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_EVALUATE_CACHE, -1 * math.huge, CustomHealthAPI.Mod.PreEvaluateCacheCallback, -1) 
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddPreEvaluateCacheCallback)
@@ -16,7 +15,6 @@ function CustomHealthAPI.Mod:PreEvaluateCacheCallback()
 end
 
 function CustomHealthAPI.Helper.AddPostEvaluateCacheCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_EVALUATE_CACHE, math.huge, CustomHealthAPI.Mod.PostEvaluateCacheCallback, -1)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddPostEvaluateCacheCallback)

@@ -1,7 +1,6 @@
 CustomHealthAPI.PersistentData.UsingGenesis = CustomHealthAPI.PersistentData.UsingGenesis or false
 
 function CustomHealthAPI.Helper.AddUseGenesisCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_USE_ITEM, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.UseGenesisCallback, CollectibleType.COLLECTIBLE_GENESIS)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddUseGenesisCallback)

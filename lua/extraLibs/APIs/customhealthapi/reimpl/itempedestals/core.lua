@@ -1,5 +1,4 @@
 function CustomHealthAPI.Helper.AddStrawmanDetectionCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_POST_PLAYER_INIT, CallbackPriority.IMPORTANT, CustomHealthAPI.Mod.StrawmanDetectionCallback, -1)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddStrawmanDetectionCallback)
@@ -15,7 +14,6 @@ function CustomHealthAPI.Mod:StrawmanDetectionCallback(player)
 end
 
 function CustomHealthAPI.Helper.AddItemPedestalCollisionCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_PRE_PICKUP_COLLISION, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.ItemPedestalCollisionCallback, PickupVariant.PICKUP_COLLECTIBLE)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddItemPedestalCollisionCallback)

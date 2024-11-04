@@ -1,5 +1,4 @@
 function CustomHealthAPI.Helper.AddGenesisAndGlowingHourglassOnNewRoomCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_POST_NEW_ROOM, CustomHealthAPI.Enums.CallbackPriorities.LATE, CustomHealthAPI.Mod.GenesisAndGlowingHourglassOnNewRoomCallback, -1)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddGenesisAndGlowingHourglassOnNewRoomCallback)
@@ -23,7 +22,6 @@ function CustomHealthAPI.Mod:GenesisAndGlowingHourglassOnNewRoomCallback()
 end
 
 function CustomHealthAPI.Helper.AddUseItemCallback()
----@diagnostic disable-next-line: param-type-mismatch
 	Isaac.AddPriorityCallback(CustomHealthAPI.Mod, ModCallbacks.MC_USE_ITEM, CallbackPriority.IMPORTANT, CustomHealthAPI.Mod.UseItemCallback, -1)
 end
 table.insert(CustomHealthAPI.CallbacksToAdd, CustomHealthAPI.Helper.AddUseItemCallback)
