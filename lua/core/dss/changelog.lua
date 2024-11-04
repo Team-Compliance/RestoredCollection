@@ -2,7 +2,7 @@ local modname = "Restored Collection"
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.15",[[{{FSIZE2}}added
 
-- tammy's tails
+- tammy's tail
 
 - dss/imgui option for perfect
 illusions in order to avoid
