@@ -45,7 +45,11 @@ sewing machine mod
 -clone's speed not syncing with
 character's
 
--other fixes]],
+-other fixes
+
+-downgraded custom health api
+to fix fiend not dying after
+spawning imps on damage]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
