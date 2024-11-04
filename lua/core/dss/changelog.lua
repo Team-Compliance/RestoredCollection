@@ -20,7 +20,7 @@ pickups on enemy's death
 - pumpkin mask seeds now deal
 0.4x player's damage
 
-- keerep's rope doesn't grant
+- keeper's rope doesn't grant
 flight and now quality 2 item
 
 - reworked pacifist
@@ -40,16 +40,14 @@ blank bombs item
 -menorah compatibility with
 sewing machine mod
 
--fiend not dying when mod is on
-
 -clone's speed not syncing with
 character's
 
--other fixes
-
 -downgraded custom health api
 to fix fiend not dying after
-spawning imps on damage]],
+spawning imps on damage
+
+-other fixes]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
