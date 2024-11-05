@@ -398,7 +398,7 @@ local Wiki = {
 			{ str = "IV Bag - Spawns a special donation machine that spawns creep and explodes into big blood tears." },
 			{ str = "Keeper's Box - Spawns a special donation machine that drops coins on monsters similarly to Ultra Greed." },
 			{ str = "Crystal Ball - Spawns a special fortune machine that shoots rays of light." },
-			{ str = "Tammy's Head - Spawns a special crane machine that grabs monsters and holds them in place with a claw. Maximum of 5 monsters." },
+			{ str = "Anima Sola - Spawns a special crane machine that grabs monsters and holds them in place with a claw. Maximum of 5 monsters." },
 			{ str = "Brimstone - Beams inherit the tear effect." },
 			{ str = "Technology items - Lasers inherit the tear effect." },
 		},

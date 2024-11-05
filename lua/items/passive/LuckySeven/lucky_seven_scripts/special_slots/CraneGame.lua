@@ -51,7 +51,7 @@ end
 ---@param player EntityPlayer
 ---@return boolean
 function CraneGame:CanSpawn(player)
-    return player:HasCollectible(CollectibleType.COLLECTIBLE_TAMMYS_HEAD)
+    return player:HasCollectible(CollectibleType.COLLECTIBLE_ANIMA_SOLA)
 end
 
 
