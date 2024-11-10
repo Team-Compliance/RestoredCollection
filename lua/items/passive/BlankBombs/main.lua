@@ -292,6 +292,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, BlankBombsMod
 function BlankBombsMod:OnPlayerDamage(entity, _, _, source)
 	local bomb = source.Entity
 	if not bomb then return end
+	if not (bomb:ToBomb() or bomb:ToEffect()) then return end
 	if bomb:ToBomb() and not IsBlankBomb(bomb) then return end
 	if bomb:ToEffect() and not IsBlankEpicFetus(bomb) then return end
 	local bombPlayer = Helpers.GetPlayerFromTear(bomb)

@@ -49,6 +49,7 @@ include("lua.items.active.PillCrusher.main")
 include("lua.items.active.VoodooPin.main")
 
 --passive
+
 include("lua.items.passive.BlankBombs.main")
 include("lua.items.passive.StoneBombs.main")
 include("lua.items.passive.CheckedMate.main")
