@@ -5,6 +5,25 @@ MeltedCandle.FIRE_DELAY = 0.5
 MeltedCandle.BIG_FIRE_DELAY = 1.5
 MeltedCandle.CostumeID = Isaac.GetCostumeIdByPath("gfx/characters/costume_meltedcandle2.anm2")
 
+local function InitCandleTears(player)
+    local data = Helpers.GetData(player)
+    if not data.NumCandleTears then
+        data.NumCandleTears = 0
+    end
+    if not data.CandleTearsTimer then
+       data.CandleTearsTimer = 0
+    end
+end
+
+---@param player EntityPlayer
+local function SpawnPoof(player)
+    local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 2, player.Position, Vector.Zero, nil):ToEffect()
+    poof.SpriteScale = player.SpriteScale / 2
+    local headDir = player:GetHeadDirection()
+    local posX = player.SpriteScale.X * 10 * (headDir == Direction.LEFT and -1 or (headDir == Direction.RIGHT and 1 or 0))
+    poof.SpriteOffset = Vector(posX, -33 * player.SpriteScale.Y)
+end
+
 local function SpawnWaxTearEffect(tear)
     local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.WAX_TEAR_EFFECT.Variant, 0, tear.Position, Vector.Zero, tear):ToEffect()
     effect.Parent = tear
@@ -12,44 +31,90 @@ local function SpawnWaxTearEffect(tear)
 end
 
 ---@param player EntityPlayer
+local function CalculateCandleTears(player)
+    InitCandleTears(player)
+    local data = Helpers.GetData(player)
+    if TSIL.Random.GetRandomInt(0, 100, player:GetCollectibleRNG(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_CANDLE)) <= 10 
+    and data.NumCandleTears ~= 1 and data.CandleTearsTimer <= 0 then
+        data.NumCandleTears = 1
+        SpawnPoof(player)
+        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+        player:EvaluateItems()
+        data.CandleTearsTimer = 210
+    end
+end
+
+---@param player EntityPlayer
 ---@param cache CacheFlag | integer
 function MeltedCandle:Cache(player, cache)
-    player.MaxFireDelay = Helpers.tearsUp(player.MaxFireDelay, MeltedCandle.FIRE_DELAY)
+    if not player:HasCollectible(MeltedCandle.ID) then player:TryRemoveNullCostume(MeltedCandle.CostumeID) return end
+    InitCandleTears(player)
+    local data = Helpers.GetData(player)
+    player:AddNullCostume(MeltedCandle.CostumeID)
+    local mul = MeltedCandle.FIRE_DELAY
+    if data.NumCandleTears > 0 then
+        mul = mul + MeltedCandle.BIG_FIRE_DELAY
+    end
+    player.MaxFireDelay = Helpers.tearsUp(player.MaxFireDelay, mul)
+    local candle = data.NumCandleTears > 0 and 2 or 1
+    player:ReplaceCostumeSprite(Isaac.GetItemConfig():GetNullItem(MeltedCandle.CostumeID), "gfx/characters/costumes/costume_candle_overlay"..candle..".png", 0)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, MeltedCandle.Cache, CacheFlag.CACHE_FIREDELAY)
+
+if REPENTOGON then
+    function MeltedCandle:ChargeOnFire(dir, amount, owner)
+		if owner then
+			local player = owner:ToPlayer()
+			if not player or amount < 1 then return end
+            ---@cast player EntityPlayer
+            if not player:HasCollectible(MeltedCandle.ID) then return end
+            CalculateCandleTears(player)
+		end
+	end
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, MeltedCandle.ChargeOnFire)
+else
+    function MeltedCandle:ChargeOnFire(player)
+		if not player:HasCollectible(MeltedCandle.ID) then return end
+        CalculateCandleTears(player)
+	end
+	RestoredCollection:AddCallback(RestoredCollection.Enums.Callbacks.VANILLA_POST_TRIGGER_WEAPON_FIRED, MeltedCandle.ChargeOnFire)
+end
 
 ---@param player EntityPlayer
 function MeltedCandle:OnPlayerUpdate(player)
     local data = Helpers.GetData(player)
     if not player:HasCollectible(MeltedCandle.ID) then
+        data.MeltedCandleShooting = nil
         if data.FireEffect then
             data.FireEffect:Remove()
             data.FireEffect = nil
         end
         return
     end
+    InitCandleTears(player)
+    local timer = data.CandleTearsTimer or 0
+    data.CandleTearsTimer = math.max(0, timer - 1)
     local isShooting = false
     for i = 4, 7 do
         isShooting = isShooting or Input.IsActionPressed(i, player.ControllerIndex)
     end
-    data.shootingScale = data.shootingScale or 0
+    if data.NumCandleTears > 0 and (data.CandleTearsTimer <= 60 and isShooting or not isShooting) then
+        data.NumCandleTears = 0
+        data.CandleTearsTimer = 0
+        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+        player:EvaluateItems()
+        SpawnPoof(player)
+    end
     if not data.FireEffect then
         data.FireEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.WAX_FIRE_EFFECT.Variant, 0, player.Position, Vector.Zero, nil):ToEffect()
         data.FireEffect:FollowParent(player)
         data.FireEffect.Parent = player
-        data.FireEffect:GetSprite():Play("Idle", true)
+        data.FireEffect:GetSprite():Play("Disappear", true)
+        data.FireEffect:GetSprite():SetFrame(7)
     elseif data.FireEffect:IsDead() then
         data.FireEffect = nil
     end
-    if data.FireEffect then
-        local fireEffectData = Helpers.GetData(data.FireEffect)
-        fireEffectData.shootingScale = fireEffectData.shootingScale or 1
-        if isShooting then
-            fireEffectData.shootingScale = Helpers.Lerp(fireEffectData.shootingScale, 3, 0.01)
-        else
-            fireEffectData.shootingScale = Helpers.Lerp(fireEffectData.shootingScale, 1, 0.05)
-        end
-    end
+    data.IsShooting = isShooting
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, MeltedCandle.OnPlayerUpdate)
 
@@ -59,7 +124,7 @@ function MeltedCandle:TearInit(tear)
     if player then
         if player:HasCollectible(MeltedCandle.ID) then
             local data = Helpers.GetData(tear)
-            if TSIL.Random.GetRandomInt(0, 100) <= 30 then
+            if Helpers.GetData(player).NumCandleTears == 0 and TSIL.Random.GetRandomInt(0, 100) <= math.min(70, math.max(30, 30 + player.Luck * 2.5)) then
                 data.IsWaxTear = true
             end
         end
@@ -98,9 +163,9 @@ function MeltedCandle:TearUpdate(tear)
     local data = Helpers.GetData(tear)
     local player = Helpers.GetPlayerFromTear(tear)
     if tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) or tear:ToKnife() then
-        if data.IsWaxTear and TSIL.Random.GetRandomInt(0, 50) == 1 then
+        if data.IsWaxTear and TSIL.Random.GetRandomInt(0, math.min(100, math.max(20, 20 + player.Luck))) == 1 then
             data.IsWaxTear = nil
-        elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= 30 and not data.IsWaxTear and player:HasCollectible(MeltedCandle.ID) then
+        elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= math.min(70, math.max(30, 30 + player.Luck * 1.6)) and not data.IsWaxTear and player:HasCollectible(MeltedCandle.ID) then
             data.IsWaxTear = true
         end
     end
@@ -153,17 +218,31 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, MeltedCandle.
 
 ---@param effect EntityEffect
 function MeltedCandle:WaxFireEffectUpdate(effect)
-    if (not effect.Parent or not effect.Parent:ToPlayer() or effect.Parent:ToPlayer():IsDead()) then
+    local sprite = effect:GetSprite()
+    if not effect.Parent or not effect.Parent:ToPlayer() then
         effect:Remove()
+        return
     end
     local player = effect.Parent:ToPlayer()
-    local data = Helpers.GetData(effect)
+    local pData = Helpers.GetData(player)
+    if pData.IsShooting and not player:IsDead() then
+        if sprite:IsFinished("Disappear") then
+            sprite:Play("Appear", true)
+        elseif sprite:IsFinished("Appear") then
+            sprite:Play("Idle", true)
+        end
+    elseif sprite:IsFinished("Appear") or sprite:IsPlaying("Idle") then
+        sprite:Play("Disappear", true)
+    end
+    effect.Color = Color(1, 0, 0, 3)
     effect.DepthOffset = 10
-    effect.SpriteScale = player.SpriteScale * (0.5 * data.shootingScale)
-    --effect.SpriteOffset = Vector(0, -15) * effect.SpriteScale
-    for _, entity in ipairs(Isaac.FindInRadius(effect.Position, 40 * effect.SpriteScale.X / 0.5, EntityPartition.ENEMY)) do
-        if Helpers.IsEnemy(entity) and not entity:HasEntityFlags(EntityFlag.FLAG_BURN) then
-            entity:AddBurn(EntityRef(player), 120, player.Damage / 3.5)
+    effect.SpriteOffset = Vector(0, -15) * effect.SpriteScale
+    effect.SpriteScale = Helpers.Lerp(effect.SpriteScale, player.SpriteScale * (1 + 0.5 * pData.NumCandleTears) * 0.6, 0.1, 0.7)
+    if sprite:IsPlaying("Idle") or sprite:IsPlaying("Appear") and sprite:GetFrame() >= 5  then
+        for _, entity in ipairs(Isaac.FindInRadius(effect.Position, 40 * effect.SpriteScale.X / 0.6, EntityPartition.ENEMY)) do
+            if Helpers.IsEnemy(entity) and not entity:HasEntityFlags(EntityFlag.FLAG_BURN) then
+                entity:AddBurn(EntityRef(player), 120, player.Damage / 3.5)
+            end
         end
     end
 end
