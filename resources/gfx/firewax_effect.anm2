@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="13.11.2024 13:37:01" Version="107" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="13.11.2024 15:51:53" Version="110" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="characters/effects/effect_hallowedground.png" Id="0"/>
+			<Spritesheet Path="effects/effect_hallowedground.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="body" Id="0" SpritesheetId="0"/>
@@ -15,7 +15,7 @@
 	<Animations DefaultAnimation="Idle">
 		<Animation Name="Idle" FrameNum="33" Loop="true">
 			<RootAnimation>
-				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="32" Visible="true" RedTint="255" GreenTint="100" BlueTint="100" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="32" Visible="true" RedTint="255" GreenTint="0" BlueTint="0" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 			</RootAnimation>
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true">

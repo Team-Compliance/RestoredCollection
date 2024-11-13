@@ -37,17 +37,17 @@ function MeltedCandle:OnPlayerUpdate(player)
         data.FireEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.WAX_FIRE_EFFECT.Variant, 0, player.Position, Vector.Zero, nil):ToEffect()
         data.FireEffect:FollowParent(player)
         data.FireEffect.Parent = player
-        data.FireEffect:GetSprite():Play("Idle", true)
+        data.FireEffect.SpriteScale = Vector.Zero
     elseif data.FireEffect:IsDead() then
         data.FireEffect = nil
     end
     if data.FireEffect then
         local fireEffectData = Helpers.GetData(data.FireEffect)
-        fireEffectData.shootingScale = fireEffectData.shootingScale or 1
+        fireEffectData.shootingScale = fireEffectData.shootingScale or 0
         if isShooting then
             fireEffectData.shootingScale = Helpers.Lerp(fireEffectData.shootingScale, 3, 0.01)
         else
-            fireEffectData.shootingScale = Helpers.Lerp(fireEffectData.shootingScale, 1, 0.05)
+            fireEffectData.shootingScale = Helpers.Lerp(fireEffectData.shootingScale, 0, 0.05)
         end
     end
 end
@@ -160,7 +160,7 @@ function MeltedCandle:WaxFireEffectUpdate(effect)
     local data = Helpers.GetData(effect)
     effect.DepthOffset = 10
     effect.SpriteScale = player.SpriteScale * (0.5 * data.shootingScale)
-    --effect.SpriteOffset = Vector(0, -15) * effect.SpriteScale
+    effect.SpriteOffset = Vector(0, math.min(-15, -15 * (0.5 * data.shootingScale)))
     for _, entity in ipairs(Isaac.FindInRadius(effect.Position, 40 * effect.SpriteScale.X / 0.5, EntityPartition.ENEMY)) do
         if Helpers.IsEnemy(entity) and not entity:HasEntityFlags(EntityFlag.FLAG_BURN) then
             entity:AddBurn(EntityRef(player), 120, player.Damage / 3.5)
