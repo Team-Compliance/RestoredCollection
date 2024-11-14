@@ -158,9 +158,10 @@ function MeltedCandle:WaxFireEffectUpdate(effect)
     end
     local player = effect.Parent:ToPlayer()
     local data = Helpers.GetData(effect)
-    effect.DepthOffset = 10
+    effect.DepthOffset = 999
     effect.SpriteScale = player.SpriteScale * (0.5 * data.shootingScale)
-    effect.SpriteOffset = Vector(0, math.min(-15, -15 * (0.5 * data.shootingScale)))
+    local yOffset = -7 * math.max(player.SpriteScale.Y, effect.SpriteScale.Y)
+    effect.SpriteOffset = Vector(0, yOffset)
     for _, entity in ipairs(Isaac.FindInRadius(effect.Position, 40 * effect.SpriteScale.X / 0.5, EntityPartition.ENEMY)) do
         if Helpers.IsEnemy(entity) and not entity:HasEntityFlags(EntityFlag.FLAG_BURN) then
             entity:AddBurn(EntityRef(player), 120, player.Damage / 3.5)
