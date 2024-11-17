@@ -153,13 +153,14 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, MeltedCandle.
 
 ---@param effect EntityEffect
 function MeltedCandle:WaxFireEffectUpdate(effect)
-    if (not effect.Parent or not effect.Parent:ToPlayer() or effect.Parent:ToPlayer():IsDead()) then
+    if (not effect.Parent or not effect.Parent:ToPlayer() or effect.Parent:IsDead()) then
         effect:Remove()
     end
     local player = effect.Parent:ToPlayer()
     local data = Helpers.GetData(effect)
     effect.DepthOffset = 999
-    effect.SpriteScale = player.SpriteScale * (0.5 * data.shootingScale)
+    local scale = data.shootingScale or 0
+    effect.SpriteScale = player.SpriteScale * (0.5 * scale)
     local yOffset = -7 * math.max(player.SpriteScale.Y, effect.SpriteScale.Y)
     effect.SpriteOffset = Vector(0, yOffset)
     for _, entity in ipairs(Isaac.FindInRadius(effect.Position, 40 * effect.SpriteScale.X / 0.5, EntityPartition.ENEMY)) do
