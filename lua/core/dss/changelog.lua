@@ -1,5 +1,20 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.16",[[{{FSIZE2}}updated
+
+- reworked melted candle
+-- +0.5 tears up
+-- 30% to shoot wax tear
+-- burning aura grows when
+shooting, shrinks when not 
+shooting
+
+{{FSIZE2}}fixed
+- tainted jacob not being
+able to turn ghost after
+being hit by dark esau]],
+{"restored", "collection", "", "v1.16", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.15",[[{{FSIZE2}}added
 
 - tammy's tail
@@ -33,21 +48,21 @@ unexplored special room
 - pill crusher spawning wisps
 without pills
 
--red bombs instantly exploding
+- red bombs instantly exploding
 when picking them up with
 blank bombs item
 
--menorah compatibility with
+- menorah compatibility with
 sewing machine mod
 
--clone's speed not syncing with
+- clone's speed not syncing with
 character's
 
--downgraded custom health api
+- downgraded custom health api
 to fix fiend not dying after
 spawning imps on damage
 
--other fixes]],
+- other fixes]],
 {"restored", "collection", "", "v1.15", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.14",[[{{FSIZE2}}added
