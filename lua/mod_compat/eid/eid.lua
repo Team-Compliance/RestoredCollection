@@ -450,7 +450,7 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_MELTED_C
 
 --Tammy's Tail
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
-"↑ {{Blank}} {{Tears}} +0.5 tears#{{Heart}} +25% chance for heart pickups to be double hearts#{{UnknownHeart}} +80% chance for the room clear reward to be a heart",
+"↑ {{Blank}} {{Tears}} +0.5 tears#{{Heart}} +25% chance for heart pickups to be double hearts#{{UnknownHeart}} +80% chance for the room clear reward to be a heart after taking damage",
     "Tammy's Tail")
 
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_TAMMYS_TAIL_TC,
