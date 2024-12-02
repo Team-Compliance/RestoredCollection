@@ -20,9 +20,7 @@ function MaxsHead:OnFireDelayCache(player)
     local num = player:GetCollectibleNum(MaxsHead.ID)
 
     local tps = Helpers.ToTearsPerSecond(player.MaxFireDelay)
-    if tps > 5 then
-        tps = tps + MaxsHead.FIRE_DELAY * num
-    else
+    if tps <= 5 then
         tps = math.min(5, tps + MaxsHead.FIRE_DELAY * num)
     end
     player.MaxFireDelay = Helpers.ToMaxFireDelay(tps)

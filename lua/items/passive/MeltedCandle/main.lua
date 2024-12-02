@@ -14,7 +14,12 @@ end
 ---@param player EntityPlayer
 ---@param cache CacheFlag | integer
 function MeltedCandle:Cache(player, cache)
-    player.MaxFireDelay = Helpers.tearsUp(player.MaxFireDelay, MeltedCandle.FIRE_DELAY)
+    local num = player:GetCollectibleNum(MeltedCandle.ID)
+    local tps = Helpers.ToTearsPerSecond(player.MaxFireDelay)
+    if tps <= 5 then
+        tps = math.min(5, tps + MeltedCandle.FIRE_DELAY * num)
+    end
+    player.MaxFireDelay = Helpers.ToMaxFireDelay(tps)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, MeltedCandle.Cache, CacheFlag.CACHE_FIREDELAY)
 
