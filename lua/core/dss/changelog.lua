@@ -1,5 +1,10 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.17",[[{{FSIZE2}}fixed
+- extra +0.5 tears up
+without melted candle]],
+{"restored", "collection", "", "v1.17", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.16",[[{{FSIZE2}}updated
 
 - reworked melted candle
