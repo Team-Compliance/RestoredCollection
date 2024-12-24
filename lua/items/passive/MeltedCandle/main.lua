@@ -103,7 +103,7 @@ function MeltedCandle:TearUpdate(tear)
     local data = Helpers.GetData(tear)
     local player = Helpers.GetPlayerFromTear(tear)
     if tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) or tear:ToKnife() then
-        if data.IsWaxTear and TSIL.Random.GetRandomInt(0, 50) == 1 then
+        if data.IsWaxTear and (TSIL.Random.GetRandomInt(0, 50) == 1 or not player) then
             data.IsWaxTear = nil
         elseif tear.FrameCount % 20 == 0 and TSIL.Random.GetRandomInt(0, 100) <= 30 and not data.IsWaxTear and player:HasCollectible(MeltedCandle.ID) then
             data.IsWaxTear = true
