@@ -83,7 +83,8 @@ function CustomHealthAPI.Mod:ProcessTakeDamageCallback(ent, amount, flags, sourc
 				                                                                  0, 
 				                                                                  false, 
 				                                                                  i, 
-				                                                                  0)
+				                                                                  0,
+																				  0)
 				player:GetData().CustomHealthAPISavedata.GlassCannonBroke = true
 			end
 		end

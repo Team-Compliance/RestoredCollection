@@ -27,7 +27,8 @@ function CustomHealthAPI.Helper.RemoveWhoreOfBabylonPrevention(player)
 	                                                                  0, 
 	                                                                  true, 
 	                                                                  ActiveSlot.SLOT_PRIMARY, 
-	                                                                  0)
+	                                                                  0,
+																	  0)
 	player:RemoveCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON)
 end
 
@@ -67,7 +68,8 @@ function CustomHealthAPI.Helper.RemoveBloodyBabylonPrevention(player)
 		                                                                  0, 
 		                                                                  true, 
 		                                                                  ActiveSlot.SLOT_PRIMARY, 
-		                                                                  0)
+		                                                                  0,
+																		  0)
 		player:RemoveCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON)
 		
 		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON, 

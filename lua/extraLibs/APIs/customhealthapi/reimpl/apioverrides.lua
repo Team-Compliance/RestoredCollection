@@ -441,10 +441,10 @@ CustomHealthAPI.Helper.HookFunctions.AddBrokenHearts = function(player, hp)
 	end
 end
 
-CustomHealthAPI.Helper.HookFunctions.AddCollectible = function(player, item, charge, firstTimePickingUp, slot, varData)
+CustomHealthAPI.Helper.HookFunctions.AddCollectible = function(player, item, charge, firstTimePickingUp, slot, varData, unk)
 	if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 		if player:GetOtherTwin() ~= nil then
-			return CustomHealthAPI.Helper.HookFunctions.AddCollectible(player:GetOtherTwin(), item, charge, firstTimePickingUp, slot, varData)
+			return CustomHealthAPI.Helper.HookFunctions.AddCollectible(player:GetOtherTwin(), item, charge, firstTimePickingUp, slot, varData, unk)
 		end
 	end
 	
@@ -469,7 +469,8 @@ CustomHealthAPI.Helper.HookFunctions.AddCollectible = function(player, item, cha
 	                                                                  charge or 0, 
 	                                                                  firstTimePickingUp or firstTimePickingUp == nil, 
 	                                                                  slot or ActiveSlot.SLOT_PRIMARY, 
-	                                                                  varData or 0)
+	                                                                  varData or 0,
+	                                                                  unk or 0)
 	
 	if CustomHealthAPI then
 		if not CustomHealthAPI.Helper.PlayerIsIgnored(player) and firstTimePickingUp then
