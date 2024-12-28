@@ -1,5 +1,12 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.18",[[{{FSIZE2}}fixed
+- whore of babylon
+issues in repentance+
+
+- some minor errors]],
+{"restored", "collection", "", "v1.18", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.17",[[{{FSIZE2}}fixed
 - extra +0.5 tears up
 without melted candle]],
