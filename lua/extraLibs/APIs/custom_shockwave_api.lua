@@ -1,4 +1,4 @@
-local localversion = 1.2
+local localversion = 1.3
 
 local function load()
     CustomShockwaveAPI = RegisterMod("Custom Shockwave", 1)
@@ -39,8 +39,6 @@ local function load()
     end
     --#endregion
 
-    --#region Pain
-    ---comment
     ---@param position Vector
     ---@param spawner Entity
     ---@param step number?
@@ -50,7 +48,10 @@ local function load()
     ---@param damage number?
     ---@param damageIncrement number?
     ---@param tearFlags TearFlags | number?
-    function CustomShockwaveAPI:SpawnCustomCrackwave(position, spawner, step, angle, delay, limit, damage, damageIncrement, tearFlags)
+    ---@param minradius number?
+    ---@param maxradius number?
+    ---@param rng RNG?
+    function CustomShockwaveAPI:SpawnCustomCrackwave(position, spawner, step, angle, delay, limit, damage, damageIncrement, tearFlags, minradius, maxradius, rng)
         limit = limit or -1
         if limit == 0 then return end
         angle = angle or 0
@@ -59,10 +60,17 @@ local function load()
         tearFlags = tearFlags or 0
         damage = damage or 10
         damageIncrement = damageIncrement or 0
+        minradius = minradius or 0
+        maxradius = maxradius or 0
         limit = limit > 0 and (limit - 1) or limit
+        rng = rng or spawner:GetDropRNG()
         scheduleForUpdate(function()
             local room = Game():GetRoom()
-            local nextPos = position + Vector.FromAngle(angle):Resized(step)
+            local radiusChange = rng:RandomInt(maxradius - minradius) + minradius
+            while radiusChange < 0 do
+                radiusChange = radiusChange + 360 
+            end
+            local nextPos = position + Vector.FromAngle(angle + radiusChange):Resized(step)
             local gridCol = room:GetGridCollisionAtPos(nextPos)
             local grid = room:GetGridEntityFromPos(nextPos)
             local player = spawner:ToPlayer() or spawner.Parent:ToPlayer()
@@ -92,7 +100,7 @@ local function load()
                         pit:ToPit():MakeBridge(nil)
                     end
                 end
-                CustomShockwaveAPI:SpawnCustomCrackwave(nextPos, spawner, step, angle, delay, limit, damage + damageIncrement, damageIncrement, tearFlags)
+                CustomShockwaveAPI:SpawnCustomCrackwave(nextPos, spawner, step, angle, delay, limit, damage + damageIncrement, damageIncrement, tearFlags, minradius, maxradius, rng)
             end
         end, delay)
     end
@@ -119,7 +127,7 @@ local function load()
         CustomShockwaveAPI.Loaded = false
     end
     CustomShockwaveAPI:AddCallback(ModCallbacks.MC_PRE_MOD_UNLOAD, CustomShockwaveAPI.ModReset)
-    --#endregion
+
     print("[".. CustomShockwaveAPI.Name .."]", "is loaded. Version "..CustomShockwaveAPI.Version)
     CustomShockwaveAPI.Loaded = true
 end

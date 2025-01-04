@@ -1,6 +1,8 @@
 <costumes anm2root="gfx/characters/">
 	<!-- Book of Despair -->
 	<costume id="20" anm2path="341_torn photo.anm2" type="active" hasOverlay="true" hasSkinAlt="true" />
+	<!-- Stone Bombs -->
+	<costume id="5" anm2path="tc_stone_bombs.anm2" type="passive" />
 	<!-- Donkey Jawbone -->
 	<costume id="4" anm2path="tc_donkeyjawbone_costume.anm2" type="passive" />
 	<!-- Ancient Revelation -->

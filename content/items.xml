@@ -1,11 +1,11 @@
 <items gfxroot="gfx/items/" deathanm2="gfx/death items.anm2" version="1">
 	<!-- Passive Items -->
-	<passive id="0" name="Stone Bombs" description="Rock blast +5 bombs" gfx="collectibles_001_stone_bombs.png" bombs="5" quality="2" tags="summonable offensive"/>
+	<passive id="5" name="Stone Bombs" description="Rock blast +5 bombs" gfx="collectibles_001_stone_bombs.png" bombs="5" quality="2" tags="summonable offensive"/>
 	<passive id="1" name="Blank Bombs" description="Enter the basement" gfx="collectibles_002_blank_bombs.png" bombs="5" quality="2" tags="summonable offensive"/>
 	<familiar id="2" name="Checked Mate" description="Chess friend" gfx="collectibles_003_checked_mate.png" quality="3" tags="summonable monstermanual offensive"/>
 	<passive id="3" name="Dice Bombs" description="Item reroller +5 bombs" gfx="collectibles_004_dice_bombs.png" bombs="5" quality="4" tags="summonable offensive"/>
 	<passive id="4" name="​Donkey Jawbone" description="Come at me!" gfx="collectibles_005_donkey_jawbone.png" quality="2" tags="nolostbr summonable" achievement="452"/>
-    <familiar id="5" name="​Menorah" description="Shot multiplier" gfx="collectibles_006_menorah.png" quality="4" tags="uniquefamiliar summonable nolostbr" cache="firedelay" />
+    <familiar id="0" name="​Menorah" description="Shot multiplier" gfx="collectibles_006_menorah.png" quality="4" tags="uniquefamiliar summonable nolostbr" cache="firedelay" />
 	
 	<passive id="6" name="Ancient Revelation" description="Remember what came before" gfx="collectibles_007_ancient_revelation.png" achievement="470" cache="firedelay shotspeed flying tearcolor tearflag tearsup" soulhearts="4" devilprice="2" quality="4" tags="summonable offensive angel" />
     <familiar id="7" name="Beth's Heart" description="Faith accumulator" gfx="collectibles_008_beths_heart.png" achievement="404" quality="1" tags="summonable offensive"/>   
