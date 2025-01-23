@@ -5,6 +5,7 @@ local sfx = SFXManager()
 
 local function InstaDeath(p)
 	if TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
+		p:GetSprite():SetLastFrame()
 		p:ChangePlayerType(PlayerType.PLAYER_THELOST)
 		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position, Vector.Zero, p)
 		local sColor = poof:GetSprite().Color
@@ -13,20 +14,31 @@ local function InstaDeath(p)
 		s.Color = color
 		sfx:Play(SoundEffect.SOUND_BLACK_POOF)
 	end
-	IllusionMod.KillIllusion(p)
+	IllusionMod.KillIllusion(p, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2)
 end
 
+local function ModdedDeathCheck(p)
+	local offset = (p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN or p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B) and Vector(30 * p.SpriteScale.X,0) or Vector.Zero
+	if sussydeath then
+		offset = Vector.Zero
+	end
+	return offset
+end
+
+
+---@param p EntityPlayer
 function IllusionModLocal:UpdateClones(p)
 	local data = Helpers.GetEntityData(p)
     if not data then return end
 	if data.IsIllusion then
+		p:GetData().Died = true -- Gruesome death mod check to avoid crash
 		if p:IsDead()  then
 			--p.Visible = false
 			if p:GetPlayerType() ~= PlayerType.PLAYER_THELOST and p:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B 
 			and p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
 				p:GetSprite():SetLayerFrame(PlayerSpriteLayer.SPRITE_GHOST,0)
 			end
-			if p:GetSprite():IsFinished("Death") or p:GetSprite():IsFinished("ForgottenDeath") or TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
+			if p:GetSprite():IsFinished() and p:GetSprite():GetAnimation():match("Death") == "Death" or TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
 				p:GetSprite():SetLastFrame()
 				if TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
 					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
@@ -35,28 +47,22 @@ function IllusionModLocal:UpdateClones(p)
 				p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL and p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B  and p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B
 				and not p:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
 					p:ChangePlayerType(PlayerType.PLAYER_THELOST)
-					local offset = (p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN or p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B) and Vector(30 * p.SpriteScale.X,0) or Vector.Zero
-                    ---@diagnostic disable-next-line: param-type-mismatch
-					local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position + offset, Vector.Zero, p)
-					local sColor = poof:GetSprite().Color
-					local color = Color(sColor.R, sColor.G, sColor.B, 0.7, 0.518, 0.15, 0.8)
-					local s = poof:GetSprite()
-					s.Color = color
-					sfx:Play(SoundEffect.SOUND_BLACK_POOF)
+					local offset = ModdedDeathCheck(p)
+					
+					if not SMW_Death then
+						local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position + offset, Vector.Zero, p)
+						local sColor = poof:GetSprite().Color
+						local color = Color(sColor.R, sColor.G, sColor.B, 0.7, 0.518, 0.15, 0.8)
+						local s = poof:GetSprite()
+						s.Color = color
+						sfx:Play(SoundEffect.SOUND_BLACK_POOF)
+					end
 				end
 			end
 		end
 		if not p:IsDead() then
 			if p.Parent and (not p.Parent:Exists() or p.Parent:IsDead()) then
-				--[[p:Die()
-				p:AddMaxHearts(-p:GetMaxHearts())
-				p:AddSoulHearts(-p:GetSoulHearts())
-				p:AddBoneHearts(-p:GetBoneHearts())
-				p:AddGoldenHearts(-p:GetGoldenHearts())
-				p:AddEternalHearts(-p:GetEternalHearts())
-				p:AddHearts(-p:GetHearts())]]
 				InstaDeath(p)
-				--Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position, Vector.Zero, p)
 			end
 		end
 		p:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
@@ -88,7 +94,7 @@ function IllusionModLocal:CloneColor(p, _)
 		local color = Color(sColor.R, sColor.G, sColor.B, 0.45, 0.518, 0.15, 0.8)
 		local s = p:GetSprite()
 		s.Color = color
-		if p:GetBoneHearts() > 0 then
+		if p:GetBoneHearts() > 0 and not (p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or REPENTOGON and p:GetHealthType() == HealthType.BONE) then
 			p:AddBoneHearts(-p:GetBoneHearts())
 		end
 		if p:GetGoldenHearts() > 0 then
@@ -221,14 +227,25 @@ function IllusionModLocal:Familiar(e)
 		local d = Helpers.GetEntityData(p)
         if not d then return end
 		if d.IsIllusion then
-			local s = e:GetSprite().Color
-			local color = Color(s.R, s.G, s.B, 0.45,0.518, 0.15, 0.8)
 			local s = e:GetSprite()
-			s.Color = color
+			s.Color = Color(s.Color.R, s.Color.G, s.Color.B, 0.45,0.518, 0.15, 0.8)
 		end
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, IllusionModLocal.Familiar)
+
+function IllusionModLocal:Knife(k)
+	if k.SpawnerEntity and k.SpawnerEntity:ToPlayer() then
+		local p = k.SpawnerEntity:ToPlayer()
+		local d = Helpers.GetEntityData(p)
+        if not d then return end
+		if d.IsIllusion then
+			local s = k:GetSprite()
+			s.Color = Color(s.Color.R, s.Color.G, s.Color.B, 0.45,0.518, 0.15, 0.8)
+		end
+	end
+end
+RestoredCollection:AddCallback(ModCallbacks.MC_POST_KNIFE_RENDER, IllusionModLocal.Knife)
 
 function IllusionModLocal:ClonesControls(entity,hook,action)
 	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") == 1 then

@@ -207,7 +207,12 @@ local function load(data)
 		illusionPlayer:AddEternalHearts(-illusionPlayer:GetEternalHearts())
 		illusionPlayer:AddHearts(-illusionPlayer:GetHearts())
 	
-		illusionPlayer:AddMaxHearts(2)
+		if illusionPlayer:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then
+			illusionPlayer:AddBoneHearts(1)
+		else
+			illusionPlayer:AddMaxHearts(2)
+		end
+		
 		illusionPlayer:AddHearts(2)
 	end
 	
@@ -333,8 +338,12 @@ local function load(data)
 	end
 
 	---@param illusionPlayer EntityPlayer
-	function IllusionMod.KillIllusion(illusionPlayer)
-		illusionPlayer:Die()
+	function IllusionMod.KillIllusion(illusionPlayer, die)
+		if die then
+			illusionPlayer:Die()
+		else
+			illusionPlayer:Kill()
+		end
 
 		illusionPlayer:AddMaxHearts(-illusionPlayer:GetMaxHearts())
 		illusionPlayer:AddSoulHearts(-illusionPlayer:GetSoulHearts())
