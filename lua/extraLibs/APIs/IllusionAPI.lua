@@ -334,7 +334,7 @@ local function load(data)
 
 	---@param illusionPlayer EntityPlayer
 	function IllusionMod.KillIllusion(illusionPlayer)
-		illusionPlayer:Kill()
+		illusionPlayer:Die()
 
 		illusionPlayer:AddMaxHearts(-illusionPlayer:GetMaxHearts())
 		illusionPlayer:AddSoulHearts(-illusionPlayer:GetSoulHearts())

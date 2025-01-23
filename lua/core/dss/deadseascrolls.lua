@@ -1,4 +1,4 @@
-local DSSModName = "Dead Sea Scrolls (Restored Collection)"
+local DSSModName = "Restored Collection"
 
 local DSSCoreVersion = 7
 
@@ -398,6 +398,17 @@ local function InitImGuiMenu()
         TSIL.SaveManager.SaveToDisk()
     end, false)
 
+    if ImGui.ElementExists("restoredCollectionSettingsIllusionInstaDeath") then
+        ImGui.RemoveElement("restoredCollectionSettingsIllusionInstaDeath")
+    end
+
+    ImGui.AddCheckbox("restoredCollectionSettingsWindow", "restoredCollectionSettingsIllusionInstaDeath", "Illusion insta death", function(val)
+        local newOption = val and 2 or 1
+        TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "IllusionInstaDeath", newOption)
+        TSIL.SaveManager.SaveToDisk()
+    end, false)
+    ImGui.SetTooltip("restoredCollectionSettingsIllusionInstaDeath", "Illusions skip death animation and removed immediately")
+
     if ImGui.ElementExists("restoredCollectionSettingsMaxsHeads") then
         ImGui.RemoveElement("restoredCollectionSettingsMaxsHeads")
     end
@@ -417,6 +428,7 @@ local function InitImGuiMenu()
         end
         ImGui.UpdateData("restoredCollectionSettingsIllusionPlaceBombs", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionClonesPlaceBombs") > 1)
         ImGui.UpdateData("restoredCollectionSettingsIllusionPerfect", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "PerfectIllusion") > 1)
+        ImGui.UpdateData("restoredCollectionSettingsIllusionInstaDeath", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") > 1)
         ImGui.UpdateData("restoredCollectionSettingsMaxsHeads", ImGuiData.Value, TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "MaxsHead") > 1)
     end)
     
@@ -740,6 +752,24 @@ local restoreditemsdirectory = {
                 end,
 
                 tooltip = {strset = {'create perfect', 'illusions for', 'modded', 'characters?'}}
+            },
+            {str = '', nosel = true},
+            {
+                str = 'illusion insta death',
+                fsize = 2,
+                choices = {'no', 'yes'},
+                setting = 1,
+                variable = 'IllusionInstaDeath',
+
+                load = function ()
+                    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") or 1
+                end,
+
+                store = function(newOption)
+                    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "IllusionInstaDeath", newOption)
+                end,
+
+                tooltip = {strset = {'illusions skip', 'death animation', 'and removed', 'immediately'}}
             },
         },
     },

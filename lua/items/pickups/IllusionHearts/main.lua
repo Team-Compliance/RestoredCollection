@@ -3,6 +3,19 @@ local game = Game()
 local Helpers = RestoredCollection.Helpers
 local sfx = SFXManager()
 
+local function InstaDeath(p)
+	if TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
+		p:ChangePlayerType(PlayerType.PLAYER_THELOST)
+		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position, Vector.Zero, p)
+		local sColor = poof:GetSprite().Color
+		local color = Color(sColor.R, sColor.G, sColor.B, 0.7, 0.518, 0.15, 0.8)
+		local s = poof:GetSprite()
+		s.Color = color
+		sfx:Play(SoundEffect.SOUND_BLACK_POOF)
+	end
+	IllusionMod.KillIllusion(p)
+end
+
 function IllusionModLocal:UpdateClones(p)
 	local data = Helpers.GetEntityData(p)
     if not data then return end
@@ -13,8 +26,11 @@ function IllusionModLocal:UpdateClones(p)
 			and p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
 				p:GetSprite():SetLayerFrame(PlayerSpriteLayer.SPRITE_GHOST,0)
 			end
-			if p:GetSprite():IsFinished("Death") or p:GetSprite():IsFinished("ForgottenDeath") then
-				p:GetSprite():SetFrame(70)
+			if p:GetSprite():IsFinished("Death") or p:GetSprite():IsFinished("ForgottenDeath") or TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
+				p:GetSprite():SetLastFrame()
+				if TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionInstaDeath") == 2 then
+					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
+				end
 				if p:GetPlayerType() ~= PlayerType.PLAYER_THELOST and p:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and
 				p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL and p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B  and p:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B
 				and not p:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
@@ -32,13 +48,14 @@ function IllusionModLocal:UpdateClones(p)
 		end
 		if not p:IsDead() then
 			if p.Parent and (not p.Parent:Exists() or p.Parent:IsDead()) then
-				p:Die()
+				--[[p:Die()
 				p:AddMaxHearts(-p:GetMaxHearts())
 				p:AddSoulHearts(-p:GetSoulHearts())
 				p:AddBoneHearts(-p:GetBoneHearts())
 				p:AddGoldenHearts(-p:GetGoldenHearts())
 				p:AddEternalHearts(-p:GetEternalHearts())
-				p:AddHearts(-p:GetHearts())
+				p:AddHearts(-p:GetHearts())]]
+				InstaDeath(p)
 				--Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position, Vector.Zero, p)
 			end
 		end
@@ -53,7 +70,7 @@ function IllusionModLocal:CloneRoomUpdate()
 		local data = Helpers.GetEntityData(p)
         if not data then return end
 		if data.IsIllusion and p:IsDead() then
-			p:GetSprite():SetFrame(70)
+			p:GetSprite():SetLastFrame()
 			p:ChangePlayerType(PlayerType.PLAYER_THELOST)
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, p.Position, Vector.Zero, p)
 		end
@@ -142,14 +159,8 @@ function IllusionModLocal:preIllusionWhiteFlame(p, collider)
 	if collider.Type == EntityType.ENTITY_FIREPLACE and collider.Variant == 4 then
 		local d = Helpers.GetEntityData(p)
         if not d then return end
-		if d.IsIllusion or p.Parent then
-			p:Kill()
-			p:AddMaxHearts(-p:GetMaxHearts())
-			p:AddSoulHearts(-p:GetSoulHearts())
-			p:AddBoneHearts(-p:GetBoneHearts())
-			p:AddGoldenHearts(-p:GetGoldenHearts())
-			p:AddEternalHearts(-p:GetEternalHearts())
-			p:AddHearts(-p:GetHearts())
+		if d.IsIllusion then--or p.Parent then
+			InstaDeath(p)
 		end
 	end
 end
@@ -171,7 +182,8 @@ function IllusionModLocal:onEntityTakeDamage(tookDamage)
 		if data.hasWisp then return false end
         --doples always die in one hit, so the hud looks nicer. ideally i'd just get rid of the hud but that doesnt seem possible
         local player = tookDamage:ToPlayer()
-		IllusionMod.KillIllusion(player)
+		InstaDeath(player)
+		return false
 	end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, IllusionModLocal.onEntityTakeDamage, EntityType.ENTITY_PLAYER)
