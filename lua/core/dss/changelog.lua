@@ -1,14 +1,18 @@
 local modname = "Restored Collection"
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.19",[[{{FSIZE2}}added
-- option for clones to instantly
-disappear
+- stone bombs costume
+
+- dss/imgui option for clones
+to instantly disappear
 
 {{FSIZE2}}fixed
 - forgotten clones dying instantly
 
 - crash with gruesome
-death mod enabled]],
+death mod enabled
+
+- incompatibility with some mods]],
 {"restored", "collection", "", "v1.19", "update"}, false, false)
 
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.18",[[{{FSIZE2}}fixed
