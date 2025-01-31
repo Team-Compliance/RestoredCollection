@@ -148,7 +148,7 @@ local function InitDiceVariant(bomb)
     if data.DiceBombVariant then return end
     data.DiceBombVariant = CollectibleType.COLLECTIBLE_D6
     for i = 0, 3 do
-        if DiceBombs.GetDiceBombsSprites(player:GetActiveItem(i)) then
+        if DiceBombsAPI.GetDiceBombsSprites(player:GetActiveItem(i)) then
             data.DiceBombVariant = player:GetActiveItem(i)
             break
         end
@@ -256,9 +256,9 @@ function DiceBombsLocal:BombUpdate(bomb)
         InitDiceVariant(bomb)
         if bomb.Variant == RestoredCollection.Enums.BombVariant.BOMB_DICE
         and not bomb:HasTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB) then
-            local diceBombGFX = DiceBombs.GetDiceBombsSprites(CollectibleType.COLLECTIBLE_D6)
-            if DiceBombs.GetDiceBombsSprites(data.DiceBombVariant) then
-                diceBombGFX = DiceBombs.GetDiceBombsSprites(data.DiceBombVariant)
+            local diceBombGFX = DiceBombsAPI.GetDiceBombsSprites(CollectibleType.COLLECTIBLE_D6)
+            if DiceBombsAPI.GetDiceBombsSprites(data.DiceBombVariant) then
+                diceBombGFX = DiceBombsAPI.GetDiceBombsSprites(data.DiceBombVariant)
             end
             
             if not bomb:HasTearFlags(TearFlags.TEAR_GOLDEN_BOMB) then
@@ -291,7 +291,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, DiceBombsLocal.
 RestoredCollection:AddCallback("ON_EDITH_STOMP_EXPLOSION", function(_, player, bombDamage, radius)
     local DiceBombVariant = CollectibleType.COLLECTIBLE_D6
     for i = 0, 3 do
-        if DiceBombs.GetDiceBombsSprites(player:GetActiveItem(i)) then
+        if DiceBombsAPI.GetDiceBombsSprites(player:GetActiveItem(i)) then
             DiceBombVariant = player:GetActiveItem(i)
             break
         end
