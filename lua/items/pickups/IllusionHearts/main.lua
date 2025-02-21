@@ -142,7 +142,7 @@ RestoredCollection:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, IllusionModLocal.
 
 function IllusionModLocal:preIllusionHeartPickup(pickup, collider)
 	local player = collider:ToPlayer()
-	if player then
+	if player and CustomHealthAPI then
 		local d = Helpers.GetEntityData(player)
         if not d then return end
 		if d.IsIllusion then
@@ -172,14 +172,23 @@ function IllusionModLocal:preIllusionWhiteFlame(p, collider)
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, IllusionModLocal.preIllusionWhiteFlame)
 
----@param pickup EntityPickup
-function IllusionModLocal:PreGoldenSpawn(pickup)
-	if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance") / 100) 
-	and pickup.SubType == HeartSubType.HEART_GOLDEN then
-		pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION, true, true)
+if CustomHealthAPI then
+	---@param pickup EntityPickup
+	function IllusionModLocal:PreGoldenSpawn(pickup)
+		if TSIL.Random.GetRandom(pickup.InitSeed) >= (1 - TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance") / 100) 
+		and pickup.SubType == HeartSubType.HEART_GOLDEN then
+			pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION, true, true)
+		end
 	end
+	RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, IllusionModLocal.PreGoldenSpawn, PickupVariant.PICKUP_HEART)
+else
+	function IllusionModLocal:RevertToGoldenHeart(pickup)
+		if pickup.SubType == RestoredCollection.Enums.Pickups.Hearts.HEART_ILLUSION then
+			pickup:Morph(pickup.Type, PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN, true, true)
+		end
+	end
+	RestoredCollection:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, IllusionModLocal.RevertToGoldenHeart, PickupVariant.PICKUP_HEART)
 end
-RestoredCollection:AddCallback(TSIL.Enums.CustomCallback.POST_PICKUP_INIT_FIRST, IllusionModLocal.PreGoldenSpawn, PickupVariant.PICKUP_HEART)
 
 function IllusionModLocal:onEntityTakeDamage(tookDamage)
 	local data = Helpers.GetEntityData(tookDamage)

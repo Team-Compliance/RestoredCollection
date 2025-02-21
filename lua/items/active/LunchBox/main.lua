@@ -173,10 +173,14 @@ RestoredCollection:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, Cal
             player = player:GetOtherTwin()
         end
         if DoesLunchBoxNeedsCharge(player) and LunchBox.GetPickupData(pickup.Variant) ~= nil and LunchBox.GetPickupData(pickup.Variant, pickup.SubType) ~= nil then
-            local collect = Helpers.CollectCustomPickup(player, pickup)
-            
-            if collect ~= nil then
-                return collect
+            if CustomHealthAPI then
+                local collect = Helpers.CollectCustomPickup(player, pickup)
+                
+                if collect ~= nil then
+                    return collect
+                end
+            elseif pickup:IsShopItem() then
+                return
             end
             local hp = LunchBox.GetPickupData(pickup.Variant, pickup.SubType).Charge
             

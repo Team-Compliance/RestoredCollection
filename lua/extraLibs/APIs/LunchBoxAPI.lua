@@ -46,21 +46,18 @@ local function load(data)
 	LunchBox.Loaded = true
 end
 
-if not CustomHealthAPI then
-    print("[".. name .."]", " couldn't be loaded. Missing CustomHealthAPI.")
-else
-    if LunchBox and LunchBox.Loaded then
-        if LunchBox.Version < localversion or not LunchBox.Loaded then
-            if not LunchBox.Loaded then
-                print("Reloading [".. LunchBox.Name .."]")
-            else
-                print("[".. LunchBox.Name .."]", " found old script V" .. LunchBox.Version .. ", found new script V" .. localversion .. ". replacing...")
-            end
-            local data = LunchBox.GetPickupData()
-            LunchBox = nil
-            load(data)
+
+if LunchBox and LunchBox.Loaded then
+    if LunchBox.Version < localversion or not LunchBox.Loaded then
+        if not LunchBox.Loaded then
+            print("Reloading [".. LunchBox.Name .."]")
+        else
+            print("[".. LunchBox.Name .."]", " found old script V" .. LunchBox.Version .. ", found new script V" .. localversion .. ". replacing...")
         end
-    elseif not LunchBox then
-        load()
+        local data = LunchBox.GetPickupData()
+        LunchBox = nil
+        load(data)
     end
+elseif not LunchBox then
+    load()
 end

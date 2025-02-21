@@ -1,8 +1,12 @@
 local sfx = SFXManager()
 local Helpers = RestoredCollection.Helpers
 
-if CustomHealthAPI and CustomHealthAPI.Library and CustomHealthAPI.Library.UnregisterCallbacks then
-    CustomHealthAPI.Library.UnregisterCallbacks("RestoredCollection")
+if CustomHealthAPI then
+    if CustomHealthAPI.Library and CustomHealthAPI.Library.UnregisterCallbacks then
+        CustomHealthAPI.Library.UnregisterCallbacks("RestoredCollection")
+    end
+else
+    return
 end
 
 CustomHealthAPI.Library.RegisterSoulHealth(
