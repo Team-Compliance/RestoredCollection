@@ -3,18 +3,6 @@ local Enums = {}
 Enums.MouseClick = {LEFT = 0, RIGHT = 1, WHEEL = 2, BACK = 3, FORWARD = 4}
 
 Enums.Entities = {
-					IMMORTAL_HEART_CHARGE = 
-					{
-						Type = Isaac.GetEntityTypeByName("Immortal Heart Charge"),
-						Variant = Isaac.GetEntityVariantByName("Immortal Heart Charge"),
-						SubType = 0
-					},
-					IMMORTAL_HEART_BREAK = 
-					{
-						Type = Isaac.GetEntityTypeByName("Immortal Heart Break"),
-						Variant = Isaac.GetEntityVariantByName("Immortal Heart Break"),
-						SubType = 0
-					},
 					BLANK_EXPLOSION_EFFECT =
 					{
 						Type = Isaac.GetEntityTypeByName("Blank Explosion"),
@@ -104,18 +92,6 @@ Enums.Familiars =
 									Variant = Isaac.GetEntityVariantByName("Checked Mate"),
 									SubType = 0
 								},
-					IMMORTAL_CLOT =
-								{
-									Type = Isaac.GetEntityTypeByName("Immortal Baby"),
-									Variant = Isaac.GetEntityVariantByName("Immortal Baby"),
-									SubType = 0
-								},
-					SUN_CLOT =
-								{
-									Type = Isaac.GetEntityTypeByName("Sun Baby"),
-									Variant = Isaac.GetEntityVariantByName("Sun Baby"),
-									SubType = 0
-								},
 					BETHS_HEART = 
 								{
 									Type = Isaac.GetEntityTypeByName("Beth's Heart"),
@@ -172,28 +148,6 @@ Enums.CollectibleType =
 Enums.TrinketType = {
 						TRINKET_GAME_SQUID_TC = Isaac.GetTrinketIdByName("​Game Squid"),
 					}
-
-Enums.Pickups = 
-				{
-					Hearts = 
-							{
-								HEART_IMMORTAL = REPENTOGON and Isaac.GetEntitySubTypeByName("Immortal Heart") or 902,
-								HEART_SUN = REPENTOGON and Isaac.GetEntitySubTypeByName("Sun Heart") or 910,
-								HEART_ILLUSION = REPENTOGON and Isaac.GetEntitySubTypeByName("Illusion Heart") or 9000,
-							},
-				}
-
-Enums.SFX =
-				{
-					Hearts =
-							{
-								IMMORTAL_PICKUP = Isaac.GetSoundIdByName("immortal"),
-								IMMORTAL_BREAK = Isaac.GetSoundIdByName("ImmortalHeartBreak"),
-								SUN_PICKUP = Isaac.GetSoundIdByName("PickupSun"),
-								SUN_BREAK = Isaac.GetSoundIdByName("SunBreak"),
-								ILLUSION_PICKUP = Isaac.GetSoundIdByName("PickupIllusion"),
-							},
-				}
 
 BombFlagsAPI.AddNewCustomBombFlag("STONE_BOMB", Enums.CollectibleType.COLLECTIBLE_STONE_BOMBS)
 BombFlagsAPI.AddNewCustomBombFlag("BLANK_BOMB", Enums.CollectibleType.COLLECTIBLE_BLANK_BOMBS)

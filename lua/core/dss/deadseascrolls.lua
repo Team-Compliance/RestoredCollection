@@ -2,39 +2,6 @@ local DSSModName = "Restored Collection"
 
 local DSSCoreVersion = 7
 
-local function IsCustomHealthAPIPresent()
-    return type(CustomHealthAPI) ~= "nil"
-end
-
-local function HeartGfxSuffix(var, hud)
-	local suf = ""
-	if var == 2 then
-		suf = "_aladar"
-	end
-	if var == 3 then
-		suf = "_peas"
-	end
-	if var == 4 and hud then
-		suf = "_beautiful"
-	end
-	if var == 5 then
-		suf = "_flashy"
-	end
-	if var == 6 then
-		suf = "_bettericons"
-	end
-	if var == 7 and hud then
-		suf = "_eternalupdate"
-	end
-	if var == 8 then
-		suf = "_duxi"
-	end
-	if var == 9 and not hud then
-		suf = "_sussy"
-	end
-	return suf
-end
-
 local modMenuName = "Restored Collection"
 -- Those functions were taken from Balance Mod, just to make things easier
 local BREAK_LINE = { str = "", fsize = 1, nosel = true }
@@ -57,41 +24,6 @@ local function GenerateTooltip(str)
 end
 -- Thanks to catinsurance for those functions
 
-local ogwikidesc = Encyclopedia and Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc or nil
-
-local function FitEncyclopediaDesc(desc)
-	local WikiDesc = desc
-	local newDesc = {}
-	for i, tab in ipairs(WikiDesc) do
-		newDesc[i] = {}
-
-		for j, new_str in ipairs(tab) do
-			local text = new_str
-
-			for _, subtext in ipairs(Encyclopedia.fitTextToWidth(text.str, text.fsize or 1, 140)) do
-				local newtext = { str = subtext, fsize = text.fsize, clr = text.clr, halign = text.halign }
-				table.insert(newDesc[i], newtext)
-			end
-
-			if j == #tab then
-				table.insert(newDesc[i], { str = "", fsize = 3 })
-			elseif tab[j + 1] and tab[j + 1].str ~= "" and text.str ~= "" then
-				table.insert(newDesc[i], { str = "" })
-			end
-		end
-	end
-	return newDesc
-end
-
-local function UpdateActOfContritionEncyclopedia(change)
-	if Encyclopedia then
-		local wikidesc = ogwikidesc
-		if change then
-			wikidesc = FitEncyclopediaDesc(RestoredCollection.Enums.Wiki.ActOfContrition)
-		end
-		Encyclopedia.GetItem(CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION).WikiDesc = wikidesc
-	end
-end
 
 -- Every MenuProvider function below must have its own implementation in your mod, in order to handle menu save data.
 local MenuProvider = {}
@@ -339,84 +271,6 @@ local function InitImGuiMenu()
 		ImGui.RemoveElement("restoredCollectionSettingsHeartsStyle")
 	end
 
-	if IsCustomHealthAPIPresent() then
-		ImGui.AddCombobox(
-			"restoredCollectionSettingsWindow",
-			"restoredCollectionSettingsHeartsStyle",
-			"Hearts sprites",
-			function(index, val)
-				local var = index + 1
-				TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HeartStyleRender", var)
-				local animfile = "gfx/ui/ui_remix_hearts"
-
-				animfile = animfile .. HeartGfxSuffix(var, true)
-
-				for _, heart in pairs({ "HEART_IMMORTAL", "HEART_SUN" }) do
-					if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
-						CustomHealthAPI.PersistentData.HealthDefinitions[heart].AnimationFilename = animfile .. ".anm2"
-					end
-				end
-				TSIL.SaveManager.SaveToDisk()
-			end,
-			{
-				"Vanilla",
-				"Aladar",
-				"Lifebar",
-				"Beautiful",
-				"Flashy",
-				"Better icons",
-				"Eternal update",
-				"Re-color",
-				"Sussy",
-			},
-			0
-		)
-
-		ImGui.SetTooltip("restoredCollectionSettingsHeartsStyle", "Change appearance of hearts")
-
-		if ImGui.ElementExists("restoredCollectionSettingsActGivesImmortalHearts") then
-			ImGui.RemoveElement("restoredCollectionSettingsActGivesImmortalHearts")
-		end
-
-		ImGui.AddCheckbox(
-			"restoredCollectionSettingsWindow",
-			"restoredCollectionSettingsActGivesImmortalHearts",
-			"Act of Contrition gives Immortal Heart",
-			function(val)
-				local newOption = val and 1 or 2
-				UpdateActOfContritionEncyclopedia(val)
-				TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContritionImmortal", newOption)
-				TSIL.SaveManager.SaveToDisk()
-			end,
-			true
-		)
-
-		ImGui.SetTooltip(
-			"restoredCollectionSettingsActGivesImmortalHearts",
-			"Replaces Act of Contrition's eternal heart with\nan Immortal Heart like in Antibirth"
-		)
-
-		for _, str in ipairs({ "Immortal", "Sun", "Illusion" }) do
-			if ImGui.ElementExists("restoredCollectionSettings" .. str .. "Heart") then
-				ImGui.RemoveElement("restoredCollectionSettings" .. str .. "Heart")
-			end
-			ImGui.AddDragInteger(
-				"restoredCollectionSettingsWindow",
-				"restoredCollectionSettings" .. str .. "Heart",
-				str .. " Heart",
-				function(val)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, str .. "HeartSpawnChance", val)
-					TSIL.SaveManager.SaveToDisk()
-				end,
-				20,
-				1,
-				0,
-				100
-			)
-			ImGui.SetTooltip("restoredCollectionSettings" .. str .. "Heart", str .. " Heart spawn chance")
-		end
-	end
-
 	if ImGui.ElementExists("restoredCollectionSettingsIllusionPlaceBombs") then
 		ImGui.RemoveElement("restoredCollectionSettingsIllusionPlaceBombs")
 	end
@@ -487,25 +341,6 @@ local function InitImGuiMenu()
 	ImGui.SetTooltip("restoredCollectionSettingsMaxsHeads", "Allow Max's head emojis appear when shooting tears.")
 
 	ImGui.AddCallback("restoredCollectionMenu", ImGuiCallback.Render, function()
-		if IsCustomHealthAPIPresent() then
-			ImGui.UpdateData(
-				"restoredCollectionSettingsHeartsStyle",
-				ImGuiData.Value,
-				TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender") - 1
-			)
-			ImGui.UpdateData(
-				"restoredCollectionSettingsActGivesImmortalHearts",
-				ImGuiData.Value,
-				TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") == 1
-			)
-			for _, str in ipairs({ "Immortal", "Sun", "Illusion" }) do
-				ImGui.UpdateData(
-					"restoredCollectionSettings" .. str .. "Heart",
-					ImGuiData.Value,
-					TSIL.SaveManager.GetPersistentVariable(RestoredCollection, str .. "HeartSpawnChance")
-				)
-			end
-		end
 		ImGui.UpdateData(
 			"restoredCollectionSettingsIllusionPlaceBombs",
 			ImGuiData.Value,
@@ -657,224 +492,8 @@ local restoreditemsdirectory = {
 		buttons = InitDisableMenu(),
 	},
 	heartsoptions = {
-		title = IsCustomHealthAPIPresent() and "hearts options" or "illusion options",
+		title = "illusion options",
 		buttons = {
-			{
-				str = "hearts sprites",
-
-				-- The "choices" tag on a button allows you to create a multiple-choice setting
-
-				choices = {
-					"vanilla",
-					"aladar",
-					"lifebar",
-					"beautiful",
-					"flashy",
-					"better icons",
-					"eternal update",
-					"re-color",
-					"sussy",
-				},
-				-- The "setting" tag determines the default setting, by list index. EG "1" here will result in the default setting being "choice a"
-				setting = 1,
-
-				-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
-				variable = "HeartStyleRender",
-
-				-- When the menu is opened, "load" will be called on all settings-buttons
-				-- The "load" function for a button should return what its current setting should be
-				-- This generally means looking at your mod's save data, and returning whatever setting you have stored
-				load = function()
-					return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "HeartStyleRender") or 1
-				end,
-
-				-- When the menu is closed, "store" will be called on all settings-buttons
-				-- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
-				store = function(var)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "HeartStyleRender", var)
-					local animfile = "gfx/ui/ui_remix_hearts" .. HeartGfxSuffix(var, true)
-
-					for _, heart in pairs({ "HEART_IMMORTAL", "HEART_SUN" }) do
-						if CustomHealthAPI.PersistentData.HealthDefinitions[heart] then
-							CustomHealthAPI.PersistentData.HealthDefinitions[heart].AnimationFilename = animfile
-								.. ".anm2"
-						end
-					end
-				end,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end,
-
-				-- A simple way to define tooltips is using the "strset" tag, where each string in the table is another line of the tooltip
-				tooltip = { strset = { "change", "appearance", "of hearts" } },
-			},
-			{
-				str = "",
-				nosel = true,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end
-			},
-			{
-				strset = { "act of contrition", "gives immortal heart" },
-				fsize = 2,
-				-- The "choices" tag on a button allows you to create a multiple-choice setting
-
-				choices = {
-					"on",
-					"off",
-				},
-				-- The "setting" tag determines the default setting, by list index. EG "1" here will result in the default setting being "choice a"
-				setting = 1,
-
-				-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
-				variable = "ActOfContritionGivesImmortalHearts",
-
-				-- When the menu is opened, "load" will be called on all settings-buttons
-				-- The "load" function for a button should return what its current setting should be
-				-- This generally means looking at your mod's save data, and returning whatever setting you have stored
-				load = function()
-					return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") or 1
-				end,
-
-				-- When the menu is closed, "store" will be called on all settings-buttons
-				-- The "store" function for a button should save the button's setting (passed in as the first argument) to save data!
-				store = function(var)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ActOfContritionImmortal", var)
-					UpdateActOfContritionEncyclopedia(var == 1)
-				end,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end,
-				-- A simple way to define tooltips is using the "strset" tag, where each string in the table is another line of the tooltip
-				tooltip = {
-					strset = {
-						"replaces act",
-						"of contrition's",
-						"eternal heart",
-						"with an",
-						"immortal",
-						"heart",
-						"like in",
-						"antibirth",
-					},
-				},
-			},
-			{
-				str = "",
-				nosel = true,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end
-			},
-			{
-				strset = { "immortal hearts", "spawn chance" },
-				fsize = 2,
-
-				-- If "min" and "max" are set without "slider", you've got yourself a number option!
-				-- It will allow you to scroll through the entire range of numbers from "min" to "max", incrementing by "increment"
-				min = 0,
-				max = 100,
-				increment = 1,
-
-				-- You can also specify a prefix or suffix that will be applied to the number, which is especially useful for percentages!
-				--pref = 'hi! ',
-				suf = "%",
-
-				setting = 20,
-
-				variable = "ImmortalHeartSpawnChance",
-
-				load = function()
-					return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance") or 20
-				end,
-				store = function(newOption)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "ImmortalHeartSpawnChance", newOption)
-				end,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end,
-				tooltip = { strset = { "how often", "immortal hearts", "can spawn?" } },
-			},
-			{
-				str = "",
-				nosel = true,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end
-			},
-			{
-				strset = { "sun hearts", "spawn chance" },
-				fsize = 2,
-
-				-- If "min" and "max" are set without "slider", you've got yourself a number option!
-				-- It will allow you to scroll through the entire range of numbers from "min" to "max", incrementing by "increment"
-				min = 0,
-				max = 100,
-				increment = 1,
-
-				-- You can also specify a prefix or suffix that will be applied to the number, which is especially useful for percentages!
-				--pref = 'hi! ',
-				suf = "%",
-
-				setting = 20,
-
-				variable = "SunHeartSpawnChance",
-
-				load = function()
-					return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "SunHeartSpawnChance") or 20
-				end,
-				store = function(newOption)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "SunHeartSpawnChance", newOption)
-				end,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end,
-				tooltip = { strset = { "how often", "sun hearts", "can spawn?" } },
-			},
-			{
-				str = "",
-				nosel = true,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end
-			},
-			{
-				strset = { "illusion hearts", "spawn chance" },
-				fsize = 2,
-
-				-- If "min" and "max" are set without "slider", you've got yourself a number option!
-				-- It will allow you to scroll through the entire range of numbers from "min" to "max", incrementing by "increment"
-				min = 0,
-				max = 100,
-				increment = 1,
-
-				-- You can also specify a prefix or suffix that will be applied to the number, which is especially useful for percentages!
-				--pref = 'hi! ',
-				suf = "%",
-
-				setting = 20,
-
-				variable = "IllusionHeartSpawnChance",
-
-				load = function()
-					return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance") or 20
-				end,
-				store = function(newOption)
-					TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "IllusionHeartSpawnChance", newOption)
-				end,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end,
-				tooltip = { strset = { "how often", "illusion hearts", "can spawn?" } },
-			},
-			{
-				str = "",
-				nosel = true,
-				displayif = function()
-					return IsCustomHealthAPIPresent()
-				end
-			},
 			{
 				strset = { "illusions can", "place bombs" },
 				fsize = 2,
@@ -935,9 +554,9 @@ local restoreditemsdirectory = {
 		buttons = {
 			{ str = "", nosel = true },
 			{
-				str = IsCustomHealthAPIPresent() and "hearts options" or "illusion options",
+				str = "illusion options",
 				dest = "heartsoptions",
-				tooltip = IsCustomHealthAPIPresent() and GenerateTooltip("mod's hearts customization") or GenerateTooltip("tweaks for illusions"),
+				tooltip = GenerateTooltip("tweaks for illusions"),
 				fzise = 2,
 			},
 			{ str = "", nosel = true },
@@ -1087,12 +706,6 @@ DeadSeaScrollsMenu.AddMenu(modMenuName, {
 if REPENTOGON then
 	InitImGuiMenu()
 end
-
-RestoredCollection:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE + 10, function()
-	UpdateActOfContritionEncyclopedia(
-		TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal")
-	)
-end)
 
 include("lua.core.dss.changelog")
 -- There are a lot more features that DSS supports not covered here, like sprite insertion and scroller menus, that you'll have to look at other mods for reference to use.

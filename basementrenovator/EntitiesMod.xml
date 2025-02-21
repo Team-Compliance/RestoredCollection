@@ -1,7 +1,0 @@
-<data>
-	<group Name="Hearts">
-		<entity ID="5" Image="icons/Illusion Heart.png" Kind="Pickups" Name="Illusion Heart" Subtype="9000" Variant="10" />
-		<entity ID="5" Image="icons/Sun Heart.png" Kind="Pickups" Name="Sun Heart" Subtype="910" Variant="10" />
-		<entity ID="5" Image="icons/Immortal Heart.png" Kind="Pickups" Name="Immortal Heart" Subtype="902" Variant="10" />
-	</group>
-</data>

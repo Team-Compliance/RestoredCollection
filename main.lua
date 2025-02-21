@@ -16,8 +16,6 @@ include("lua.extraLibs.hellfirejuneMSHack")
 --include("lua.extraLibs.APIs.customhealthapi.core")
 include("lua.extraLibs.APIs.custom_shockwave_api")
 include("lua.extraLibs.APIs.custom_bomb_flags")
-include("lua.extraLibs.APIs.ImmortalAPI")
-include("lua.extraLibs.APIs.SunAPI")
 include("lua.extraLibs.APIs.IllusionAPI")
 include("lua.extraLibs.APIs.PillCrusherAPI")
 include("lua.extraLibs.APIs.LunchBoxAPI")
@@ -35,10 +33,6 @@ include("lua.core.ReplaceItems")
 include("lua.core.VanillaPostTriggerWeaponFired")
 include("lua.core.achievements")
 
---entities
-include("lua.entities.clots.ImmortalClot.main")
-include("lua.entities.clots.SunClot.main")
-
 --items
 --active
 include("lua.items.active.LunchBox.main")
@@ -49,7 +43,6 @@ include("lua.items.active.PillCrusher.main")
 include("lua.items.active.VoodooPin.main")
 
 --passive
-
 include("lua.items.passive.BlankBombs.main")
 include("lua.items.passive.StoneBombs.main")
 include("lua.items.passive.CheckedMate.main")
@@ -72,10 +65,8 @@ include("lua.items.passive.TammysTail.main")
 --trinkets
 include("lua.items.trinkets.GameSquid.main")
 
--- pickups
-include("lua.items.pickups.ImmortalHeart.main")
-include("lua.items.pickups.SunHeart.main")
-include("lua.items.pickups.IllusionHearts.main")
+--pickups
+include("lua.entities.illusions.main")
 
 --mod compatibility
 include("lua.mod_compat.eid.eid")

@@ -5,23 +5,6 @@
     <sound name="deadseascrolls_whoosh">
         <sample weight="1" path="deadseascrolls/whoosh.wav"/>
     </sound>
-	<sound name="PickupSun">
-		<sample weight="1" path="pickup_sunheart.wav" />
-		<sample weight="1" path="pickup_sunheart_2.wav" />
-	</sound>
-    <sound name="SunBreak">
-		<sample weight="1" path="sunheart_break.wav" />
-	</sound>
-	<sound name="ImmortalHeartBreak">
-		<sample weight="1" path="ImmortalHeart_Break.wav" />
-	</sound>
-	<sound name="immortal">
-		<sample weight="1" path="immortal.wav" />
-	</sound>
-	<sound name="PickupIllusion">
-		<sample weight="1" path="pickup_illusion.wav" />
-		<sample weight="1" path="pickup_illusion_2.wav" />
-	</sound>
 	<sound name="Ancient Revelation">
 		<sample weight="1" path="funny/Ancient Revelation.wav" />
 	</sound>

@@ -2,13 +2,6 @@ if not EID then return end
 local Helpers = RestoredCollection.Helpers
 -- Mod Icon (TODO)
 EID:setModIndicatorName("Restored Collection")
-local iconSprite = Sprite()
-iconSprite:Load("gfx/eid_restored_icon.anm2", true)
---EID:addIcon("Restored Items Icon", "Icon", 0, 10, 9, 1, 1, iconSprite)
---EID:setModIndicatorIcon("Restored Items Icons")
-EID:addIcon("ImmortalHeart", "Icon", 0, 10, 9, 1, 1, iconSprite)
-EID:addIcon("SunHeart", "Icon", 1, 10, 9, 1, 1, iconSprite)
-EID:addIcon("IllusionHeart", "Icon", 2, 10, 9, 1, 1, iconSprite)
 
 -- Items
 --Stone Bombs
@@ -175,21 +168,6 @@ EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_
 EID:addCollectible(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION, AncientDescZh_Cn,
     "远古启示", "zh_cn")
 EID:assignTransformation("collectible", RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION, "10") -- Seraphim
-
-local function ChapiModificationConditions(descObj)
-    return CustomHealthAPI and descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == RestoredCollection.Enums.CollectibleType.COLLECTIBLE_ANCIENT_REVELATION
-end
-
-local function ChapiModifierCallback(descObj)
-    descObj.Description = descObj.Description:gsub("Soul", "Immortal")
-    descObj.Description = descObj.Description:gsub("синих", "бессмертных")
-    descObj.Description = descObj.Description:gsub("de alma", "inmortales")
-    descObj.Description = descObj.Description:gsub("de alma", "imortais")
-    descObj.Description = descObj.Description:gsub("魂心", "不朽之心")
-    return descObj
-end
-
-EID:addDescriptionModifier("Ancient Revelation Immortal hearts Modifier", ChapiModificationConditions, ChapiModifierCallback)
 
 --Beth's Heart
 local BHDescEng =
@@ -493,18 +471,3 @@ EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_S
     "↑ +3% de chance por cada multiplicador de trinkets", nil, nil, "pt_br")
 EID:addGoldenTrinketMetadata(RestoredCollection.Enums.TrinketType.TRINKET_GAME_SQUID_TC,
     "↑每个饰品乘数上限+3%", nil, nil, "zh_cn")
-
-local function ActOfContritionConditions(descObj)
-    return CustomHealthAPI and descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == CollectibleType.COLLECTIBLE_ACT_OF_CONTRITION and TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "ActOfContritionImmortal") == 1
-end
-
-local function ActOfContritionModifierCallback(descObj)
-    descObj.Description = descObj.Description:gsub("Eternal", "Immortal")
-    descObj.Description = descObj.Description:gsub("вечное", "бессмертное")
-    descObj.Description = descObj.Description:gsub("eterno", "inmortales")
-    descObj.Description = descObj.Description:gsub("Eterno", "imortais")
-    descObj.Description = descObj.Description:gsub("永恒之心", "不朽之心")
-    return descObj
-end
-
-EID:addDescriptionModifier("Immortal Act of Contrition Modifier", ActOfContritionConditions, ActOfContritionModifierCallback)
