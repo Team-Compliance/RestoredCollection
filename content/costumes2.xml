@@ -2,9 +2,9 @@
 	<!-- Book of Despair -->
 	<costume id="20" anm2path="341_torn photo.anm2" type="active" hasOverlay="true" hasSkinAlt="true" />
 	<!-- Stone Bombs -->
-	<costume id="5" anm2path="tc_stone_bombs.anm2" type="passive" />
+	<costume id="5" anm2path="restored_stone_bombs.anm2" type="passive" />
 	<!-- Donkey Jawbone -->
-	<costume id="4" anm2path="tc_donkeyjawbone_costume.anm2" type="passive" />
+	<costume id="4" anm2path="restored_donkeyjawbone_costume.anm2" type="passive" />
 	<!-- Ancient Revelation -->
 	<costume id="6" anm2path="ancientrevelation.anm2" type="passive" isFlying="true" hasSkinAlt="true" />
 	<!-- Keeper's Rope -->
@@ -14,12 +14,14 @@
 	<!-- Pacifist -->
 	<costume id="10" anm2path="662_Pacifist.anm2" type="passive" />
 	<!-- Max's Head -->
-	<costume id="13" anm2path="tc_maxs_head.anm2" type="passive" hasSkinAlt="true" />
+	<costume id="13" anm2path="restored_maxs_head.anm2" type="passive" hasSkinAlt="true" />
 	<!-- Pumpkin Mask -->
-	<costume id="25" anm2path="tc_pumpkin_mask.anm2" type="passive" hasSkinAlt="true" />
+	<costume id="25" anm2path="restored_pumpkin_mask.anm2" type="passive" hasSkinAlt="true" />
 	<!-- Melted Candle -->
 	<costume id="26" anm2path="costume_meltedcandle.anm2" type="passive" hasSkinAlt="true" />
 	<costume anm2path="costume_meltedcandle2.anm2" type="none" priority="99"/>
 	<!-- Tammy's Tail -->
-	<costume id="27" anm2path="tc_tammystail.anm2" type="passive" />
+	<costume id="27" anm2path="restored_tammystail.anm2" type="passive" />
+	<!-- Dice Bombs -->
+	<costume id="3" anm2path="costume_dice_bombs.anm2" type="passive" />
 </costumes>

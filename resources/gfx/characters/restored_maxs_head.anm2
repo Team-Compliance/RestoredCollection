@@ -2,7 +2,7 @@
 	<Info CreatedBy="robot" CreatedOn="26.08.2014 23:00:18" Version="104" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="costumes\costume_tc_maxs_head.png" Id="0"/>
+			<Spritesheet Path="costumes\costume_restored_maxs_head.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="head" Id="0" SpritesheetId="0"/>
