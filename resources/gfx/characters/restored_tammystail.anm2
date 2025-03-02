@@ -2,7 +2,7 @@
 	<Info CreatedBy="robot" CreatedOn="8/30/2024 6:59:23 PM" Version="106" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="costumes\costume_tc_tammytail.png" Id="0"/>
+			<Spritesheet Path="costumes\costume_restored_tammytail.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="head1" Id="0" SpritesheetId="0"/>

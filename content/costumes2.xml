@@ -22,4 +22,6 @@
 	<costume anm2path="costume_meltedcandle2.anm2" type="none" priority="99"/>
 	<!-- Tammy's Tail -->
 	<costume id="27" anm2path="restored_tammystail.anm2" type="passive" />
+	<!-- Dice Bombs -->
+	<costume id="3" anm2path="costume_dice_bombs.anm2" type="passive" />
 </costumes>
