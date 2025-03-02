@@ -62,7 +62,7 @@ if RepentancePlusMod then
         player:GetEffects():AddCollectibleEffect(RepentancePlusMod.CustomCollectibles.HARLOT_FETUS_NULL, false, 1)
         player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
     end)
-    LunchBox.AddPickup(PickupVariant.PICKUP_HEART, RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HARLOT, 1, function (player)
+    LunchBox.AddPickup(PickupVariant.PICKUP_HEART, RepentancePlusMod.CustomPickups.TaintedHearts.HEART_DESERTED, 1, function (player)
         sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0)
         player:AddBlackHearts(1)
         sfx:Play(SoundEffect.SOUND_UNHOLY, 1, 0)
