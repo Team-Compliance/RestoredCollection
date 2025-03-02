@@ -162,7 +162,7 @@ local function SpawnClot(_, familiar)
             end
             if clot ~= nil and clot.InitSeed ~= familiar.InitSeed then
                 local clotData = clot:GetData()
-                clotData.TC_HP = clotData.TC_HP + 1
+                clotData.RC_HP = clotData.RC_HP + 1
                 local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_CHARGE.Variant, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
                 ImmortalEffect:GetSprite().Offset = Vector(0, -10)
                 familiar:Remove()
@@ -176,16 +176,16 @@ RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, SpawnClot, Familia
 local function StaticClotHP(_, clot)
 	if clot.SubType == 20 or clot.SubType == 30 then
 		local clotData = clot:GetData()
-		if (clotData.TC_HP == nil) then
-			clotData.TC_HP = clot.HitPoints
+		if (clotData.RC_HP == nil) then
+			clotData.RC_HP = clot.HitPoints
 		else
-			local damageTaken = clotData.TC_HP - clot.HitPoints
+			local damageTaken = clotData.RC_HP - clot.HitPoints
 			if (damageTaken > 0.19 and damageTaken < 0.21) then
 				clot.HitPoints = clot.HitPoints + damageTaken
 			elseif (damageTaken > 1.19 and damageTaken < 1.21) then
 				clot.HitPoints = clot.HitPoints - 1.0
 			else
-				clotData.TC_HP = clot.HitPoints
+				clotData.RC_HP = clot.HitPoints
 			end
 		end
 	end

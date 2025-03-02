@@ -302,12 +302,12 @@ end
 local function InitImGuiMenu()
     TSIL.SaveManager.LoadFromDisk()
 
-    if not ImGui.ElementExists("tcMods") then
-        ImGui.CreateMenu("tcMods", "TC Mods")
+    if not ImGui.ElementExists("RestoredMods") then
+        ImGui.CreateMenu("RestoredMods", "Restored Mods")
     end
 
     if not ImGui.ElementExists("restoredCollectionMenu") then   
-        ImGui.AddElement("tcMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
+        ImGui.AddElement("RestoredMods", "restoredCollectionMenu", ImGuiElement.Menu, "Restored Collection")
     end
    
     if not ImGui.ElementExists("restoredCollectionSettingsWindow") then

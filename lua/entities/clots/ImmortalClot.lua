@@ -24,11 +24,11 @@ function ImmortalClotLocal:ClotHeal()
 					end
 				end
 			end
-			if entity:GetData().TC_HP < entity.MaxHitPoints then
-				entity:GetData().TC_HP = entity:GetData().TC_HP + 1 / (1 + #Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY))
+			if entity:GetData().RC_HP < entity.MaxHitPoints then
+				entity:GetData().RC_HP = entity:GetData().RC_HP + 1 / (1 + #Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY))
 			end
 		else
-			entity:GetData().TC_HP = entity:GetData().TC_HP + 2
+			entity:GetData().RC_HP = entity:GetData().RC_HP + 2
 		end
 		local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, 903, 0, entity.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
 		ImmortalEffect:GetSprite().Offset = Vector(0, -10)
