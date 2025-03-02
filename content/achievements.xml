@@ -3,4 +3,21 @@
 	<achievement name="Ancient Revelation" text="470" gfx="achievement_ancientrevelation.png" />
 	<achievement name="Beth's Heart" text="404" gfx="achievement_bethsheart.png" />
 	<achievement name="Keeper's Rope" text="251" gfx="achievement_keepersrope.png" />
+	<achievement name="Blank Bombs" text="" gfx="achievement_blankbombs.png" />
+	<achievement name="Book of Despair" text="" gfx="achievement_bookofdespair.png" />
+	<achievement name="Book of Illusions" text="" gfx="achievement_bookofillusions.png" />
+	<achievement name="Bowl of Tears" text="" gfx="achievement_bowloftears.png" />
+	<achievement name="Dice Bombs" text="" gfx="achievement_dicebombs.png" />
+	<achievement name="Illusion Heart" text="" gfx="achievement_illusionheart.png" />
+	<achievement name="Immortal Heart" text="" gfx="achievement_immortalheart.png" />
+	<achievement name="Lucky Seven" text="" gfx="achievement_luckyseven.png" />
+	<achievement name="Lunch Box" text="" gfx="achievement_lunchbox.png" />
+	<achievement name="Max's Head" text="" gfx="achievement_maxhead.png" />
+	<achievement name="Menorah" text="" gfx="achievement_menorah.png" />
+	<achievement name="Pacifist" text="" gfx="achievement_pacifist.png" />
+	<achievement name="Pill Crusher" text="" gfx="achievement_pillcrusher.png" />
+	<achievement name="Safety Bombs" text="" gfx="achievement_safetybombs.png" />
+	<achievement name="Stone Bombs" text="" gfx="achievement_stonebombs.png" />
+	<achievement name="Tammy's Tail" text="" gfx="achievement_tammystail.png" />
+	<achievement name="Voodoo Pin" text="" gfx="achievement_voodoopin.png" />
 </achievements>

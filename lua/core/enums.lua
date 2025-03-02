@@ -205,6 +205,29 @@ if REPENTOGON then
 		BOOK_OF_DESPAIR = Isaac.GetGiantBookIdByName("Book of Despair"),
 		BOOK_OF_ILLUSIONS = Isaac.GetGiantBookIdByName("Book of Illusions"),
 	}
+	Enums.Achievements = {
+		DONKEY_JAWBONE = Isaac.GetAchievementIdByName("Donkey Jawbone"),
+		ANCIENT_REVELATION = Isaac.GetAchievementIdByName("Ancient Revelation"),
+		BETHS_HEART = Isaac.GetAchievementIdByName("Beth's Heart"),
+		KEEPERS_ROPE = Isaac.GetAchievementIdByName("Keeper's Rope"),
+		BLANK_BOMBS = Isaac.GetAchievementIdByName("Blank Bombs"),
+		BOOK_OF_DESPAIR = Isaac.GetAchievementIdByName("Book of Despair"),
+		BOOK_OF_ILLUSIONS = Isaac.GetAchievementIdByName("Book of Illusions"),
+		BOWL_OF_TEARS = Isaac.GetAchievementIdByName("Bowl of Tears"),
+		DICE_BOMBS = Isaac.GetAchievementIdByName("Dice Bombs"),
+		ILLUSION_HEART = Isaac.GetAchievementIdByName("Illusion Heart"),
+		IMMORTAL_HEART = Isaac.GetAchievementIdByName("Immortal Heart"),
+		LUCKY_SEVEN = Isaac.GetAchievementIdByName("Lucky Seven"),
+		LUNCH_BOX = Isaac.GetAchievementIdByName("Lunch Box"),
+		MAXS_HEAD = Isaac.GetAchievementIdByName("Max's Head"),
+		MENORAH = Isaac.GetAchievementIdByName("Menorah"),
+		PACIFIST = Isaac.GetAchievementIdByName("Pacifist"),
+		PILL_CRUSHER = Isaac.GetAchievementIdByName("Pill Crusher"),
+		SAFETY_BOMBS = Isaac.GetAchievementIdByName("Safety Bombs"),
+		STONE_BOMBS = Isaac.GetAchievementIdByName("Stone Bombs"),
+		TAMMYS_HEAD = Isaac.GetAchievementIdByName("Tammy's Tail"),
+		VOODOO_PIN = Isaac.GetAchievementIdByName("Voodoo Pin"),
+	}
 end
 
 Enums.Callbacks = {
