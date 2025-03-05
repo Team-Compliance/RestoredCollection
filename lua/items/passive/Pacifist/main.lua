@@ -115,7 +115,7 @@ function PacifistMod:OnUpdate()
 		end
 	end
 
-	if TSIL.Players.DoesAnyPlayerHasItem(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
+	if Helpers.DoesAnyPlayerHasItem(RestoredCollection.Enums.CollectibleType.COLLECTIBLE_PACIFIST) then
 		--print(TimeSparing)
 		if room:IsClear() == false and (room:GetType() == RoomType.ROOM_DEFAULT or (room:GetType() > RoomType.ROOM_DEFAULT
 		and room:GetType() ~= RoomType.ROOM_CHALLENGE and room:GetAliveBossesCount() == 0)) and TimeSparing >= 900 then --30 seconds

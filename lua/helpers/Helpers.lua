@@ -800,6 +800,12 @@ function Helpers.IsItemDisabled(item)
 	return false
 end
 
+---@param collectible CollectibleType | integer
+---@return boolean
+function Helpers.DoesAnyPlayerHasItem(collectible)
+	return REPENTOGON and PlayerManager.AnyoneHasCollectible(collectible) or #Helpers.Filter(Helpers.GetPlayers(), function(_, player) return player:HasCollectible(collectible) end) > 0
+end
+
 RestoredCollection.Helpers = Helpers
 
 return Helpers
