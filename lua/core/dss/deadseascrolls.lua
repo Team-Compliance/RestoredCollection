@@ -548,7 +548,7 @@ local restoreditemsdirectory = {
         tooltip = dssmod.menuOpenToolTip
     },
     items = {
-        title = 'item toggles',
+        title = 'items blacklist',
 
         buttons = InitDisableMenu()
     },

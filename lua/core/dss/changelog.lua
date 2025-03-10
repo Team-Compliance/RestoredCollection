@@ -1,5 +1,18 @@
 local modname = "Restored Collection"
 
+DeadSeaScrollsMenu.AddChangelog(modname, "v1.20",[[{{FSIZE2}}added
+- dice bombs costume
+
+{{FSIZE2}}updated
+- custom health api version 0.96
+
+{{FSIZE2}}fixed
+- deserted hearts not working with
+lunch box
+
+- some other minor errors]],
+{"restored", "collection", "", "v1.20", "update"}, false, false)
+
 DeadSeaScrollsMenu.AddChangelog(modname, "v1.19",[[{{FSIZE2}}added
 - stone bombs costume
 
