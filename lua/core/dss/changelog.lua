@@ -10,6 +10,11 @@ DeadSeaScrollsMenu.AddChangelog(modname, "v1.20",[[{{FSIZE2}}added
 - deserted hearts not working with
 lunch box
 
+- immortal and sun clots not
+functioning
+
+- possible error when continuing run
+
 - some other minor errors]],
 {"restored", "collection", "", "v1.20", "update"}, false, false)
 

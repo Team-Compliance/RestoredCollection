@@ -21,8 +21,8 @@ CustomHealthAPI.Library.RegisterSoulHealth(
             {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredCollection.Enums.Pickups.Hearts.HEART_IMMORTAL}
         },
         SumptoriumSubType = 20,  -- immortal heart clot
-        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
-        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
+        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 214/255, 228/255, 1.00),
+        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 214/255, 228/255, 1.00),
         SumptoriumCollectSoundSettings = {
             ID = SoundEffect.SOUND_MEAT_IMPACTS,
             Volume = 1.0,
@@ -50,8 +50,8 @@ CustomHealthAPI.Library.RegisterSoulHealth(
             {ID = EntityType.ENTITY_PICKUP, Var = PickupVariant.PICKUP_HEART, Sub = RestoredCollection.Enums.Pickups.Hearts.HEART_SUN}
         },
         SumptoriumSubType = 30,  -- sun heart clot
-        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
-        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 0.00, 0.00, 0.00),
+        SumptoriumSplatColor = Color(1.00, 1.00, 1.00, 1.00, 1.00, 213/255, 0.00),
+        SumptoriumTrailColor = Color(1.00, 1.00, 1.00, 1.00, 1.00, 213/255, 0.00),
         SumptoriumCollectSoundSettings = {
             ID = SoundEffect.SOUND_MEAT_IMPACTS,
             Volume = 1.0,
@@ -143,7 +143,46 @@ CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.
 	end
 end)
 
-local function SpawnClot(_, familiar)
+CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.ON_SAVE, 0, function(save, isSaving)
+    TSIL.SaveManager.SetPersistentVariable(RestoredCollection, "CustomHealthAPISave", save)
+    TSIL.SaveManager.SaveToDisk()
+end)
+
+CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.ON_LOAD, 0, function()
+    TSIL.SaveManager.LoadFromDisk()
+    return TSIL.SaveManager.GetPersistentVariable(RestoredCollection, "CustomHealthAPISave")
+end)
+
+CustomHealthAPI.Library.AddCallback("RestoredCollection", CustomHealthAPI.Enums.Callbacks.PRE_SUMPTORIUM_CLOT_INIT, 0, function(familiar, key)
+    if key == "HEART_IMMORTAL" then
+        local player = familiar.Player
+        if player then
+            if  ComplianceImmortal.GetImmortalHeartsNum(player) % 2 == 0 then
+                sfx:Play(RestoredCollection.Enums.SFX.Hearts.IMMORTAL_BREAK, 1, 0)
+                local shatterSPR = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_BREAK.Variant, 0, player.Position + Vector(0, 1), Vector.Zero, nil):ToEffect():GetSprite()
+                shatterSPR.PlaybackSpeed = 2
+            end
+            local clot
+            for _, s_clot in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 20)) do
+                s_clot = s_clot:ToFamiliar()
+                if GetPtrHash(s_clot.Player) == GetPtrHash(player) and GetPtrHash(familiar) ~= GetPtrHash(s_clot) then
+                    clot = s_clot
+                    break
+                end
+            end
+            if clot ~= nil and clot.InitSeed ~= familiar.InitSeed then
+                local clotData = clot:GetData()
+                clotData.RC_HP = clotData.RC_HP + 1
+                local ImmortalEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, RestoredCollection.Enums.Entities.IMMORTAL_HEART_CHARGE.Variant, 0, clot.Position + Vector(0, 1), Vector.Zero, nil):ToEffect()
+                ImmortalEffect:GetSprite().Offset = Vector(0, -10)
+                familiar:Remove()
+                return true
+            end
+        end
+    end
+end)
+
+--[[local function SpawnClot(_, familiar)
     if familiar.SubType == 20 then
         local player = familiar.Player
         if player then
@@ -171,7 +210,7 @@ local function SpawnClot(_, familiar)
     end
 end
 RestoredCollection:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, SpawnClot, FamiliarVariant.BLOOD_BABY)
-
+]]
 
 local function StaticClotHP(_, clot)
 	if clot.SubType == 20 or clot.SubType == 30 then
